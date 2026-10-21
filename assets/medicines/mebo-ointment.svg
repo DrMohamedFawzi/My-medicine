@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 300" role="img" aria-label="أنبوب مرهم للعناية بالحروق">
+  <rect width="320" height="300" rx="28" fill="#f1f8f8"/>
+  <ellipse cx="160" cy="252" rx="88" ry="13" fill="#dce8e9"/>
+  <path d="m91 104 118-20 28 24-112 22z" fill="#e9f4f7" stroke="#c8dadd" stroke-width="4"/>
+  <path d="m125 130 112-22-31 100-113 22z" fill="#fff" stroke="#c8dadd" stroke-width="4"/>
+  <path d="m100 230 93-18-7 20-75 14z" fill="#dce9ec" stroke="#c8dadd" stroke-width="4"/>
+  <path d="m130 153 81-16" stroke="#53b5aa" stroke-width="8" stroke-linecap="round"/>
+  <path d="m132 171 66-13" stroke="#b6d9dc" stroke-width="5" stroke-linecap="round"/>
+  <text x="169" y="194" text-anchor="middle" fill="#276c70" font-family="Arial,sans-serif" font-size="13" font-weight="700">SOOTHING</text>
+</svg>

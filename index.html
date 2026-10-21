@@ -1,0 +1,1381 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="corporate">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#071a2c">
+
+  <!-- Primary Meta Tags & Supercharged SEO -->
+  <title>دواك بإيدك 🏥 | شبكة الصمود والإغاثة الدوائية - قطاع غزة</title>
+  <meta name="title" content="دواك بإيدك 🏥 | شبكة الصمود والإغاثة الدوائية - قطاع غزة">
+  <meta name="description" content="منصة دواك بإيدك - شبكة الصمود والإغاثة الدوائية الطارئة لقطاع غزة. ابحث عن الأدوية الحيوية، حليب الأطفال، والأنسولين في الصيدليات المناوبة 24س، حجز فوري محمي السعر، وتوصيل تجميعي للمخيمات.">
+  <meta name="keywords" content="دواك بإيدك, أدوية غزة, صيدليات غزة, أنسولين غزة, حليب أطفال غزة, إغاثة طبية, رف التكافل الدوائي, طوارئ صحية غزة, صيدليات مناوبة 24 ساعة, قطاع غزة, WHO, UNICEF, MSN-IT In UK">
+  <meta name="author" content="MSN-IT In UK">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+
+  <!-- Open Graph / Facebook / WhatsApp (للانتشار الفوري السريع) -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://localhost/My-medicine/">
+  <meta property="og:title" content="دواك بإيدك 🏥 | شبكة الصمود والإغاثة الدوائية الطارئة - قطاع غزة">
+  <meta property="og:description" content="منصة إغاثية ذكية تربط جرحى ومرضى غزة بالصيدليات المعتمدة ومخزون الأدوية الحي، مع توصيل تجميعي للمخيمات ورف تكافل مجاني.">
+  <meta property="og:image" content="assets/images/dawaak-logo.png">
+  <meta property="og:image:width" content="512">
+  <meta property="og:image:height" content="512">
+  <meta property="og:image:alt" content="شعار منصة دواك بإيدك">
+  <meta property="og:locale" content="ar_AR">
+  <meta property="og:site_name" content="دواك بإيدك - MediFind Gaza">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="دواك بإيدك 🏥 | شبكة الصمود والإغاثة الدوائية - قطاع غزة">
+  <meta name="twitter:description" content="البحث عن الأدوية الحيوية، حليب الأطفال، والأنسولين في صيدليات قطاع غزة فورياً مع فحص الصلاحية والتوصيل للخيام.">
+  <meta name="twitter:image" content="assets/images/dawaak-logo.png">
+
+  <!-- Favicon & Touch Icons (الشعار في التايتل والمتصفح) -->
+  <link rel="icon" type="image/webp" href="assets/images/dawaak-logo.webp">
+  <link rel="icon" type="image/png" href="assets/images/dawaak-logo.png">
+  <link rel="apple-touch-icon" href="assets/images/dawaak-logo.png">
+
+  <!-- Schema.org JSON-LD Structured Data (لظهور قوي وتصنيف ممتاز في جوجل ومحركات البحث) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MedicalWebPage",
+    "name": "دواك بإيدك - شبكة الصمود والإغاثة الدوائية الطارئة لقطاع غزة",
+    "headline": "دواك بإيدك | شبكة الصمود والإغاثة الدوائية - قطاع غزة",
+    "description": "منصة إغاثية طبية متطورة لتتبع وتأكيد توفر الأدوية الحيوية وألبان الأطفال ومستلزمات الطوارئ في صيدليات قطاع غزة.",
+    "url": "http://localhost/My-medicine/",
+    "publisher": {
+      "@type": "Organization",
+      "name": "دواك بإيدك",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "http://localhost/My-medicine/assets/images/dawaak-logo.png"
+      }
+    },
+    "sponsor": {
+      "@type": "Organization",
+      "name": "MSN-IT In UK",
+      "description": "تم دعم وتطوير المشروع برمجياً من قبل شركة MSN-IT In UK"
+    }
+  }
+  </script>
+
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.10.2/dist/full.min.css" rel="stylesheet" type="text/css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@500;600;700;800&family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Cairo', 'sans-serif'],
+            heading: ['Alexandria', 'sans-serif']
+          },
+          colors: {
+            brand: {
+              navy: '#071a2c',
+              teal: '#0d9488',
+              cyan: '#06b6d4'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      color-scheme: light;
+      scroll-behavior: smooth;
+      --navy: #071a2c;
+      --teal: #0d9488;
+      --cyan: #06b6d4;
+    }
+    body {
+      background: #f3f8fa;
+      font-family: 'Cairo', sans-serif;
+    }
+    h1, h2, h3, .font-heading {
+      font-family: 'Alexandria', 'Cairo', sans-serif;
+    }
+.hero-canvas {
+      background:
+        radial-gradient(ellipse at 68% 42%, rgba(45, 212, 191, .17), transparent 36%),
+        radial-gradient(ellipse at 8% 82%, rgba(34, 211, 238, .12), transparent 38%),
+        linear-gradient(112deg, #102d42 0%, #154456 58%, #126b70 100%);
+    }
+    .hero-mesh {
+      background-image:
+        linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px);
+      background-size: 44px 44px;
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 35%, transparent);
+      mask-image: linear-gradient(90deg, transparent, #000 35%, transparent);
+    }
+    .hero-carousel {
+      position: relative;
+      min-height: clamp(700px, 88vh, 960px);
+      overflow: hidden;
+      isolation: isolate;
+    }
+    .hero-slide {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: stretch;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transform: translateX(18px);
+      transition:
+        opacity 700ms cubic-bezier(.22, .61, .36, 1),
+        transform 700ms cubic-bezier(.22, .61, .36, 1),
+        visibility 0s linear 700ms;
+    }
+    .hero-slide.is-active {
+      z-index: 1;
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: translateX(0);
+      transition:
+        opacity 700ms cubic-bezier(.22, .61, .36, 1),
+        transform 700ms cubic-bezier(.22, .61, .36, 1),
+        visibility 0s;
+    }
+    .hero-slide-inner {
+      position: relative;
+      z-index: 2;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      width: 100%;
+      min-height: clamp(700px, 88vh, 960px);
+      padding: clamp(56px, 7vh, 88px) clamp(28px, 5vw, 80px) 108px;
+    }
+    .hero-slide-copy {
+      width: min(43%, 620px);
+      margin-right: clamp(24px, 4vw, 64px);
+      margin-left: auto;
+      text-align: right;
+    }
+    .hero-badge {
+      display: flex;
+      width: fit-content;
+      align-items: center;
+      gap: .5rem;
+      margin: 0 0 1.5rem auto;
+      border: 1px solid rgba(255,255,255,.17);
+      border-radius: 999px;
+      background: rgba(255,255,255,.08);
+      padding: .55rem .95rem;
+      color: #ecfeff;
+      font-size: .75rem;
+      font-weight: 800;
+      line-height: 1.5;
+      backdrop-filter: blur(8px);
+    }
+    .hero-title {
+      margin: 0;
+      font-size: clamp(2rem, 3.15vw, 3rem);
+      font-weight: 800;
+      line-height: 1.48;
+      letter-spacing: -.035em;
+      text-wrap: balance;
+    }
+    .hero-description {
+      max-width: 37rem;
+      margin: 1.45rem 0 0 auto;
+      color: #e2e8f0;
+      font-size: .98rem;
+      font-weight: 500;
+      line-height: 2;
+      text-wrap: pretty;
+    }
+    .hero-slide-copy > .hero-badge,
+    .hero-slide-copy > .hero-title,
+    .hero-slide-copy > .hero-description,
+    .hero-slide-copy > .hero-search,
+    .hero-slide-copy > .hero-trust,
+    .hero-slide-copy > .hero-actions {
+      transition:
+        opacity 560ms ease,
+        transform 680ms cubic-bezier(.2, .7, .2, 1);
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    .hero-actions > * {
+      opacity: 0;
+      translate: 0 10px;
+      transition: opacity 520ms ease, translate 620ms cubic-bezier(.2, .7, .2, 1);
+    }
+    .hero-slide.is-active .hero-slide-copy > .hero-badge,
+    .hero-slide.is-active .hero-slide-copy > .hero-title,
+    .hero-slide.is-active .hero-slide-copy > .hero-description,
+    .hero-slide.is-active .hero-slide-copy > .hero-search,
+    .hero-slide.is-active .hero-slide-copy > .hero-trust,
+    .hero-slide.is-active .hero-slide-copy > .hero-actions,
+    .hero-slide.is-active .hero-actions > * {
+      opacity: 1;
+      transform: translateY(0);
+      translate: 0 0;
+    }
+    .hero-slide.is-active .hero-badge { transition-delay: 70ms; }
+    .hero-slide.is-active .hero-title { transition-delay: 140ms; }
+    .hero-slide.is-active .hero-description { transition-delay: 210ms; }
+    .hero-slide.is-active .hero-search { transition-delay: 280ms; }
+    .hero-slide.is-active .hero-trust { transition-delay: 420ms; }
+    .hero-slide.is-active .hero-actions > :nth-child(1) { transition-delay: 350ms; }
+    .hero-slide.is-active .hero-actions > :nth-child(2) { transition-delay: 420ms; }
+    .hero-slide:not(:first-child).is-active .hero-actions > :nth-child(1) { transition-delay: 280ms; }
+    .hero-slide:not(:first-child).is-active .hero-actions > :nth-child(2) { transition-delay: 350ms; }
+    .hero-slide:not(:first-child).is-active .hero-trust { transition-delay: 430ms; }
+    .hero-slide-visual {
+      position: absolute;
+      inset-block: 0;
+      left: 0;
+      z-index: 1;
+      width: 58%;
+      pointer-events: none;
+      -webkit-mask-image: linear-gradient(90deg, #000 0%, #000 44%, rgba(0,0,0,.72) 68%, transparent 100%);
+      mask-image: linear-gradient(90deg, #000 0%, #000 44%, rgba(0,0,0,.72) 68%, transparent 100%);
+    }
+    .hero-slide-visual::after {
+      content: "";
+      position: absolute;
+      z-index: 1;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(8, 43, 56, .08) 0%, rgba(12, 54, 68, .24) 44%, rgba(21, 68, 86, .78) 82%, #154456 100%);
+    }
+    .hero-slide-visual img {
+      position: absolute;
+      inset: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 18% center;
+      transform: scale(1.025);
+      transition: transform 7s cubic-bezier(.2, .65, .25, 1);
+    }
+    .hero-slide.is-active .hero-slide-visual img {
+      transform: scale(1);
+    }
+    .hero-search {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      width: 100%;
+      max-width: 640px;
+      margin-top: 1.65rem;
+      padding: .5rem;
+      border: 1px solid rgba(255,255,255,.82);
+      border-radius: 1.15rem;
+      background: #fff;
+      text-align: right;
+      box-shadow: 0 20px 48px -32px rgba(3,20,34,.48);
+      transition: box-shadow .2s ease, outline-color .2s ease;
+    }
+    .hero-search:focus-within {
+      outline: 3px solid rgba(103, 232, 249, .45);
+      outline-offset: 2px;
+    }
+    .hero-search label {
+      display: flex;
+      min-width: 0;
+      min-height: 48px;
+      flex: 1;
+      align-items: center;
+      gap: .75rem;
+      padding-inline: .75rem;
+    }
+    .hero-search input {
+      width: 100%;
+      min-width: 0;
+      border: 0;
+      background: transparent;
+      color: #1e293b;
+      font: inherit;
+      font-size: .875rem;
+      outline: 0;
+    }
+    .hero-search input::placeholder { color: #94a3b8; }
+    .hero-primary,
+    .hero-secondary {
+      display: inline-flex;
+      min-height: 48px;
+      align-items: center;
+      justify-content: center;
+      gap: .6rem;
+      border-radius: .9rem;
+      padding: 0 1.25rem;
+      font-size: .875rem;
+      font-weight: 800;
+      text-decoration: none;
+      transition: transform .2s ease, background-color .2s ease, box-shadow .2s ease;
+    }
+    .hero-primary {
+      flex: 0 0 auto;
+      border: 0;
+      background: #0f766e;
+      color: white;
+      box-shadow: 0 10px 24px -14px rgba(15,118,110,.75);
+      cursor: pointer;
+    }
+    .hero-primary:hover { transform: translateY(-2px); background: #115e59; }
+    .hero-secondary {
+      border: 1px solid rgba(255,255,255,.3);
+      background: rgba(255,255,255,.08);
+      color: #fff;
+      backdrop-filter: blur(8px);
+    }
+    .hero-secondary:hover { transform: translateY(-2px); background: rgba(255,255,255,.15); }
+    .hero-trust {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .65rem;
+      margin-top: 1.35rem;
+    }
+    .hero-trust span {
+      display: inline-flex;
+      min-height: 34px;
+      align-items: center;
+      gap: .5rem;
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 999px;
+      background: rgba(255,255,255,.08);
+      padding: .45rem .9rem;
+      color: #f1f5f9;
+      font-size: .68rem;
+      font-weight: 700;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: .85rem;
+      margin-top: 1.6rem;
+    }
+    .hero-carousel-controls {
+      position: absolute;
+      z-index: 5;
+      bottom: 1.25rem;
+      left: 50%;
+      display: flex;
+      align-items: center;
+      gap: .2rem;
+      transform: translateX(-50%);
+    }
+    .hero-carousel-dot {
+      display: inline-flex;
+      width: 32px;
+      height: 32px;
+      align-items: center;
+      justify-content: center;
+      border: 0;
+      border-radius: 50%;
+      background: transparent;
+      color: white;
+      cursor: pointer;
+      transition: transform .2s ease;
+    }
+    .hero-carousel-dot:hover { transform: scale(1.12); }
+    .hero-carousel-dot::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.55);
+      box-shadow: 0 2px 10px rgba(3, 20, 34, .24);
+      transition: width .3s ease, background-color .3s ease, box-shadow .3s ease;
+    }
+    .hero-carousel-dot[aria-current="true"]::before {
+      width: 20px;
+      background: #a7f3d0;
+      box-shadow: 0 0 0 4px rgba(167, 243, 208, .13), 0 2px 10px rgba(3, 20, 34, .24);
+    }
+    .hero-carousel-dot:focus-visible {
+      outline: 2px solid #a5f3fc;
+      outline-offset: 3px;
+    }
+    @media (max-width: 1023px) {
+      .hero-carousel {
+        min-height: 790px;
+      }
+      .hero-slide {
+        flex-direction: column;
+        transform: translateY(12px);
+      }
+      .hero-slide-inner {
+        position: relative;
+        min-height: 0;
+        flex: 1 0 auto;
+        align-items: center;
+        padding: 38px 24px 0;
+      }
+      .hero-slide-copy {
+        width: 100%;
+        max-width: 680px;
+        margin: 0 auto;
+      }
+      .hero-title {
+        font-size: clamp(2rem, 5vw, 2.6rem);
+        line-height: 1.45;
+      }
+      .hero-description {
+        max-width: 42rem;
+        margin-top: 1.15rem;
+        font-size: .92rem;
+        line-height: 1.95;
+      }
+      .hero-search { margin-top: 1.35rem; }
+      .hero-trust { gap: .55rem; margin-top: 1.15rem; }
+      .hero-actions { gap: .75rem; margin-top: 1.25rem; }
+      .hero-secondary { margin-top: 0; }
+      .hero-slide-visual {
+        position: relative;
+        inset: auto;
+        width: 100%;
+        height: 250px;
+        flex: 0 0 250px;
+        margin-top: auto;
+        -webkit-mask-image: none;
+        mask-image: none;
+      }
+      .hero-slide-visual::after {
+        background: linear-gradient(180deg, #154456 0%, rgba(21, 68, 86, .72) 12%, rgba(18, 74, 86, .08) 48%, rgba(18, 74, 86, .2) 78%, #126b70 100%);
+      }
+      .hero-slide-visual img {
+        object-position: center 38%;
+      }
+      .hero-carousel-controls { bottom: .65rem; }
+    }
+    @media (min-width: 1024px) {
+      .hero-slide-inner {
+        min-height: clamp(700px, 88vh, 960px);
+      }
+    }
+    @media (max-width: 420px) {
+      .hero-carousel { min-height: 870px; }
+      .hero-slide-inner { padding-inline: 18px; }
+      .hero-badge { margin-bottom: 1.2rem; font-size: .68rem; }
+      .hero-title { font-size: 2rem; line-height: 1.45; }
+      .hero-description { margin-top: 1rem; font-size: .86rem; line-height: 1.9; }
+      .hero-slide-visual {
+        height: 215px;
+        flex-basis: 215px;
+      }
+      .hero-trust {
+        gap: .4rem;
+        margin-top: 1rem;
+      }
+      .hero-trust span {
+        min-height: 32px;
+        padding-inline: .65rem;
+        font-size: .62rem;
+      }
+      .hero-search {
+        gap: .25rem;
+        padding: .35rem;
+      }
+      .hero-search label { min-height: 44px; }
+      .hero-search input { font-size: .75rem; }
+      .hero-primary {
+        min-height: 44px;
+        padding-inline: .8rem;
+        font-size: .75rem;
+      }
+      .hero-actions { gap: .6rem; margin-top: 1.1rem; }
+      .hero-secondary { min-height: 44px; font-size: .78rem; }
+      .hero-carousel-controls { bottom: .4rem; }
+    }
+    .card-shadow {
+      box-shadow: 0 18px 55px -38px rgba(7, 26, 44, .32);
+    }
+    #roles {
+      position: relative;
+      isolation: isolate;
+      background:
+        radial-gradient(ellipse at 8% 30%, rgba(204, 251, 241, .58), transparent 29%),
+        radial-gradient(ellipse at 95% 90%, rgba(224, 242, 254, .62), transparent 30%),
+        linear-gradient(145deg, #f2faf9, #f8fbfd 58%, #eef8fb);
+    }
+    #roles::before,
+    .how-it-works-section::before,
+    .why-surface::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      inset: 0;
+      pointer-events: none;
+    }
+    #roles::before {
+      opacity: .22;
+      background-image: radial-gradient(rgba(13, 148, 136, .35) .7px, transparent .7px);
+      background-size: 24px 24px;
+      mask-image: linear-gradient(120deg, #000, transparent 52%);
+    }
+    .role-card {
+      position: relative;
+      overflow: hidden;
+      border-top: 2px solid var(--role-accent);
+    }
+    .role-card::after {
+      content: "";
+      position: absolute;
+      inset-inline-start: 0;
+      top: 1.5rem;
+      bottom: 1.5rem;
+      width: 3px;
+      border-radius: 0 3px 3px 0;
+      background: var(--role-accent);
+      opacity: .72;
+    }
+    .role-card:hover {
+      box-shadow: 0 24px 48px -32px var(--role-shadow);
+    }
+    .role-patient { --role-accent: #0d9488; --role-shadow: rgba(13, 148, 136, .55); }
+    .role-pharmacy { --role-accent: #0284c7; --role-shadow: rgba(2, 132, 199, .5); }
+    .role-delivery { --role-accent: #0891b2; --role-shadow: rgba(8, 145, 178, .5); }
+    .role-admin { --role-accent: #6366f1; --role-shadow: rgba(99, 102, 241, .5); }
+    .step-track {
+      isolation: isolate;
+    }
+    .step-track::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      inset: -1.1rem -.8rem;
+      border-radius: 2rem;
+      background: radial-gradient(ellipse at center, rgba(45, 212, 191, .12), transparent 72%);
+      filter: blur(12px);
+      pointer-events: none;
+    }
+    .step-card {
+      border: 1px solid rgba(255, 255, 255, .92);
+      background: linear-gradient(155deg, rgba(255,255,255,.98) 12%, #edf8f8 100%);
+      box-shadow: 0 18px 36px -30px rgba(7, 56, 72, .52), 0 3px 12px rgba(13, 148, 136, .055);
+      transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+    }
+    .step-card:nth-child(even) {
+      background: linear-gradient(155deg, #f1fbfa, #e7f5f7);
+    }
+    .step-card:hover {
+      transform: translateY(-3px);
+      border-color: #99f6e4;
+      box-shadow: 0 20px 36px -25px rgba(7, 26, 44, .42);
+    }
+    .step-icon {
+      background: linear-gradient(145deg, #0f766e, #0891b2);
+      box-shadow: 0 8px 18px -9px rgba(8, 145, 178, .75);
+    }
+    .how-it-works-section {
+      position: relative;
+      isolation: isolate;
+      display: flex;
+      min-height: calc(100vh - 80px);
+      min-height: calc(100svh - 80px);
+      box-sizing: border-box;
+      align-items: center;
+      padding-block: 1.5rem;
+      scroll-margin-top: 100px;
+      background:
+        radial-gradient(ellipse at 92% 16%, rgba(103, 232, 249, .16), transparent 34%),
+        radial-gradient(ellipse at 7% 88%, rgba(45, 212, 191, .13), transparent 35%),
+        linear-gradient(145deg, #eff7fa, #f1f8f8 55%, #eaf6f8);
+    }
+    .how-it-works-section > .max-w-7xl {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 2.25rem;
+    }
+    .how-it-works-section::before {
+      opacity: .24;
+      background-image:
+        linear-gradient(rgba(14, 116, 144, .075) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(14, 116, 144, .075) 1px, transparent 1px),
+        radial-gradient(rgba(13, 148, 136, .26) .8px, transparent .8px);
+      background-size: 48px 48px, 48px 48px, 22px 22px;
+      mask-image: linear-gradient(135deg, transparent 4%, #000 45%, transparent 96%);
+    }
+    .how-it-works-section::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      inset-inline: 0;
+      bottom: 0;
+      height: 32%;
+      opacity: .44;
+      background:
+        radial-gradient(circle at 12% 74%, rgba(13, 148, 136, .22) 0 3px, transparent 4px),
+        radial-gradient(circle at 12% 74%, rgba(13, 148, 136, .1) 0 14px, transparent 15px),
+        radial-gradient(circle at 87% 48%, rgba(8, 145, 178, .2) 0 3px, transparent 4px),
+        radial-gradient(circle at 87% 48%, rgba(8, 145, 178, .08) 0 17px, transparent 18px),
+        radial-gradient(ellipse at 50% 100%, rgba(45, 212, 191, .16), transparent 62%),
+        linear-gradient(153deg, transparent 0 39%, rgba(13, 148, 136, .12) 39.15%, transparent 39.4% 100%),
+        linear-gradient(27deg, transparent 0 64%, rgba(8, 145, 178, .1) 64.15%, transparent 64.4% 100%);
+      mask-image: linear-gradient(180deg, transparent, #000 32%);
+      pointer-events: none;
+    }
+    .how-intro {
+      align-self: center;
+      margin: 0 auto;
+      padding-top: 0;
+    }
+    .how-steps {
+      align-self: center;
+      width: 100%;
+      padding-block: 0;
+    }
+    .how-steps .step-card {
+      min-height: 13rem;
+      padding: 1.5rem 1rem;
+      background: linear-gradient(155deg, rgba(255,255,255,.98) 8%, #e8f7f6 100%);
+      box-shadow: 0 22px 42px -30px rgba(7, 56, 72, .48), 0 5px 18px rgba(13, 148, 136, .08);
+    }
+    .how-steps .step-card:nth-child(even) {
+      background: linear-gradient(155deg, #f4fcfc, #e3f3f6);
+    }
+    .how-steps .step-icon {
+      width: 5rem;
+      height: 5rem;
+      font-size: 1.4rem;
+      box-shadow: 0 12px 24px -12px rgba(8, 145, 178, .82);
+    }
+    .how-steps .step-card h3 { font-size: .8rem; }
+    .how-steps .step-card p { font-size: .68rem; line-height: 1.8; }
+    .how-cta {
+      align-self: center;
+      margin: 0;
+      position: relative;
+      z-index: 1;
+    }
+    .how-cta a {
+      min-height: 2.9rem;
+      border-color: rgba(13, 148, 136, .25);
+      background: linear-gradient(135deg, #0f766e, #0e7490);
+      padding-inline: 1.35rem;
+      color: #fff;
+      box-shadow: 0 14px 30px -18px rgba(13, 116, 110, .65);
+    }
+    .how-cta a:hover {
+      border-color: #0f766e;
+      color: #fff;
+      box-shadow: 0 18px 34px -18px rgba(13, 116, 110, .72);
+    }
+    .why-surface {
+      scroll-margin-top: 100px;
+      position: relative;
+      isolation: isolate;
+      background:
+        radial-gradient(ellipse at 8% 15%, rgba(153, 246, 228, .32), transparent 32%),
+        radial-gradient(ellipse at 92% 85%, rgba(125, 211, 252, .27), transparent 34%),
+        linear-gradient(145deg, #f1f8f8, #f6fafc 54%, #eaf6f8);
+    }
+    .why-surface::before {
+      opacity: .16;
+      background-image: radial-gradient(rgba(8, 145, 178, .42) .7px, transparent .7px);
+      background-size: 26px 26px;
+      mask-image: linear-gradient(135deg, #000, transparent 60%);
+    }
+    .feature-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 1.7rem;
+      box-shadow: 0 18px 42px -36px rgba(7, 38, 58, .42), 0 3px 14px rgba(7, 38, 58, .04);
+      transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease, background-color .25s ease;
+    }
+    .feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 26px 52px -40px rgba(7, 38, 58, .48), 0 5px 18px rgba(7, 38, 58, .06);
+    }
+    .feature-card::after {
+      content: "";
+      position: absolute;
+      inset-inline-end: -3.5rem;
+      top: -4rem;
+      width: 9rem;
+      height: 9rem;
+      border: 1px solid rgba(13, 148, 136, .1);
+      border-radius: 50%;
+      box-shadow: 0 0 0 1.15rem rgba(13, 148, 136, .035), 0 0 0 2.3rem rgba(13, 148, 136, .02);
+      pointer-events: none;
+    }
+    .feature-card:first-child {
+      background:
+        radial-gradient(ellipse at 90% 0%, rgba(45, 212, 191, .23), transparent 42%),
+        linear-gradient(145deg, #0b2a3d, #104b58 68%, #0d625f);
+      box-shadow: 0 26px 56px -42px rgba(7, 38, 58, .62), 0 6px 20px rgba(7, 38, 58, .1);
+    }
+    .feature-card:first-child h3 { color: #fff; }
+    .feature-card:first-child > p { color: #d6e8ed; }
+    .network-visual {
+      position: relative;
+      min-height: 13rem;
+      flex: 1 0 13rem;
+      margin-top: 1.25rem;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, .12);
+      border-radius: 1.35rem;
+      background:
+        radial-gradient(ellipse at 72% 34%, rgba(45, 212, 191, .2), transparent 42%),
+        linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px),
+        rgba(2, 21, 35, .28);
+      background-size: auto, 24px 24px, 24px 24px, auto;
+    }
+    .network-visual-node {
+      box-shadow: 0 0 0 5px rgba(94, 234, 212, .12), 0 5px 16px rgba(1, 17, 29, .28);
+    }
+    .feature-card:first-child::after {
+      border-color: rgba(153, 246, 228, .18);
+      box-shadow: 0 0 0 1.15rem rgba(153, 246, 228, .055), 0 0 0 2.3rem rgba(153, 246, 228, .03);
+    }
+    .feature-card:first-child .network-stat {
+      border-color: rgba(255, 255, 255, .13);
+      background: rgba(255, 255, 255, .1);
+      box-shadow: none;
+    }
+    .feature-card:first-child .network-stat span:first-child { color: #99f6e4; }
+    .feature-card:first-child .network-stat span:last-child { color: #cbdde4; }
+    .feature-card:nth-child(2) {
+      background: linear-gradient(145deg, #f5fcfc, #e8f6f8);
+    }
+    .feature-card:nth-child(3) {
+      background: linear-gradient(145deg, #effaff, #e8f5f8);
+    }
+    .feature-card:nth-child(4) {
+      background: linear-gradient(145deg, #f5f5ff, #eff2fb);
+    }
+    .why-grid {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: minmax(0, 1fr);
+    }
+    @media (min-width: 640px) {
+      .why-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (min-width: 1280px) {
+      .why-grid {
+        grid-auto-rows: minmax(13rem, auto);
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+      .why-grid > :nth-child(1) { grid-column: span 2; grid-row: span 2; }
+      .why-grid > :nth-child(2) { grid-column: span 2; }
+      .why-grid > :nth-child(3),
+      .why-grid > :nth-child(4) { grid-column: span 1; }
+    }
+    .network-stat {
+      box-shadow: 0 12px 26px -22px rgba(7, 26, 44, .42);
+    }
+    .cta-panel {
+      background:
+        radial-gradient(ellipse at 12% 100%, rgba(20, 184, 166, .26), transparent 37%),
+        radial-gradient(ellipse at 88% 0%, rgba(34, 211, 238, .18), transparent 35%),
+        linear-gradient(112deg, #061526, #0a3448 55%, #075b63);
+    }
+    @media (min-width: 1024px) {
+      .step-track::after {
+        content: "";
+        position: absolute;
+        inset-inline: 8.33%;
+        top: 2rem;
+        height: 3px;
+        background: linear-gradient(90deg, #5eead4, #0e7490 50%, #5eead4);
+        pointer-events: none;
+      }
+    }
+    @media (min-width: 768px) {
+      .step-card { min-height: 10.5rem; }
+      .how-steps .step-card { min-height: 14rem; }
+    }
+    .faq-focus:focus-visible, a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visible {
+      outline: 3px solid #22d3ee;
+      outline-offset: 3px;
+    }
+    @media (max-width: 767px) {
+      .how-it-works-section > .max-w-7xl {
+        gap: 2rem;
+        padding-block: 0;
+      }
+      .how-intro { padding-top: 0; }
+      .how-steps { align-self: center; padding-block: 0; }
+      .how-steps .step-card {
+        min-height: 6rem;
+        padding: 1.1rem;
+      }
+      .how-steps .step-icon {
+        width: 4.25rem;
+        height: 4.25rem;
+      }
+      .how-cta { margin-bottom: 0; }
+      .step-track::before {
+        inset-inline-start: auto;
+        inset-inline-end: 3rem;
+        top: 3rem;
+        bottom: 3rem;
+        width: 3px;
+        height: auto;
+        content: "";
+        position: absolute;
+        background: linear-gradient(180deg, #5eead4, #0e7490 50%, #5eead4);
+        pointer-events: none;
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="public-nav.css">
+  <script src="js/public-nav.js" defer></script>
+</head>
+<body class="min-h-screen text-slate-800 antialiased">
+  <header class="glass-nav sticky top-0 z-50 border-b border-slate-200/80">
+    <div class="mx-auto flex max-w-7xl items-center justify-between gap-2 px-2 py-3 sm:gap-3 sm:px-6 lg:px-8">
+      <a href="index.html" class="flex shrink-0 items-center gap-2 sm:gap-2.5" aria-label="دواك بإيدك، الرئيسية">
+        <img src="assets/images/dawaak-logo.png" alt="" class="h-10 w-10 object-contain sm:h-11 sm:w-11" width="48" height="48" fetchpriority="high">
+        <span>
+          <span class="block font-heading text-base font-extrabold tracking-tight text-slate-950 min-[380px]:text-lg sm:text-xl">دواك بإيدك</span>
+          <span class="hidden text-[9px] font-bold text-slate-500 sm:block">رعاية أقرب. وصول أسهل.</span>
+        </span>
+      </a>
+
+      <nav class="hidden items-center gap-5 text-[11px] font-bold text-slate-600 xl:flex" aria-label="التنقل الرئيسي">
+        <a href="index.html" aria-current="page" class="text-teal-800">الرئيسية</a>
+        <a href="index.html#how-it-works" class="transition hover:text-teal-700">كيف تعمل المنصة</a>
+        <a href="index.html#features" class="transition hover:text-teal-700">المزايا</a>
+        <a href="contact.html" class="transition hover:text-teal-700">للصيدليات</a>
+        <a href="about.html" class="transition hover:text-teal-700">عن دواك بإيدك</a>
+        <a href="contact_us.html" class="transition hover:text-teal-700">تواصل معنا</a>
+      </nav>
+
+      <div class="flex shrink-0 items-center gap-2">
+        <a href="index_patient.html" aria-label="ابحث عن دوائك" class="inline-flex min-h-10 items-center gap-2 rounded-xl bg-teal-700 px-2.5 text-[11px] font-extrabold text-white shadow-md shadow-teal-900/15 transition hover:bg-teal-800 sm:px-4 sm:text-xs">
+          <i class="fa-solid fa-magnifying-glass"></i><span class="hidden sm:inline">ابحث عن دوائك</span><span class="hidden sm:hidden min-[380px]:inline">بحث</span>
+        </a>
+        <details class="group relative">
+          <summary aria-label="تسجيل الدخول، اختيار البوابة" class="flex min-h-10 cursor-pointer list-none items-center gap-2 rounded-xl border border-slate-200 bg-white px-2 text-[11px] font-extrabold text-slate-700 transition hover:border-teal-300 hover:text-teal-800 sm:px-3 sm:text-xs">
+            <i class="fa-regular fa-user"></i><span class="hidden sm:inline">تسجيل الدخول</span><i class="fa-solid fa-chevron-down hidden text-[9px] transition group-open:rotate-180 sm:inline"></i>
+          </summary>
+          <div class="absolute left-0 top-full z-50 mt-2 w-52 rounded-2xl border border-slate-100 bg-white p-2 text-right shadow-xl shadow-slate-900/10" role="menu" aria-label="اختر بوابتك">
+            <a role="menuitem" href="index_patient.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-xs font-bold text-slate-700 hover:bg-teal-50 hover:text-teal-800"><i class="fa-solid fa-user w-4 text-center text-teal-700"></i> مريض / مستخدم</a>
+            <a role="menuitem" href="index_pharmacy.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-xs font-bold text-slate-700 hover:bg-cyan-50 hover:text-cyan-800"><i class="fa-solid fa-house-medical w-4 text-center text-cyan-700"></i> صيدلي / صيدلية</a>
+            <a role="menuitem" href="delivery.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-xs font-bold text-slate-700 hover:bg-sky-50 hover:text-sky-800"><i class="fa-solid fa-motorcycle w-4 text-center text-sky-700"></i> مندوب توصيل</a>
+            <a role="menuitem" href="index_admin.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-xs font-bold text-slate-700 hover:bg-indigo-50 hover:text-indigo-800"><i class="fa-solid fa-shield-halved w-4 text-center text-indigo-700"></i> الإدارة</a>
+          </div>
+        </details>
+        <button type="button" onclick="togglePublicMobileMenu()" aria-controls="public-mobile-drawer" aria-expanded="false" aria-label="فتح قائمة التنقل" class="btn btn-ghost btn-circle btn-sm text-slate-700 xl:hidden">
+          <i class="fa-solid fa-bars text-lg" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+
+    <nav id="public-mobile-drawer" class="hidden border-t border-slate-100 bg-white px-4 py-3 shadow-lg xl:hidden" aria-label="التنقل عبر الهاتف">
+      <div class="mx-auto grid max-w-7xl gap-1 sm:grid-cols-2">
+        <a href="index.html" class="rounded-xl bg-teal-50 px-3 py-2.5 text-sm font-extrabold text-teal-800">الرئيسية</a>
+        <a href="index.html#how-it-works" class="rounded-xl px-3 py-2.5 text-sm font-bold hover:bg-slate-50">كيف تعمل المنصة</a>
+        <a href="index.html#features" class="rounded-xl px-3 py-2.5 text-sm font-bold hover:bg-slate-50">المزايا</a>
+        <a href="contact.html" class="rounded-xl px-3 py-2.5 text-sm font-bold hover:bg-slate-50">للصيدليات</a>
+        <a href="about.html" class="rounded-xl px-3 py-2.5 text-sm font-bold hover:bg-slate-50">عن دواك بإيدك</a>
+        <a href="contact_us.html" class="rounded-xl px-3 py-2.5 text-sm font-bold hover:bg-slate-50">تواصل معنا</a>
+        <div class="mt-2 border-t border-slate-100 pt-2 sm:col-span-2">
+          <p class="px-3 pb-1 text-[10px] font-extrabold text-slate-400">اختر بوابتك</p>
+          <div class="grid grid-cols-2 gap-1">
+            <a href="index_patient.html" class="rounded-xl px-3 py-2.5 text-xs font-bold text-teal-800 hover:bg-teal-50">مريض / مستخدم</a>
+            <a href="index_pharmacy.html" class="rounded-xl px-3 py-2.5 text-xs font-bold text-cyan-800 hover:bg-cyan-50">صيدلي / صيدلية</a>
+            <a href="delivery.html" class="rounded-xl px-3 py-2.5 text-xs font-bold text-sky-800 hover:bg-sky-50">مندوب توصيل</a>
+            <a href="index_admin.html" class="rounded-xl px-3 py-2.5 text-xs font-bold text-indigo-800 hover:bg-indigo-50">الإدارة</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <script>
+  function togglePublicMobileMenu() {
+    const drawer = document.getElementById('public-mobile-drawer');
+    const toggle = document.querySelector('[aria-controls="public-mobile-drawer"]');
+    const isHidden = drawer.classList.toggle('hidden');
+    toggle.setAttribute('aria-expanded', String(!isHidden));
+    toggle.setAttribute('aria-label', isHidden ? 'فتح قائمة التنقل' : 'إغلاق قائمة التنقل');
+  }
+</script>
+
+  <main>
+    <!-- 1. Hero -->
+    <section class="hero-canvas relative isolate overflow-hidden text-white">
+      <div class="hero-mesh pointer-events-none absolute inset-0 opacity-50" aria-hidden="true"></div>
+
+      <div id="hero-carousel" class="hero-carousel" role="region" aria-roledescription="carousel" aria-label="اكتشف خدمات دواك بإيدك">
+        <article class="hero-slide is-active" role="group" aria-roledescription="slide" aria-label="١ من ٣" aria-hidden="false">
+          <div class="hero-slide-inner">
+            <div class="hero-slide-copy">
+              <span class="hero-badge">
+                <i class="fa-solid fa-heart-pulse text-teal-200" aria-hidden="true"></i> رعاية دوائية أقرب لأهالي قطاع غزة
+              </span>
+              <h1 class="hero-title font-heading">
+                دواؤك أقرب <span class="block bg-gradient-to-l from-cyan-100 via-teal-100 to-white bg-clip-text text-transparent">مما تتوقع</span>
+              </h1>
+              <p class="hero-description">
+                ابحث عن دوائك في الصيدليات القريبة، وتواصل مع الصيدلي للتأكد من توفره قبل الزيارة، بسرعة ووضوح أكبر.
+              </p>
+              <form action="index_patient.html" method="get" class="hero-search">
+                <label for="home-medicine-search">
+                  <i class="fa-solid fa-magnifying-glass text-lg text-teal-700" aria-hidden="true"></i>
+                  <input id="home-medicine-search" name="search" type="search" autocomplete="off" placeholder="اسم الدواء أو المادة الفعالة..." aria-label="ابحث عن دواء أو مادة فعالة">
+                </label>
+                <button type="submit" class="hero-primary">
+                  ابحث عن دوائك <i class="fa-solid fa-arrow-left text-[10px]" aria-hidden="true"></i>
+                </button>
+              </form>
+              <div class="hero-actions">
+                <a href="#how-it-works" class="hero-secondary">
+                  اكتشف كيف تعمل المنصة <i class="fa-solid fa-arrow-down text-[10px]" aria-hidden="true"></i>
+                </a>
+              </div>
+              <div class="hero-trust" aria-label="مزايا دواك بإيدك">
+                <span><i class="fa-solid fa-shield-heart text-teal-200" aria-hidden="true"></i> صيدليات معتمدة</span>
+                <span><i class="fa-solid fa-user-check text-cyan-200" aria-hidden="true"></i> تأكيد من الصيدلي</span>
+                <span><i class="fa-solid fa-truck-fast text-teal-200" aria-hidden="true"></i> توصيل حسب التوفر</span>
+              </div>
+            </div>
+          </div>
+          <div class="hero-slide-visual" aria-hidden="true">
+            <img src="assets/images/dawaak-family-hero.png" alt="" width="1365" height="768" fetchpriority="high" decoding="async">
+          </div>
+        </article>
+
+        <article class="hero-slide" role="group" aria-roledescription="slide" aria-label="٢ من ٣" aria-hidden="true" inert>
+          <div class="hero-slide-inner">
+            <div class="hero-slide-copy">
+              <span class="hero-badge">
+                <i class="fa-solid fa-house-medical text-teal-200" aria-hidden="true"></i> شبكة صيدليات موثوقة
+              </span>
+              <h2 class="hero-title font-heading">
+                صيدليات معتمدة <span class="block bg-gradient-to-l from-cyan-100 via-teal-100 to-white bg-clip-text text-transparent">ومعلومات محدثة</span>
+              </h2>
+              <p class="hero-description">
+                تصفّح صيدليات موثوقة، واطّلع على توفر الأدوية بشكل أوضح وأسرع، وتواصل مباشرة مع الصيدلية عند الحاجة.
+              </p>
+              <div class="hero-actions">
+                <a href="#network" class="hero-primary">استعرض الصيدليات <i class="fa-solid fa-arrow-left text-[10px]" aria-hidden="true"></i></a>
+                <a href="#features" class="hero-secondary">تعرّف على المزايا</a>
+              </div>
+              <div class="hero-trust" aria-label="مزايا دواك بإيدك">
+                <span><i class="fa-solid fa-shield-heart text-teal-200" aria-hidden="true"></i> صيدليات معتمدة</span>
+                <span><i class="fa-solid fa-user-check text-cyan-200" aria-hidden="true"></i> تأكيد من الصيدلي</span>
+                <span><i class="fa-solid fa-truck-fast text-teal-200" aria-hidden="true"></i> توصيل حسب التوفر</span>
+              </div>
+            </div>
+          </div>
+          <div class="hero-slide-visual" aria-hidden="true">
+            <img src="assets/images/dawaak-pharmacy-hero.png" alt="" width="1365" height="768" loading="lazy" decoding="async">
+          </div>
+        </article>
+
+        <article class="hero-slide" role="group" aria-roledescription="slide" aria-label="٣ من ٣" aria-hidden="true" inert>
+          <div class="hero-slide-inner">
+            <div class="hero-slide-copy">
+              <span class="hero-badge">
+                <i class="fa-solid fa-truck-fast text-teal-200" aria-hidden="true"></i> توصيل عند الحاجة
+              </span>
+              <h2 class="hero-title font-heading">
+                دواؤك من الصيدلية <span class="block bg-gradient-to-l from-cyan-100 via-teal-100 to-white bg-clip-text text-transparent">إلى بابك</span>
+              </h2>
+              <p class="hero-description">
+                بعد تجهيز الطلب من الصيدلية، تابع حالته واستفد من خيارات التوصيل المتاحة حتى يصل إليك بسهولة وأمان.
+              </p>
+              <div class="hero-actions">
+                <a href="index_patient.html" class="hero-primary">اطلب الآن <i class="fa-solid fa-arrow-left text-[10px]" aria-hidden="true"></i></a>
+                <a href="#how-it-works" class="hero-secondary">اعرف خطوات الاستلام</a>
+              </div>
+              <div class="hero-trust" aria-label="مزايا دواك بإيدك">
+                <span><i class="fa-solid fa-shield-heart text-teal-200" aria-hidden="true"></i> صيدليات معتمدة</span>
+                <span><i class="fa-solid fa-user-check text-cyan-200" aria-hidden="true"></i> تأكيد من الصيدلي</span>
+                <span><i class="fa-solid fa-truck-fast text-teal-200" aria-hidden="true"></i> توصيل حسب التوفر</span>
+              </div>
+            </div>
+          </div>
+          <div class="hero-slide-visual" aria-hidden="true">
+            <img src="assets/images/medifind-delivery.png" alt="" width="1365" height="768" loading="lazy" decoding="async">
+          </div>
+        </article>
+
+        <div class="hero-carousel-controls" role="group" aria-label="اختر شريحة">
+          <button type="button" class="hero-carousel-dot" data-carousel-dot="0" aria-label="الشريحة الأولى" aria-current="true"></button>
+          <button type="button" class="hero-carousel-dot" data-carousel-dot="1" aria-label="الشريحة الثانية" aria-current="false"></button>
+          <button type="button" class="hero-carousel-dot" data-carousel-dot="2" aria-label="الشريحة الثالثة" aria-current="false"></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Role selector -->
+    <section id="roles" class="bg-white px-4 py-10 sm:px-6 sm:py-14 lg:px-8">
+      <div class="mx-auto max-w-7xl">
+        <div class="mb-8 flex flex-col gap-3 sm:mb-10 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <span class="text-[10px] font-extrabold uppercase tracking-widest text-teal-700 sm:text-xs">اختر مسارك</span>
+            <h2 class="mt-2 font-heading text-2xl font-extrabold leading-snug text-slate-950 sm:text-3xl">كيف تريد استخدام دواك بإيدك؟</h2>
+          </div>
+          <p class="max-w-md text-xs leading-7 text-slate-500 sm:text-sm">كل شخص له مساحة وأدوات تناسب دوره، ابدأ من البوابة الصحيحة.</p>
+        </div>
+
+        <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+          <article class="role-card role-patient card-shadow group flex flex-col rounded-3xl border border-teal-100 bg-gradient-to-br from-teal-50 via-white to-white p-6 transition duration-300 hover:-translate-y-1 hover:border-teal-300 hover:shadow-xl sm:p-7">
+            <span class="flex h-14 w-14 items-center justify-center rounded-2xl bg-teal-700 text-2xl text-white shadow-lg shadow-teal-800/20 transition group-hover:scale-105"><i class="fa-solid fa-user"></i></span>
+            <h3 class="mt-5 font-heading text-lg font-bold text-slate-950">مريض / مستخدم</h3>
+            <p class="mt-2 flex-1 text-xs leading-7 text-slate-600">ابحث عن الأدوية، قارن الصيدليات القريبة، أرسل طلباً أو وصفة، وتابع طلباتك.</p>
+            <a href="index_patient.html" class="mt-5 inline-flex min-h-11 items-center justify-between rounded-xl bg-teal-700 px-3.5 text-xs font-extrabold text-white shadow-sm shadow-teal-900/15 transition hover:bg-teal-800">الدخول كمريض <i class="fa-solid fa-arrow-left"></i></a>
+          </article>
+
+          <article class="role-card role-pharmacy card-shadow group flex flex-col rounded-3xl border border-sky-100 bg-gradient-to-br from-sky-50 via-white to-white p-6 transition duration-300 hover:-translate-y-1 hover:border-sky-300 hover:shadow-xl sm:p-7">
+            <span class="flex h-14 w-14 items-center justify-center rounded-2xl bg-sky-700 text-2xl text-white shadow-lg shadow-sky-800/20 transition group-hover:scale-105"><i class="fa-solid fa-house-medical"></i></span>
+            <h3 class="mt-5 font-heading text-lg font-bold text-slate-950">صيدلي / صيدلية</h3>
+            <p class="mt-2 flex-1 text-xs leading-7 text-slate-600">أدر المخزون، استقبل طلبات الدواء، تحقق من الوصفات، وجهّز الطلبات وتابع تنسيقها.</p>
+            <a href="index_pharmacy.html" class="mt-5 inline-flex min-h-11 items-center justify-between rounded-xl bg-sky-700 px-3.5 text-xs font-extrabold text-white shadow-sm shadow-sky-900/15 transition hover:bg-sky-800">بوابة الصيدلية <i class="fa-solid fa-arrow-left"></i></a>
+          </article>
+
+          <article class="role-card role-delivery card-shadow group flex flex-col rounded-3xl border border-cyan-100 bg-gradient-to-br from-cyan-50 via-white to-white p-6 transition duration-300 hover:-translate-y-1 hover:border-cyan-300 hover:shadow-xl sm:p-7">
+            <span class="flex h-14 w-14 items-center justify-center rounded-2xl bg-cyan-700 text-2xl text-white shadow-lg shadow-cyan-800/20 transition group-hover:scale-105"><i class="fa-solid fa-motorcycle"></i></span>
+            <h3 class="mt-5 font-heading text-lg font-bold text-slate-950">مندوب توصيل</h3>
+            <p class="mt-2 flex-1 text-xs leading-7 text-slate-600">مسار مقترح لاستلام الطلبات الجاهزة من الصيدليات، متابعة حالتها وتأكيد التسليم؛ التشغيل غير متاح بعد.</p>
+            <a href="delivery.html" class="mt-5 inline-flex min-h-11 items-center justify-between rounded-xl border border-cyan-200 bg-white px-3.5 text-xs font-extrabold text-cyan-800 transition hover:bg-cyan-50">التعرّف على المسار <i class="fa-solid fa-arrow-left"></i></a>
+          </article>
+
+          <article class="role-card role-admin card-shadow group flex flex-col rounded-3xl border border-indigo-100 bg-gradient-to-br from-indigo-50 via-white to-white p-6 transition duration-300 hover:-translate-y-1 hover:border-indigo-300 hover:shadow-xl sm:p-7">
+            <span class="flex h-14 w-14 items-center justify-center rounded-2xl bg-indigo-700 text-2xl text-white shadow-lg shadow-indigo-800/20 transition group-hover:scale-105"><i class="fa-solid fa-shield-halved"></i></span>
+            <h3 class="mt-5 font-heading text-lg font-bold text-slate-950">الإدارة والرقابة</h3>
+            <p class="mt-2 flex-1 text-xs leading-7 text-slate-600">اعتمد الصيدليات، راقب مؤشرات النقص، أدر الشكاوى واطلع على التقارير التشغيلية.</p>
+            <a href="index_admin.html" class="mt-5 inline-flex min-h-11 items-center justify-between rounded-xl bg-indigo-700 px-3.5 text-xs font-extrabold text-white shadow-sm shadow-indigo-900/15 transition hover:bg-indigo-800">لوحة الإدارة <i class="fa-solid fa-arrow-left"></i></a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. How دواك بإيدك works -->
+    <section id="how-it-works" class="how-it-works-section bg-slate-50 px-4 sm:px-6 lg:px-8">
+      <div class="mx-auto w-full max-w-7xl">
+        <div class="how-intro mx-auto max-w-2xl text-center">
+          <span class="inline-flex rounded-full border border-cyan-200/70 bg-white/75 px-3 py-1.5 text-[10px] font-extrabold text-cyan-900 shadow-sm sm:text-xs">رحلتك في ست خطوات</span>
+          <h2 class="mt-3 font-heading text-2xl font-extrabold text-slate-950 sm:text-3xl">من البحث إلى استلام الطلب</h2>
+          <p class="mt-2 text-xs leading-7 text-slate-600 sm:text-sm">خطوات واضحة، والتحقق من الصيدلي يسبق قرارك بالاستلام أو طلب التوصيل إن كان متاحاً.</p>
+        </div>
+
+        <ol class="how-steps step-track relative grid gap-3 md:grid-cols-3 md:gap-4 lg:grid-cols-6 lg:gap-3">
+          <li class="step-card relative z-10 flex gap-4 rounded-2xl p-4 md:block md:rounded-3xl md:p-5 md:text-center">
+            <span class="step-icon relative flex h-16 w-16 shrink-0 items-center justify-center rounded-[1.35rem] text-xl text-white md:mx-auto md:h-[4.5rem] md:w-[4.5rem]"><i class="fa-solid fa-magnifying-glass"></i><span class="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full border-2 border-white bg-slate-950 text-[9px] font-black">١</span></span>
+            <div class="md:mt-4"><h3 class="text-xs font-extrabold text-slate-900">ابحث عن الدواء</h3><p class="mt-1 text-[10px] leading-6 text-slate-500">بالاسم التجاري أو المادة الفعالة.</p></div>
+          </li>
+          <li class="step-card relative z-10 flex gap-4 rounded-2xl p-4 md:block md:rounded-3xl md:p-5 md:text-center">
+            <span class="step-icon relative flex h-16 w-16 shrink-0 items-center justify-center rounded-[1.35rem] text-xl text-white md:mx-auto md:h-[4.5rem] md:w-[4.5rem]"><i class="fa-solid fa-location-dot"></i><span class="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full border-2 border-white bg-slate-950 text-[9px] font-black">٢</span></span>
+            <div class="md:mt-4"><h3 class="text-xs font-extrabold text-slate-900">اختر الصيدلية</h3><p class="mt-1 text-[10px] leading-6 text-slate-500">قارن القرب والتوفر والسعر.</p></div>
+          </li>
+          <li class="step-card relative z-10 flex gap-4 rounded-2xl p-4 md:block md:rounded-3xl md:p-5 md:text-center">
+            <span class="step-icon relative flex h-16 w-16 shrink-0 items-center justify-center rounded-[1.35rem] text-xl text-white md:mx-auto md:h-[4.5rem] md:w-[4.5rem]"><i class="fa-solid fa-file-prescription"></i><span class="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full border-2 border-white bg-slate-950 text-[9px] font-black">٣</span></span>
+            <div class="md:mt-4"><h3 class="text-xs font-extrabold text-slate-900">أرسل الطلب أو الوصفة</h3><p class="mt-1 text-[10px] leading-6 text-slate-500">أرفق الوصفة إذا احتاجها الدواء.</p></div>
+          </li>
+          <li class="step-card relative z-10 flex gap-4 rounded-2xl p-4 md:block md:rounded-3xl md:p-5 md:text-center">
+            <span class="step-icon relative flex h-16 w-16 shrink-0 items-center justify-center rounded-[1.35rem] text-xl text-white md:mx-auto md:h-[4.5rem] md:w-[4.5rem]"><i class="fa-solid fa-user-check"></i><span class="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full border-2 border-white bg-slate-950 text-[9px] font-black">٤</span></span>
+            <div class="md:mt-4"><h3 class="text-xs font-extrabold text-slate-900">تحقق الصيدلي</h3><p class="mt-1 text-[10px] leading-6 text-slate-500">مراجعة الطلب والتأكد من الرف.</p></div>
+          </li>
+          <li class="step-card relative z-10 flex gap-4 rounded-2xl p-4 md:block md:rounded-3xl md:p-5 md:text-center">
+            <span class="step-icon relative flex h-16 w-16 shrink-0 items-center justify-center rounded-[1.35rem] text-xl text-white md:mx-auto md:h-[4.5rem] md:w-[4.5rem]"><i class="fa-solid fa-truck-fast"></i><span class="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full border-2 border-white bg-slate-950 text-[9px] font-black">٥</span></span>
+            <div class="md:mt-4"><h3 class="text-xs font-extrabold text-slate-900">اختر الاستلام أو التوصيل</h3><p class="mt-1 text-[10px] leading-6 text-slate-500">التوصيل والتكلفة حسب توفر الخدمة.</p></div>
+          </li>
+          <li class="step-card relative z-10 flex gap-4 rounded-2xl p-4 md:block md:rounded-3xl md:p-5 md:text-center">
+            <span class="step-icon relative flex h-16 w-16 shrink-0 items-center justify-center rounded-[1.35rem] text-xl text-white md:mx-auto md:h-[4.5rem] md:w-[4.5rem]"><i class="fa-solid fa-box-open"></i><span class="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full border-2 border-white bg-emerald-700 text-[9px] font-black">٦</span></span>
+            <div class="md:mt-4"><h3 class="text-xs font-extrabold text-slate-900">تابع حتى الاستلام</h3><p class="mt-1 text-[10px] leading-6 text-slate-500">تابع حالة الطلب في بوابة المريض.</p></div>
+          </li>
+        </ol>
+        <div class="how-cta text-center">
+          <a href="#how-it-works" class="inline-flex items-center gap-2 rounded-xl border border-teal-200 bg-white/80 px-4 py-2.5 text-xs font-extrabold text-slate-700 shadow-sm transition hover:border-teal-400 hover:text-teal-800">تفاصيل أكثر عن طريقة العمل <i class="fa-solid fa-arrow-left"></i></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Why دواك بإيدك -->
+    <section id="features" class="why-surface px-4 py-10 sm:px-6 sm:py-16 lg:px-8">
+      <div class="mx-auto max-w-7xl">
+        <div class="mx-auto mb-7 max-w-2xl text-center">
+          <span class="inline-flex rounded-full border border-teal-200/70 bg-white/70 px-3 py-1.5 text-[10px] font-extrabold uppercase tracking-widest text-teal-800 sm:text-xs">رعاية دوائية أوضح</span>
+          <h2 class="mt-3 font-heading text-2xl font-extrabold leading-snug text-slate-950 sm:text-3xl">لماذا دواك بإيدك؟</h2>
+          <p class="mt-2 text-xs leading-7 text-slate-600 sm:text-sm">معلومات موثوقة وخطوات عملية تساعدك على الوصول إلى دوائك ومتابعة طلبك.</p>
+        </div>
+
+        <div class="why-grid">
+          <article id="network" class="feature-card flex flex-col border border-teal-100 bg-white p-5 sm:p-6 xl:p-7">
+            <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-teal-50 text-xl text-teal-700"><i class="fa-solid fa-house-medical-circle-check" aria-hidden="true"></i></span>
+            <h3 class="mt-4 font-heading text-base font-bold text-slate-950">صيدليات معتمدة ومعلومات محدثة</h3>
+            <p class="mt-2 text-xs leading-7 text-slate-600">بيانات صيدليات موثوقة، مع عرض حالة المخزون كما تحدّثها الصيدلية والتأكيد المباشر قبل الزيارة.</p>
+            <div class="network-visual" aria-label="تصور توضيحي لشبكة الصيدليات">
+              <svg class="absolute inset-0 h-full w-full" viewBox="0 0 520 220" preserveAspectRatio="none" aria-hidden="true">
+                <path d="M72 154 C142 116 134 65 224 86 S334 152 438 56" fill="none" stroke="rgba(94,234,212,.78)" stroke-width="2" stroke-dasharray="5 8"/>
+                <path d="M102 54 C174 94 282 174 362 126 S422 115 470 164" fill="none" stroke="rgba(103,232,249,.48)" stroke-width="1.5" stroke-dasharray="3 8"/>
+              </svg>
+              <span class="network-visual-node absolute right-[19%] top-[34%] flex h-10 w-10 items-center justify-center rounded-2xl bg-teal-400 text-sm text-slate-950"><i class="fa-solid fa-house-medical" aria-hidden="true"></i></span>
+              <span class="network-visual-node absolute left-[23%] top-[53%] flex h-9 w-9 items-center justify-center rounded-2xl bg-cyan-400 text-xs text-slate-950"><i class="fa-solid fa-house-medical" aria-hidden="true"></i></span>
+              <span class="network-visual-node absolute left-[51%] top-[23%] flex h-8 w-8 items-center justify-center rounded-2xl bg-teal-300 text-xs text-slate-950"><i class="fa-solid fa-house-medical" aria-hidden="true"></i></span>
+              <span class="absolute right-3 top-3 rounded-full border border-emerald-200/15 bg-emerald-300/10 px-2.5 py-1.5 text-[8px] font-extrabold text-emerald-100"><i class="fa-solid fa-circle-check ml-1" aria-hidden="true"></i> شبكة موثوقة</span>
+              <span class="absolute bottom-3 left-3 rounded-xl border border-white/10 bg-slate-950/45 px-3 py-2 text-[8px] font-bold text-slate-200"><i class="fa-solid fa-arrows-rotate ml-1 text-teal-200" aria-hidden="true"></i> تحديث المخزون حسب الصيدلية</span>
+            </div>
+            <div class="mt-5 grid grid-cols-2 gap-2" aria-label="إحصاءات شبكة الصيدليات">
+              <div class="network-stat rounded-xl border border-slate-100 bg-slate-50 p-2.5 text-center">
+                <span id="network-pharmacy-count" class="block font-heading text-lg font-extrabold text-teal-800">—</span>
+                <span class="mt-1 block text-[8px] font-bold leading-4 text-slate-500">صيدلية معتمدة</span>
+              </div>
+              <div class="network-stat rounded-xl border border-slate-100 bg-slate-50 p-2.5 text-center">
+                <span id="network-governorate-count" class="block font-heading text-lg font-extrabold text-cyan-800">—</span>
+                <span class="mt-1 block text-[8px] font-bold leading-4 text-slate-500">محافظة مغطاة</span>
+              </div>
+            </div>
+            <span class="mt-3 inline-flex items-center gap-2 text-[9px] font-bold text-emerald-800"><i class="fa-solid fa-circle-check" aria-hidden="true"></i> تحديث المخزون حسب الصيدلية</span>
+          </article>
+
+          <article class="feature-card flex flex-col border border-cyan-100 bg-cyan-50/60 p-5 sm:p-6 xl:p-6">
+            <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-white text-xl text-cyan-800 shadow-sm"><i class="fa-solid fa-user-check" aria-hidden="true"></i></span>
+            <h3 class="mt-4 font-heading text-base font-bold text-slate-950">تأكيد من الصيدلي قبل الزيارة</h3>
+            <p class="mt-2 flex-1 text-xs leading-7 text-slate-600">أرسل طلبك أو وصفتك، ودع الصيدلي يراجع التفاصيل ويتحقق من توفر الدواء قبل أن تتوجه للصيدلية.</p>
+            <div class="mt-5 rounded-2xl border border-white bg-white/85 p-3">
+              <span class="flex items-center gap-2 text-[10px] font-extrabold text-slate-800"><i class="fa-solid fa-shield-heart text-teal-700" aria-hidden="true"></i> مراجعة بشرية موثوقة</span>
+              <p class="mt-1 text-[9px] leading-5 text-slate-500">أي بديل دوائي يحتاج موافقة الصيدلي أو الطبيب.</p>
+            </div>
+          </article>
+
+          <article id="delivery" class="feature-card flex flex-col border border-sky-100 bg-sky-50/70 p-5 sm:p-6">
+            <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-white text-xl text-sky-700 shadow-sm"><i class="fa-solid fa-motorcycle" aria-hidden="true"></i></span>
+            <h3 class="mt-4 font-heading text-base font-bold text-slate-950">توصيل عند الحاجة</h3>
+            <p class="mt-2 flex-1 text-xs leading-7 text-slate-600">اختر التوصيل بعد تجهيز الطلب إذا كانت الخدمة متاحة في منطقتك، واطّلع على تفاصيلها قبل التأكيد.</p>
+            <ul class="mt-4 grid gap-2 text-[10px] font-bold text-slate-700">
+              <li class="flex items-center gap-2"><i class="fa-solid fa-route text-cyan-700" aria-hidden="true"></i> متابعة حالة الطلب</li>
+              <li class="flex items-center gap-2"><i class="fa-regular fa-clock text-teal-700" aria-hidden="true"></i> وقت وصول تقديري بعد التأكيد</li>
+            </ul>
+            <a href="delivery.html" class="mt-5 inline-flex min-h-10 items-center gap-2 text-[10px] font-extrabold text-sky-800 transition hover:text-teal-800">تعرّف على تجربة التوصيل <i class="fa-solid fa-arrow-left" aria-hidden="true"></i></a>
+            <span class="mt-1 text-[9px] font-semibold leading-5 text-slate-500">التوصيل الفعلي والتتبع المباشر غير مفعّلين بعد.</span>
+          </article>
+
+          <article class="feature-card flex flex-col border border-indigo-100 bg-indigo-50/60 p-5 sm:p-6">
+            <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-white text-xl text-indigo-700 shadow-sm"><i class="fa-solid fa-bell" aria-hidden="true"></i></span>
+            <h3 class="mt-4 font-heading text-base font-bold text-slate-950">متابعة الطلب والتنبيهات</h3>
+            <p class="mt-2 flex-1 text-xs leading-7 text-slate-600">تابع حالة طلبك من بوابة المريض، واحفظ الأدوية المهمة لك على هذا الجهاز.</p>
+            <div class="mt-4 rounded-xl border border-white bg-white/85 p-3">
+              <span class="block text-[9px] font-bold text-slate-600">تذكير توفر الدواء · تجربة توضيحية</span>
+              <button type="button" id="availability-alert-button" aria-pressed="false" class="mt-2 inline-flex min-h-9 w-full items-center justify-center gap-2 rounded-lg bg-indigo-700 px-3 text-[10px] font-extrabold text-white transition hover:bg-indigo-800"><i class="fa-regular fa-bell" aria-hidden="true"></i><span>أشعرني عند التوفر</span></button>
+              <p id="availability-alert-message" class="mt-2 min-h-5 text-[9px] font-semibold leading-5 text-indigo-900" aria-live="polite"></p>
+            </div>
+            <button type="button" id="saved-medicine-button" class="save-medicine mt-3 inline-flex min-h-10 items-center justify-center gap-2 rounded-xl border border-indigo-200 bg-white px-3 text-[10px] font-extrabold text-indigo-800 transition hover:bg-indigo-50" aria-pressed="false" aria-label="حفظ دواء شاش طبي معقم" data-medicine="شاش طبي معقم"><i class="fa-regular fa-heart" aria-hidden="true"></i><span>حفظ دواء للتجربة</span></button>
+            <p id="saved-medicine-message" class="mt-1 min-h-5 text-[9px] font-semibold leading-5 text-indigo-900" aria-live="polite"></p>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!-- 5. CTA -->
+    <section id="final-cta" class="px-4 pb-10 sm:px-6 sm:pb-16 lg:px-8">
+      <div class="cta-panel relative mx-auto max-w-7xl overflow-hidden rounded-[2rem] px-5 py-10 text-center text-white shadow-2xl shadow-slate-950/20 sm:rounded-[2.5rem] sm:px-10 sm:py-14">
+        <div class="pointer-events-none absolute -right-20 -top-28 h-72 w-72 rounded-full border border-white/10" aria-hidden="true"></div>
+        <div class="pointer-events-none absolute -left-16 -bottom-32 h-72 w-72 rounded-full bg-cyan-400/10 blur-3xl" aria-hidden="true"></div>
+        <div class="relative mx-auto max-w-3xl">
+          <span class="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-[10px] font-bold text-cyan-100"><i class="fa-solid fa-heart-pulse"></i> دواك بإيدك · قطاع غزة</span>
+          <h2 class="mt-4 font-heading text-2xl font-extrabold sm:text-3xl">ابدأ مع دواك بإيدك الآن</h2>
+          <p class="mt-3 text-xs leading-7 text-slate-300 sm:text-sm">اختر البوابة المناسبة وابدأ خطوتك التالية.</p>
+          <div class="mt-8 grid gap-2.5 sm:grid-cols-2 lg:grid-cols-4">
+            <a href="index_patient.html" class="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-white px-3 text-xs font-black text-teal-950 shadow-lg shadow-black/15 transition hover:-translate-y-0.5 hover:bg-cyan-50"><i class="fa-solid fa-magnifying-glass"></i> ابحث عن دوائك</a>
+            <a href="contact.html#pharmacy-onboarding-form" class="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/10 px-3 text-xs font-extrabold text-white transition hover:bg-white/15"><i class="fa-solid fa-house-medical"></i> سجل صيدليتك</a>
+            <a href="delivery.html" class="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/10 px-3 text-xs font-extrabold text-white transition hover:bg-white/15"><i class="fa-solid fa-motorcycle"></i> انضم كمندوب</a>
+            <a href="index_admin.html" class="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/10 px-3 text-xs font-extrabold text-white transition hover:bg-white/15"><i class="fa-solid fa-shield-halved"></i> دخول الإدارة</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 6. Footer -->
+  <footer class="bg-slate-950 text-slate-300">
+    <div class="mx-auto grid max-w-7xl gap-8 px-4 py-9 sm:px-6 md:grid-cols-2 lg:grid-cols-4 lg:px-8">
+      <div class="md:col-span-2">
+        <a href="index.html" class="inline-flex items-center gap-3">
+          <img src="assets/images/dawaak-logo.png" alt="" class="h-12 w-12 object-contain" width="48" height="48" loading="lazy" decoding="async">
+          <span><span class="block font-heading text-base font-extrabold text-white">دواك بإيدك</span><span class="block text-[9px] text-slate-400">دواؤك أقرب مما تتوقع</span></span>
+        </a>
+        <p class="mt-4 max-w-md text-xs leading-7 text-slate-400">منصة تربط المرضى بالصيدليات المعتمدة في قطاع غزة لتسهيل البحث عن الأدوية والتحقق من توفرها.</p>
+      </div>
+      <div>
+        <h2 class="text-xs font-extrabold text-white">روابط سريعة</h2>
+        <div class="mt-3 grid gap-2 text-[11px] font-semibold text-slate-400">
+          <a href="index.html" class="transition hover:text-teal-300">الرئيسية</a>
+          <a href="index.html#how-it-works" class="transition hover:text-teal-300">كيف تعمل المنصة</a>
+          <a href="index.html#features" class="transition hover:text-teal-300">المزايا</a>
+          <a href="about.html" class="transition hover:text-teal-300">عن دواك بإيدك</a>
+          <a href="contact_us.html" class="transition hover:text-teal-300">تواصل معنا</a>
+        </div>
+      </div>
+      <div>
+        <h2 class="text-xs font-extrabold text-white">البوابات والدعم</h2>
+        <div class="mt-3 grid gap-2 text-[11px] font-semibold text-slate-400">
+          <a href="index_patient.html" class="transition hover:text-teal-300">بوابة المريض</a>
+          <a href="index_pharmacy.html" class="transition hover:text-teal-300">بوابة الصيدلية</a>
+          <a href="delivery.html" class="transition hover:text-teal-300">مسار مندوب التوصيل</a>
+          <a href="index_admin.html" class="transition hover:text-teal-300">لوحة الإدارة</a>
+          <a href="mailto:support@medifind.ps" class="transition hover:text-teal-300">راسل فريق الدعم</a>
+          <a href="tel:+970599000000" dir="ltr" class="w-fit transition hover:text-teal-300">+970 59-900-0000</a>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-white/10 bg-slate-950/90">
+      <div class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-4 py-4 text-center text-xs text-slate-400 sm:px-6 md:flex-row lg:px-8">
+        <div class="flex items-center gap-2">
+          <span>جميع الحقوق محفوظة © دواك بإيدك 2026</span>
+          <span class="text-slate-600">•</span>
+          <span class="text-teal-400 font-bold">شبكة الصمود والإغاثة الطبية - قطاع غزة</span>
+        </div>
+        <div class="flex items-center gap-2 bg-slate-900 px-4 py-2 rounded-xl border border-teal-500/30 text-white shadow-md">
+          <i class="fa-solid fa-code text-teal-400"></i>
+          <span class="font-bold text-slate-300">تم دعم المشروع برمجياً من قبل شركة</span>
+          <strong class="font-black text-teal-300 tracking-wide font-sans">MSN-IT In UK</strong>
+          <span class="text-sm">🇬🇧</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div id="homepage-feedback" class="sr-only" role="status" aria-live="polite"></div>
+
+  <script src="js/store.js"></script>
+  <script src="js/tracker.js"></script>
+  <script>
+    const heroCarousel = document.getElementById('hero-carousel');
+    const heroSlides = [...heroCarousel.querySelectorAll('.hero-slide')];
+    const heroDots = [...heroCarousel.querySelectorAll('[data-carousel-dot]')];
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let activeHeroSlide = 0;
+    let heroAutoplayTimer = null;
+    let heroPointerInside = false;
+
+    function stopHeroAutoplay() {
+      window.clearInterval(heroAutoplayTimer);
+      heroAutoplayTimer = null;
+    }
+
+    function startHeroAutoplay() {
+      stopHeroAutoplay();
+      if (prefersReducedMotion.matches || heroPointerInside || document.hidden) return;
+      heroAutoplayTimer = window.setInterval(() => {
+        setHeroSlide(activeHeroSlide + 1);
+      }, 15000);
+    }
+
+    function setHeroSlide(index) {
+      activeHeroSlide = (index + heroSlides.length) % heroSlides.length;
+      heroSlides.forEach((slide, slideIndex) => {
+        const isActive = slideIndex === activeHeroSlide;
+        slide.classList.toggle('is-active', isActive);
+        slide.setAttribute('aria-hidden', String(!isActive));
+        slide.inert = !isActive;
+      });
+      heroDots.forEach((dot, dotIndex) => {
+        dot.setAttribute('aria-current', String(dotIndex === activeHeroSlide));
+      });
+    }
+
+    heroDots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        setHeroSlide(Number(dot.dataset.carouselDot));
+        startHeroAutoplay();
+      });
+    });
+    heroCarousel.addEventListener('pointerenter', () => {
+      heroPointerInside = true;
+      stopHeroAutoplay();
+    });
+    heroCarousel.addEventListener('pointerleave', () => {
+      heroPointerInside = false;
+      startHeroAutoplay();
+    });
+    document.addEventListener('visibilitychange', startHeroAutoplay);
+    prefersReducedMotion.addEventListener('change', startHeroAutoplay);
+    startHeroAutoplay();
+
+    try {
+      const verifiedPharmacies = window.medifindStore.getPharmacies(true);
+      document.getElementById('network-pharmacy-count').textContent = verifiedPharmacies.length.toLocaleString('ar');
+      document.getElementById('network-governorate-count').textContent = new Set(
+        verifiedPharmacies.map(pharmacy => pharmacy.governorate).filter(Boolean)
+      ).size.toLocaleString('ar');
+    } catch (error) {
+      console.error('Unable to load pharmacy network statistics.', error);
+    }
+
+    const savedMedicinesKey = 'medifind_saved_home_medicines';
+    const medicineSaveButtons = document.querySelectorAll('.save-medicine');
+    const homepageFeedback = document.getElementById('homepage-feedback');
+
+    function getSavedMedicines() {
+      try {
+        const saved = JSON.parse(localStorage.getItem(savedMedicinesKey) || '[]');
+        return Array.isArray(saved) ? saved.filter(item => typeof item === 'string') : [];
+      } catch (error) {
+        console.error('Unable to read saved medicines.', error);
+        return [];
+      }
+    }
+
+    function updateSaveButtons() {
+      const saved = getSavedMedicines();
+      medicineSaveButtons.forEach(button => {
+        const isSaved = saved.includes(button.dataset.medicine);
+        button.setAttribute('aria-pressed', String(isSaved));
+        const icon = button.querySelector('i');
+        icon.classList.toggle('fa-solid', isSaved);
+        icon.classList.toggle('fa-regular', !isSaved);
+        if (button.id === 'saved-medicine-button') {
+          button.querySelector('span').textContent = isSaved ? 'تم حفظ الدواء' : 'حفظ الدواء';
+        }
+      });
+    }
+
+    medicineSaveButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const saved = getSavedMedicines();
+        const medicine = button.dataset.medicine;
+        const isSaved = saved.includes(medicine);
+        const nextSaved = isSaved ? saved.filter(item => item !== medicine) : [...saved, medicine];
+        try {
+          localStorage.setItem(savedMedicinesKey, JSON.stringify(nextSaved));
+          updateSaveButtons();
+          const message = document.getElementById('saved-medicine-message');
+          if (message) message.textContent = isSaved ? 'أزيل الدواء من قائمة هذا الجهاز.' : 'حُفظ الدواء في هذا المتصفح.';
+          homepageFeedback.textContent = isSaved ? 'أزيل الدواء من قائمة الأدوية المحفوظة.' : 'تم حفظ الدواء في هذا المتصفح.';
+        } catch (error) {
+          console.error('Unable to save medicine.', error);
+          homepageFeedback.textContent = 'تعذر حفظ الدواء على هذا الجهاز.';
+          const message = document.getElementById('saved-medicine-message');
+          if (message) message.textContent = 'تعذر الحفظ؛ تحقق من إعدادات التخزين في المتصفح.';
+        }
+      });
+    });
+    updateSaveButtons();
+
+    const availabilityAlertButton = document.getElementById('availability-alert-button');
+    availabilityAlertButton.addEventListener('click', () => {
+      const isRequested = availabilityAlertButton.getAttribute('aria-pressed') === 'true';
+      availabilityAlertButton.setAttribute('aria-pressed', String(!isRequested));
+      availabilityAlertButton.querySelector('span').textContent = isRequested ? 'أشعرني عند التوفر' : 'تم تسجيل الطلب';
+      document.getElementById('availability-alert-message').textContent = isRequested
+        ? 'أزيل طلب التذكير التجريبي.'
+        : 'تم تفعيل الحالة التوضيحية فقط؛ الإشعارات الفعلية غير مفعّلة حالياً.';
+    });
+  </script>
+</body>
+</html>

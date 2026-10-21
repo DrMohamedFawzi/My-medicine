@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 300" role="img" aria-label="زجاجة محلول مطهر">
+  <rect width="320" height="300" rx="28" fill="#f1f8f8"/>
+  <ellipse cx="160" cy="254" rx="71" ry="13" fill="#dce8e9"/>
+  <path d="M138 64h44v31h-44z" fill="#0e5664"/>
+  <path d="M142 90h36l19 24v119q0 13-13 13h-49q-13 0-13-13V114z" fill="#9ccfce" stroke="#75b4b2" stroke-width="4"/>
+  <path d="M143 117h35v103h-35z" fill="#fff"/>
+  <circle cx="160" cy="145" r="13" fill="#d9f1ed"/>
+  <path d="M160 135v20m-10-10h20" stroke="#0f9d8a" stroke-width="5" stroke-linecap="round"/>
+  <text x="160" y="180" text-anchor="middle" fill="#386368" font-family="Arial,sans-serif" font-size="8" font-weight="700">ANTISEPTIC</text>
+</svg>

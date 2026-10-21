@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="corporate">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="تواصل مع فريق دواك بإيدك للاستفسارات والدعم الفني والاقتراحات.">
+  <title>تواصل معنا | دواك بإيدك</title>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.10.2/dist/full.min.css" rel="stylesheet" type="text/css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@500;600;700;800&family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="public-nav.css">
+  <style>
+    body { font-family: 'Cairo', sans-serif; }
+    .font-heading { font-family: 'Alexandria', 'Cairo', sans-serif; }
+    .contact-hero {
+      background:
+        radial-gradient(ellipse at 12% 18%, rgba(6, 182, 212, .25), transparent 38%),
+        radial-gradient(ellipse at 88% 76%, rgba(20, 184, 166, .2), transparent 42%),
+        linear-gradient(125deg, #081c32 0%, #0b3443 54%, #0e4b56 100%);
+    }
+    .contact-card {
+      border: 1px solid rgba(226, 232, 240, .9);
+      background: rgba(255, 255, 255, .94);
+      box-shadow: 0 18px 55px -38px rgba(15, 23, 42, .34);
+    }
+    .contact-icon {
+      background: linear-gradient(135deg, #ccfbf1, #cffafe);
+      color: #0f766e;
+    }
+  </style>
+  <script src="js/public-nav.js" defer></script>
+</head>
+<body class="min-h-screen bg-slate-50 text-slate-800 antialiased">
+  <header class="glass-nav sticky top-0 z-50 border-b border-slate-200/80">
+    <div class="mx-auto flex max-w-7xl items-center justify-between gap-2 px-2 py-3 sm:gap-3 sm:px-6 lg:px-8">
+      <a href="index.html" class="flex shrink-0 items-center gap-2 sm:gap-2.5" aria-label="دواك بإيدك، الرئيسية">
+        <img src="assets/images/dawaak-logo.png" alt="" class="h-10 w-10 object-contain sm:h-11 sm:w-11" width="48" height="48">
+        <span>
+          <span class="block font-heading text-base font-extrabold tracking-tight text-slate-950 min-[380px]:text-lg sm:text-xl">دواك بإيدك</span>
+          <span class="hidden text-[9px] font-bold text-slate-500 sm:block">رعاية أقرب. وصول أسهل.</span>
+        </span>
+      </a>
+      <nav class="hidden items-center gap-5 text-[11px] font-bold text-slate-600 xl:flex" aria-label="التنقل الرئيسي">
+        <a href="index.html" class="transition hover:text-teal-700">الرئيسية</a>
+        <a href="index.html#how-it-works" class="transition hover:text-teal-700">كيف تعمل المنصة</a>
+        <a href="index.html#features" class="transition hover:text-teal-700">المزايا</a>
+        <a href="contact.html" class="transition hover:text-teal-700">للصيدليات</a>
+        <a href="about.html" class="transition hover:text-teal-700">عن دواك بإيدك</a>
+        <a href="contact_us.html" aria-current="page" class="text-teal-800">تواصل معنا</a>
+      </nav>
+      <div class="flex shrink-0 items-center gap-2">
+        <a href="index_patient.html" aria-label="ابحث عن دوائك" class="inline-flex min-h-10 items-center gap-2 rounded-xl bg-teal-700 px-2.5 text-[11px] font-extrabold text-white shadow-md shadow-teal-900/15 transition hover:bg-teal-800 sm:px-4 sm:text-xs">
+          <i class="fa-solid fa-magnifying-glass"></i><span class="hidden sm:inline">ابحث عن دوائك</span><span class="hidden sm:hidden min-[380px]:inline">بحث</span>
+        </a>
+        <details class="group relative">
+          <summary aria-label="تسجيل الدخول، اختيار البوابة" class="flex min-h-10 cursor-pointer list-none items-center gap-2 rounded-xl border border-slate-200 bg-white px-2 text-[11px] font-extrabold text-slate-700 transition hover:border-teal-300 hover:text-teal-800 sm:px-3 sm:text-xs">
+            <i class="fa-regular fa-user"></i><span class="hidden sm:inline">تسجيل الدخول</span><i class="fa-solid fa-chevron-down hidden text-[9px] transition group-open:rotate-180 sm:inline"></i>
+          </summary>
+          <div class="absolute left-0 top-full z-50 mt-2 w-52 rounded-2xl border border-slate-100 bg-white p-2 text-right shadow-xl shadow-slate-900/10" role="menu" aria-label="اختر بوابتك">
+            <a role="menuitem" href="index_patient.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-xs font-bold text-slate-700 hover:bg-teal-50 hover:text-teal-800"><i class="fa-solid fa-user w-4 text-center text-teal-700"></i> مريض / مستخدم</a>
+            <a role="menuitem" href="index_pharmacy.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-xs font-bold text-slate-700 hover:bg-cyan-50 hover:text-cyan-800"><i class="fa-solid fa-house-medical w-4 text-center text-cyan-700"></i> صيدلي / صيدلية</a>
+            <a role="menuitem" href="delivery.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-xs font-bold text-slate-700 hover:bg-sky-50 hover:text-sky-800"><i class="fa-solid fa-motorcycle w-4 text-center text-sky-700"></i> مندوب توصيل</a>
+            <a role="menuitem" href="index_admin.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-xs font-bold text-slate-700 hover:bg-indigo-50 hover:text-indigo-800"><i class="fa-solid fa-shield-halved w-4 text-center text-indigo-700"></i> الإدارة</a>
+          </div>
+        </details>
+        <button type="button" onclick="togglePublicMobileMenu()" aria-controls="public-mobile-drawer" aria-expanded="false" aria-label="فتح قائمة التنقل" class="btn btn-ghost btn-circle btn-sm text-slate-700 xl:hidden">
+          <i class="fa-solid fa-bars text-lg" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+    <nav id="public-mobile-drawer" class="hidden border-t border-slate-100 bg-white px-4 py-3 shadow-lg xl:hidden" aria-label="التنقل عبر الهاتف">
+      <div class="mx-auto grid max-w-7xl gap-1 sm:grid-cols-2">
+        <a href="index.html" class="rounded-xl px-3 py-2.5 text-sm font-bold hover:bg-slate-50">الرئيسية</a>
+        <a href="index.html#how-it-works" class="rounded-xl px-3 py-2.5 text-sm font-bold hover:bg-slate-50">كيف تعمل المنصة</a>
+        <a href="index.html#features" class="rounded-xl px-3 py-2.5 text-sm font-bold hover:bg-slate-50">المزايا</a>
+        <a href="contact.html" class="rounded-xl px-3 py-2.5 text-sm font-bold hover:bg-slate-50">للصيدليات</a>
+        <a href="about.html" class="rounded-xl px-3 py-2.5 text-sm font-bold hover:bg-slate-50">عن دواك بإيدك</a>
+        <a href="contact_us.html" aria-current="page" class="rounded-xl bg-teal-50 px-3 py-2.5 text-sm font-extrabold text-teal-800">تواصل معنا</a>
+        <div class="mt-2 border-t border-slate-100 pt-2 sm:col-span-2">
+          <p class="px-3 pb-1 text-[10px] font-extrabold text-slate-400">اختر بوابتك</p>
+          <div class="grid grid-cols-2 gap-1">
+            <a href="index_patient.html" class="rounded-xl px-3 py-2.5 text-xs font-bold text-teal-800 hover:bg-teal-50">مريض / مستخدم</a>
+            <a href="index_pharmacy.html" class="rounded-xl px-3 py-2.5 text-xs font-bold text-cyan-800 hover:bg-cyan-50">صيدلي / صيدلية</a>
+            <a href="delivery.html" class="rounded-xl px-3 py-2.5 text-xs font-bold text-sky-800 hover:bg-sky-50">مندوب توصيل</a>
+            <a href="index_admin.html" class="rounded-xl px-3 py-2.5 text-xs font-bold text-indigo-800 hover:bg-indigo-50">الإدارة</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <script>
+    function togglePublicMobileMenu() {
+      const drawer = document.getElementById('public-mobile-drawer');
+      const toggle = document.querySelector('[aria-controls="public-mobile-drawer"]');
+      const isHidden = drawer.classList.toggle('hidden');
+      toggle.setAttribute('aria-expanded', String(!isHidden));
+      toggle.setAttribute('aria-label', isHidden ? 'فتح قائمة التنقل' : 'إغلاق قائمة التنقل');
+    }
+  </script>
+
+  <main>
+    <section class="contact-hero relative isolate overflow-hidden px-4 py-16 text-white sm:py-20">
+      <div class="pointer-events-none absolute -left-20 -top-28 h-80 w-80 rounded-full bg-cyan-400/10 blur-3xl" aria-hidden="true"></div>
+      <div class="relative mx-auto max-w-7xl">
+        <span class="inline-flex items-center gap-2 rounded-full border border-teal-100/20 bg-white/10 px-4 py-2 text-xs font-extrabold text-teal-100">
+          <i class="fa-solid fa-headset" aria-hidden="true"></i> نحن هنا لمساعدتك
+        </span>
+        <h1 class="font-heading mt-5 text-3xl font-extrabold leading-relaxed sm:text-4xl lg:text-5xl">تواصل مع فريق دواك بإيدك</h1>
+        <p class="mt-4 max-w-2xl text-sm leading-8 text-cyan-50 sm:text-base">لديك سؤال، ملاحظة أو اقتراح؟ تواصل معنا وسنساعدك في أقرب وقت ممكن.</p>
+      </div>
+    </section>
+
+    <section class="mx-auto grid max-w-7xl gap-7 px-4 py-12 sm:px-6 lg:grid-cols-[.9fr_1.1fr] lg:gap-10 lg:px-8 lg:py-16">
+      <aside class="order-2 space-y-5" aria-label="معلومات التواصل">
+        <article class="contact-card rounded-3xl p-6 sm:p-7">
+          <h2 class="font-heading text-lg font-extrabold text-slate-900">معلومات التواصل</h2>
+          <div class="mt-6 space-y-4">
+            <a href="mailto:support@medifind.ps" class="flex items-center gap-4 rounded-2xl border border-slate-100 p-4 transition hover:border-teal-200 hover:bg-teal-50/50">
+              <span class="contact-icon flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl"><i class="fa-solid fa-envelope"></i></span>
+              <span><span class="block text-xs font-bold text-slate-500">البريد الإلكتروني</span><span class="mt-1 block text-sm font-extrabold text-slate-900">راسل فريق الدعم</span></span>
+            </a>
+            <a href="https://wa.me/970599000000" class="flex items-center gap-4 rounded-2xl border border-slate-100 p-4 transition hover:border-teal-200 hover:bg-teal-50/50">
+              <span class="contact-icon flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl"><i class="fa-brands fa-whatsapp text-xl"></i></span>
+              <span><span class="block text-xs font-bold text-slate-500">رقم الهاتف / واتساب</span><span dir="ltr" class="mt-1 block text-sm font-extrabold text-slate-900">+970 59-900-0000</span></span>
+            </a>
+            <div class="flex items-center gap-4 rounded-2xl border border-slate-100 p-4">
+              <span class="contact-icon flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl"><i class="fa-solid fa-location-dot"></i></span>
+              <span><span class="block text-xs font-bold text-slate-500">الموقع</span><span class="mt-1 block text-sm font-extrabold text-slate-900">قطاع غزة - فلسطين</span></span>
+            </div>
+            <div class="flex items-center gap-4 rounded-2xl border border-slate-100 p-4">
+              <span class="contact-icon flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl"><i class="fa-regular fa-clock"></i></span>
+              <span><span class="block text-xs font-bold text-slate-500">ساعات التواصل</span><span class="mt-1 block text-sm font-extrabold text-slate-900">نستقبل رسائلكم على مدار الساعة</span></span>
+            </div>
+          </div>
+        </article>
+        <article class="rounded-3xl border border-teal-100 bg-gradient-to-br from-teal-50 to-cyan-50 p-6">
+          <p class="text-sm leading-7 text-slate-700">إذا كنت تمثل صيدلية وترغب بالانضمام إلى الشبكة، انتقل إلى صفحة الصيدليات.</p>
+          <a href="contact.html" class="mt-4 inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-teal-700 px-5 text-sm font-extrabold text-white shadow-lg shadow-teal-900/10 transition hover:bg-teal-800">
+            <i class="fa-solid fa-house-medical" aria-hidden="true"></i> انضم كصيدلية
+          </a>
+        </article>
+      </aside>
+
+      <div class="contact-card order-1 rounded-3xl p-6 sm:p-9">
+        <div class="mb-7">
+          <h2 class="font-heading text-xl font-extrabold text-slate-900">أرسل لنا رسالة</h2>
+          <p class="mt-2 text-sm leading-7 text-slate-500">املأ النموذج وسنساعدك في توجيه استفسارك إلى الفريق المناسب.</p>
+        </div>
+        <form id="contact-message-form" onsubmit="sendContactMessage(event)" class="space-y-5">
+          <div class="grid gap-5 sm:grid-cols-2">
+            <label class="form-control">
+              <span class="mb-2 text-sm font-bold text-slate-700">الاسم الكامل</span>
+              <input name="name" type="text" autocomplete="name" required class="input input-bordered w-full rounded-xl bg-white" placeholder="الاسم الكامل">
+            </label>
+            <label class="form-control">
+              <span class="mb-2 text-sm font-bold text-slate-700">البريد الإلكتروني</span>
+              <input name="email" type="email" autocomplete="email" required class="input input-bordered w-full rounded-xl bg-white" placeholder="name@example.com" dir="ltr">
+            </label>
+          </div>
+          <div class="grid gap-5 sm:grid-cols-2">
+            <label class="form-control">
+              <span class="mb-2 text-sm font-bold text-slate-700">رقم الهاتف <span class="font-normal text-slate-400">(اختياري)</span></span>
+              <input name="phone" type="tel" autocomplete="tel" class="input input-bordered w-full rounded-xl bg-white" placeholder="+970" dir="ltr">
+            </label>
+            <label class="form-control">
+              <span class="mb-2 text-sm font-bold text-slate-700">نوع الاستفسار</span>
+              <select name="inquiry" required class="select select-bordered w-full rounded-xl bg-white">
+                <option value="استفسار عام">استفسار عام</option>
+                <option value="دعم فني">دعم فني</option>
+                <option value="مشكلة في البحث عن دواء">مشكلة في البحث عن دواء</option>
+                <option value="صيدلية">صيدلية</option>
+                <option value="اقتراح أو ملاحظة">اقتراح أو ملاحظة</option>
+              </select>
+            </label>
+          </div>
+          <label class="form-control">
+            <span class="mb-2 text-sm font-bold text-slate-700">الرسالة</span>
+            <textarea name="message" required rows="6" class="textarea textarea-bordered w-full rounded-xl bg-white leading-7" placeholder="اكتب رسالتك هنا..."></textarea>
+          </label>
+          <p class="text-xs leading-6 text-slate-500">سيتم فتح تطبيق البريد الإلكتروني لإرسال رسالتك إلى فريق الدعم.</p>
+          <button type="submit" class="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-l from-teal-700 to-cyan-700 px-6 text-sm font-extrabold text-white shadow-lg shadow-teal-900/15 transition hover:from-teal-800 hover:to-cyan-800 sm:w-auto">
+            <i class="fa-solid fa-paper-plane" aria-hidden="true"></i> إرسال الرسالة
+          </button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-slate-950 text-slate-300">
+    <div class="mx-auto grid max-w-7xl gap-8 px-4 py-9 sm:px-6 md:grid-cols-2 lg:grid-cols-4 lg:px-8">
+      <div class="md:col-span-2">
+        <a href="index.html" class="inline-flex items-center gap-3">
+          <img src="assets/images/dawaak-logo.png" alt="" class="h-12 w-12 object-contain" width="48" height="48" loading="lazy" decoding="async">
+          <span><span class="block font-heading text-base font-extrabold text-white">دواك بإيدك</span><span class="block text-[9px] text-slate-400">دواؤك أقرب مما تتوقع</span></span>
+        </a>
+        <p class="mt-4 max-w-md text-xs leading-7 text-slate-400">منصة تربط المرضى بالصيدليات المعتمدة في قطاع غزة لتسهيل البحث عن الأدوية والتحقق من توفرها.</p>
+      </div>
+      <div>
+        <h2 class="text-xs font-extrabold text-white">روابط سريعة</h2>
+        <div class="mt-3 grid gap-2 text-[11px] font-semibold text-slate-400">
+          <a href="index.html" class="transition hover:text-teal-300">الرئيسية</a>
+          <a href="index.html#how-it-works" class="transition hover:text-teal-300">كيف تعمل المنصة</a>
+          <a href="index.html#features" class="transition hover:text-teal-300">المزايا</a>
+          <a href="contact.html" class="transition hover:text-teal-300">للصيدليات</a>
+          <a href="about.html" class="transition hover:text-teal-300">عن دواك بإيدك</a>
+          <a href="contact_us.html" class="transition hover:text-teal-300">تواصل معنا</a>
+        </div>
+      </div>
+      <div>
+        <h2 class="text-xs font-extrabold text-white">البوابات والدعم</h2>
+        <div class="mt-3 grid gap-2 text-[11px] font-semibold text-slate-400">
+          <a href="index_patient.html" class="transition hover:text-teal-300">بوابة المريض</a>
+          <a href="index_pharmacy.html" class="transition hover:text-teal-300">بوابة الصيدلية</a>
+          <a href="delivery.html" class="transition hover:text-teal-300">مسار مندوب التوصيل</a>
+          <a href="index_admin.html" class="transition hover:text-teal-300">لوحة الإدارة</a>
+          <a href="mailto:support@medifind.ps" class="transition hover:text-teal-300">راسل فريق الدعم</a>
+          <a href="tel:+970599000000" dir="ltr" class="w-fit transition hover:text-teal-300">+970 59-900-0000</a>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-white/10">
+      <div class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-4 py-3 text-center text-[10px] text-slate-400 sm:px-6 md:flex-row lg:px-8">
+        <span>جميع الحقوق محفوظة © دواك بإيدك 2026</span>
+        <span>مشروع لخدمة أهالي قطاع غزة</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function sendContactMessage(event) {
+      event.preventDefault();
+      const form = event.currentTarget;
+      const fields = new FormData(form);
+      const body = [
+        `الاسم الكامل: ${fields.get('name')}`,
+        `البريد الإلكتروني: ${fields.get('email')}`,
+        `رقم الهاتف: ${fields.get('phone') || 'غير مذكور'}`,
+        `نوع الاستفسار: ${fields.get('inquiry')}`,
+        '',
+        'الرسالة:',
+        fields.get('message')
+      ].join('\n');
+      const subject = `رسالة تواصل - ${fields.get('inquiry')}`;
+      window.location.href = `mailto:support@medifind.ps?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    }
+  </script>
+</body>
+</html>

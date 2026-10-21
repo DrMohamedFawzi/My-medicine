@@ -1,0 +1,1792 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="corporate">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#071a2c">
+
+  <!-- Primary Meta Tags & SEO -->
+  <title>لوحة الصيدلية وإدارة المخزون 💊 | دواك بإيدك - قطاع غزة</title>
+  <meta name="title" content="لوحة الصيدلية وإدارة المخزون 💊 | دواك بإيدك - قطاع غزة">
+  <meta name="description" content="لوحة تحكم الصيدلي لإدارة المخزون بنظام إشارات المرور السريع، استيراد ملفات Excel بلمسة واحدة، مقاصة الأدوية B2B، ومسح رموز الـ QR في قطاع غزة.">
+  <meta name="keywords" content="صيدليات غزة, إدارة مخزون الأدوية غزة, إشارات المرور للمخزون, مقاصة أدوية غزة, صيدليات طوارئ, MSN-IT In UK">
+  <meta name="author" content="MSN-IT In UK">
+  <meta name="robots" content="index, follow">
+
+  <!-- Favicon & Touch Icons -->
+  <link rel="icon" type="image/webp" href="assets/images/dawaak-logo.webp">
+  <link rel="icon" type="image/png" href="assets/images/dawaak-logo.png">
+  <link rel="apple-touch-icon" href="assets/images/dawaak-logo.png">
+  
+  <!-- Tailwind CSS & DaisyUI CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.10.2/dist/full.min.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Google Fonts - Cairo -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Cairo', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#ecfdf5',
+              100: '#d1fae5',
+              500: '#10b981',
+              600: '#059669',
+              700: '#047857',
+              primary: '#0e7490',
+              secondary: '#0891b2',
+              dark: '#0f172a'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  
+  <style>
+    body {
+      font-family: 'Cairo', sans-serif;
+      background-color: #f8fafc;
+    }
+    .badge-emergency {
+      background-color: #fee2e2;
+      color: #991b1b;
+      border: 1px solid #f87171;
+    }
+    .pulse-dot {
+      animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: .4; }
+    }
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+      #printable_ticket_area, #printable_ticket_area * {
+        visibility: visible;
+      }
+      #printable_ticket_area {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="dashboard-ui.css">
+  <script src="dashboard-ui.js" defer></script>
+</head>
+<body class="dashboard-shell pharmacy-dashboard min-h-screen text-slate-800 antialiased flex flex-col md:flex-row">
+
+  <!-- ========================================================================= -->
+  <!-- 1. الشريط الجانبي (Sidebar) -->
+  <!-- ========================================================================= -->
+  <aside class="dashboard-sidebar w-full md:w-64 bg-slate-900 text-white flex-shrink-0 flex flex-col shadow-xl z-20">
+    <!-- شعار المنصة -->
+    <div class="p-5 border-b border-slate-800 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <img src="assets/images/dawaak-logo.png" alt="" class="h-10 w-10 object-contain" width="48" height="48">
+        <div>
+          <h1 class="font-black text-lg text-cyan-400 tracking-wide">دواك بإيدك</h1>
+          <p class="text-xs text-slate-400 font-medium">بوابة الصيدلي - قطاع غزة</p>
+        </div>
+      </div>
+      <button onclick="toggleOfflineMeshMode()" id="network-status-badge" class="badge badge-success badge-xs gap-1 text-[10px] text-white cursor-pointer hover:opacity-80 transition" title="انقر لمحاكاة انقطاع الإنترنت والعمل بنمط الشبكة المحلية Offline-First Mesh">
+        <i class="fa-solid fa-wifi" id="network-status-icon"></i>
+        <span id="network-status-text">متصل</span>
+      </button>
+    </div>
+
+    <!-- معلومات الصيدلية النشطة وحالة المناوبة -->
+    <div class="p-4 mx-3 my-3 bg-slate-800/80 rounded-2xl border border-slate-700/50 space-y-2.5">
+      <div class="flex items-center gap-3">
+        <div class="avatar placeholder">
+          <div class="bg-cyan-700 text-cyan-100 rounded-xl w-10">
+            <i class="fa-solid fa-clinic-medical"></i>
+          </div>
+        </div>
+        <div class="overflow-hidden">
+          <h3 id="current-pharmacy-name" class="text-sm font-bold text-slate-100 truncate">صيدلية الرمال المركزية</h3>
+          <p id="current-pharmacist-name" class="text-xs text-slate-400 truncate">د. إبراهيم النجار</p>
+        </div>
+      </div>
+
+      <!-- تبديل حالة المناوبة الليلية/الطوارئ -->
+      <div class="pt-2 border-t border-slate-700/50 flex items-center justify-between text-xs">
+        <span class="text-slate-300 font-semibold flex items-center gap-1">
+          <i class="fa-solid fa-moon text-amber-400"></i>
+          <span>مناوبة طوارئ 24 س:</span>
+        </span>
+        <input type="checkbox" id="night-shift-toggle" onchange="toggleNightShift(this.checked)" class="toggle toggle-success toggle-xs" checked />
+      </div>
+      
+      <!-- اختيار صيدلية تجريبية أخرى في غزة -->
+      <div class="pt-1">
+        <label class="text-[10px] text-slate-400 block mb-1">التبديل بين صيدليات القطاع:</label>
+        <select id="pharmacy-switcher" class="select select-bordered select-xs w-full bg-slate-900 text-slate-200 border-slate-700">
+          <!-- بالجافاسكريبت -->
+        </select>
+      </div>
+    </div>
+
+    <!-- قائمة التنقل -->
+    <nav class="flex-1 px-3 py-2 space-y-1">
+      <p class="dashboard-nav-label">العمليات</p>
+      <a href="#pending-orders-section" class="dashboard-nav-active flex items-center justify-between px-3 py-2.5 rounded-xl text-slate-200 hover:bg-slate-800 transition font-medium group text-sm">
+        <div class="flex items-center gap-3">
+          <i class="fa-solid fa-clipboard-check text-cyan-400 text-base"></i>
+          <span>التحقق البشري والطلبات</span>
+        </div>
+        <span id="nav-pending-badge" class="badge badge-error badge-sm text-white font-bold animate-bounce">2</span>
+      </a>
+
+      <a href="#inventory-section" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-300 hover:bg-slate-800 transition font-medium text-sm">
+        <i class="fa-solid fa-boxes-stacked text-teal-400 text-base"></i>
+        <span>إدارة المخزون والمستلزمات</span>
+      </a>
+
+      <a href="#history-section" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-slate-300 hover:bg-slate-800 transition font-medium text-sm">
+        <i class="fa-solid fa-clock-rotate-left text-blue-400 text-base"></i>
+        <span>سجل الطلبات والطباعة</span>
+      </a>
+
+      <a href="#reverse-bids-section" class="flex items-center justify-between px-3 py-2.5 rounded-xl text-slate-300 hover:bg-slate-800 transition font-medium text-sm">
+        <div class="flex items-center gap-3">
+          <i class="fa-solid fa-file-signature text-amber-400 text-base"></i>
+          <span>عروض الروشتات (Reverse Bids)</span>
+        </div>
+        <span id="nav-reverse-bids-badge" class="badge badge-warning badge-xs font-bold text-slate-900">1</span>
+      </a>
+
+      <a href="#b2b-barter-section" class="flex items-center justify-between px-3 py-2.5 rounded-xl text-slate-300 hover:bg-slate-800 transition font-medium text-sm">
+        <div class="flex items-center gap-3">
+          <i class="fa-solid fa-arrow-right-arrow-left text-purple-400 text-base"></i>
+          <span>بورصة التبادل الصيدلاني</span>
+        </div>
+        <span class="badge badge-ghost badge-xs text-purple-300">B2B</span>
+      </a>
+
+      <p class="dashboard-nav-label">إدارة الصيدلية</p>
+      <div class="pt-4 mt-4 border-t border-slate-800 space-y-1.5">
+        <a href="index_patient.html" target="_blank" class="flex items-center justify-between px-3 py-2 rounded-xl bg-cyan-950/60 text-cyan-300 hover:bg-cyan-900/60 border border-cyan-800/50 transition text-xs font-semibold">
+          <span class="flex items-center gap-2">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            <span>واجهة المريض (غزة)</span>
+          </span>
+          <span class="badge badge-info badge-xs">مباشر</span>
+        </a>
+
+        <a href="index_admin.html" target="_blank" class="flex items-center justify-between px-3 py-2 rounded-xl bg-rose-950/40 text-rose-300 hover:bg-rose-900/40 border border-rose-800/50 transition text-xs font-semibold">
+          <span class="flex items-center gap-2">
+            <i class="fa-solid fa-shield-halved"></i>
+            <span>لوحة الإدارة والرقابة</span>
+          </span>
+          <span class="badge badge-error badge-xs">Admin</span>
+        </a>
+      </div>
+    </nav>
+
+    <!-- تذييل القائمة والتحكم في البيانات -->
+    <div class="p-4 border-t border-slate-800 text-xs text-slate-400 space-y-2">
+      <button onclick="resetStoreData()" class="btn btn-outline btn-xs w-full text-slate-300 hover:bg-rose-900 hover:border-rose-700">
+        <i class="fa-solid fa-rotate-left ml-1"></i> إعادة ضبط البيانات
+      </button>
+      <div class="text-[11px] text-center text-slate-500">
+        دواك بإيدك MVP v2.0 • قطاع غزة • شيكل (₪)
+      </div>
+    </div>
+  </aside>
+
+  <!-- ========================================================================= -->
+  <!-- 2. المحتوى الرئيسي (Main Content) -->
+  <!-- ========================================================================= -->
+  <main class="dashboard-main flex-1 min-w-0 flex flex-col overflow-y-auto">
+    
+    <!-- Top Header -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-10 px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-sm">
+      <div class="flex items-center gap-3 w-full sm:w-auto">
+        <button type="button" class="dashboard-nav-toggle" aria-expanded="false" aria-label="فتح القائمة">
+          <i class="fa-solid fa-bars" aria-hidden="true"></i>
+        </button>
+        <div>
+        <div class="flex items-center gap-2">
+          <h2 class="text-xl font-extrabold text-slate-900">لوحة الصيدلية</h2>
+          <span class="badge badge-primary badge-outline text-xs">بوابة الصيدلي</span>
+        </div>
+        <p class="text-xs text-slate-500 mt-0.5">إدارة الطلبات، المخزون، والتحقق من توفر الأدوية</p>
+        </div>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-2.5 w-full sm:w-auto justify-end">
+        <!-- زر مسح رمز الاستجابة السريعة (QR) والصرف الفوري -->
+        <button onclick="openQrScannerModal()" class="btn btn-sm bg-emerald-600 hover:bg-emerald-700 text-white gap-1.5 font-black rounded-xl shadow-md">
+          <i class="fa-solid fa-qrcode text-base"></i>
+          <span>مسح QR / كود استلام</span>
+        </button>
+
+        <!-- زر اختبار التنبيه الصوتي -->
+        <button onclick="window.medifindStore.audio.playIncomingOrderChime()" class="btn btn-ghost btn-sm text-cyan-800 gap-1.5 text-xs font-bold" title="فحص الصوت">
+          <i class="fa-solid fa-volume-high text-cyan-600"></i>
+          <span class="hidden sm:inline">التنبيه الصوتي</span>
+        </button>
+
+        <!-- زر إضافة صنف دوائي جديد -->
+        <button onclick="openAddMedicineModal()" class="btn btn-primary btn-sm gap-2 text-white shadow-md rounded-xl font-bold">
+          <i class="fa-solid fa-plus"></i>
+          <span>إضافة صنف</span>
+        </button>
+      </div>
+    </header>
+
+    <div class="dashboard-page-content p-6 space-y-8 max-w-7xl mx-auto w-full">
+
+      <!-- ===================================================================== -->
+      <!-- 3. مؤشرات الأداء والإحصائيات (Stats Section) -->
+      <!-- ===================================================================== -->
+      <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <!-- إجمالي الأصناف -->
+        <div class="card bg-white shadow-sm border border-slate-200 p-5 rounded-3xl flex flex-row items-center justify-between">
+          <div>
+            <p class="text-xs font-bold text-slate-400 uppercase">إجمالي الأصناف</p>
+            <h4 id="stat-total-meds" class="text-2xl font-black text-slate-800 mt-1">0</h4>
+            <span id="stat-total-units" class="text-[11px] text-slate-500">0 عبوة متوفرة</span>
+          </div>
+          <div class="w-12 h-12 rounded-2xl bg-cyan-50 text-cyan-600 flex items-center justify-center text-xl">
+            <i class="fa-solid fa-capsules"></i>
+          </div>
+        </div>
+
+        <!-- طلبات بانتظار التحقق البشري -->
+        <div class="card bg-amber-50/70 border border-amber-200 shadow-sm p-5 rounded-3xl flex flex-row items-center justify-between">
+          <div>
+            <p class="text-xs font-bold text-amber-800 uppercase flex items-center gap-1.5">
+              <span>بانتظار التحقق</span>
+              <span class="w-2 h-2 rounded-full bg-amber-500 pulse-dot"></span>
+            </p>
+            <h4 id="stat-pending-orders" class="text-2xl font-black text-amber-700 mt-1">0</h4>
+            <span class="text-[11px] text-amber-800 font-medium">تتطلب مراجعة الصيدلي</span>
+          </div>
+          <div class="w-12 h-12 rounded-2xl bg-amber-500 text-white flex items-center justify-center text-xl shadow-md shadow-amber-200">
+            <i class="fa-solid fa-user-doctor"></i>
+          </div>
+        </div>
+
+        <!-- مستلزمات طوارئ الجروح المتوفرة -->
+        <div class="card bg-white shadow-sm border border-slate-200 p-5 rounded-3xl flex flex-row items-center justify-between">
+          <div>
+            <p class="text-xs font-bold text-rose-600 uppercase">مستلزمات الطوارئ الجاهزة</p>
+            <h4 id="stat-emergency-count" class="text-2xl font-black text-rose-600 mt-1">0</h4>
+            <span class="text-[11px] text-slate-500">شاش / مطهرات / حروق</span>
+          </div>
+          <div class="w-12 h-12 rounded-2xl bg-rose-50 text-rose-500 flex items-center justify-center text-xl">
+            <i class="fa-solid fa-kit-medical"></i>
+          </div>
+        </div>
+
+        <!-- طلبات مؤكدة اليوم -->
+        <div class="card bg-white shadow-sm border border-slate-200 p-5 rounded-3xl flex flex-row items-center justify-between">
+          <div>
+            <p class="text-xs font-bold text-emerald-600 uppercase">طلبات مؤكدة ومكتملة</p>
+            <h4 id="stat-approved-orders" class="text-2xl font-black text-emerald-700 mt-1">0</h4>
+            <span class="text-[11px] text-slate-500">تم تجهيزها بالشيكل ₪</span>
+          </div>
+          <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-xl">
+            <i class="fa-solid fa-circle-check"></i>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================== -->
+      <!-- 4. قسم التحقق البشري والطلبات المعلقة (Pending Orders / Human Verification) -->
+      <!-- ===================================================================== -->
+      <section id="pending-orders-section" class="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
+        <div class="p-5 border-b border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-gradient-to-r from-slate-50 to-amber-50/40">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-amber-500 pulse-dot"></span>
+              <h3 class="text-lg font-black text-slate-900">طلبات الحجز الواردة (طبقة التحقق البشري)</h3>
+              <span id="pending-counter-badge" class="badge badge-amber badge-sm font-bold bg-amber-200 text-amber-900">0 معلقة</span>
+            </div>
+            <p class="text-xs text-slate-500 mt-1">
+              مطلوب مراجعة الصيدلي لتأكيد التوفر الفعلي للصنف وصلاحيته وفحص الوصفة قبل قدوم المريض
+            </p>
+          </div>
+          
+          <div class="flex items-center gap-2 text-xs text-slate-600 bg-white px-3.5 py-2 rounded-xl border border-slate-200 shadow-sm">
+            <i class="fa-solid fa-shield-heart text-teal-600"></i>
+            <span>تأكيد الصيدلي يخصم الكمية فورياً وينشئ كود استلام سري</span>
+          </div>
+        </div>
+
+        <div id="pending-orders-container" class="p-6">
+          <!-- يتم إدراج بطاقات الطلبات ديناميكياً بواسطة JS -->
+        </div>
+      </section>
+
+      <!-- ===================================================================== -->
+      <!-- 5. قسم إدارة المخزون وتحديث الكميات (Inventory Section) -->
+      <!-- ===================================================================== -->
+      <section id="inventory-section" class="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
+        <div class="p-6 border-b border-slate-100 flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <h3 class="text-lg font-black text-slate-900 flex items-center gap-2">
+              <i class="fa-solid fa-boxes-stacked text-teal-600"></i>
+              <span>مخزون الأدوية ومستلزمات الطوارئ</span>
+            </h3>
+            <p class="text-xs text-slate-500 mt-0.5">تحديث الكميات أولاً بأول لضمان ظهور بيانات دقيقة للباحثين في قطاع غزة</p>
+          </div>
+
+          <!-- شريط الفلترة والبحث -->
+          <div class="flex flex-wrap items-center gap-3">
+            <div class="relative min-w-[220px]">
+              <i class="fa-solid fa-magnifying-glass absolute right-3 top-3 text-slate-400 text-xs"></i>
+              <input 
+                type="text" 
+                id="inventory-search-input" 
+                placeholder="بحث باسم الصنف أو المادة الفعالة..." 
+                class="input input-bordered input-sm w-full pr-8 text-xs rounded-xl"
+                oninput="renderInventoryTable()"
+              >
+            </div>
+
+            <select 
+              id="inventory-category-filter" 
+              class="select select-bordered select-sm text-xs rounded-xl"
+              onchange="renderInventoryTable()"
+            >
+              <option value="all">جميع الفئات</option>
+              <option value="emergency">🚨 مستلزمات جروح وطوارئ فقط</option>
+              <option value="مسكنات وخافضات حرارة">مسكنات وخافضات حرارة</option>
+              <option value="مضادات حيوية">مضادات حيوية</option>
+              <option value="أدوية أطفال ومسكنات">أدوية أطفال</option>
+            </select>
+
+            <input type="file" id="csv-file-input" accept=".csv,.txt" onchange="handleCSVFileImport(this)" class="hidden">
+            <button type="button" onclick="document.getElementById('csv-file-input').click()" class="btn btn-sm bg-emerald-50 text-emerald-800 border border-emerald-300 hover:bg-emerald-100 rounded-xl text-xs font-bold gap-1.5 shadow-sm">
+              <i class="fa-solid fa-file-excel text-emerald-600"></i>
+              <span>استيراد ملف Excel / CSV</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- جدول المخزون -->
+        <div class="overflow-x-auto">
+          <table class="table w-full text-right">
+            <thead class="bg-slate-50 text-slate-600 text-xs uppercase border-b border-slate-200">
+              <tr>
+                <th>الصنف الطبي / المادة الفعالة</th>
+                <th>الفئة والرف</th>
+                <th>الشكل والسعر (شيكل ₪)</th>
+                <th>الكمية المتوفرة</th>
+                <th>حالة التوفر</th>
+                <th>آخر تحديث</th>
+                <th class="text-center">إجراءات سريعة</th>
+              </tr>
+            </thead>
+            <tbody id="inventory-table-body" class="divide-y divide-slate-100 text-sm">
+              <!-- يتم توليد الصفوف عبر الجافاسكريبت -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ===================================================================== -->
+      <!-- 6. سجل العمليات السابقة وتوليد تذاكر الاستلام (History & Tickets) -->
+      <!-- ===================================================================== -->
+      <section id="history-section" class="bg-white rounded-3xl border border-slate-200 shadow-sm p-6">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="text-base font-extrabold text-slate-800 flex items-center gap-2">
+            <i class="fa-solid fa-clock-rotate-left text-slate-500"></i>
+            <span>سجل الطلبات المؤكدة وإيصالات التسليم</span>
+          </h3>
+          <span class="text-xs text-slate-400">آخر العمليات المعالجة</span>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="table table-compact w-full text-right text-xs">
+            <thead>
+              <tr class="bg-slate-50 text-slate-600">
+                <th>رقم الطلب</th>
+                <th>المريض</th>
+                <th>الصنف والكمية</th>
+                <th>قرار التحقق</th>
+                <th>كود الاستلام</th>
+                <th>الوقت</th>
+                <th class="text-center">إجراءات الصيدلي</th>
+              </tr>
+            </thead>
+            <tbody id="history-table-body" class="divide-y divide-slate-100">
+              <!-- تعبئة السجل بالجافاسكريبت -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ===================================================================== -->
+      <!-- 7. استدراج عروض الأسعار للروشتات (Reverse Rx Bids) -->
+      <!-- ===================================================================== -->
+      <section id="reverse-bids-section" class="bg-white rounded-3xl border border-slate-200 shadow-sm p-6 space-y-4">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-3">
+          <div>
+            <h3 class="text-base font-extrabold text-slate-800 flex items-center gap-2">
+              <i class="fa-solid fa-file-signature text-amber-500"></i>
+              <span>استدراج عروض الأسعار للروشتات (Reverse Rx Bids)</span>
+            </h3>
+            <p class="text-xs text-slate-500 mt-0.5">مرضى في منطقتك يبحثون عن صيدلية تجهز وصفتهم بأقل سعر</p>
+          </div>
+          <span id="pharmacy-bids-count-badge" class="badge badge-warning badge-sm font-bold text-slate-900">1 طلبات مفتوحة</span>
+        </div>
+
+        <div id="pharmacy-reverse-bids-list" class="space-y-3">
+          <!-- تملأ بالجافاسكريبت -->
+        </div>
+      </section>
+
+      <!-- ===================================================================== -->
+      <!-- 8. بورصة التبادل والمقايضة الصيدلانية (B2B Medicine Barter Clearinghouse) -->
+      <!-- ===================================================================== -->
+      <section id="b2b-barter-section" class="bg-white rounded-3xl border border-slate-200 shadow-sm p-6 space-y-4">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-3">
+          <div>
+            <h3 class="text-base font-extrabold text-slate-800 flex items-center gap-2">
+              <i class="fa-solid fa-arrow-right-arrow-left text-purple-600"></i>
+              <span>بورصة التبادل والمقايضة الصيدلانية (B2B Barter)</span>
+            </h3>
+            <p class="text-xs text-slate-500 mt-0.5">تبادل فوائض الأدوية والمستلزمات بين صيدليات غزة لتغطية النواقص دون عوائق سيولة نقدية</p>
+          </div>
+          <button type="button" onclick="openCreateBarterModal()" class="btn btn-xs bg-purple-700 hover:bg-purple-800 text-white font-bold rounded-xl px-3 gap-1 shadow-sm">
+            <i class="fa-solid fa-plus"></i> إدراج عرض مقايضة جديد
+          </button>
+        </div>
+
+        <div id="pharmacy-barter-list" class="grid gap-3 md:grid-cols-2">
+          <!-- تملأ بالجافاسكريبت -->
+        </div>
+      </section>
+
+      <!-- Footer Credit -->
+      <footer class="mt-8 border-t border-slate-200 bg-white/90 backdrop-blur rounded-2xl p-4 text-center text-xs text-slate-500 shadow-sm">
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
+          <div class="flex items-center gap-2">
+            <span class="font-bold text-slate-700">بوابة الصيدلي المعتمد © دواك بإيدك 2026</span>
+            <span class="text-slate-400">•</span>
+            <span class="text-teal-700 font-bold">شبكة قطاع غزة</span>
+          </div>
+          <div class="inline-flex items-center gap-2 bg-slate-900 px-3.5 py-1.5 rounded-xl border border-teal-500/30 text-white text-xs shadow-sm">
+            <i class="fa-solid fa-code text-teal-400"></i>
+            <span class="text-slate-300">تم دعم المشروع برمجياً من قبل شركة</span>
+            <strong class="font-black text-teal-300 font-sans tracking-wide">MSN-IT In UK</strong>
+            <span>🇬🇧</span>
+          </div>
+        </div>
+      </footer>
+
+    </div>
+  </main>
+
+  <!-- ========================================================================= -->
+  <!-- 7. النوافذ المنبثقة التفاعلية (Modals) -->
+  <!-- ========================================================================= -->
+
+  <!-- نافذة تأكيد الطلب (Accept Order Modal - Human Verification) -->
+  <dialog id="accept_order_modal" class="modal modal-bottom sm:modal-middle">
+    <div class="modal-box text-right bg-white rounded-3xl shadow-2xl">
+      <div class="flex items-center gap-3 pb-3 border-b border-slate-100">
+        <div class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-lg">
+          <i class="fa-solid fa-user-check"></i>
+        </div>
+        <div>
+          <h3 class="font-extrabold text-base text-slate-900">تأكيد حجز الدواء (التحقق البشري)</h3>
+          <p class="text-xs text-slate-500">موافقة الصيدلي وتجهيز الصنف للمريض في غزة</p>
+        </div>
+      </div>
+
+      <div class="py-4 space-y-3.5 text-xs">
+        <input type="hidden" id="accept-modal-order-id">
+        
+        <div class="bg-slate-50 p-3.5 rounded-2xl border border-slate-100 space-y-2">
+          <div class="flex justify-between">
+            <span class="text-slate-500">كود الطلب:</span>
+            <span id="accept-modal-code" class="font-bold text-cyan-800">MF-0000</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-slate-500">اسم المريض:</span>
+            <span id="accept-modal-patient" class="font-semibold text-slate-800">-</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-slate-500">الصنف والكمية:</span>
+            <span id="accept-modal-medicine" class="font-bold text-emerald-700">-</span>
+          </div>
+        </div>
+
+        <div class="form-control">
+          <label class="label py-1">
+            <span class="label-text text-xs font-semibold text-slate-700">توجيهات الصيدلي ومكان الاستلام بالصيدلية:</span>
+          </label>
+          <input 
+            type="text" 
+            id="accept-modal-notes" 
+            placeholder="مثال: تم تجهيز العبوة في قسم الطوارئ، يرجى إبراز كود الاستلام..." 
+            class="input input-bordered input-sm w-full text-xs rounded-xl"
+          >
+        </div>
+
+        <div class="alert alert-info py-2.5 text-xs rounded-2xl bg-cyan-50 text-cyan-900 border-cyan-200">
+          <i class="fa-solid fa-info-circle text-cyan-600"></i>
+          <span>بالتأكيد، سيتم خصم الكمية من المخزون فوراً وإصدار إيصال استلام للمريض.</span>
+        </div>
+      </div>
+
+      <div class="modal-action">
+        <form method="dialog" class="flex gap-2 w-full justify-end">
+          <button class="btn btn-ghost btn-sm text-slate-600">إلغاء</button>
+          <button type="button" onclick="executeApproveOrder()" class="btn btn-success btn-sm text-white px-5 rounded-xl font-bold">
+            <i class="fa-solid fa-check ml-1"></i> اعتماد وتجهيز الصنف
+          </button>
+        </form>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- نافذة رفض الطلب (Reject Order Modal) -->
+  <dialog id="reject_order_modal" class="modal modal-bottom sm:modal-middle">
+    <div class="modal-box text-right bg-white rounded-3xl shadow-2xl">
+      <div class="flex items-center gap-3 pb-3 border-b border-slate-100">
+        <div class="w-10 h-10 rounded-full bg-rose-100 text-rose-600 flex items-center justify-center text-lg">
+          <i class="fa-solid fa-ban"></i>
+        </div>
+        <div>
+          <h3 class="font-extrabold text-base text-slate-900">رفض طلب الحجز</h3>
+          <p class="text-xs text-slate-500">توضيح سبب الاعتذار للمريض في غزة</p>
+        </div>
+      </div>
+
+      <div class="py-4 space-y-3 text-xs">
+        <input type="hidden" id="reject-modal-order-id">
+        
+        <div class="form-control">
+          <label class="label py-1">
+            <span class="label-text text-xs font-semibold text-slate-700">اختر سبب الرفض:</span>
+          </label>
+          <select id="reject-reason-select" class="select select-bordered select-sm w-full text-xs rounded-xl" onchange="toggleCustomReason(this.value)">
+            <option value="نفاد الكمية الفعلية بالصيدلية قبل التحديث">نفاد الكمية الفعلية بالصيدلية قبل التحديث</option>
+            <option value="الصنف يتطلب وصفة طبية أصلية سارية المفعول">الصنف يتطلب وصفة طبية أصلية سارية المفعول</option>
+            <option value="الصيدلية على وشك الإغلاق">الصيدلية على وشك الإغلاق</option>
+            <option value="other">سبب آخر (كتابة يدوية)...</option>
+          </select>
+        </div>
+
+        <div id="custom-reason-container" class="form-control hidden">
+          <label class="label py-1">
+            <span class="label-text text-xs font-semibold text-slate-700">سبب الرفض المخصص:</span>
+          </label>
+          <textarea id="reject-custom-reason" class="textarea textarea-bordered text-xs rounded-xl" placeholder="اكتب سبب الاعتذار للمريض..."></textarea>
+        </div>
+      </div>
+
+      <div class="modal-action">
+        <form method="dialog" class="flex gap-2 w-full justify-end">
+          <button class="btn btn-ghost btn-sm text-slate-600">تراجع</button>
+          <button type="button" onclick="executeRejectOrder()" class="btn btn-error btn-sm text-white px-5 rounded-xl">
+            <i class="fa-solid fa-xmark ml-1"></i> تأكيد الرفض
+          </button>
+        </form>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- نافذة معاينة صورة الوصفة الطبية (Prescription Viewer Modal) -->
+  <dialog id="prescription_viewer_modal" class="modal modal-bottom sm:modal-middle">
+    <div class="modal-box text-right bg-white rounded-3xl max-w-lg shadow-2xl">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+        <h3 class="font-extrabold text-base text-slate-900 flex items-center gap-2">
+          <i class="fa-solid fa-file-prescription text-teal-600"></i>
+          <span>معاينة صورة الوصفة الطبية المرفقة</span>
+        </h3>
+        <form method="dialog">
+          <button class="btn btn-sm btn-circle btn-ghost">✕</button>
+        </form>
+      </div>
+      <div class="py-4 text-center">
+        <img id="prescription-modal-img" src="" alt="الوصفة الطبية" class="rounded-2xl max-h-96 mx-auto object-contain border border-slate-200 shadow-md">
+      </div>
+    </div>
+  </dialog>
+
+  <!-- نافذة طباعة تذكرة استلام الطلب (Printable Ticket Modal) -->
+  <dialog id="ticket_modal" class="modal modal-bottom sm:modal-middle">
+    <div class="modal-box text-right bg-white rounded-3xl max-w-sm shadow-2xl">
+      <div id="printable_ticket_area" class="p-4 border-2 border-dashed border-slate-300 rounded-2xl space-y-3 bg-slate-50 text-slate-900">
+        <div class="text-center border-b border-slate-200 pb-2">
+          <div class="font-black text-base text-cyan-800">دواك بإيدك • تذكرة صرف دواء</div>
+          <p id="ticket-pharmacy-name" class="text-xs text-slate-600 font-bold">صيدلية الرمال المركزية</p>
+          <p class="text-[10px] text-slate-400">قطاع غزة</p>
+        </div>
+
+        <div class="space-y-1.5 text-xs">
+          <div class="flex justify-between">
+            <span class="text-slate-500">كود الطلب:</span>
+            <strong id="ticket-order-code" class="font-mono text-cyan-800">MF-0000</strong>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-slate-500">كود الاستلام السري:</span>
+            <strong id="ticket-pickup-code" class="font-mono text-emerald-700 text-sm">0000</strong>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-slate-500">المريض:</span>
+            <span id="ticket-patient-name" class="font-bold">-</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-slate-500">الصنف:</span>
+            <span id="ticket-med-name" class="font-bold text-slate-800">-</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-slate-500">المبلغ المطلوب:</span>
+            <strong id="ticket-total-price" class="text-cyan-800 font-black">-</strong>
+          </div>
+        </div>
+
+        <div class="border-t border-slate-200 pt-2 text-center text-[10px] text-slate-400 font-mono">
+          تم التحقق البشري بواسطة الصيدلي المعتمد • يرجى إبراز هذا الإيصال عند الشباك
+        </div>
+      </div>
+
+      <div class="modal-action flex justify-between items-center mt-4">
+        <button onclick="window.print()" class="btn btn-primary btn-sm text-white rounded-xl">
+          <i class="fa-solid fa-print ml-1"></i> طباعة التذكرة
+        </button>
+        <form method="dialog">
+          <button class="btn btn-ghost btn-sm text-slate-600">إغلاق</button>
+        </form>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- نافذة مسح رمز الـ QR والاستلام الفوري السريع (QR Scanner Modal) -->
+  <dialog id="qr_scanner_modal" class="modal modal-bottom sm:modal-middle">
+    <div class="modal-box text-right bg-white rounded-3xl max-w-md shadow-2xl border-2 border-emerald-400">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-2xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-xl">
+            <i class="fa-solid fa-qrcode"></i>
+          </div>
+          <div>
+            <h3 class="font-extrabold text-base text-slate-900">مسح رمز الاستجابة السريعة (QR Scanner)</h3>
+            <p class="text-xs text-slate-500">صرف وتأكيد تسليم الدواء في ثانية واحدة لمنع التكدس</p>
+          </div>
+        </div>
+        <form method="dialog">
+          <button class="btn btn-sm btn-circle btn-ghost">✕</button>
+        </form>
+      </div>
+
+      <div class="py-4 space-y-4 text-xs">
+        <!-- محاكي الكاميرا والمحدد البصري (Camera Viewfinder Simulator) -->
+        <div class="bg-slate-900 text-white rounded-2xl p-6 text-center relative overflow-hidden border-2 border-dashed border-emerald-400/60 shadow-inner">
+          <div class="w-32 h-32 mx-auto border-2 border-emerald-400 rounded-2xl relative flex items-center justify-center">
+            <div class="w-full h-0.5 bg-emerald-400 absolute top-0 animate-bounce"></div>
+            <i class="fa-solid fa-camera text-4xl text-emerald-400/50"></i>
+          </div>
+          <p class="text-[11px] text-slate-400 mt-3 font-medium">وجّه رمز الـ QR الخاص بالمريض أمام العدسة أو أدخل الكود مباشرة</p>
+        </div>
+
+        <!-- حقل إدخال الكود السريع -->
+        <div class="form-control">
+          <label class="label py-1 font-bold text-slate-700">كود الطلب أو رمز الاستلام السري:</label>
+          <div class="flex items-center gap-2">
+            <input 
+              type="text" 
+              id="qr-manual-input" 
+              placeholder="مثال: MF-9101 أو رمز الاستلام 7742" 
+              class="input input-bordered input-sm w-full text-xs font-mono rounded-xl font-bold"
+            >
+            <button onclick="executeQrScanRedeem()" type="button" class="btn btn-sm btn-success text-white font-bold rounded-xl px-4 flex-shrink-0">
+              <i class="fa-solid fa-check"></i> صرف فوري
+            </button>
+          </div>
+        </div>
+
+        <!-- أزرار رموز تجريبية سريعة للاختبار -->
+        <div class="bg-slate-50 p-2.5 rounded-2xl border border-slate-200">
+          <span class="text-[10px] text-slate-500 font-bold block mb-1.5">أكواد تجريبية سريعة للاختبار بنقرة واحدة:</span>
+          <div id="quick-test-qr-codes" class="flex flex-wrap gap-1.5">
+            <!-- تعبئة بالجافاسكريبت -->
+          </div>
+        </div>
+
+        <div id="qr-scan-result-box" class="hidden p-3 rounded-2xl text-xs font-bold"></div>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- نافذة التجزئة الذكية للوصفة (Partial Fulfillment Modal) -->
+  <dialog id="partial_fulfill_modal" class="modal modal-bottom sm:modal-middle">
+    <div class="modal-box text-right bg-white rounded-3xl max-w-md shadow-2xl border-2 border-amber-300">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-2xl bg-amber-100 text-amber-800 flex items-center justify-center text-xl">
+            <i class="fa-solid fa-code-fork"></i>
+          </div>
+          <div>
+            <h3 class="font-extrabold text-base text-slate-900">التجزئة الذكية للوصفة الطبية</h3>
+            <p class="text-xs text-slate-500">صرف المتاح بالرف وتحويل الكمية المتبقية لصيدلية مجاورة</p>
+          </div>
+        </div>
+        <form method="dialog">
+          <button class="btn btn-sm btn-circle btn-ghost">✕</button>
+        </form>
+      </div>
+
+      <div class="py-4 space-y-3 text-xs">
+        <input type="hidden" id="partial-modal-order-id">
+        
+        <div class="bg-amber-50 p-3 rounded-2xl border border-amber-200 space-y-1">
+          <h4 id="partial-modal-med-title" class="font-black text-slate-900 text-sm">-</h4>
+          <p id="partial-modal-patient-info" class="text-slate-600 text-[11px]">-</p>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div class="form-control">
+            <label class="label py-1 font-bold text-slate-700">الكمية المطلوبة أصلاً:</label>
+            <input type="text" id="partial-modal-original-qty" readonly class="input input-bordered input-sm rounded-xl font-bold bg-slate-100 text-center">
+          </div>
+          <div class="form-control">
+            <label class="label py-1 font-bold text-teal-800">المتاح للصرف الآن *:</label>
+            <input type="number" id="partial-modal-supplied-qty" min="1" value="1" class="input input-bordered input-sm rounded-xl font-bold text-center">
+          </div>
+        </div>
+
+        <div class="form-control">
+          <label class="label py-1 font-bold text-slate-700">تحويل الكمية المتبقية تلقائياً إلى:</label>
+          <select id="partial-neighbor-pharmacy-select" class="select select-bordered select-sm rounded-xl text-xs">
+            <!-- صيدليات مجاورة بنفس المحافظة -->
+          </select>
+        </div>
+
+        <div class="form-control">
+          <label class="label py-1 font-semibold text-slate-700">ملاحظات توجيه للمريض والصيدلية الجارة:</label>
+          <input type="text" id="partial-modal-notes" placeholder="مثال: تم صرف عبوة، والباقي جاهز في صيدلية خانيونس الكبرى..." class="input input-bordered input-sm rounded-xl">
+        </div>
+      </div>
+
+      <div class="modal-action">
+        <form method="dialog" class="flex gap-2">
+          <button class="btn btn-ghost btn-sm text-slate-600">إلغاء</button>
+          <button type="button" onclick="executePartialFulfill()" class="btn btn-warning btn-sm text-slate-900 px-5 rounded-xl font-black">
+            <i class="fa-solid fa-code-fork ml-1"></i> اعتماد التجزئة الذكية
+          </button>
+        </form>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- نافذة إضافة صنف جديد (Add Medicine Modal) -->
+  <dialog id="add_medicine_modal" class="modal modal-bottom sm:modal-middle">
+    <div class="modal-box text-right bg-white rounded-3xl max-w-lg shadow-2xl">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-cyan-100 text-cyan-700 flex items-center justify-center text-lg">
+            <i class="fa-solid fa-pills"></i>
+          </div>
+          <div>
+            <h3 class="font-bold text-base text-slate-900">إضافة صنف دوائي / مستلزم جديد</h3>
+            <p class="text-xs text-slate-500">إدراجه في مخزون الصيدلية للظهور للمرضى في غزة</p>
+          </div>
+        </div>
+        <form method="dialog">
+          <button class="btn btn-sm btn-circle btn-ghost">✕</button>
+        </form>
+      </div>
+
+      <form id="add-medicine-form" onsubmit="handleSaveNewMedicine(event)" class="py-4 space-y-3 text-xs">
+        <div class="form-control">
+          <label class="label py-1 font-semibold text-slate-700">الاسم التجاري للمنتج *</label>
+          <input type="text" id="new-med-commercial" required placeholder="مثال: شاش فازلين طبي معقم" class="input input-bordered input-sm rounded-xl">
+        </div>
+
+        <div class="form-control">
+          <label class="label py-1 font-semibold text-slate-700">الاسم العلمي / المادة الفعالة *</label>
+          <input type="text" id="new-med-scientific" required placeholder="مثال: Paraffin Gauze Dressing" class="input input-bordered input-sm rounded-xl">
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div class="form-control">
+            <label class="label py-1 font-semibold text-slate-700">الفئة *</label>
+            <select id="new-med-category" class="select select-bordered select-sm rounded-xl" required>
+              <option value="مستلزمات جروح وطوارئ">مستلزمات جروح وطوارئ</option>
+              <option value="مسكنات وخافضات حرارة">مسكنات وخافضات حرارة</option>
+              <option value="مضادات حيوية">مضادات حيوية</option>
+              <option value="أدوية أطفال ومسكنات">أدوية أطفال</option>
+              <option value="أدوية مزمنة">أدوية مزمنة</option>
+            </select>
+          </div>
+          <div class="form-control">
+            <label class="label py-1 font-semibold text-slate-700">الشكل والعبوة</label>
+            <input type="text" id="new-med-form" placeholder="علبة 10 قطع، مرهم، إلخ" class="input input-bordered input-sm rounded-xl">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div class="form-control">
+            <label class="label py-1 font-semibold text-slate-700">الكمية المتوفرة حالياً *</label>
+            <input type="number" id="new-med-qty" min="0" value="10" required class="input input-bordered input-sm rounded-xl">
+          </div>
+          <div class="form-control">
+            <label class="label py-1 font-semibold text-slate-700">السعر التقديري (شيكل ₪)</label>
+            <input type="number" id="new-med-price" step="0.5" min="0" value="20.00" class="input input-bordered input-sm rounded-xl">
+          </div>
+        </div>
+
+        <div class="form-control">
+          <label class="label py-1 font-semibold text-slate-700">موقع الصنف في الصيدلية (الرف)</label>
+          <input type="text" id="new-med-shelf" placeholder="مثال: رف الطوارئ E-2" class="input input-bordered input-sm rounded-xl">
+        </div>
+
+        <div class="form-control pt-2">
+          <label class="cursor-pointer label justify-start gap-3 bg-slate-50 p-2.5 rounded-xl border border-slate-200">
+            <input type="checkbox" id="new-med-rx" class="checkbox checkbox-primary checkbox-sm">
+            <span class="label-text text-xs text-slate-700 font-medium">يتطلب وصفة طبية (Prescription Required)</span>
+          </label>
+        </div>
+
+        <div class="pt-3 border-t border-slate-100 flex justify-end gap-2">
+          <button type="button" onclick="document.getElementById('add_medicine_modal').close()" class="btn btn-ghost btn-sm text-slate-600">إلغاء</button>
+          <button type="submit" class="btn btn-primary btn-sm text-white px-6 rounded-xl">
+            <i class="fa-solid fa-save ml-1"></i> حفظ وإضافة للمخزون
+          </button>
+        </div>
+      </form>
+    </div>
+  </dialog>
+
+  <!-- نافذة تعديل الكمية السريع (Quick Quantity Update Modal) -->
+  <dialog id="edit_qty_modal" class="modal modal-bottom sm:modal-middle">
+    <div class="modal-box text-right bg-white rounded-3xl max-w-sm shadow-2xl">
+      <h3 class="font-bold text-base text-slate-900 pb-2 border-b border-slate-100">تحديث كمية المخزون</h3>
+      <div class="py-4 space-y-3">
+        <input type="hidden" id="edit-qty-med-id">
+        <p id="edit-qty-med-name" class="font-bold text-cyan-700 text-sm">-</p>
+        
+        <div class="form-control">
+          <label class="label py-1 text-xs font-semibold text-slate-600">الكمية المتوفرة الآن بالمستودع:</label>
+          <div class="flex items-center gap-2">
+            <button onclick="adjustEditQty(-1)" type="button" class="btn btn-sm btn-outline btn-square">-</button>
+            <input type="number" id="edit-qty-input" min="0" class="input input-bordered input-sm w-full text-center font-bold text-base">
+            <button onclick="adjustEditQty(1)" type="button" class="btn btn-sm btn-outline btn-square">+</button>
+          </div>
+        </div>
+      </div>
+      <div class="modal-action">
+        <form method="dialog" class="flex gap-2">
+          <button class="btn btn-ghost btn-sm">إلغاء</button>
+          <button type="button" onclick="saveQuickQuantity()" class="btn btn-primary btn-sm text-white rounded-xl">تحديث الكمية</button>
+        </form>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- نافذة تقديم عرض سعر للروشتة (Submit Quote Modal) -->
+  <dialog id="submit_quote_modal" class="modal modal-bottom sm:modal-middle">
+    <div class="modal-box text-right bg-white rounded-3xl p-6 shadow-2xl max-w-sm" dir="rtl">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <h3 class="font-black text-base text-slate-900">تقديم عرض سعر وتجهيز للروشتة</h3>
+        <button type="button" onclick="document.getElementById('submit_quote_modal').close()" class="btn btn-sm btn-circle btn-ghost">✕</button>
+      </div>
+      <form id="submit-quote-form" onsubmit="handleQuoteSubmit(event)" class="space-y-3 mt-4 text-xs">
+        <input type="hidden" id="quote-bid-id">
+        <div>
+          <label class="label py-0.5 font-bold text-slate-700">السعر الإجمالي للوصفة (₪) *</label>
+          <input type="number" step="0.5" id="quote-price" required placeholder="مثال: 35.00" class="input input-bordered input-sm w-full rounded-xl text-xs font-bold">
+        </div>
+        <div>
+          <label class="label py-0.5 font-bold text-slate-700">حالة توفر الأصناف *</label>
+          <input type="text" id="quote-items-status" value="الأصناف متوفرة ومجهزة بالكامل" class="input input-bordered input-sm w-full rounded-xl text-xs">
+        </div>
+        <div class="form-control">
+          <label class="flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" id="quote-delivery-ready" checked class="checkbox checkbox-xs checkbox-primary rounded">
+            <span class="text-xs font-bold text-slate-700">جاهزة للتسليم لمندوب التوصيل التجميعي للمخيم</span>
+          </label>
+        </div>
+        <div class="pt-3 flex justify-end gap-2 border-t border-slate-100">
+          <button type="button" onclick="document.getElementById('submit_quote_modal').close()" class="btn btn-ghost btn-sm text-slate-500">إلغاء</button>
+          <button type="submit" class="btn btn-sm bg-teal-700 hover:bg-teal-800 text-white font-bold rounded-xl px-4">إرسال العرض للمريض</button>
+        </div>
+      </form>
+    </div>
+  </dialog>
+
+  <!-- نافذة إدراج عرض مقايضة صيدلانية (Create Barter Modal) -->
+  <dialog id="create_barter_modal" class="modal modal-bottom sm:modal-middle">
+    <div class="modal-box text-right bg-white rounded-3xl p-6 shadow-2xl max-w-md" dir="rtl">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <div class="flex items-center gap-2">
+          <span class="grid h-10 w-10 place-items-center rounded-2xl bg-purple-100 text-purple-700 text-lg">
+            <i class="fa-solid fa-arrow-right-arrow-left"></i>
+          </span>
+          <div>
+            <h3 class="font-black text-base text-slate-900">إدراج مقايضة دوائية بين الصيدليات 🤝</h3>
+            <p class="text-[11px] text-slate-500">تبادل الفائض بنواقص الصيدلية دون دفع أموال</p>
+          </div>
+        </div>
+        <button type="button" onclick="document.getElementById('create_barter_modal').close()" class="btn btn-sm btn-circle btn-ghost">✕</button>
+      </div>
+      <form id="create-barter-form" onsubmit="handleBarterSubmit(event)" class="space-y-3 mt-4 text-xs">
+        <div class="bg-purple-50 p-2.5 rounded-xl border border-purple-200 text-[10px] text-purple-950">
+          يمكنك مقايضة صنف متوفر لديك بكثرة مقابل صنف شحيح جداً تحتاجه لعلاج مرضاك.
+        </div>
+        <div>
+          <label class="label py-0.5 font-bold text-slate-700">الصنف الفائض لديك للمقايضة *</label>
+          <input type="text" id="barter-surplus-med" required placeholder="مثال: شاش فازلين معقم، باراسيتامول" class="input input-bordered input-sm w-full rounded-xl text-xs">
+        </div>
+        <div>
+          <label class="label py-0.5 font-bold text-slate-700">الكمية المعروضة للمبادلة *</label>
+          <input type="text" id="barter-surplus-qty" required placeholder="مثال: 15 علبة" class="input input-bordered input-sm w-full rounded-xl text-xs">
+        </div>
+        <div>
+          <label class="label py-0.5 font-bold text-slate-700">الدواء الشحيح المطلوب استلامه بدلاً منه *</label>
+          <input type="text" id="barter-wanted-med" required placeholder="مثال: أنسولين لانتوس أو مطهر بوفيدون" class="input input-bordered input-sm w-full rounded-xl text-xs">
+        </div>
+        <div>
+          <label class="label py-0.5 font-bold text-slate-700">الكمية المطلوبة *</label>
+          <input type="text" id="barter-wanted-qty" required placeholder="مثال: 5 أقلام" class="input input-bordered input-sm w-full rounded-xl text-xs">
+        </div>
+        <div class="pt-3 flex justify-end gap-2 border-t border-slate-100">
+          <button type="button" onclick="document.getElementById('create_barter_modal').close()" class="btn btn-ghost btn-sm text-slate-500">إلغاء</button>
+          <button type="submit" class="btn btn-sm bg-purple-700 hover:bg-purple-800 text-white font-bold rounded-xl px-4">نشر في بورصة المقايضة</button>
+        </div>
+      </form>
+    </div>
+  </dialog>
+
+  <!-- رسائل الإشعار المنبثقة (Toast Notification) -->
+  <div id="toast-container" class="toast toast-start toast-bottom z-50"></div>
+
+  <!-- ========================================================================= -->
+  <!-- 8. كود التشغيل (JavaScript Controller) -->
+  <!-- ========================================================================= -->
+  <script src="js/store.js"></script>
+  <script src="js/tracker.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      initPharmacySwitcher();
+      renderAll();
+
+      window.addEventListener('medifind_data_changed', () => {
+        renderAll();
+      });
+
+      window.addEventListener('storage', (e) => {
+        if (e.key && e.key.startsWith('medifind_')) {
+          renderAll();
+        }
+      });
+    });
+
+    function showToast(message, type = 'success') {
+      const container = document.getElementById('toast-container');
+      const alertClass = type === 'success' ? 'alert-success text-white' : type === 'error' ? 'alert-error text-white' : 'alert-info text-white';
+      const toast = document.createElement('div');
+      toast.className = `alert ${alertClass} shadow-lg text-xs py-2 px-4 rounded-xl flex items-center gap-2 transition-all duration-300`;
+      toast.innerHTML = `<i class="fa-solid ${type === 'success' ? 'fa-circle-check' : 'fa-info-circle'}"></i> <span>${message}</span>`;
+      container.appendChild(toast);
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        setTimeout(() => toast.remove(), 300);
+      }, 3500);
+    }
+
+    function initPharmacySwitcher() {
+      const pharmacies = window.medifindStore.getPharmacies(false);
+      const current = window.medifindStore.getCurrentPharmacy();
+      const select = document.getElementById('pharmacy-switcher');
+      select.innerHTML = '';
+      pharmacies.forEach(p => {
+        const opt = document.createElement('option');
+        opt.value = p.id;
+        opt.textContent = `${p.pharmacy_name} (${p.governorate})`;
+        if (p.id === current.id) opt.selected = true;
+        select.appendChild(opt);
+      });
+
+      select.addEventListener('change', (e) => {
+        window.medifindStore.setCurrentPharmacy(e.target.value);
+        renderAll();
+        showToast('تم التبديل إلى ' + window.medifindStore.getCurrentPharmacy().pharmacy_name, 'info');
+      });
+
+      document.getElementById('night-shift-toggle').checked = current.is_night_shift;
+    }
+
+    function toggleNightShift(val) {
+      const current = window.medifindStore.getCurrentPharmacy();
+      window.medifindStore.setPharmacyShiftStatus(current.id, val);
+      showToast(val ? 'تم تفعيل وضع مناوبة الطوارئ 24 ساعة' : 'تم إلغاء المناوبة الليلية', 'info');
+    }
+
+    function renderAll() {
+      const current = window.medifindStore.getCurrentPharmacy();
+      document.getElementById('current-pharmacy-name').textContent = current.pharmacy_name;
+      document.getElementById('current-pharmacist-name').textContent = `${current.name} (${current.license_number})`;
+
+      updateNetworkBadgeUI();
+      renderStats();
+      renderPendingOrders();
+      renderInventoryTable();
+      renderHistoryTable();
+      renderReverseBids();
+      renderBarterListings();
+    }
+
+    function renderStats() {
+      const current = window.medifindStore.getCurrentPharmacy();
+      const stats = window.medifindStore.getStats(current.id);
+
+      document.getElementById('stat-total-meds').textContent = stats.totalMedicines;
+      document.getElementById('stat-total-units').textContent = `${stats.totalUnits} عبوة بالمستودع`;
+      
+      document.getElementById('stat-pending-orders').textContent = stats.pendingOrders;
+      document.getElementById('nav-pending-badge').textContent = stats.pendingOrders;
+      document.getElementById('pending-counter-badge').textContent = `${stats.pendingOrders} طلبات معلقة`;
+
+      if (stats.pendingOrders === 0) {
+        document.getElementById('nav-pending-badge').classList.remove('animate-bounce');
+        document.getElementById('nav-pending-badge').classList.add('badge-ghost');
+      } else {
+        document.getElementById('nav-pending-badge').classList.add('animate-bounce');
+        document.getElementById('nav-pending-badge').classList.remove('badge-ghost');
+      }
+
+      document.getElementById('stat-emergency-count').textContent = stats.emergencySuppliesCount;
+      document.getElementById('stat-approved-orders').textContent = stats.approvedOrders + stats.completedOrders;
+    }
+
+    function renderPendingOrders() {
+      const current = window.medifindStore.getCurrentPharmacy();
+      const pendingOrders = window.medifindStore.getOrders(current.id, 'pending');
+      const container = document.getElementById('pending-orders-container');
+
+      if (pendingOrders.length === 0) {
+        container.innerHTML = `
+          <div class="text-center py-10 px-4 bg-slate-50/50 rounded-2xl border border-dashed border-slate-200">
+            <div class="w-14 h-14 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-3 text-2xl">
+              <i class="fa-solid fa-clipboard-check"></i>
+            </div>
+            <h4 class="font-bold text-slate-700 text-sm">لا توجد طلبات معلقة حالياً</h4>
+            <p class="text-xs text-slate-500 mt-1">جميع طلبات المرضى تم مراجعتها وتأكيدها بشرياً من قبل الصيدلي.</p>
+          </div>
+        `;
+        return;
+      }
+
+      let html = '<div class="grid grid-cols-1 lg:grid-cols-2 gap-5">';
+      pendingOrders.forEach(order => {
+        const med = window.medifindStore.getMedicineById(order.medicine_id) || {};
+        const isLowOnStock = (med.quantity || 0) < order.requested_qty;
+        const timeAgo = window.medifindStore.formatTimeAgo(order.created_at);
+
+        let urgencyTag = '';
+        if (order.urgency_level === 'emergency_wound') {
+          urgencyTag = '<span class="badge badge-error badge-sm text-white font-black animate-pulse">🚨 طوارئ جروح عاجلة</span>';
+        } else if (order.urgency_level === 'urgent') {
+          urgencyTag = '<span class="badge badge-warning badge-sm font-bold text-slate-900">عاجل</span>';
+        }
+
+        const whatsappMsg = `مرحباً ${order.patient_name}، بخصوص طلبك (${order.order_code}) لدى ${current.pharmacy_name} لـ ${order.medicine_name}...`;
+        const whatsappUrl = window.medifindStore.getWhatsAppLink(order.patient_phone, whatsappMsg);
+
+        html += `
+          <div class="bg-white border-2 border-amber-300 rounded-2xl p-5 shadow-sm hover:shadow-md transition relative flex flex-col justify-between space-y-3">
+            
+            <div class="flex items-start justify-between gap-3 border-b border-slate-100 pb-3">
+              <div>
+                <div class="flex items-center gap-2">
+                  <span class="badge badge-warning badge-sm font-bold text-slate-900">${order.order_code}</span>
+                  ${urgencyTag}
+                  <span class="text-xs text-slate-400 font-medium"><i class="fa-regular fa-clock ml-1"></i>${timeAgo}</span>
+                </div>
+                <h4 class="font-black text-slate-900 text-base mt-2">${order.medicine_name}</h4>
+                <div class="flex items-center gap-2 text-xs text-slate-500 mt-0.5">
+                  <span>الكمية المطلوبة: <strong class="text-slate-800 font-bold">${order.requested_qty} عبوة</strong></span>
+                  <span>•</span>
+                  <span>المتوفر بالمخزن: <strong class="${isLowOnStock ? 'text-rose-600' : 'text-emerald-600'} font-bold">${med.quantity ?? 0} عبوة</strong></span>
+                </div>
+              </div>
+
+              <div class="text-left flex-shrink-0">
+                <span class="text-base font-black text-cyan-800 block">${order.price_total ? order.price_total.toFixed(2) + ' ₪' : ''}</span>
+                <span class="text-[10px] text-slate-400">الدفع عند الاستلام</span>
+              </div>
+            </div>
+
+            <!-- تفاصيل المريض والوصفة المرفقة -->
+            <div class="py-1 text-xs space-y-2">
+              <div class="flex items-center justify-between text-slate-700 bg-slate-50 px-3 py-2 rounded-xl">
+                <span class="flex items-center gap-1.5">
+                  <i class="fa-solid fa-user text-slate-400"></i>
+                  <strong>${order.patient_name}</strong>
+                </span>
+                
+                <div class="flex items-center gap-2">
+                  <a href="${whatsappUrl}" target="_blank" class="btn btn-xs bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg gap-1">
+                    <i class="fa-brands fa-whatsapp text-xs"></i> واتساب
+                  </a>
+                  <a href="tel:${order.patient_phone}" class="btn btn-xs btn-outline btn-info rounded-lg gap-1" dir="ltr">
+                    <i class="fa-solid fa-phone text-[10px]"></i> ${order.patient_phone}
+                  </a>
+                </div>
+              </div>
+
+              ${order.patient_notes ? `
+                <div class="text-amber-900 bg-amber-50/80 p-2.5 rounded-xl border border-amber-200/60 text-[11px] flex items-start gap-1.5">
+                  <i class="fa-solid fa-comment-medical text-amber-600 mt-0.5"></i>
+                  <span><strong>ملاحظة المريض:</strong> ${order.patient_notes}</span>
+                </div>
+              ` : ''}
+
+              ${order.prescription_image_url ? `
+                <div class="flex items-center justify-between bg-cyan-50 p-2 rounded-xl border border-cyan-200 text-cyan-900 text-xs">
+                  <span class="flex items-center gap-1.5 font-bold">
+                    <i class="fa-solid fa-file-prescription text-cyan-700"></i>
+                    <span>أرفق المريض صورة الوصفة الطبية</span>
+                  </span>
+                  <button onclick="openPrescriptionViewer('${order.prescription_image_url}')" class="btn btn-xs btn-primary text-white rounded-lg">
+                    معاينة الوصفة
+                  </button>
+                </div>
+              ` : ''}
+
+              ${order.needs_runner ? `
+                <div class="text-amber-900 bg-amber-100/80 p-2 rounded-xl border border-amber-300 text-[11px] flex items-center justify-between font-bold">
+                  <span class="flex items-center gap-1.5"><i class="fa-solid fa-person-running text-amber-700"></i> طلب متطوع توصيل ميداني (SOS Runner)</span>
+                  <span class="badge badge-warning badge-xs text-slate-900">حالة عاجزة عن الحركة</span>
+                </div>
+              ` : ''}
+
+              ${order.voucher_code ? `
+                <div class="text-teal-900 bg-teal-50 p-2 rounded-xl border border-teal-200 text-[11px] flex items-center justify-between font-bold">
+                  <span class="flex items-center gap-1.5"><i class="fa-solid fa-hand-holding-heart text-teal-700"></i> منحة إغاثية: ${order.voucher_code}</span>
+                  <span class="text-emerald-700">تغطية: ${order.voucher_discount} ₪</span>
+                </div>
+              ` : ''}
+
+              ${isLowOnStock ? `
+                <div class="text-rose-700 bg-rose-50 p-2 rounded-xl border border-rose-200 text-[11px] flex items-center gap-1.5">
+                  <i class="fa-solid fa-circle-exclamation text-rose-600"></i>
+                  <span>تنبيه: الكمية المتوفرة بالرف أقل من المطلوبة (${order.requested_qty} عبوة)، يمكنك استخدام "صرف جزئي وتجزئة".</span>
+                </div>
+              ` : ''}
+            </div>
+
+            <!-- أزرار قرار التحقق البشري والتجزئة الذكية -->
+            <div class="pt-3 border-t border-slate-100 flex flex-wrap items-center gap-2">
+              <button 
+                onclick="openAcceptModal(${order.id}, '${order.order_code}', '${order.patient_name}', '${order.medicine_name} (${order.requested_qty} عبوة)')" 
+                class="btn btn-success btn-sm flex-1 text-white gap-1 font-bold shadow-sm rounded-xl min-w-[130px]"
+              >
+                <i class="fa-solid fa-check"></i>
+                <span>تأكيد الحجز (موافقة)</span>
+              </button>
+
+              <button 
+                onclick="openPartialFulfillModal(${order.id})" 
+                class="btn btn-warning btn-sm text-slate-900 gap-1 rounded-xl font-bold"
+                title="صرف جزء من الكمية وتحويل المتبقي آلياً لصيدلية مجاورة"
+              >
+                <i class="fa-solid fa-code-fork"></i>
+                <span>صرف جزئي</span>
+              </button>
+
+              <button 
+                onclick="openRejectModal(${order.id})" 
+                class="btn btn-outline btn-error btn-sm gap-1 rounded-xl"
+              >
+                <i class="fa-solid fa-xmark"></i>
+                <span>اعتذار</span>
+              </button>
+            </div>
+
+          </div>
+        `;
+      });
+      html += '</div>';
+      container.innerHTML = html;
+    }
+
+    function renderInventoryTable() {
+      const current = window.medifindStore.getCurrentPharmacy();
+      const meds = window.medifindStore.getMedicines(current.id);
+      const query = document.getElementById('inventory-search-input').value.trim().toLowerCase();
+      const category = document.getElementById('inventory-category-filter').value;
+      const tbody = document.getElementById('inventory-table-body');
+
+      const filtered = meds.filter(m => {
+        const matchesCategory = category === 'all' || 
+          (category === 'emergency' ? m.is_emergency_supply : m.category === category);
+        const matchesQuery = !query || 
+          m.commercial_name.toLowerCase().includes(query) || 
+          m.scientific_name.toLowerCase().includes(query);
+        return matchesCategory && matchesQuery;
+      });
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="7" class="text-center py-8 text-slate-400 text-xs">
+              <i class="fa-solid fa-box-open text-2xl mb-2 block text-slate-300"></i>
+              لا توجد أصناف مطابقة لخيارات البحث
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      let rows = '';
+      filtered.forEach(med => {
+        let stockBadge = '';
+        if (med.quantity > 5) {
+          stockBadge = '<span class="badge badge-success badge-sm text-white">متوفر</span>';
+        } else if (med.quantity > 0) {
+          stockBadge = '<span class="badge badge-warning badge-sm text-slate-900 font-bold">قارب على النفاد</span>';
+        } else {
+          stockBadge = '<span class="badge badge-error badge-sm text-white">نفد من المخزون</span>';
+        }
+
+        const isEmergency = med.is_emergency_supply || med.category === 'مستلزمات جروح وطوارئ';
+        const timeAgo = window.medifindStore.formatTimeAgo(med.last_updated);
+
+        rows += `
+          <tr class="hover:bg-slate-50/70 transition">
+            <td>
+              <div class="font-bold text-slate-900 flex items-center gap-1.5">
+                <span>${med.commercial_name}</span>
+                ${med.requires_prescription ? '<span class="badge badge-outline badge-xs text-rose-600">وصفة</span>' : ''}
+              </div>
+              <div class="text-[11px] text-slate-400 font-mono" dir="ltr">${med.scientific_name}</div>
+            </td>
+            <td>
+              <span class="badge ${isEmergency ? 'badge-emergency font-bold' : 'badge-ghost text-slate-600'} text-xs">
+                ${med.category}
+              </span>
+              <div class="text-[10px] text-slate-400 mt-0.5">${med.shelf_location || 'رف الطوارئ'}</div>
+            </td>
+            <td>
+              <div class="text-slate-800 font-bold">${med.price.toFixed(2)} ₪</div>
+              <div class="text-[11px] text-slate-400">${med.form}</div>
+            </td>
+            <td>
+              <div class="flex flex-col gap-1.5">
+                <div class="flex items-center gap-1.5">
+                  <button onclick="quickUpdateQty(${med.id}, -1)" class="btn btn-xs btn-circle btn-ghost border border-slate-200">-</button>
+                  <span class="font-black text-sm w-8 text-center ${med.quantity === 0 ? 'text-rose-600' : 'text-slate-800'}">${med.quantity}</span>
+                  <button onclick="quickUpdateQty(${med.id}, 1)" class="btn btn-xs btn-circle btn-ghost border border-slate-200">+</button>
+                </div>
+                <!-- نظام إشارات المرور السريع بنقرة واحدة -->
+                <div class="flex items-center gap-1">
+                  <button type="button" onclick="setTrafficLightQuick(${med.id}, 'green')" title="ضبط المخزون فورياً: متوفر (25 عبوة)" class="btn btn-xs h-5 px-1.5 rounded-md text-[10px] ${med.quantity > 5 ? 'bg-emerald-600 text-white font-bold' : 'bg-slate-100 text-slate-500 hover:bg-emerald-50'}">🟢 متوفر</button>
+                  <button type="button" onclick="setTrafficLightQuick(${med.id}, 'yellow')" title="ضبط المخزون فورياً: كمية شحيحة (2 عبوة)" class="btn btn-xs h-5 px-1.5 rounded-md text-[10px] ${med.quantity > 0 && med.quantity <= 5 ? 'bg-amber-500 text-white font-bold' : 'bg-slate-100 text-slate-500 hover:bg-amber-50'}">🟡 شحيح</button>
+                  <button type="button" onclick="setTrafficLightQuick(${med.id}, 'red')" title="ضبط المخزون فورياً: نافد (0)" class="btn btn-xs h-5 px-1.5 rounded-md text-[10px] ${med.quantity === 0 ? 'bg-rose-600 text-white font-bold' : 'bg-slate-100 text-slate-500 hover:bg-rose-50'}">🔴 نافد</button>
+                </div>
+              </div>
+            </td>
+            <td>${stockBadge}</td>
+            <td class="text-xs text-slate-400">${timeAgo}</td>
+            <td class="text-center">
+              <div class="flex items-center justify-center gap-1">
+                <button onclick="openEditQtyModal(${med.id}, '${med.commercial_name}', ${med.quantity})" class="btn btn-ghost btn-xs text-cyan-700 hover:bg-cyan-50" title="تعديل الكمية المباشرة">
+                  <i class="fa-solid fa-pen-to-square"></i>
+                </button>
+                <button onclick="handleDeleteMed(${med.id}, '${med.commercial_name}')" class="btn btn-ghost btn-xs text-rose-600 hover:bg-rose-50" title="حذف الصنف">
+                  <i class="fa-solid fa-trash-can"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+        `;
+      });
+      tbody.innerHTML = rows;
+    }
+
+    function renderHistoryTable() {
+      const current = window.medifindStore.getCurrentPharmacy();
+      const allOrders = window.medifindStore.getOrders(current.id);
+      const processed = allOrders.filter(o => o.status !== 'pending').slice(0, 10);
+      const tbody = document.getElementById('history-table-body');
+
+      if (processed.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="7" class="text-center py-4 text-slate-400">لا توجد عمليات سابقة بعد</td>
+          </tr>
+        `;
+        return;
+      }
+
+      let rows = '';
+      processed.forEach(order => {
+        let statusBadge = '';
+        if (order.status === 'approved') {
+          statusBadge = '<span class="badge badge-success badge-sm text-white">مؤكد ومحجوز</span>';
+        } else if (order.status === 'rejected') {
+          statusBadge = '<span class="badge badge-error badge-sm text-white">مرفوض</span>';
+        } else if (order.status === 'completed') {
+          statusBadge = '<span class="badge badge-info badge-sm text-white">تم التسليم</span>';
+        }
+
+        rows += `
+          <tr class="hover:bg-slate-50">
+            <td class="font-bold text-slate-800">${order.order_code}</td>
+            <td>${order.patient_name}</td>
+            <td>${order.medicine_name} (${order.requested_qty})</td>
+            <td>${statusBadge}</td>
+            <td><span class="badge badge-ghost font-mono font-bold text-cyan-800">${order.pickup_verification_code || '---'}</span></td>
+            <td class="text-slate-400 font-mono text-[11px]">${window.medifindStore.formatTimeAgo(order.verified_at || order.created_at)}</td>
+            <td class="text-center">
+              <div class="flex items-center justify-center gap-1.5">
+                <button onclick="openTicketModal(${order.id})" class="btn btn-xs btn-outline btn-primary" title="طباعة تذكرة الاستلام">
+                  <i class="fa-solid fa-receipt ml-1"></i> التذكرة
+                </button>
+                ${order.status === 'approved' ? `
+                  <button onclick="handleCompleteOrder(${order.id})" class="btn btn-xs btn-success text-white">
+                    <i class="fa-solid fa-check ml-1"></i> تسليم
+                  </button>
+                ` : ''}
+              </div>
+            </td>
+          </tr>
+        `;
+      });
+      tbody.innerHTML = rows;
+    }
+
+    // --- نافذة تأكيد الطلب ---
+    function openAcceptModal(orderId, orderCode, patientName, medicineInfo) {
+      document.getElementById('accept-modal-order-id').value = orderId;
+      document.getElementById('accept-modal-code').textContent = orderCode;
+      document.getElementById('accept-modal-patient').textContent = patientName;
+      document.getElementById('accept-modal-medicine').textContent = medicineInfo;
+      document.getElementById('accept-modal-notes').value = '';
+      document.getElementById('accept_order_modal').showModal();
+    }
+
+    function executeApproveOrder() {
+      const orderId = document.getElementById('accept-modal-order-id').value;
+      const notes = document.getElementById('accept-modal-notes').value.trim();
+      window.medifindStore.approveOrder(orderId, notes);
+      document.getElementById('accept_order_modal').close();
+      showToast('تم تأكيد الطلب بشرياً وحجز الكمية للمريض بنجاح', 'success');
+      renderAll();
+    }
+
+    // --- نافذة رفض الطلب ---
+    function openRejectModal(orderId) {
+      document.getElementById('reject-modal-order-id').value = orderId;
+      document.getElementById('reject-reason-select').value = 'نفاد الكمية الفعلية بالصيدلية قبل التحديث';
+      document.getElementById('custom-reason-container').classList.add('hidden');
+      document.getElementById('reject-custom-reason').value = '';
+      document.getElementById('reject_order_modal').showModal();
+    }
+
+    function toggleCustomReason(val) {
+      const container = document.getElementById('custom-reason-container');
+      if (val === 'other') {
+        container.classList.remove('hidden');
+      } else {
+        container.classList.add('hidden');
+      }
+    }
+
+    function executeRejectOrder() {
+      const orderId = document.getElementById('reject-modal-order-id').value;
+      const selectVal = document.getElementById('reject-reason-select').value;
+      const customVal = document.getElementById('reject-custom-reason').value.trim();
+      const reason = selectVal === 'other' ? (customVal || 'غير متوفر حالياً') : selectVal;
+
+      window.medifindStore.rejectOrder(orderId, reason);
+      document.getElementById('reject_order_modal').close();
+      showToast('تم رفض الطلب وإبلاغ المريض بالسبب', 'error');
+      renderAll();
+    }
+
+    function openPrescriptionViewer(url) {
+      document.getElementById('prescription-modal-img').src = url;
+      document.getElementById('prescription_viewer_modal').showModal();
+    }
+
+    function openTicketModal(orderId) {
+      const current = window.medifindStore.getCurrentPharmacy();
+      const order = window.medifindStore.getOrders().find(o => o.id === orderId);
+      if (!order) return;
+
+      document.getElementById('ticket-pharmacy-name').textContent = current.pharmacy_name;
+      document.getElementById('ticket-order-code').textContent = order.order_code;
+      document.getElementById('ticket-pickup-code').textContent = order.pickup_verification_code || '4410';
+      document.getElementById('ticket-patient-name').textContent = order.patient_name;
+      document.getElementById('ticket-med-name').textContent = `${order.medicine_name} (${order.requested_qty} عبوة)`;
+      document.getElementById('ticket-total-price').textContent = `${order.price_total ? order.price_total.toFixed(2) + ' ₪' : '0.00 ₪'}`;
+
+      document.getElementById('ticket_modal').showModal();
+    }
+
+    function handleCompleteOrder(orderId) {
+      window.medifindStore.completeOrder(orderId);
+      showToast('تم توثيق تسليم الدواء للمريض بنجاح', 'success');
+      renderAll();
+    }
+
+    function quickUpdateQty(medId, delta) {
+      const med = window.medifindStore.getMedicineById(medId);
+      if (med) {
+        const newQty = Math.max(0, med.quantity + delta);
+        window.medifindStore.updateQuantity(medId, newQty);
+        renderAll();
+      }
+    }
+
+    function openEditQtyModal(medId, name, currentQty) {
+      document.getElementById('edit-qty-med-id').value = medId;
+      document.getElementById('edit-qty-med-name').textContent = name;
+      document.getElementById('edit-qty-input').value = currentQty;
+      document.getElementById('edit_qty_modal').showModal();
+    }
+
+    function adjustEditQty(delta) {
+      const input = document.getElementById('edit-qty-input');
+      const val = parseInt(input.value || 0, 10);
+      input.value = Math.max(0, val + delta);
+    }
+
+    function saveQuickQuantity() {
+      const medId = document.getElementById('edit-qty-med-id').value;
+      const val = document.getElementById('edit-qty-input').value;
+      window.medifindStore.updateQuantity(medId, val);
+      document.getElementById('edit_qty_modal').close();
+      showToast('تم تحديث الكمية في المخزون بنجاح', 'success');
+      renderAll();
+    }
+
+    function openAddMedicineModal() {
+      document.getElementById('add-medicine-form').reset();
+      document.getElementById('add_medicine_modal').showModal();
+    }
+
+    function handleSaveNewMedicine(e) {
+      e.preventDefault();
+      const current = window.medifindStore.getCurrentPharmacy();
+      const data = {
+        pharmacy_id: current.id,
+        commercial_name: document.getElementById('new-med-commercial').value.trim(),
+        scientific_name: document.getElementById('new-med-scientific').value.trim(),
+        category: document.getElementById('new-med-category').value,
+        form: document.getElementById('new-med-form').value.trim() || 'عبوة',
+        quantity: document.getElementById('new-med-qty').value,
+        price: document.getElementById('new-med-price').value,
+        shelf_location: document.getElementById('new-med-shelf').value.trim() || 'طوارئ',
+        requires_prescription: document.getElementById('new-med-rx').checked
+      };
+
+      window.medifindStore.addMedicine(data);
+      document.getElementById('add_medicine_modal').close();
+      window.medifindStore.showToast('تمت إضافة الصنف الطبي إلى المخزون بنجاح', 'success');
+      renderAll();
+    }
+
+    function handleDeleteMed(medId, name) {
+      window.medifindStore.deleteMedicine(medId);
+      window.medifindStore.showToast(`تم حذف الصنف "${name}" من المخزون`, 'info');
+      renderAll();
+    }
+
+    function resetStoreData() {
+      window.medifindStore.resetToDefaults();
+      initPharmacySwitcher();
+      renderAll();
+      window.medifindStore.showToast('تمت إعادة ضبط البيانات التجريبية لقطاع غزة بنجاح', 'info');
+    }
+
+    function showToast(msg, type) {
+      window.medifindStore.showToast(msg, type);
+    }
+
+    // --- 4. ماسح رمز الاستجابة السريعة (QR Code Instant Redemption) ---
+    function openQrScannerModal() {
+      const current = window.medifindStore.getCurrentPharmacy();
+      const orders = window.medifindStore.getOrders(current.id);
+      const quickContainer = document.getElementById('quick-test-qr-codes');
+      const resultBox = document.getElementById('qr-scan-result-box');
+      resultBox.className = 'hidden';
+      document.getElementById('qr-manual-input').value = '';
+
+      if (orders.length === 0) {
+        quickContainer.innerHTML = '<span class="text-[10px] text-slate-400">لا توجد طلبات حالية</span>';
+      } else {
+        let buttonsHtml = '';
+        orders.slice(0, 4).forEach(o => {
+          buttonsHtml += `
+            <button type="button" onclick="document.getElementById('qr-manual-input').value='${o.order_code}:${o.pickup_verification_code}'; executeQrScanRedeem()" class="btn btn-xs bg-white border border-slate-300 hover:border-emerald-500 font-mono text-[10px] rounded-lg">
+              ${o.order_code} (كود: ${o.pickup_verification_code})
+            </button>
+          `;
+        });
+        quickContainer.innerHTML = buttonsHtml;
+      }
+
+      document.getElementById('qr_scanner_modal').showModal();
+    }
+
+    function executeQrScanRedeem(codeOverride) {
+      const code = codeOverride || document.getElementById('qr-manual-input').value.trim();
+      const resultBox = document.getElementById('qr-scan-result-box');
+
+      if (!code) {
+        resultBox.className = 'p-3 bg-rose-50 text-rose-700 rounded-2xl text-xs block';
+        resultBox.textContent = 'يرجى إدخال كود الحجز أو مسح رمز الـ QR أولاً';
+        return;
+      }
+
+      const res = window.medifindStore.verifyAndRedeemByQr(code);
+      if (res.success) {
+        resultBox.className = 'p-3 bg-emerald-50 text-emerald-800 rounded-2xl text-xs block';
+        resultBox.innerHTML = `✓ ${res.message} <br><span class="text-[11px] font-normal">تم تسليم ${res.order.medicine_name} للمريض (${res.order.patient_name}) بنجاح.</span>`;
+        window.medifindStore.audio.playApprovalChime();
+        renderAll();
+        setTimeout(() => {
+          document.getElementById('qr_scanner_modal').close();
+        }, 1800);
+      } else {
+        resultBox.className = 'p-3 bg-rose-50 text-rose-700 rounded-2xl text-xs block';
+        resultBox.textContent = `✕ ${res.message}`;
+      }
+    }
+
+    // --- 11. التجزئة الذكية للوصفة الطبية (Partial Fulfillment) ---
+    function openPartialFulfillModal(orderId) {
+      const order = window.medifindStore.getOrders().find(o => o.id === orderId);
+      const current = window.medifindStore.getCurrentPharmacy();
+      const allPharmacies = window.medifindStore.getPharmacies(false).filter(p => p.id !== current.id);
+      if (!order) return;
+
+      document.getElementById('partial-modal-order-id').value = order.id;
+      document.getElementById('partial-modal-med-title').textContent = `${order.medicine_name} (طلب: ${order.order_code})`;
+      document.getElementById('partial-modal-patient-info').textContent = `المريض: ${order.patient_name} (${order.patient_phone})`;
+      document.getElementById('partial-modal-original-qty').value = `${order.requested_qty} عبوة`;
+      
+      const suppliedInput = document.getElementById('partial-modal-supplied-qty');
+      suppliedInput.max = Math.max(1, order.requested_qty - 1);
+      suppliedInput.value = Math.max(1, Math.min(order.requested_qty - 1, 1));
+
+      const select = document.getElementById('partial-neighbor-pharmacy-select');
+      select.innerHTML = '';
+      allPharmacies.forEach(p => {
+        const opt = document.createElement('option');
+        opt.value = p.id;
+        opt.textContent = `${p.pharmacy_name} (${p.governorate} - ${p.address})`;
+        select.appendChild(opt);
+      });
+
+      document.getElementById('partial-modal-notes').value = '';
+      document.getElementById('partial_fulfill_modal').showModal();
+    }
+
+    function executePartialFulfill() {
+      const orderId = document.getElementById('partial-modal-order-id').value;
+      const supplied = document.getElementById('partial-modal-supplied-qty').value;
+      const neighborId = document.getElementById('partial-neighbor-pharmacy-select').value;
+      const notes = document.getElementById('partial-modal-notes').value.trim();
+
+      window.medifindStore.partiallyFulfillOrder(orderId, supplied, neighborId, notes);
+      document.getElementById('partial_fulfill_modal').close();
+      renderAll();
+    }
+
+    // --- 1 & 2. إدارة نمط المزامنة بدون اتصال (Offline-First Mesh Status) ---
+    function toggleOfflineMeshMode() {
+      const next = window.medifindStore.toggleNetworkMode();
+      updateNetworkBadgeUI(next);
+      renderAll();
+    }
+
+    function updateNetworkBadgeUI(status) {
+      const badge = document.getElementById('network-status-badge');
+      const icon = document.getElementById('network-status-icon');
+      const text = document.getElementById('network-status-text');
+      if (!badge || !icon || !text) return;
+      const isOnline = (status || window.medifindStore.getNetworkStatus()) === 'online';
+
+      if (isOnline) {
+        badge.className = 'badge badge-success badge-xs gap-1 text-[10px] text-white cursor-pointer hover:opacity-80 transition';
+        icon.className = 'fa-solid fa-wifi';
+        text.textContent = 'متصل';
+      } else {
+        badge.className = 'badge badge-warning badge-xs gap-1 text-[10px] text-slate-900 font-bold cursor-pointer hover:opacity-80 transition animate-pulse';
+        icon.className = 'fa-solid fa-network-wired';
+    // --- خدمات إشارات المرور والمزامنة والمقايضة (Gaza Pharmacy Extensions) ---
+    function setTrafficLightQuick(medId, color) {
+      window.medifindStore.setTrafficLightStock(medId, color);
+      renderAll();
+    }
+
+    function handleCSVFileImport(input) {
+      if (!input.files || !input.files[0]) return;
+      const file = input.files[0];
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const text = e.target.result;
+        const current = window.medifindStore.getCurrentPharmacy();
+        const res = window.medifindStore.importInventoryFromCSV(text, current.id);
+        if (res.success) {
+          renderAll();
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    function renderReverseBids() {
+      const container = document.getElementById('pharmacy-reverse-bids-list');
+      const badge = document.getElementById('pharmacy-bids-count-badge');
+      const navBadge = document.getElementById('nav-reverse-bids-badge');
+      if (!container) return;
+
+      const current = window.medifindStore.getCurrentPharmacy();
+      const bids = window.medifindStore.getReversePrescriptionBids(current.governorate);
+      const openBids = bids.filter(b => b.status === 'open');
+
+      if (badge) badge.textContent = `${openBids.length} طلبات مفتوحة`;
+      if (navBadge) navBadge.textContent = openBids.length;
+
+      if (openBids.length === 0) {
+        container.innerHTML = '<p class="text-slate-400 py-4 text-center text-xs">لا توجد طلبات استدراج عروض مفتوحة في منطقتك حالياً.</p>';
+        return;
+      }
+
+      container.innerHTML = openBids.map(b => `
+        <div class="p-4 bg-amber-50/50 rounded-2xl border border-amber-200/80 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+          <div class="space-y-1">
+            <div class="flex items-center gap-2">
+              <span class="badge badge-warning badge-xs font-black text-slate-900">${b.bid_code}</span>
+              <strong class="text-slate-900 text-sm">${b.patient_name}</strong>
+              <span class="text-[10px] text-slate-500 font-mono">(${b.governorate})</span>
+            </div>
+            <p class="text-slate-700 font-medium">${b.prescription_notes}</p>
+            <div class="text-[10px] text-slate-500">
+              <i class="fa-solid fa-clock mr-1"></i>${window.medifindStore.formatTimeAgo(b.created_at)} • العروض المقدمة: <strong>${b.offers_count || 0}</strong>
+            </div>
+          </div>
+          <button type="button" onclick="openSubmitQuoteModal('${b.id}')" class="btn btn-sm bg-teal-700 hover:bg-teal-800 text-white font-bold rounded-xl text-xs flex-shrink-0 px-4 gap-1.5 shadow-sm">
+            <i class="fa-solid fa-paper-plane"></i> تقديم عرض سعر
+          </button>
+        </div>
+      `).join('');
+    }
+
+    let activeBidIdToQuote = null;
+    function openSubmitQuoteModal(bidId) {
+      activeBidIdToQuote = bidId;
+      document.getElementById('quote-bid-id').value = bidId;
+      document.getElementById('submit-quote-form').reset();
+      document.getElementById('submit_quote_modal').showModal();
+    }
+
+    function handleQuoteSubmit(e) {
+      e.preventDefault();
+      const current = window.medifindStore.getCurrentPharmacy();
+      const price = document.getElementById('quote-price').value;
+      const status = document.getElementById('quote-items-status').value;
+      const deliveryReady = document.getElementById('quote-delivery-ready').checked;
+
+      window.medifindStore.submitPharmacyBidOffer(activeBidIdToQuote, current.id, {
+        total_quote: price,
+        available_items: status,
+        delivery_ready: deliveryReady
+      });
+      document.getElementById('submit_quote_modal').close();
+      renderReverseBids();
+    }
+
+    function renderBarterListings() {
+      const container = document.getElementById('pharmacy-barter-list');
+      if (!container) return;
+      const current = window.medifindStore.getCurrentPharmacy();
+      const listings = window.medifindStore.getBarterListings('open');
+
+      if (listings.length === 0) {
+        container.innerHTML = '<p class="text-slate-400 py-4 text-center col-span-full text-xs">لا توجد عروض مقايضة صيدلانية مفتوحة حالياً، اضغط أعلاه لإدراج عرض.</p>';
+        return;
+      }
+
+      container.innerHTML = listings.map(l => {
+        const isMyListing = l.offering_pharmacy_id === current.id;
+        return `
+          <div class="p-4 bg-purple-50/50 rounded-2xl border border-purple-200/80 space-y-2 text-xs flex flex-col justify-between">
+            <div class="space-y-1.5">
+              <div class="flex items-center justify-between">
+                <span class="badge badge-purple bg-purple-100 text-purple-800 text-[10px] font-bold">${l.offering_pharmacy_name} (${l.governorate})</span>
+                <span class="text-[9px] text-slate-400 font-mono">${window.medifindStore.formatTimeAgo(l.created_at)}</span>
+              </div>
+              <div class="grid grid-cols-2 gap-2 p-2 bg-white rounded-xl border border-purple-100">
+                <div>
+                  <span class="text-[10px] text-emerald-700 font-bold block">الفائض المعروض:</span>
+                  <strong class="text-slate-900 block">${l.surplus_medicine}</strong>
+                  <span class="text-[10px] text-slate-500">الكمية: ${l.surplus_quantity}</span>
+                </div>
+                <div>
+                  <span class="text-[10px] text-rose-700 font-bold block">المطلوب بدلاً منه:</span>
+                  <strong class="text-slate-900 block">${l.wanted_medicine}</strong>
+                  <span class="text-[10px] text-slate-500">الكمية: ${l.wanted_quantity}</span>
+                </div>
+              </div>
+              ${l.notes ? `<p class="text-[10px] text-slate-500 bg-white/60 p-1.5 rounded-lg">${l.notes}</p>` : ''}
+            </div>
+            <div class="pt-2 border-t border-purple-100 flex items-center justify-between">
+              ${isMyListing ? `
+                <span class="badge badge-ghost badge-xs text-slate-400">عرضك الخاص</span>
+              ` : `
+                <button type="button" onclick="claimBarter(${l.id})" class="btn btn-xs bg-purple-700 hover:bg-purple-800 text-white font-bold rounded-xl px-3 gap-1">
+                  <i class="fa-solid fa-handshake"></i> قبول المقايضة والتسليم
+                </button>
+              `}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function openCreateBarterModal() {
+      document.getElementById('create-barter-form').reset();
+      document.getElementById('create_barter_modal').showModal();
+    }
+
+    function handleBarterSubmit(e) {
+      e.preventDefault();
+      const current = window.medifindStore.getCurrentPharmacy();
+      const surplus = document.getElementById('barter-surplus-med').value.trim();
+      const surplusQty = document.getElementById('barter-surplus-qty').value.trim();
+      const wanted = document.getElementById('barter-wanted-med').value.trim();
+      const wantedQty = document.getElementById('barter-wanted-qty').value.trim();
+
+      window.medifindStore.createBarterListing(current.id, surplus, wanted, surplusQty, wantedQty);
+      document.getElementById('create_barter_modal').close();
+      renderBarterListings();
+    }
+
+    function claimBarter(barterId) {
+      const current = window.medifindStore.getCurrentPharmacy();
+      window.medifindStore.acceptBarterListing(barterId, current.id);
+      renderBarterListings();
+    }
+  </script>
+</body>
+</html>

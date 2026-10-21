@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 300" role="img" aria-label="عبوة محلول ملحي معقم">
+  <rect width="320" height="300" rx="28" fill="#f1f8f8"/>
+  <ellipse cx="160" cy="255" rx="70" ry="12" fill="#dce8e9"/>
+  <path d="M145 53h30v20h-30z" fill="#b6d2d8"/>
+  <path d="M140 72h40v20h-40z" fill="#fff" stroke="#b8d1d5" stroke-width="3"/>
+  <path d="M126 91h68l10 22v123q0 13-13 13h-62q-13 0-13-13V113z" fill="#e6f7fa" stroke="#abd4dc" stroke-width="4"/>
+  <path d="M133 145h54v69h-54z" fill="#fff"/>
+  <path d="M144 163h32m-32 12h32" stroke="#bdd9de" stroke-width="5" stroke-linecap="round"/>
+  <path d="M160 119v18" stroke="#70bdcb" stroke-width="4"/>
+  <text x="160" y="200" text-anchor="middle" fill="#42717a" font-family="Arial,sans-serif" font-size="9" font-weight="700">SALINE 0.9%</text>
+</svg>

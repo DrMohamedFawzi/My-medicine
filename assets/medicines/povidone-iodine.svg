@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 300" role="img" aria-label="زجاجة مطهر بوفيدون أيودين">
+  <rect width="320" height="300" rx="28" fill="#f1f8f8"/>
+  <ellipse cx="162" cy="254" rx="72" ry="13" fill="#dce8e9"/>
+  <rect x="135" y="51" width="54" height="31" rx="7" fill="#163b50"/>
+  <path d="M139 81h46l12 23v128q0 14-14 14h-42q-14 0-14-14V104z" fill="#d79a3d" stroke="#bd7c29" stroke-width="4"/>
+  <path d="M142 106h40v110h-40z" fill="#f8fbfc"/>
+  <rect x="145" y="128" width="34" height="39" rx="6" fill="#fff0d8"/>
+  <path d="M162 132v31m-13-15h26" stroke="#c47c22" stroke-width="6" stroke-linecap="round"/>
+  <text x="162" y="184" text-anchor="middle" fill="#61491f" font-family="Arial,sans-serif" font-size="9" font-weight="700">POVIDONE</text>
+  <text x="162" y="197" text-anchor="middle" fill="#61491f" font-family="Arial,sans-serif" font-size="8">IODINE 10%</text>
+</svg>

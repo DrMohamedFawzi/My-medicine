@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="corporate">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>مركز التحليل السلوكي للمبرمجين (خاص بالمشرف) | دواك بإيدك</title>
+  
+  <!-- DaisyUI & Tailwind CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.10.2/dist/full.min.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Google Fonts - Cairo -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Cairo', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#f0fdfa',
+              100: '#ccfbf1',
+              500: '#14b8a6',
+              600: '#0d9488',
+              700: '#0f766e',
+              primary: '#0e7490',
+              secondary: '#06b6d4',
+              dark: '#091522'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  
+  <style>
+    body {
+      font-family: 'Cairo', sans-serif;
+      background-color: #080e1a;
+      color: #e2e8f0;
+      min-height: 100vh;
+    }
+    .hero-mesh {
+      background-image: 
+        radial-gradient(at 0% 0%, hsla(190, 85%, 28%, 0.25) 0px, transparent 50%),
+        radial-gradient(at 100% 0%, hsla(168, 80%, 25%, 0.25) 0px, transparent 50%),
+        radial-gradient(at 50% 100%, hsla(215, 80%, 15%, 0.4) 0px, transparent 60%);
+    }
+    .glass-card {
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(45, 212, 191, 0.22);
+    }
+    .journey-line::before {
+      content: '';
+      position: absolute;
+      top: 24px;
+      bottom: 24px;
+      right: 23px;
+      width: 3px;
+      background: linear-gradient(180deg, #14b8a6 0%, #06b6d4 50%, #6366f1 100%);
+      border-radius: 9999px;
+    }
+    @media print {
+      body {
+        background-color: #ffffff !important;
+        color: #000000 !important;
+      }
+      .no-print {
+        display: none !important;
+      }
+      .glass-card {
+        background: #ffffff !important;
+        border: 1px solid #e2e8f0 !important;
+        box-shadow: none !important;
+        color: #000000 !important;
+      }
+    }
+  </style>
+</head>
+<body class="hero-mesh min-h-screen flex flex-col antialiased selection:bg-teal-500 selection:text-white">
+
+  <!-- ========================================================================= -->
+  <!-- 0. شاشة القفل والحماية المشددة للمشرف فقط (Admin Auth Gate) -->
+  <!-- ========================================================================= -->
+  <div id="admin-security-gate" class="fixed inset-0 z-[100000] bg-slate-950/95 backdrop-blur-xl flex items-center justify-center p-4">
+    <div class="glass-card max-w-md w-full rounded-3xl p-8 border-teal-500/40 shadow-2xl text-center space-y-5">
+      <div class="w-16 h-16 rounded-2xl bg-rose-500/10 text-rose-400 border border-rose-500/30 flex items-center justify-center text-3xl mx-auto shadow-lg shadow-rose-500/20">
+        <i class="fa-solid fa-user-shield"></i>
+      </div>
+      
+      <div>
+        <span class="badge badge-error badge-sm font-black text-white px-3 py-2 mb-2">منطقة سرية ومحمية للمشرف فقط</span>
+        <h2 class="text-xl font-black text-white">التحقق من هوية المشرف العام</h2>
+        <p class="text-xs text-slate-400 mt-1 leading-relaxed">
+          هذه الصفحة مخصصة لمدير المشروع فقط لرصد تحركات وتحليلات المبرمجين. يرجى إدخال رمز الأمان للمتابعة.
+        </p>
+      </div>
+
+      <form id="admin-auth-form" onsubmit="handleAdminAuth(event)" class="space-y-3 pt-2">
+        <div class="relative">
+          <input type="password" id="admin-auth-pass" required autofocus placeholder="أدخل رمز الأمان السري..." 
+            class="input input-bordered w-full bg-slate-900 border-slate-700 text-white placeholder-slate-500 focus:border-teal-400 text-center font-mono tracking-widest text-sm h-12" />
+        </div>
+        <button type="submit" class="btn w-full bg-teal-600 hover:bg-teal-500 text-white font-black border-none text-sm h-11 gap-2 shadow-lg shadow-teal-500/20">
+          <i class="fa-solid fa-key"></i>
+          <span>فتح لوحة القيادة والمراقبة</span>
+        </button>
+      </form>
+
+      <div class="pt-3 text-[11px] text-slate-500 flex items-center justify-center border-t border-slate-800">
+        <a href="index.html" class="text-slate-400 hover:text-teal-400 transition flex items-center gap-1 font-semibold">
+          <i class="fa-solid fa-arrow-right text-[10px]"></i>
+          <span>الرجوع للصفحة الرئيسية</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- محتوى لوحة المشرف المحمية (مخفي حتى يتم التحقق) -->
+  <div id="admin-protected-content" class="hidden flex-col min-h-screen">
+    
+    <!-- ========================================================================= -->
+    <!-- 1. شريط التنقل والتحكم العلوي للوحة الإدارة -->
+    <!-- ========================================================================= -->
+    <header class="border-b border-slate-800/80 bg-slate-950/80 backdrop-blur-md sticky top-0 z-50 no-print">
+      <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
+        
+        <div class="flex items-center gap-3">
+          <a href="index_admin.html" class="flex items-center gap-2 group">
+            <img src="assets/images/dawaak-logo.png" alt="" class="h-10 w-10 shrink-0 object-contain group-hover:scale-105 transition-transform" width="48" height="48">
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="font-black text-lg text-white tracking-wide">دواك بإيدك Admin</span>
+                <span class="badge badge-error badge-xs font-black text-white">ADMIN ONLY</span>
+              </div>
+              <p class="text-[11px] text-teal-400 font-bold">لوحة تحليلات وسلوكيات المبرمجين السرية</p>
+            </div>
+          </a>
+        </div>
+
+        <!-- مؤشر المزامنة الحية -->
+        <div class="flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900 border border-slate-800 text-xs text-slate-300">
+          <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span>بث التزامن الحي: <b class="text-emerald-400">نشط</b></span>
+        </div>
+
+        <!-- أزرار الإجراءات الإدارية -->
+        <div class="flex items-center flex-wrap gap-2">
+          <!-- زر مسح المبرمجين الافتراضيين أو مسح السجلات -->
+          <button onclick="confirmClearDemoOrAll()" class="btn btn-xs sm:btn-sm bg-rose-600/20 hover:bg-rose-600 text-rose-300 hover:text-white border border-rose-500/40 font-bold gap-1.5 transition-all shadow-sm" title="مسح المبرمجين الافتراضيين أو تصفير السجلات">
+            <i class="fa-solid fa-trash-can text-xs"></i>
+            <span>مسح السجلات / الافتراضيين</span>
+          </button>
+          
+          <button onclick="exportFullAnalyticsJSON()" class="btn btn-xs sm:btn-sm btn-outline border-slate-700 text-slate-300 hover:bg-slate-800 gap-1.5" title="تصدير بيانات كاملة بصيغة JSON">
+            <i class="fa-solid fa-file-export text-xs"></i>
+            <span>تصدير البيانات</span>
+          </button>
+          <button onclick="window.print()" class="btn btn-xs sm:btn-sm btn-outline border-slate-700 text-slate-300 hover:bg-slate-800 gap-1.5" title="طباعة تقرير">
+            <i class="fa-solid fa-print text-xs"></i>
+            <span>طباعة تقرير</span>
+          </button>
+          <button onclick="seedMoreDemoData()" class="btn btn-xs sm:btn-sm btn-ghost text-teal-400 hover:bg-teal-950/50 text-xs" title="إعادة تحميل بيانات الاختبار للمقارنة">
+            <i class="fa-solid fa-flask text-xs"></i>
+            <span class="hidden md:inline">استرجاع بيانات الاختبار</span>
+          </button>
+          <a href="index_admin.html" class="btn btn-xs sm:btn-sm btn-ghost text-slate-400 hover:text-white text-xs gap-1">
+            <i class="fa-solid fa-shield-halved text-xs"></i>
+            <span>لوحة الإدارة</span>
+          </a>
+          <button onclick="lockAdminDashboard()" class="btn btn-xs sm:btn-sm btn-outline border-rose-500/50 text-rose-400 hover:bg-rose-500 hover:text-white text-xs gap-1" title="قفل اللوحة والخروج">
+            <i class="fa-solid fa-lock text-xs"></i>
+            <span>قفل اللوحة</span>
+          </button>
+        </div>
+
+      </div>
+    </header>
+
+    <!-- المحتوى الرئيسي للمشرف -->
+    <main class="max-w-7xl mx-auto px-4 py-8 w-full flex-1 space-y-8">
+
+      <!-- ========================================================================= -->
+      <!-- 2. أداة توليد رابط مباشر لإرساله للمبرمجين (خاصة بالمشرف فقط) -->
+      <!-- ========================================================================= -->
+      <div class="glass-card rounded-3xl p-6 sm:p-7 shadow-2xl border-teal-500/30 no-print relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-60 h-60 bg-teal-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        
+        <div class="flex flex-col md:flex-row md:items-center justify-between pb-5 mb-5 border-b border-slate-800 gap-3">
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 rounded-2xl bg-teal-500/20 text-teal-400 flex items-center justify-center text-xl flex-shrink-0">
+              <i class="fa-solid fa-share-nodes"></i>
+            </div>
+            <div>
+              <div class="flex items-center gap-2">
+                <h3 class="text-base sm:text-lg font-black text-white">توليد رابط مباشر لإرساله للمبرمجين</h3>
+                <span class="badge badge-accent badge-xs font-bold text-slate-950">ميزة المشرف</span>
+              </div>
+              <p class="text-xs text-slate-400 mt-0.5">
+                يمكنك إنشاء رابط جاهز باسم أي مبرمج وإرساله له عبر الواتساب أو تيليجرام. عند فتحه سيبدأ التسجيل تلقائياً دون الحاجة لكتابة اسمه!
+              </p>
+            </div>
+          </div>
+          <span class="text-[11px] text-teal-400 font-bold bg-teal-950/60 border border-teal-500/30 px-3 py-1.5 rounded-xl self-start md:self-auto">
+            ⚡ يبدأ التتبع والتحليل فور فتح الرابط
+          </span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-5 items-end">
+          
+          <!-- اسم المبرمج المستلم -->
+          <div class="md:col-span-4">
+            <label class="block text-xs font-bold text-slate-300 mb-1.5">
+              <i class="fa-solid fa-user-tag text-teal-400 ml-1"></i>
+              اسم المبرمج المستلم:
+            </label>
+            <input type="text" id="share-dev-name" oninput="generateDirectShareLink()" placeholder="اكتب اسم زميلك (مثال: م. أحمد أو سارة)..." 
+              class="input input-bordered w-full bg-slate-900 border-slate-700 text-white placeholder-slate-500 text-xs h-11 focus:border-teal-400" />
+          </div>
+
+          <!-- التخصص أو الدور -->
+          <div class="md:col-span-3">
+            <label class="block text-xs font-bold text-slate-300 mb-1.5">
+              <i class="fa-solid fa-briefcase text-teal-400 ml-1"></i>
+              التخصص / الدور:
+            </label>
+            <select id="share-dev-role" onchange="generateDirectShareLink()" class="select select-bordered w-full bg-slate-900 border-slate-700 text-white text-xs h-11 focus:border-teal-400">
+              <option value="مطور واجهات (Frontend)">مطور واجهات (Frontend)</option>
+              <option value="مطور منطق وقواعد بيانات (Backend)">مطور منطق (Backend)</option>
+              <option value="مختبر جودة وبرمجيات (QA)" selected>مختبر جودة (QA)</option>
+              <option value="مصمم تجربة مستخدم (UI/UX)">مصمم تجربة (UI/UX)</option>
+              <option value="مبرمج شامل (Fullstack)">مبرمج شامل (Fullstack)</option>
+            </select>
+          </div>
+
+          <!-- الصفحة التي سيبدأ بها -->
+          <div class="md:col-span-5">
+            <label class="block text-xs font-bold text-slate-300 mb-1.5">
+              <i class="fa-solid fa-compass text-teal-400 ml-1"></i>
+              الصفحة التي سيبدأ بها:
+            </label>
+            <select id="share-dev-page" onchange="generateDirectShareLink()" class="select select-bordered w-full bg-slate-900 border-slate-700 text-white text-xs h-11 focus:border-teal-400">
+              <option value="index_patient.html" selected>بوابة المريض والبحث الدوائي (index_patient.html)</option>
+              <option value="index_pharmacy.html">لوحة الصيدلية وإدارة المخزون (index_pharmacy.html)</option>
+              <option value="index_admin.html">مركز قيادة الرقابة والإدارة (index_admin.html)</option>
+              <option value="index.html">الصفحة الرئيسية للموقع (index.html)</option>
+              <option value="features.html">صفحة المميزات ورادار النقص (features.html)</option>
+              <option value="how_it_works.html">صفحة كيف تعمل المنصة (how_it_works.html)</option>
+            </select>
+          </div>
+
+          <!-- صندوق الرابط المباشر الناتج مع أزرار النسخ والإرسال -->
+          <div class="md:col-span-12 pt-2">
+            <label class="block text-xs font-bold text-teal-300 mb-1.5 flex items-center justify-between">
+              <span>
+                <i class="fa-solid fa-link text-cyan-400 ml-1"></i>
+                الرابط المباشر الناتج:
+              </span>
+              <span class="text-[11px] text-slate-400 font-normal">جاهز للإرسال الفوري</span>
+            </label>
+            <div class="flex flex-col sm:flex-row items-center gap-2">
+              <input type="text" id="share-link-output" readonly 
+                class="input input-bordered w-full bg-slate-950 border-slate-800 text-teal-300 font-mono text-xs select-all h-11 truncate" />
+              
+              <div class="flex items-center gap-2 w-full sm:w-auto flex-shrink-0">
+                <button onclick="copyGeneratedDirectLink()" class="btn bg-teal-600 hover:bg-teal-500 text-white font-bold border-none text-xs gap-1.5 h-11 px-4 flex-1 sm:flex-initial">
+                  <i class="fa-regular fa-copy"></i>
+                  <span>نسخ الرابط</span>
+                </button>
+                <button onclick="shareDirectViaWhatsApp()" class="btn bg-emerald-600 hover:bg-emerald-500 text-white font-bold border-none text-xs gap-1.5 h-11 px-4 flex-1 sm:flex-initial" title="إرسال عبر الواتساب">
+                  <i class="fa-brands fa-whatsapp text-sm"></i>
+                  <span class="hidden sm:inline">واتساب</span>
+                </button>
+                <button onclick="previewDirectLink()" class="btn btn-outline border-slate-700 text-slate-300 hover:bg-slate-800 text-xs gap-1.5 h-11 px-3" title="تجربة الرابط في تبويب جديد">
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ========================================================================= -->
+      <!-- 3. شريط تصفية واختيار المبرمج والجلسة -->
+      <!-- ========================================================================= -->
+      <div class="glass-card rounded-2xl p-4 sm:p-5 shadow-xl border-slate-800 flex flex-col md:flex-row items-center justify-between gap-4 no-print">
+        <div class="flex flex-wrap items-center gap-3 w-full md:w-auto">
+          <div class="flex items-center gap-2 text-slate-400 text-xs font-bold">
+            <i class="fa-solid fa-filter text-teal-400"></i>
+            <span>تحديد المبرمج:</span>
+          </div>
+          <select id="filter-developer-select" onchange="onDeveloperFilterChange()" class="select select-bordered select-sm bg-slate-900 border-slate-700 text-white font-bold text-xs flex-1 md:flex-initial min-w-[200px]">
+            <option value="ALL">👥 جميع المبرمجين والمختبرين</option>
+          </select>
+
+          <div class="flex items-center gap-2 text-slate-400 text-xs font-bold mr-2">
+            <i class="fa-solid fa-timeline text-cyan-400"></i>
+            <span>الجلسة المحددة:</span>
+          </div>
+          <select id="filter-session-select" onchange="onSessionFilterChange()" class="select select-bordered select-sm bg-slate-900 border-slate-700 text-white font-bold text-xs flex-1 md:flex-initial min-w-[220px]">
+            <!-- تعبأ ديناميكياً -->
+          </select>
+        </div>
+
+        <div id="session-status-tag" class="text-xs flex items-center gap-2">
+          <!-- يعبأ بحالة الجلسة المحددة -->
+        </div>
+      </div>
+
+      <!-- ========================================================================= -->
+      <!-- 4. مؤشرات الأداء الرئيسية (KPIs) -->
+      <!-- ========================================================================= -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+        
+        <!-- إجمالي المبرمجين -->
+        <div class="glass-card rounded-2xl p-4 border-slate-800/80">
+          <div class="flex items-center justify-between text-slate-400 text-[11px] font-bold mb-1">
+            <span>المبرمجين</span>
+            <i class="fa-solid fa-users text-teal-400"></i>
+          </div>
+          <div class="text-2xl font-black text-white" id="stat-total-devs">0</div>
+          <div class="text-[10px] text-teal-400 mt-1 font-semibold">مختبرين مسجلين</div>
+        </div>
+
+        <!-- إجمالي الجلسات -->
+        <div class="glass-card rounded-2xl p-4 border-slate-800/80">
+          <div class="flex items-center justify-between text-slate-400 text-[11px] font-bold mb-1">
+            <span>جلسات الفحص</span>
+            <i class="fa-solid fa-clock-rotate-left text-cyan-400"></i>
+          </div>
+          <div class="text-2xl font-black text-white" id="stat-total-sessions">0</div>
+          <div class="text-[10px] text-cyan-400 mt-1 font-semibold" id="stat-active-sessions">0 جلسة نشطة الآن</div>
+        </div>
+
+        <!-- إجمالي وقت الفحص والتصفح -->
+        <div class="glass-card rounded-2xl p-4 border-slate-800/80">
+          <div class="flex items-center justify-between text-slate-400 text-[11px] font-bold mb-1">
+            <span>إجمالي وقت التصفح</span>
+            <i class="fa-solid fa-stopwatch text-amber-400"></i>
+          </div>
+          <div class="text-2xl font-black text-amber-300 font-mono" id="stat-total-duration">00:00</div>
+          <div class="text-[10px] text-slate-400 mt-1">عبر كافة الصفحات</div>
+        </div>
+
+        <!-- متوسط زمن المكوث في الصفحة -->
+        <div class="glass-card rounded-2xl p-4 border-slate-800/80">
+          <div class="flex items-center justify-between text-slate-400 text-[11px] font-bold mb-1">
+            <span>معدل وقت الصفحة</span>
+            <i class="fa-solid fa-hourglass-half text-emerald-400"></i>
+          </div>
+          <div class="text-2xl font-black text-emerald-300 font-mono" id="stat-avg-duration">00:00</div>
+          <div class="text-[10px] text-slate-400 mt-1">متوسط المكوث (Dwell Time)</div>
+        </div>
+
+        <!-- إجمالي التفاعلات والنقرات -->
+        <div class="glass-card rounded-2xl p-4 border-slate-800/80">
+          <div class="flex items-center justify-between text-slate-400 text-[11px] font-bold mb-1">
+            <span>النقرات والتفاعل</span>
+            <i class="fa-solid fa-arrow-pointer text-indigo-400"></i>
+          </div>
+          <div class="text-2xl font-black text-indigo-300" id="stat-total-actions">0</div>
+          <div class="text-[10px] text-slate-400 mt-1">أزرار ونماذج تم فحصها</div>
+        </div>
+
+        <!-- الأخطاء البرمجية المكتشفة -->
+        <div class="glass-card rounded-2xl p-4 border-slate-800/80">
+          <div class="flex items-center justify-between text-slate-400 text-[11px] font-bold mb-1">
+            <span>أخطاء الكونسول</span>
+            <i class="fa-solid fa-triangle-exclamation text-rose-400"></i>
+          </div>
+          <div class="text-2xl font-black text-rose-400" id="stat-total-errors">0</div>
+          <div class="text-[10px] text-rose-400/80 mt-1 font-semibold" id="stat-errors-sub">الكود يعمل بامتياز</div>
+        </div>
+
+      </div>
+
+      <!-- ========================================================================= -->
+      <!-- 5. تحليل وقت المكوث في كل صفحة (Time on Page Breakdown) -->
+      <!-- ========================================================================= -->
+      <div class="glass-card rounded-3xl p-6 sm:p-7 shadow-2xl">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-5 mb-5 border-b border-slate-800 gap-3">
+          <div>
+            <div class="flex items-center gap-2">
+              <div class="w-8 h-8 rounded-lg bg-teal-500/20 text-teal-400 flex items-center justify-center font-bold">
+                <i class="fa-solid fa-chart-simple text-sm"></i>
+              </div>
+              <h2 class="text-lg font-bold text-white">تحليل زمن المكوث في الصفحات (كم بقي في هذه الصفحة بالتحديد)</h2>
+            </div>
+            <p class="text-xs text-slate-400 mt-0.5">يوضح بدقة كم ثانية ودقيقة قضاها المبرمج في كل صفحة ونسبة تركيزه وتفاعله</p>
+          </div>
+          <span class="badge badge-outline border-teal-500/40 text-teal-300 text-xs px-3 py-2 font-bold">
+            مقياس دقيق بالثواني والدقائق
+          </span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4" id="pages-duration-cards">
+          <!-- تعبأ ديناميكياً ببطاقات الصفحات -->
+        </div>
+      </div>
+
+      <!-- ========================================================================= -->
+      <!-- 6. المخطط الزمني الكامل لرحلة المبرمج (Interactive Journey Timeline) -->
+      <!-- ========================================================================= -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        
+        <!-- رحلة المستخدم خطوة بخطوة (8 أعمدة) -->
+        <div class="lg:col-span-8 space-y-6">
+          <div class="glass-card rounded-3xl p-6 sm:p-7 shadow-2xl relative overflow-hidden">
+            
+            <div class="flex items-center justify-between pb-4 mb-6 border-b border-slate-800">
+              <div class="flex items-center gap-2">
+                <div class="w-8 h-8 rounded-lg bg-cyan-500/20 text-cyan-400 flex items-center justify-center font-bold">
+                  <i class="fa-solid fa-route text-sm"></i>
+                </div>
+                <div>
+                  <h3 class="font-bold text-base text-white">مسار الرحلة خطوة بخطوة (ماذا تصفح، أين انتقل، وكم بقي)</h3>
+                  <p class="text-xs text-slate-400">تحليل تسلسلي مباشر لرحلة المطور داخل المنصة</p>
+                </div>
+              </div>
+              <span id="selected-dev-display-badge" class="badge badge-primary badge-sm font-bold text-xs">
+                جميع المسارات
+              </span>
+            </div>
+
+            <!-- قائمة المخطط الزمني -->
+            <div id="journey-timeline-container" class="relative journey-line pr-10 space-y-8">
+              <!-- تعبأ ديناميكياً بالخطوات -->
+            </div>
+
+          </div>
+
+          <!-- سجل التفاعلات والنقرات التفصيلي -->
+          <div class="glass-card rounded-3xl p-6 shadow-2xl">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 mb-4 border-b border-slate-800 gap-2">
+              <div class="flex items-center gap-2">
+                <i class="fa-solid fa-list-check text-indigo-400"></i>
+                <h4 class="font-bold text-sm text-white">سجل النقرات والأزرار المفحوصة</h4>
+              </div>
+              <div class="flex items-center gap-2">
+                <input type="text" id="actions-search" oninput="filterActionsTable()" placeholder="ابحث في النقرات والأزرار..." 
+                  class="input input-bordered input-xs bg-slate-900 border-slate-700 text-slate-200 text-[11px] w-48" />
+              </div>
+            </div>
+
+            <div class="overflow-x-auto max-h-80 overflow-y-auto">
+              <table class="table table-xs text-right w-full">
+                <thead class="bg-slate-900/90 text-slate-400 sticky top-0 border-b border-slate-800">
+                  <tr>
+                    <th>الوقت</th>
+                    <th>المبرمج</th>
+                    <th>الصفحة</th>
+                    <th>نوع الإجراء</th>
+                    <th>العنصر المستهدف</th>
+                  </tr>
+                </thead>
+                <tbody id="actions-log-tbody">
+                  <!-- تعبأ ديناميكياً -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- العمود الجانبي (4 أعمدة): البث الحي وملاحظات المختبرين -->
+        <div class="lg:col-span-4 space-y-6">
+          
+          <!-- بطاقة البث الحي المباشر للأحداث (Live Telemetry Stream) -->
+          <div class="glass-card rounded-3xl p-5 shadow-xl border-emerald-500/20">
+            <div class="flex items-center justify-between mb-4 pb-3 border-b border-slate-800">
+              <div class="flex items-center gap-2">
+                <span class="flex h-2.5 w-2.5 relative">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                </span>
+                <h4 class="font-bold text-xs text-white">البث الحي للتفاعلات (Live Stream)</h4>
+              </div>
+              <span class="text-[10px] text-slate-500 font-mono">تزامن لحظي</span>
+            </div>
+
+            <div id="live-stream-feed" class="space-y-2.5 max-h-72 overflow-y-auto pr-1">
+              <div class="text-center py-6 text-slate-500 text-xs">
+                في انتظار تفاعلات جديدة من المبرمجين...
+              </div>
+            </div>
+          </div>
+
+          <!-- بطاقة ملاحظات وبلاغات المطورين الميدانية (Notes & Bugs) -->
+          <div class="glass-card rounded-3xl p-5 shadow-xl border-amber-500/20">
+            <div class="flex items-center justify-between mb-4 pb-3 border-b border-slate-800">
+              <div class="flex items-center gap-2">
+                <i class="fa-solid fa-comment-medical text-amber-400"></i>
+                <h4 class="font-bold text-xs text-white">ملاحظات وبلاغات المبرمجين</h4>
+              </div>
+              <span id="notes-counter-badge" class="badge badge-warning badge-xs font-bold text-slate-950">0 ملاحظة</span>
+            </div>
+
+            <div id="developer-notes-container" class="space-y-3 max-h-80 overflow-y-auto">
+              <!-- تعبأ ديناميكياً -->
+            </div>
+          </div>
+
+          <!-- بطاقة الأخطاء البرمجية (Errors Caught) -->
+          <div class="glass-card rounded-3xl p-5 shadow-xl border-rose-500/20">
+            <div class="flex items-center justify-between mb-4 pb-3 border-b border-slate-800">
+              <div class="flex items-center gap-2">
+                <i class="fa-solid fa-bug text-rose-400"></i>
+                <h4 class="font-bold text-xs text-white">أخطاء الكود المرصودة (Errors Caught)</h4>
+              </div>
+              <span id="errors-counter-badge" class="badge badge-error badge-xs font-bold text-white">0 أخطاء</span>
+            </div>
+
+            <div id="developer-errors-container" class="space-y-3 max-h-72 overflow-y-auto">
+              <!-- تعبأ ديناميكياً -->
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </main>
+
+    <!-- تذييل الصفحة -->
+    <footer class="border-t border-slate-900 bg-slate-950/80 py-6 text-center text-xs text-slate-500 mt-auto no-print">
+      <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
+        <div class="flex items-center gap-2 font-bold text-slate-400">
+          <i class="fa-solid fa-lock text-rose-400"></i>
+          <span>دواك بإيدك Admin Telemetry Intelligence Hub • سري للغاية</span>
+        </div>
+        <div>مرخص للمشرف العام فقط © 2026</div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- نافذة تأكيد خيارات المسح (Clear Confirmation Modal) -->
+  <dialog id="clear_records_modal" class="modal modal-bottom sm:modal-middle text-right font-sans">
+    <div class="modal-box bg-slate-900 border border-slate-700 text-slate-100 rounded-3xl p-6 max-w-md shadow-2xl">
+      <div class="flex items-center gap-3 pb-3 border-b border-slate-800">
+        <div class="w-10 h-10 rounded-2xl bg-rose-500/20 text-rose-400 flex items-center justify-center text-lg flex-shrink-0">
+          <i class="fa-solid fa-trash-can"></i>
+        </div>
+        <div>
+          <h3 class="font-bold text-base text-white">خيارات مسح السجلات والمبرمجين</h3>
+          <p class="text-xs text-slate-400">حدد نوع المسح المطلوب تنفيذه:</p>
+        </div>
+      </div>
+
+      <div class="space-y-3 py-4">
+        <!-- الخيار 1: مسح الافتراضيين فقط -->
+        <button onclick="executeClearDemoOnly()" class="w-full text-right p-3.5 rounded-2xl bg-slate-800/80 hover:bg-amber-950/40 border border-slate-700 hover:border-amber-500/50 transition flex items-start gap-3 group">
+          <div class="w-9 h-9 rounded-xl bg-amber-500/20 text-amber-300 flex items-center justify-center text-sm flex-shrink-0 mt-0.5 group-hover:scale-110 transition-transform">
+            <i class="fa-solid fa-user-xmark"></i>
+          </div>
+          <div>
+            <div class="font-bold text-xs text-white group-hover:text-amber-300">مسح المبرمجين الافتراضيين فقط</div>
+            <div class="text-[11px] text-slate-400 mt-0.5">حذف بيانات (م. أحمد بربخ وم. سارة قاسم) وإبقاء أي مبرمج حقيقي مسجل.</div>
+          </div>
+        </button>
+
+        <!-- الخيار 2: مسح كافة السجلات بالكامل وتصفير المنظومة -->
+        <button onclick="executeClearAll()" class="w-full text-right p-3.5 rounded-2xl bg-slate-800/80 hover:bg-rose-950/40 border border-slate-700 hover:border-rose-500/50 transition flex items-start gap-3 group">
+          <div class="w-9 h-9 rounded-xl bg-rose-500/20 text-rose-300 flex items-center justify-center text-sm flex-shrink-0 mt-0.5 group-hover:scale-110 transition-transform">
+            <i class="fa-solid fa-dumpster-fire"></i>
+          </div>
+          <div>
+            <div class="font-bold text-xs text-white group-hover:text-rose-300">مسح كافة السجلات بالكامل (تصفير شامل)</div>
+            <div class="text-[11px] text-slate-400 mt-0.5">تصفير كافة الجلسات والنقرات والأخطاء والبدء من الصفر (0).</div>
+          </div>
+        </button>
+      </div>
+
+      <div class="modal-action border-t border-slate-800 pt-3">
+        <form method="dialog">
+          <button class="btn btn-sm btn-ghost text-xs text-slate-400">إلغاء</button>
+        </form>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- سكربت التتبع -->
+  <script src="js/tracker.js"></script>
+
+  <!-- منطق اللوحة وحماية المشرف وتوليد الروابط -->
+  <script>
+    const ADMIN_PASSCODE = 'admin123';
+    let allSessions = [];
+    let selectedDeveloper = 'ALL';
+    let selectedSessionId = 'ALL';
+
+    // 1. التحقق من صلاحية المشرف
+    document.addEventListener('DOMContentLoaded', () => {
+      checkAdminAuthentication();
+    });
+
+    function checkAdminAuthentication() {
+      const isAuth = sessionStorage.getItem('medifind_analytics_admin_auth') === 'true';
+      const gate = document.getElementById('admin-security-gate');
+      const content = document.getElementById('admin-protected-content');
+
+      if (isAuth) {
+        if (gate) gate.classList.add('hidden');
+        if (content) content.classList.remove('hidden');
+        initializeAdminDashboard();
+      } else {
+        if (gate) gate.classList.remove('hidden');
+        if (content) content.classList.add('hidden');
+        const passInput = document.getElementById('admin-auth-pass');
+        if (passInput) passInput.focus();
+      }
+    }
+
+    function handleAdminAuth(e) {
+      e.preventDefault();
+      const pass = document.getElementById('admin-auth-pass').value.trim();
+      if (pass === ADMIN_PASSCODE || pass === '2026') {
+        sessionStorage.setItem('medifind_analytics_admin_auth', 'true');
+        checkAdminAuthentication();
+      } else {
+        alert('رمز الأمان غير صحيح! الدخول مخصص للمشرف فقط.');
+        document.getElementById('admin-auth-pass').value = '';
+      }
+    }
+
+    function lockAdminDashboard() {
+      if (confirm('هل ترغب بقفل لوحة التحليلات الآن؟')) {
+        sessionStorage.removeItem('medifind_analytics_admin_auth');
+        checkAdminAuthentication();
+      }
+    }
+
+    // 2. تهيئة اللوحة بعد التحقق
+    function initializeAdminDashboard() {
+      generateDirectShareLink();
+      loadDataAndRender();
+      setupLiveStreamChannel();
+
+      // تحديث دوري كل 5 ثوانٍ
+      setInterval(() => {
+        refreshActiveDurations();
+      }, 5000);
+    }
+
+    // 3. أداة توليد الرابط المباشر للمشرف
+    function generateDirectShareLink() {
+      const inputName = document.getElementById('share-dev-name').value.trim();
+      const role = document.getElementById('share-dev-role').value;
+      const page = document.getElementById('share-dev-page').value;
+      
+      const baseUrl = window.location.origin + window.location.pathname.replace('dev_analytics.html', '') + page;
+      const paramName = encodeURIComponent(inputName || 'زميل_مبرمج');
+      const paramRole = encodeURIComponent(role);
+      
+      const shareUrl = `${baseUrl}?dev=1&dev_name=${paramName}&role=${paramRole}`;
+      document.getElementById('share-link-output').value = shareUrl;
+    }
+
+    function copyGeneratedDirectLink() {
+      const copyText = document.getElementById('share-link-output');
+      copyText.select();
+      copyText.setSelectionRange(0, 99999);
+      navigator.clipboard.writeText(copyText.value).then(() => {
+        alert('تم نسخ الرابط المباشر للمطور بنجاح!\nيمكنك الآن إرساله له وسيبدأ الرصد فور دخوله.');
+      }).catch(() => {
+        document.execCommand('copy');
+        alert('تم النسخ بنجاح!');
+      });
+    }
+
+    function shareDirectViaWhatsApp() {
+      const link = document.getElementById('share-link-output').value;
+      const devName = document.getElementById('share-dev-name').value.trim() || 'زميلي المطور';
+      const msg = encodeURIComponent(`مرحباً ${devName}، تفضل رابط اختبار منصة دواك بإيدك، عند فتح الرابط سيبدأ نظام الفحص والرصد تلقائياً:\n${link}`);
+      window.open(`https://api.whatsapp.com/send?text=${msg}`, '_blank');
+    }
+
+    function previewDirectLink() {
+      const link = document.getElementById('share-link-output').value;
+      window.open(link, '_blank');
+    }
+
+    // 4. قراءة وعرض البيانات
+    function loadDataAndRender() {
+      if (!window.MediFindTracker) return;
+      allSessions = window.MediFindTracker.getAllSessions();
+      
+      populateDeveloperFilterDropdown();
+      populateSessionFilterDropdown();
+      renderKPIs();
+      renderPagesDurationCards();
+      renderJourneyTimeline();
+      renderActionsTable();
+      renderNotesList();
+      renderErrorsList();
+    }
+
+    function setupLiveStreamChannel() {
+      if (typeof BroadcastChannel === 'undefined') return;
+      const channel = new BroadcastChannel('medifind_dev_telemetry');
+
+      channel.onmessage = (msg) => {
+        const data = msg.data;
+        if (!data) return;
+
+        if (data.type === 'EVENT_LOGGED') {
+          addLiveFeedItem(`نقر [${data.session.developerName}] على: ${data.event.target}`, data.event.page, 'click');
+        } else if (data.type === 'SESSION_STARTED') {
+          addLiveFeedItem(`بدأ المبرمج [${data.session.developerName}] جلسة فحص جديدة`, 'dev_session.html', 'start');
+        } else if (data.type === 'SESSION_ENDED') {
+          addLiveFeedItem(`أنهى المبرمج [${data.session.developerName}] جلسته بنجاح`, '', 'end');
+        } else if (data.type === 'NOTE_ADDED') {
+          addLiveFeedItem(`سجّل [${data.session.developerName}] ملاحظة: "${data.note.text.slice(0, 30)}..."`, data.note.page, 'note');
+        } else if (data.type === 'ERROR_LOGGED') {
+          addLiveFeedItem(`⚠️ واجه [${data.session.developerName}] خطأ: ${data.error.message}`, data.error.page, 'error');
+        }
+
+        loadDataAndRender();
+      };
+    }
+
+    function addLiveFeedItem(title, page, type) {
+      const feedContainer = document.getElementById('live-stream-feed');
+      if (!feedContainer) return;
+
+      const timeStr = new Date().toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+      let icon = 'fa-arrow-pointer text-indigo-400';
+      let bg = 'bg-slate-900/80 border-slate-800';
+
+      if (type === 'start') {
+        icon = 'fa-rocket text-emerald-400';
+        bg = 'bg-emerald-950/30 border-emerald-500/30';
+      } else if (type === 'end') {
+        icon = 'fa-flag-checkered text-teal-400';
+        bg = 'bg-teal-950/30 border-teal-500/30';
+      } else if (type === 'note') {
+        icon = 'fa-comment-dots text-amber-400';
+        bg = 'bg-amber-950/30 border-amber-500/30';
+      } else if (type === 'error') {
+        icon = 'fa-triangle-exclamation text-rose-400';
+        bg = 'bg-rose-950/30 border-rose-500/30';
+      }
+
+      const itemHtml = `
+        <div class="p-2.5 rounded-xl border ${bg} text-xs flex items-start gap-2.5 animate-fadeIn">
+          <i class="fa-solid ${icon} mt-0.5 text-xs"></i>
+          <div class="flex-1 overflow-hidden">
+            <div class="text-white font-semibold text-[11px] truncate">${escapeHtml(title)}</div>
+            <div class="flex items-center justify-between text-[10px] text-slate-400 mt-0.5">
+              <span>${page ? escapeHtml(page) : 'المنصة'}</span>
+              <span class="font-mono text-slate-500">${timeStr}</span>
+            </div>
+          </div>
+        </div>
+      `;
+
+      if (feedContainer.innerHTML.includes('في انتظار')) {
+        feedContainer.innerHTML = '';
+      }
+      feedContainer.insertAdjacentHTML('afterbegin', itemHtml);
+    }
+
+    function populateDeveloperFilterDropdown() {
+      const select = document.getElementById('filter-developer-select');
+      const currentVal = select.value || 'ALL';
+      
+      const devNames = [...new Set(allSessions.map(s => s.developerName))];
+      select.innerHTML = `<option value="ALL">👥 جميع المبرمجين والمختبرين (${devNames.length})</option>` +
+        devNames.map(name => `<option value="${escapeHtml(name)}">${escapeHtml(name)}</option>`).join('');
+
+      if (devNames.includes(currentVal)) {
+        select.value = currentVal;
+      }
+    }
+
+    function populateSessionFilterDropdown() {
+      const select = document.getElementById('filter-session-select');
+      const filtered = getFilteredSessions();
+
+      select.innerHTML = `<option value="ALL">📑 كافة جلسات الفحص (${filtered.length})</option>` +
+        filtered.map(s => {
+          const time = new Date(s.startedAt).toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit' });
+          const dur = window.MediFindTracker.formatDuration(s.totalDurationSeconds || 0);
+          return `<option value="${s.id}">جلسة ${time} [${dur}] - ${escapeHtml(s.developerName)}</option>`;
+        }).join('');
+
+      select.value = selectedSessionId;
+    }
+
+    function onDeveloperFilterChange() {
+      selectedDeveloper = document.getElementById('filter-developer-select').value;
+      selectedSessionId = 'ALL';
+      populateSessionFilterDropdown();
+      renderAllViews();
+    }
+
+    function onSessionFilterChange() {
+      selectedSessionId = document.getElementById('filter-session-select').value;
+      renderAllViews();
+    }
+
+    function getFilteredSessions() {
+      let list = allSessions;
+      if (selectedDeveloper !== 'ALL') {
+        list = list.filter(s => s.developerName === selectedDeveloper);
+      }
+      if (selectedSessionId !== 'ALL') {
+        list = list.filter(s => s.id === selectedSessionId);
+      }
+      return list;
+    }
+
+    function renderAllViews() {
+      renderKPIs();
+      renderPagesDurationCards();
+      renderJourneyTimeline();
+      renderActionsTable();
+      renderNotesList();
+      renderErrorsList();
+    }
+
+    function renderKPIs() {
+      const sessions = getFilteredSessions();
+      const uniqueDevs = new Set(sessions.map(s => s.developerName)).size;
+      const activeSessions = sessions.filter(s => s.status === 'active').length;
+
+      let totalDuration = 0;
+      let totalVisits = 0;
+      let totalActions = 0;
+      let totalErrors = 0;
+
+      sessions.forEach(s => {
+        let sessionDur = s.totalDurationSeconds || 0;
+        if (s.status === 'active' && s.pageVisits) {
+          sessionDur = s.pageVisits.reduce((acc, v) => acc + (v.durationSeconds || 0), 0);
+        }
+        totalDuration += sessionDur;
+
+        if (s.pageVisits) totalVisits += s.pageVisits.length;
+        if (s.events) totalActions += s.events.length;
+        if (s.errors) totalErrors += s.errors.length;
+      });
+
+      const avgDuration = totalVisits > 0 ? Math.round(totalDuration / totalVisits) : 0;
+
+      document.getElementById('stat-total-devs').innerText = uniqueDevs;
+      document.getElementById('stat-total-sessions').innerText = sessions.length;
+      document.getElementById('stat-active-sessions').innerText = `${activeSessions} جلسة نشطة الآن`;
+      document.getElementById('stat-total-duration').innerText = window.MediFindTracker.formatDuration(totalDuration);
+      document.getElementById('stat-avg-duration').innerText = window.MediFindTracker.formatDuration(avgDuration);
+      document.getElementById('stat-total-actions').innerText = totalActions;
+      document.getElementById('stat-total-errors').innerText = totalErrors;
+      document.getElementById('stat-errors-sub').innerText = totalErrors > 0 ? `${totalErrors} أخطاء تحتاج مراجعة` : 'الكود يعمل بامتياز';
+
+      const badge = document.getElementById('selected-dev-display-badge');
+      if (badge) {
+        if (selectedDeveloper === 'ALL') {
+          badge.innerText = 'جميع المبرمجين';
+          badge.className = 'badge badge-primary badge-sm font-bold text-xs';
+        } else {
+          badge.innerText = `مسار: ${selectedDeveloper}`;
+          badge.className = 'badge badge-accent badge-sm font-bold text-xs text-slate-950';
+        }
+      }
+    }
+
+    function renderPagesDurationCards() {
+      const container = document.getElementById('pages-duration-cards');
+      if (!container) return;
+
+      const sessions = getFilteredSessions();
+      const pageStats = {};
+
+      sessions.forEach(s => {
+        (s.pageVisits || []).forEach(v => {
+          const page = v.page || 'index.html';
+          if (!pageStats[page]) {
+            pageStats[page] = {
+              title: v.title || page,
+              totalSeconds: 0,
+              visitCount: 0,
+              interactionsCount: 0
+            };
+          }
+          pageStats[page].totalSeconds += (v.durationSeconds || 0);
+          pageStats[page].visitCount += 1;
+          pageStats[page].interactionsCount += (v.interactionsCount || 0);
+        });
+      });
+
+      const pagesList = Object.entries(pageStats).sort((a, b) => b[1].totalSeconds - a[1].totalSeconds);
+
+      if (pagesList.length === 0) {
+        container.innerHTML = `<div class="col-span-full text-center py-8 text-slate-500 text-xs">لا توجد بيانات مكوث مسجلة لهذه الفلترة بعد.</div>`;
+        return;
+      }
+
+      const maxSec = Math.max(...pagesList.map(p => p[1].totalSeconds), 1);
+
+      container.innerHTML = pagesList.map(([page, data]) => {
+        const pct = Math.round((data.totalSeconds / maxSec) * 100);
+        const icon = getPageIcon(page);
+
+        return `
+          <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-4 flex flex-col justify-between hover:border-teal-500/40 transition-all">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="w-8 h-8 rounded-xl bg-teal-500/10 text-teal-400 flex items-center justify-center text-sm">
+                  <i class="fa-solid ${icon}"></i>
+                </span>
+                <span class="font-mono text-teal-300 font-extrabold text-sm">
+                  ${window.MediFindTracker.formatDuration(data.totalSeconds)}
+                </span>
+              </div>
+              <h4 class="text-xs font-bold text-white mb-0.5 truncate" title="${escapeHtml(data.title)}">
+                ${escapeHtml(data.title)}
+              </h4>
+              <p class="text-[10px] text-slate-500 font-mono mb-3 truncate">${escapeHtml(page)}</p>
+            </div>
+
+            <div class="space-y-2">
+              <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+                <div class="bg-gradient-to-r from-teal-500 to-cyan-400 h-full rounded-full transition-all duration-500" style="width: ${pct}%"></div>
+              </div>
+              <div class="flex items-center justify-between text-[10px] text-slate-400">
+                <span>الزيارات: <b class="text-slate-200">${data.visitCount}</b></span>
+                <span>النقرات: <b class="text-indigo-300">${data.interactionsCount}</b></span>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderJourneyTimeline() {
+      const container = document.getElementById('journey-timeline-container');
+      if (!container) return;
+
+      const sessions = getFilteredSessions();
+      let allVisits = [];
+
+      sessions.forEach(s => {
+        (s.pageVisits || []).forEach(v => {
+          allVisits.push({
+            ...v,
+            devName: s.developerName,
+            role: s.role,
+            sessionId: s.id,
+            sessionEvents: (s.events || []).filter(e => e.page === v.page),
+            sessionErrors: (s.errors || []).filter(err => err.page === v.page),
+            sessionNotes: (s.notes || []).filter(n => n.page === v.page)
+          });
+        });
+      });
+
+      allVisits.sort((a, b) => new Date(a.enteredAt) - new Date(b.enteredAt));
+
+      if (allVisits.length === 0) {
+        container.innerHTML = `<div class="text-center py-10 text-slate-500 text-xs">لا توجد خطوات رحلة مسجلة حتى الآن.</div>`;
+        return;
+      }
+
+      container.innerHTML = allVisits.map((visit, idx) => {
+        const enterTime = new Date(visit.enteredAt).toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+        const durStr = window.MediFindTracker.formatDuration(visit.durationSeconds || 0);
+        const icon = getPageIcon(visit.page);
+
+        const nextVisit = allVisits[idx + 1];
+        const nextTransitionHtml = nextVisit 
+          ? `<div class="mt-3 pt-2.5 border-t border-slate-800/80 flex items-center gap-2 text-[11px] text-cyan-300">
+               <i class="fa-solid fa-arrow-down-left text-xs text-teal-400"></i>
+               <span>ثم انتقل مباشرة إلى: <b class="text-white">${escapeHtml(nextVisit.title || nextVisit.page)}</b></span>
+             </div>`
+          : `<div class="mt-3 pt-2.5 border-t border-slate-800/80 flex items-center gap-2 text-[11px] text-slate-500">
+               <i class="fa-solid fa-circle-check text-xs text-emerald-400"></i>
+               <span>آخر محطة مسجلة في الرحلة الحالية</span>
+             </div>`;
+
+        const actionsSummary = visit.sessionEvents && visit.sessionEvents.length > 0
+          ? visit.sessionEvents.slice(0, 4).map(e => `
+              <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-slate-800 border border-slate-700 text-[10px] text-slate-300">
+                <i class="fa-solid fa-hand-pointer text-indigo-400 text-[9px]"></i>
+                <span class="truncate max-w-[150px]">${escapeHtml(e.target)}</span>
+              </span>
+            `).join(' ')
+          : '<span class="text-[10px] text-slate-500">تصفح وقراءة فقط دون نقرات</span>';
+
+        let alertBadge = '';
+        if (visit.sessionErrors && visit.sessionErrors.length > 0) {
+          alertBadge += `<span class="badge badge-error badge-xs font-bold text-white">${visit.sessionErrors.length} خطأ كود</span>`;
+        }
+        if (visit.sessionNotes && visit.sessionNotes.length > 0) {
+          alertBadge += `<span class="badge badge-warning badge-xs font-bold text-slate-950">${visit.sessionNotes.length} ملاحظة فحص</span>`;
+        }
+
+        return `
+          <div class="relative flex items-start gap-4 group">
+            
+            <div class="w-11 h-11 rounded-2xl bg-slate-900 border-2 border-teal-400 flex items-center justify-center text-teal-400 font-bold shadow-lg shadow-teal-500/20 z-10 flex-shrink-0 group-hover:scale-110 transition-transform">
+              <i class="fa-solid ${icon} text-sm"></i>
+            </div>
+
+            <div class="bg-slate-900/90 border border-slate-800/90 rounded-2xl p-4 sm:p-5 flex-1 shadow-lg hover:border-teal-500/40 transition-colors">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-2">
+                <div class="flex items-center gap-2">
+                  <span class="text-xs font-bold text-teal-400 font-mono">الخطوة #${idx + 1}</span>
+                  <h4 class="font-extrabold text-white text-sm sm:text-base">${escapeHtml(visit.title)}</h4>
+                  <span class="text-[10px] text-slate-500 font-mono">(${escapeHtml(visit.page)})</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  ${alertBadge}
+                  <span class="text-[11px] font-mono text-slate-400 flex items-center gap-1">
+                    <i class="fa-regular fa-clock text-slate-500"></i>
+                    ${enterTime}
+                  </span>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs py-2 border-y border-slate-800/60 my-2">
+                <div class="flex items-center gap-2 text-slate-300">
+                  <i class="fa-solid fa-user-circle text-teal-400"></i>
+                  <span>المبرمج: <b class="text-white">${escapeHtml(visit.devName)}</b> (${escapeHtml(visit.role || 'فاحص')})</span>
+                </div>
+                <div class="flex items-center gap-2 text-amber-300 font-bold font-mono">
+                  <i class="fa-solid fa-stopwatch text-amber-400"></i>
+                  <span>كم بقي في هذه الصفحة: ${durStr}</span>
+                </div>
+              </div>
+
+              <div class="mt-2.5">
+                <div class="text-[11px] text-slate-400 mb-1.5 font-bold">التفاعلات والنقرات المنفذة في هذه المحطة:</div>
+                <div class="flex flex-wrap gap-1.5 items-center">
+                  ${actionsSummary}
+                </div>
+              </div>
+
+              ${nextTransitionHtml}
+            </div>
+
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderActionsTable() {
+      const tbody = document.getElementById('actions-log-tbody');
+      if (!tbody) return;
+
+      const sessions = getFilteredSessions();
+      let events = [];
+
+      sessions.forEach(s => {
+        (s.events || []).forEach(e => {
+          events.push({
+            ...e,
+            devName: s.developerName
+          });
+        });
+      });
+
+      events.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+
+      if (events.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="5" class="text-center py-6 text-slate-500">لا توجد نقرات مسجلة بعد</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = events.slice(0, 50).map(e => {
+        const timeStr = new Date(e.timestamp).toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+        return `
+          <tr class="hover:bg-slate-800/60 transition-colors border-b border-slate-800/60 action-row">
+            <td class="font-mono text-slate-400 text-[10px]">${timeStr}</td>
+            <td class="font-bold text-white text-xs">${escapeHtml(e.devName)}</td>
+            <td><span class="badge badge-neutral badge-xs font-mono text-[10px]">${escapeHtml(e.page)}</span></td>
+            <td><span class="badge badge-outline badge-xs text-indigo-300 font-mono">${escapeHtml(e.action)}</span></td>
+            <td class="text-slate-200 text-xs font-semibold truncate max-w-[280px]">${escapeHtml(e.target)}</td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function filterActionsTable() {
+      const q = document.getElementById('actions-search').value.toLowerCase();
+      const rows = document.querySelectorAll('.action-row');
+      rows.forEach(row => {
+        const text = row.innerText.toLowerCase();
+        row.style.display = text.includes(q) ? '' : 'none';
+      });
+    }
+
+    function renderNotesList() {
+      const container = document.getElementById('developer-notes-container');
+      const counterBadge = document.getElementById('notes-counter-badge');
+      if (!container) return;
+
+      const sessions = getFilteredSessions();
+      let notes = [];
+
+      sessions.forEach(s => {
+        (s.notes || []).forEach(n => {
+          notes.push({ ...n, devName: s.developerName });
+        });
+      });
+
+      notes.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+      if (counterBadge) counterBadge.innerText = `${notes.length} ملاحظة`;
+
+      if (notes.length === 0) {
+        container.innerHTML = `<div class="text-center py-6 text-slate-500 text-xs">لا توجد ملاحظات مدونة من المبرمجين بعد.</div>`;
+        return;
+      }
+
+      container.innerHTML = notes.map(n => {
+        const timeStr = new Date(n.timestamp).toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit' });
+        return `
+          <div class="p-3 rounded-2xl bg-slate-900/90 border border-amber-500/30 text-xs space-y-1.5">
+            <div class="flex items-center justify-between">
+              <span class="font-bold text-amber-300">${escapeHtml(n.devName)}</span>
+              <span class="text-[10px] font-mono text-slate-400">${timeStr}</span>
+            </div>
+            <p class="text-slate-200 text-xs leading-relaxed">${escapeHtml(n.text)}</p>
+            <div class="flex items-center justify-between text-[10px] text-slate-400 pt-1 border-t border-slate-800">
+              <span class="badge badge-ghost badge-xs text-amber-400">${escapeHtml(n.category || 'ملاحظة')}</span>
+              <span class="font-mono text-slate-500">${escapeHtml(n.page)}</span>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderErrorsList() {
+      const container = document.getElementById('developer-errors-container');
+      const counterBadge = document.getElementById('errors-counter-badge');
+      if (!container) return;
+
+      const sessions = getFilteredSessions();
+      let errors = [];
+
+      sessions.forEach(s => {
+        (s.errors || []).forEach(err => {
+          errors.push({ ...err, devName: s.developerName });
+        });
+      });
+
+      errors.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+      if (counterBadge) counterBadge.innerText = `${errors.length} خطأ`;
+
+      if (errors.length === 0) {
+        container.innerHTML = `
+          <div class="text-center py-6 text-emerald-400/80 text-xs flex flex-col items-center gap-1.5">
+            <i class="fa-solid fa-shield-check text-xl text-emerald-400"></i>
+            <span>لا توجد أخطاء برمجية مسجلة! النظام سليم.</span>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = errors.map(e => {
+        const timeStr = new Date(e.timestamp).toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit' });
+        return `
+          <div class="p-3 rounded-2xl bg-rose-950/30 border border-rose-500/40 text-xs space-y-1.5">
+            <div class="flex items-center justify-between">
+              <span class="font-bold text-rose-300 truncate max-w-[160px]">${escapeHtml(e.devName)}</span>
+              <span class="text-[10px] font-mono text-slate-400">${timeStr}</span>
+            </div>
+            <p class="font-mono text-[11px] text-rose-200 bg-slate-950 p-2 rounded-lg break-all">${escapeHtml(e.message)}</p>
+            <div class="text-[10px] text-slate-400 flex items-center justify-between">
+              <span>الصفحة: <b class="text-slate-300 font-mono">${escapeHtml(e.page)}</b></span>
+              <span>السطر: ${e.line || 0}</span>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function getPageIcon(page) {
+      if (page.includes('patient')) return 'fa-hospital-user text-teal-400';
+      if (page.includes('pharmacy')) return 'fa-prescription-bottle-medical text-cyan-400';
+      if (page.includes('admin')) return 'fa-shield-halved text-rose-400';
+      if (page.includes('dev')) return 'fa-code text-indigo-400';
+      if (page.includes('features')) return 'fa-star text-amber-400';
+      return 'fa-globe text-emerald-400';
+    }
+
+    function refreshActiveDurations() {
+      if (!window.MediFindTracker) return;
+      allSessions = window.MediFindTracker.getAllSessions();
+      renderKPIs();
+      renderPagesDurationCards();
+    }
+
+    function exportFullAnalyticsJSON() {
+      const dataStr = JSON.stringify(allSessions, null, 2);
+      const blob = new Blob([dataStr], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `medifind_developer_telemetry_${new Date().toISOString().slice(0, 10)}.json`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      alert('تم تصدير ملف سجلات المبرمجين وتحليل المسار بصيغة JSON بنجاح!');
+    }
+
+    function seedMoreDemoData() {
+      if (!window.MediFindTracker) return;
+      window.MediFindTracker.seedDemoSessions();
+      loadDataAndRender();
+      alert('تم تحميل وتحديث بيانات فحص المبرمجين التجريبية للمقارنة!');
+    }
+
+    // دوال مسح المبرمجين الافتراضيين أو مسح كافة السجلات
+    function confirmClearDemoOrAll() {
+      const modal = document.getElementById('clear_records_modal');
+      if (modal) {
+        modal.showModal();
+      } else {
+        if (confirm('هل ترغب في مسح السجلات والمبرمجين الافتراضيين وتصفير المنظومة؟')) {
+          executeClearAll();
+        }
+      }
+    }
+
+    function executeClearDemoOnly() {
+      if (window.MediFindTracker) {
+        window.MediFindTracker.clearDemoSessions();
+        selectedDeveloper = 'ALL';
+        selectedSessionId = 'ALL';
+        loadDataAndRender();
+        const modal = document.getElementById('clear_records_modal');
+        if (modal) modal.close();
+        alert('تم مسح المبرمجين الافتراضيين بنجاح!');
+      }
+    }
+
+    function executeClearAll() {
+      if (window.MediFindTracker) {
+        window.MediFindTracker.clearAllSessions();
+        selectedDeveloper = 'ALL';
+        selectedSessionId = 'ALL';
+        loadDataAndRender();
+        const modal = document.getElementById('clear_records_modal');
+        if (modal) modal.close();
+        alert('تم مسح كافة السجلات وتصفير العدادات بالكامل بنجاح!');
+      }
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str).replace(/[&<>'"]/g, tag => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        "'": '&#39;',
+        '"': '&quot;'
+      }[tag] || tag));
+    }
+  </script>
+</body>
+</html>

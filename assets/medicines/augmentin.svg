@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 300" role="img" aria-label="علبة دواء مضاد حيوي">
+  <rect width="320" height="300" rx="28" fill="#f1f8f8"/>
+  <ellipse cx="161" cy="252" rx="84" ry="13" fill="#dce8e9"/>
+  <path d="M87 80 202 60l34 22v133l-115 20-34-22z" fill="#fff" stroke="#c8dadd" stroke-width="4"/>
+  <path d="m202 60 34 22-115 20-34-22z" fill="#e5f4f7" stroke="#c8dadd" stroke-width="4"/>
+  <path d="M87 80 121 102v133l-34-22z" fill="#d7edf1" stroke="#c8dadd" stroke-width="4"/>
+  <path d="M124 132h91v34h-91z" fill="#0e7490"/>
+  <path d="M124 180h72" stroke="#bbd3d8" stroke-width="6" stroke-linecap="round"/>
+  <path d="M124 196h49" stroke="#d1e1e3" stroke-width="5" stroke-linecap="round"/>
+  <text x="169" y="153" text-anchor="middle" fill="#fff" font-family="Arial,sans-serif" font-size="12" font-weight="700">ANTIBIOTIC</text>
+</svg>

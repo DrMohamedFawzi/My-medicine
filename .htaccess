@@ -1,0 +1,48 @@
+# ==============================================================================
+# MediFind / Dawaak - Apache Optimization & Hardening Configuration
+# ==============================================================================
+
+# 1. Prevent Windows file locking & hanging
+<IfModule core_module>
+  EnableMMAP Off
+  EnableSendfile Off
+</IfModule>
+
+# 2. Default Character Encoding
+AddDefaultCharset UTF-8
+AddCharset UTF-8 .html .css .js .json .svg
+
+# 3. MIME Types
+<IfModule mime_module>
+  AddType image/webp .webp
+  AddType application/manifest+json .webmanifest .json
+  AddType font/woff2 .woff2
+</IfModule>
+
+# 4. Gzip / Deflate Compression
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css
+  AddOutputFilterByType DEFLATE application/javascript application/json application/xml
+  AddOutputFilterByType DEFLATE image/svg+xml
+</IfModule>
+
+# 5. Browser Caching
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault "access plus 1 day"
+  ExpiresByType image/webp "access plus 1 month"
+  ExpiresByType image/png "access plus 1 month"
+  ExpiresByType image/jpeg "access plus 1 month"
+  ExpiresByType image/svg+xml "access plus 1 month"
+  ExpiresByType text/css "access plus 1 week"
+  ExpiresByType application/javascript "access plus 1 week"
+</IfModule>
+
+# 6. Security Headers & Performance Headers
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "SAMEORIGIN"
+  <FilesMatch "\.(webp|png|jpg|jpeg|svg|css|js)$">
+    Header set Cache-Control "max-age=604800, public"
+  </FilesMatch>
+</IfModule>

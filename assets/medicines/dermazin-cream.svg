@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 300" role="img" aria-label="أنبوب كريم للعناية بالحروق">
+  <rect width="320" height="300" rx="28" fill="#f1f8f8"/>
+  <ellipse cx="159" cy="253" rx="83" ry="13" fill="#dce8e9"/>
+  <path d="M110 75h106v35l-9 107h-88l-9-107z" fill="#fff" stroke="#c8dadd" stroke-width="4"/>
+  <path d="M110 75h106v38H110z" fill="#e8f3f5"/>
+  <path d="M120 132h86v40h-86z" fill="#118a8b"/>
+  <path d="M132 187h61" stroke="#c6dadd" stroke-width="5" stroke-linecap="round"/>
+  <path d="M128 217h70v17h-70z" rx="4" fill="#d9e7e9" stroke="#b9cdd1" stroke-width="3"/>
+  <text x="163" y="157" text-anchor="middle" fill="#fff" font-family="Arial,sans-serif" font-size="11" font-weight="700">SKIN CARE</text>
+</svg>

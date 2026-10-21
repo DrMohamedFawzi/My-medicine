@@ -1,0 +1,1839 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="corporate">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#071a2c">
+
+  <!-- Primary Meta Tags & SEO -->
+  <title>مركز التحكم والإدارة واستخبارات الإغاثة 🛡️ | دواك بإيدك - قطاع غزة</title>
+  <meta name="title" content="مركز التحكم والإدارة واستخبارات الإغاثة 🛡️ | دواك بإيدك - قطاع غزة">
+  <meta name="description" content="مركز الإدارة والرقابة المركزية لمنصة دواك بإيدك بغزة - اعتماد التراخيص، خريطة العجز الدوائي الحية (NGO Heatmap API)، ورادار رصد الأوبئة.">
+  <meta name="keywords" content="إدارة دواك بإيدك, رادار النقص الدوائي غزة, خريطة استخبارات الإغاثة غزة, WHO Gaza, MSN-IT In UK">
+  <meta name="author" content="MSN-IT In UK">
+  <meta name="robots" content="noindex, nofollow">
+
+  <!-- Favicon & Touch Icons -->
+  <link rel="icon" type="image/webp" href="assets/images/dawaak-logo.webp">
+  <link rel="icon" type="image/png" href="assets/images/dawaak-logo.png">
+  <link rel="apple-touch-icon" href="assets/images/dawaak-logo.png">
+  
+  <!-- Tailwind CSS & DaisyUI CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.10.2/dist/full.min.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Google Fonts - Cairo & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;600;800;900&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Cairo', 'sans-serif'],
+            display: ['Outfit', 'Cairo', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#f0fdfa',
+              100: '#ccfbf1',
+              500: '#14b8a6',
+              600: '#0d9488',
+              700: '#0f766e',
+              primary: '#0e7490',
+              secondary: '#06b6d4',
+              dark: '#08131d'
+            }
+          },
+          animation: {
+            'fade-in': 'fadeIn 0.35s ease-out forwards',
+            'slide-up': 'slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+            'pulse-dot': 'pulseDot 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+          },
+          keyframes: {
+            fadeIn: {
+              '0%': { opacity: '0', transform: 'scale(0.98)' },
+              '100%': { opacity: '1', transform: 'scale(1)' },
+            },
+            slideUp: {
+              '0%': { opacity: '0', transform: 'translateY(16px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+            pulseDot: {
+              '0%, 100%': { opacity: '1', transform: 'scale(1)' },
+              '50%': { opacity: '0.4', transform: 'scale(1.2)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+  
+  <style>
+    body {
+      font-family: 'Cairo', sans-serif;
+      background-color: #f1f5f9;
+    }
+    .admin-sidebar {
+      background: linear-gradient(180deg, #09131f 0%, #050b12 100%);
+    }
+    .active-tab-nav {
+      background: rgba(20, 184, 166, 0.18);
+      color: #2dd4bf !important;
+      border-right: 4px solid #14b8a6;
+      font-weight: 800;
+    }
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+      animation: fadeIn 0.35s ease-out forwards;
+    }
+    .badge-emergency {
+      background-color: #fee2e2;
+      color: #991b1b;
+      border: 1px solid #f87171;
+    }
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+      #printable_relief_report, #printable_relief_report * {
+        visibility: visible;
+      }
+      #printable_relief_report {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="dashboard-ui.css">
+  <script src="dashboard-ui.js" defer></script>
+</head>
+<body class="dashboard-shell admin-dashboard min-h-screen text-slate-800 antialiased flex flex-col md:flex-row">
+
+  <!-- ========================================================================= -->
+  <!-- 1. شريط الإدارة الجانبي المتقدم (Admin Command Sidebar) -->
+  <!-- ========================================================================= -->
+  <aside class="dashboard-sidebar w-full md:w-72 admin-sidebar text-white flex-shrink-0 flex flex-col shadow-2xl z-30 border-l border-slate-800/80">
+    
+    <!-- شعار المنصة والرتبة -->
+    <div class="p-5 border-b border-slate-800/80 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3 group">
+        <img src="assets/images/dawaak-logo.png" alt="" class="h-11 w-11 shrink-0 object-contain group-hover:scale-105 transition-transform duration-300" width="48" height="48">
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="font-black text-lg text-slate-100 font-display tracking-wide">دواك بإيدك</h1>
+            <span class="badge badge-error badge-xs text-white font-black">ADMIN</span>
+          </div>
+          <p class="text-[11px] text-slate-400 font-bold">مركز الرقابة • قطاع غزة</p>
+        </div>
+      </a>
+      <div class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse-dot" title="متصل بالشبكة"></div>
+    </div>
+
+    <!-- بطاقة المشرف الإداري -->
+    <div class="p-4 mx-3 my-3 bg-slate-900/90 rounded-2xl border border-slate-800/80 flex items-center justify-between shadow-inner">
+      <div class="flex items-center gap-3 overflow-hidden">
+        <div class="avatar placeholder">
+          <div class="bg-gradient-to-br from-rose-800 to-slate-800 text-rose-200 rounded-xl w-10 text-sm font-black shadow">
+            <i class="fa-solid fa-user-shield"></i>
+          </div>
+        </div>
+        <div class="overflow-hidden">
+          <h3 class="text-xs font-black text-slate-100 truncate">د. كمال الشرافي</h3>
+          <p class="text-[10px] text-teal-400 font-semibold truncate">المشرف العام على تراخيص غزة</p>
+        </div>
+      </div>
+      <span class="badge badge-ghost badge-xs text-[10px] text-slate-400">رئيسي</span>
+    </div>
+
+    <!-- قائمة التبويبات التفاعلية (Interactive Navigation Tabs) -->
+    <nav class="flex-1 px-3 py-2 space-y-1.5 text-xs font-bold overflow-y-auto">
+      <p class="dashboard-nav-label">نظرة عامة</p>
+      
+      <!-- تبويب 1: نظرة عامة -->
+      <button onclick="switchAdminTab('overview-tab', this)" class="admin-nav-btn active-tab-nav w-full flex items-center justify-between px-3.5 py-3 rounded-xl text-slate-300 hover:bg-slate-800/60 transition duration-200">
+        <div class="flex items-center gap-3">
+          <i class="fa-solid fa-gauge-high text-teal-400 text-sm"></i>
+          <span>نظرة عامة والتحكم المركزي</span>
+        </div>
+        <i class="fa-solid fa-chevron-left text-[10px] opacity-60"></i>
+      </button>
+
+      <p class="dashboard-nav-label">شبكة الصيدليات والعمليات</p>
+      <!-- تبويب 2: اعتماد تراخيص الصيدليات -->
+      <button onclick="switchAdminTab('verifications-tab', this)" class="admin-nav-btn w-full flex items-center justify-between px-3.5 py-3 rounded-xl text-slate-300 hover:bg-slate-800/60 transition duration-200">
+        <div class="flex items-center gap-3">
+          <i class="fa-solid fa-certificate text-amber-400 text-sm"></i>
+          <span>اعتماد تراخيص الصيدليات</span>
+        </div>
+        <span id="nav-pending-pharmacies-badge" class="badge badge-warning badge-sm font-black text-slate-900 animate-pulse">0</span>
+      </button>
+
+      <!-- تبويب 3: مراقبة الطلبات اللحظية -->
+      <button onclick="switchAdminTab('orders-stream-tab', this)" class="admin-nav-btn w-full flex items-center justify-between px-3.5 py-3 rounded-xl text-slate-300 hover:bg-slate-800/60 transition duration-200">
+        <div class="flex items-center gap-3">
+          <i class="fa-solid fa-tower-broadcast text-cyan-400 text-sm"></i>
+          <span>مراقبة الطلبات اللحظية</span>
+        </div>
+        <span id="nav-live-orders-badge" class="badge badge-primary badge-sm font-black text-white">0</span>
+      </button>
+
+      <!-- تبويب 4: مؤشرات النقص الدوائي -->
+      <button onclick="switchAdminTab('shortage-tab', this)" class="admin-nav-btn w-full flex items-center justify-between px-3.5 py-3 rounded-xl text-slate-300 hover:bg-slate-800/60 transition duration-200">
+        <div class="flex items-center gap-3">
+          <i class="fa-solid fa-chart-pie text-rose-400 text-sm"></i>
+          <span>رادار النقص الدوائي بغزة</span>
+        </div>
+        <span class="badge badge-error badge-xs text-white font-bold">تقرير 🚨</span>
+      </button>
+
+      <p class="dashboard-nav-label">السلامة والحوكمة</p>
+      <!-- تبويب 5: البلاغات والشكاوى -->
+      <button onclick="switchAdminTab('complaints-tab', this)" class="admin-nav-btn w-full flex items-center justify-between px-3.5 py-3 rounded-xl text-slate-300 hover:bg-slate-800/60 transition duration-200">
+        <div class="flex items-center gap-3">
+          <i class="fa-solid fa-triangle-exclamation text-amber-400 text-sm"></i>
+          <span>البلاغات والشكاوى</span>
+        </div>
+        <span id="nav-reports-badge" class="badge badge-error badge-sm text-white font-black">2</span>
+      </button>
+
+      <!-- تبويب 6: سجل التدقيق -->
+      <button onclick="switchAdminTab('audit-tab', this)" class="admin-nav-btn w-full flex items-center justify-between px-3.5 py-3 rounded-xl text-slate-300 hover:bg-slate-800/60 transition duration-200">
+        <div class="flex items-center gap-3">
+          <i class="fa-solid fa-clock-rotate-left text-purple-400 text-sm"></i>
+          <span>سجل التدقيق الإداري</span>
+        </div>
+        <i class="fa-solid fa-chevron-left text-[10px] opacity-60"></i>
+      </button>
+
+      <!-- فواصل وبوابات التنقل المباشر -->
+      <div class="pt-4 mt-4 border-t border-slate-800/80 space-y-2">
+        <p class="text-[10px] text-slate-500 uppercase px-3 font-bold">روابط الانتقال السريع للمنظومة</p>
+        
+        <a href="index_pharmacy.html" class="flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-slate-900/80 text-teal-300 hover:bg-teal-950/60 border border-teal-800/40 transition">
+          <span class="flex items-center gap-2">
+            <i class="fa-solid fa-clinic-medical"></i>
+            <span>بوابة الصيدلي</span>
+          </span>
+          <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+        </a>
+
+        <a href="index_patient.html" class="flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-slate-900/80 text-cyan-300 hover:bg-cyan-950/60 border border-cyan-800/40 transition">
+          <span class="flex items-center gap-2">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <span>واجهة المريض والبحث</span>
+          </span>
+          <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+        </a>
+
+        <a href="index.html" class="flex items-center gap-2 px-3.5 py-2 rounded-xl text-slate-400 hover:text-white transition">
+          <i class="fa-solid fa-house text-slate-500"></i>
+          <span>الصفحة الرئيسية للمنصة</span>
+        </a>
+
+        <details class="dashboard-developer-tools pt-2 border-t border-slate-800/80">
+          <summary class="flex cursor-pointer items-center justify-between rounded-xl px-3 py-2.5 text-xs font-bold text-slate-400 hover:bg-slate-800/60 hover:text-white">
+            <span class="flex items-center gap-2"><i class="fa-solid fa-code text-teal-400"></i> أدوات المطورين</span>
+            <i class="fa-solid fa-chevron-down text-[10px] transition-transform"></i>
+          </summary>
+          <div class="pt-1">
+            <button onclick="switchAdminTab('dev-telemetry-tab', this)" class="admin-nav-btn w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-slate-300 hover:bg-slate-800/60 transition duration-200">
+              <span class="flex items-center gap-2"><i class="fa-solid fa-satellite-dish text-teal-400"></i><span>روابط المطورين والرصد</span></span>
+              <span class="badge badge-accent badge-xs text-slate-950 font-black">DEV</span>
+            </button>
+          <a href="dev_analytics.html" class="flex items-center justify-between px-3.5 py-2 rounded-xl bg-teal-950/40 text-teal-300 hover:bg-teal-900/60 border border-teal-500/30 transition text-xs font-bold mb-1">
+            <span class="flex items-center gap-2">
+              <i class="fa-solid fa-chart-line text-teal-400"></i>
+              <span>تحليل رحلات المطورين</span>
+            </span>
+            <span class="badge badge-accent badge-xs text-slate-950 font-bold">LIVE</span>
+          </a>
+          <a href="dev_session.html" class="flex items-center justify-between px-3.5 py-2 rounded-xl text-slate-400 hover:text-white transition text-xs">
+            <span class="flex items-center gap-2">
+              <i class="fa-solid fa-user-gear"></i>
+              <span>بوابة بدء جلسة اختبار</span>
+            </span>
+            <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+          </a>
+          </div>
+        </details>
+      </div>
+
+    </nav>
+
+    <!-- تذييل القائمة الجانبية -->
+    <div class="p-4 border-t border-slate-800/80 text-[11px] text-slate-500 text-center space-y-1">
+      <div>لوحة تحكم دواك بإيدك • قطاع غزة</div>
+      <div class="font-mono text-[10px] text-slate-600">v2.5 Production Build</div>
+    </div>
+
+  </aside>
+
+  <!-- ========================================================================= -->
+  <!-- 2. مساحة العمل والمحتوى الإداري المتغير (Dynamic Content View) -->
+  <!-- ========================================================================= -->
+  <main class="dashboard-main flex-1 min-w-0 flex flex-col overflow-y-auto">
+    
+    <!-- شريط الرأس العلوي (Top Command Bar) -->
+    <header class="bg-white border-b border-slate-200/90 sticky top-0 z-20 px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-sm backdrop-blur">
+      <div class="flex items-center gap-3">
+        <button type="button" class="dashboard-nav-toggle" aria-expanded="false" aria-label="فتح القائمة">
+          <i class="fa-solid fa-bars" aria-hidden="true"></i>
+        </button>
+        <div class="w-10 h-10 rounded-2xl bg-slate-900 text-white flex items-center justify-center text-lg shadow-sm">
+          <i id="current-tab-icon" class="fa-solid fa-gauge-high text-teal-400"></i>
+        </div>
+        <div>
+          <h2 id="current-tab-title" class="text-xl font-black text-slate-900">مركز التحكم والإدارة</h2>
+          <p id="current-tab-subtitle" class="text-xs text-slate-500">متابعة شبكة الصيدليات والطلبات وحالة التغطية في قطاع غزة</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3 w-full sm:w-auto justify-end">
+        <div class="flex items-center gap-2 bg-emerald-50 text-emerald-800 border border-emerald-200/80 px-3.5 py-1.5 rounded-full text-xs font-bold shadow-sm">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse-dot"></span>
+          <span>المزامنة المركزية نشطة (شيكل ₪)</span>
+        </div>
+
+        <button onclick="switchAdminTab('verifications-tab')" class="btn btn-sm bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-bold gap-1 shadow-sm">
+          <i class="fa-solid fa-certificate"></i>
+          <span>مراجعة طلبات الترخيص</span>
+        </button>
+
+        <button onclick="exportB2BDataJSON()" class="btn btn-sm bg-teal-600 hover:bg-teal-700 text-white rounded-xl text-xs font-bold gap-1 shadow-sm">
+          <i class="fa-solid fa-download"></i>
+          <span>تصدير رادار النقص B2B/B2G</span>
+        </button>
+
+        <button onclick="printReliefReport()" class="btn btn-sm btn-outline btn-primary rounded-xl text-xs font-bold gap-1 shadow-sm">
+          <i class="fa-solid fa-file-pdf"></i>
+          <span>طباعة تقرير الإغاثة</span>
+        </button>
+
+        <button onclick="resetAllDemoData()" class="btn btn-sm btn-ghost text-rose-600 hover:bg-rose-50 rounded-xl text-xs font-bold" title="إعادة ضبط">
+          <i class="fa-solid fa-rotate-left"></i>
+        </button>
+      </div>
+    </header>
+
+    <div class="dashboard-page-content p-6 space-y-8 max-w-7xl mx-auto w-full flex-1">
+
+      <!-- ===================================================================== -->
+      <!-- تبويب 1: نظرة عامة والتحكم المركزي (Overview Tab) -->
+      <!-- ===================================================================== -->
+      <div id="overview-tab" class="tab-content active space-y-8">
+        
+        <!-- بطاقات المؤشرات الرقمية (KPIs) -->
+        <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          
+          <div class="card bg-white shadow-sm hover:shadow-md transition-shadow border border-slate-200 p-5 rounded-3xl flex flex-row items-center justify-between">
+            <div>
+              <p class="text-xs font-bold text-slate-400 uppercase">صيدليات معتمدة ونشطة</p>
+              <h4 id="ov-verified-pharmacies" class="text-3xl font-black text-slate-900 font-display mt-1">0</h4>
+              <span class="text-[11px] text-teal-700 font-bold">عبر 5 محافظات بالقطاع</span>
+            </div>
+            <div class="w-13 h-13 w-12 h-12 rounded-2xl bg-teal-50 text-teal-600 flex items-center justify-center text-2xl shadow-sm">
+              <i class="fa-solid fa-circle-check"></i>
+            </div>
+          </div>
+
+          <div class="card bg-gradient-to-br from-amber-50 to-orange-50/60 border-2 border-amber-200 shadow-sm hover:shadow-md transition-shadow p-5 rounded-3xl flex flex-row items-center justify-between">
+            <div>
+              <p class="text-xs font-bold text-amber-900 uppercase flex items-center gap-1.5">
+                <span>تراخيص بانتظار الاعتماد</span>
+                <span class="w-2 h-2 rounded-full bg-amber-500 animate-ping"></span>
+              </p>
+              <h4 id="ov-pending-pharmacies" class="text-3xl font-black text-amber-900 font-display mt-1">0</h4>
+              <button onclick="switchAdminTab('verifications-tab')" class="text-[11px] text-amber-800 font-bold hover:underline flex items-center gap-1 mt-0.5">
+                <span>مراجعة الطلبات الآن</span>
+                <i class="fa-solid fa-arrow-left text-[9px]"></i>
+              </button>
+            </div>
+            <div class="w-12 h-12 rounded-2xl bg-amber-500 text-white flex items-center justify-center text-2xl shadow-md shadow-amber-300/50">
+              <i class="fa-solid fa-certificate"></i>
+            </div>
+          </div>
+
+          <div class="card bg-white shadow-sm hover:shadow-md transition-shadow border border-slate-200 p-5 rounded-3xl flex flex-row items-center justify-between">
+            <div>
+              <p class="text-xs font-bold text-slate-400 uppercase">الطلبات المتحققة بشرياً</p>
+              <h4 id="ov-total-orders" class="text-3xl font-black text-cyan-800 font-display mt-1">0</h4>
+              <span class="text-[11px] text-slate-500 font-medium">تم فحصها يدوياً من الصيدلي</span>
+            </div>
+            <div class="w-12 h-12 rounded-2xl bg-cyan-50 text-cyan-600 flex items-center justify-center text-2xl shadow-sm">
+              <i class="fa-solid fa-notes-medical"></i>
+            </div>
+          </div>
+
+          <div class="card bg-white shadow-sm hover:shadow-md transition-shadow border border-slate-200 p-5 rounded-3xl flex flex-row items-center justify-between">
+            <div>
+              <p class="text-xs font-bold text-rose-500 uppercase">مستلزمات قاربت على النفاد</p>
+              <h4 id="ov-shortage-count" class="text-3xl font-black text-rose-600 font-display mt-1">0</h4>
+              <span class="text-[11px] text-slate-500 font-medium">شاش / مطهرات / حروق</span>
+            </div>
+            <div class="w-12 h-12 rounded-2xl bg-rose-50 text-rose-500 flex items-center justify-center text-2xl shadow-sm">
+              <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+          </div>
+
+        </section>
+
+        <!-- ملخص العمليات المباشرة وتوزيع المحافظات -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          
+          <!-- بطاقة توزيع الطلبات بالمحافظات -->
+          <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm space-y-4">
+            <div class="flex items-center justify-between">
+              <h3 class="font-black text-base text-slate-900 flex items-center gap-2">
+                <i class="fa-solid fa-map-location-dot text-teal-600"></i>
+                <span>توزيع الصيدليات بالمحافظات</span>
+              </h3>
+              <span class="badge badge-teal badge-sm font-bold bg-teal-100 text-teal-900 border-none">غزة</span>
+            </div>
+
+            <div class="space-y-3 text-xs">
+              <div>
+                <div class="flex justify-between font-bold mb-1">
+                  <span>محافظة غزة (الرمال، الصبرة)</span>
+                  <span class="text-teal-700 font-mono">3 صيدليات (45%)</span>
+                </div>
+                <progress class="progress progress-primary w-full" value="45" max="100"></progress>
+              </div>
+
+              <div>
+                <div class="flex justify-between font-bold mb-1">
+                  <span>محافظة خانيونس (وسط البلد، الأمل)</span>
+                  <span class="text-teal-700 font-mono">2 صيدلية (25%)</span>
+                </div>
+                <progress class="progress progress-info w-full" value="25" max="100"></progress>
+              </div>
+
+              <div>
+                <div class="flex justify-between font-bold mb-1">
+                  <span>محافظة دير البلح والوسطى</span>
+                  <span class="text-teal-700 font-mono">2 صيدلية (15%)</span>
+                </div>
+                <progress class="progress progress-accent w-full" value="15" max="100"></progress>
+              </div>
+
+              <div>
+                <div class="flex justify-between font-bold mb-1">
+                  <span>محافظة رفح (تل السلطان)</span>
+                  <span class="text-teal-700 font-mono">1 صيدلية (10%)</span>
+                </div>
+                <progress class="progress progress-warning w-full" value="10" max="100"></progress>
+              </div>
+
+              <div>
+                <div class="flex justify-between font-bold mb-1">
+                  <span>شمال غزة (مخيم جباليا)</span>
+                  <span class="text-teal-700 font-mono">1 صيدلية (5%)</span>
+                </div>
+                <progress class="progress progress-error w-full" value="5" max="100"></progress>
+              </div>
+            </div>
+          </div>
+
+          <!-- بطاقة أحدث الطلبات الحية الواردة -->
+          <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm space-y-4 lg:col-span-2">
+            <div class="flex items-center justify-between">
+              <h3 class="font-black text-base text-slate-900 flex items-center gap-2">
+                <i class="fa-solid fa-tower-broadcast text-cyan-600"></i>
+                <span>تدفق الطلبات الحية الأحدث (Real-time Stream)</span>
+              </h3>
+              <button onclick="switchAdminTab('orders-stream-tab')" class="btn btn-ghost btn-xs text-cyan-800 font-bold hover:bg-cyan-50">
+                عرض الكل <i class="fa-solid fa-arrow-left text-[10px]"></i>
+              </button>
+            </div>
+
+            <div id="overview-recent-orders" class="space-y-2.5">
+              <!-- تعبئة أحدث 4 طلبات بالجافاسكريبت -->
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- ===================================================================== -->
+      <!-- تبويب 2: اعتماد وتدقيق تراخيص الصيدليات (Verifications Tab) -->
+      <!-- ===================================================================== -->
+      <div id="verifications-tab" class="tab-content space-y-8">
+        
+        <!-- قسم الطلبات المعلقة للترخيص -->
+        <div class="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
+          <div class="p-6 border-b border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-gradient-to-r from-slate-50 to-amber-50/50">
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-amber-500 animate-pulse-dot"></span>
+                <h3 class="text-lg font-black text-slate-900">طلبات انضمام الصيدليات بانتظار الاعتماد والترخيص</h3>
+              </div>
+              <p class="text-xs text-slate-500 mt-1">يجب مطابقة رقم الترخيص مع سجلات وزارة الصحة ونقابة الصيادلة بقطاع غزة</p>
+            </div>
+            <span id="tab-pending-count-badge" class="badge badge-warning font-black text-slate-900 px-3 py-1">0 بانتظار القرار</span>
+          </div>
+
+          <div id="pending-pharmacies-list" class="p-6">
+            <!-- تعبئة الطلبات بالجافاسكريبت -->
+          </div>
+        </div>
+
+        <!-- قسم الصيدليات المعتمدة والمرخصة حالياً -->
+        <div class="bg-white rounded-3xl border border-slate-200 shadow-sm p-6 space-y-4">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-4">
+            <div>
+              <h3 class="text-base font-extrabold text-slate-900 flex items-center gap-2">
+                <i class="fa-solid fa-circle-check text-emerald-600"></i>
+                <span>دليل الصيدليات المعتمدة والنشطة في قطاع غزة</span>
+              </h3>
+              <p class="text-xs text-slate-400">إمكانية تعديل حالة الترخيص أو تفعيل المناوبة الليلية مباشرة</p>
+            </div>
+
+            <!-- شريط بحث الصيدليات المعتمدة -->
+            <input 
+              type="text" 
+              id="verified-pharmacies-search" 
+              oninput="renderVerifiedPharmaciesTable()" 
+              placeholder="بحث باسم الصيدلية، الحي، أو الترخيص..." 
+              class="input input-bordered input-sm rounded-xl text-xs w-full sm:w-64"
+            >
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="table w-full text-right text-xs">
+              <thead class="bg-slate-50 text-slate-700 border-b border-slate-200">
+                <tr>
+                  <th>اسم الصيدلية / المسؤول</th>
+                  <th>رقم الترخيص</th>
+                  <th>المحافظة والعنوان</th>
+                  <th>المناوبة الليلية</th>
+                  <th>حالة الحساب</th>
+                  <th class="text-center">إجراءات الإدارة</th>
+                </tr>
+              </thead>
+              <tbody id="verified-pharmacies-tbody" class="divide-y divide-slate-100">
+                <!-- تعبئة الصيدليات المعتمدة -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ===================================================================== -->
+      <!-- تبويب 3: مراقبة تدفق الطلبات اللحظية (Orders Stream Tab) -->
+      <!-- ===================================================================== -->
+      <div id="orders-stream-tab" class="tab-content space-y-6">
+        
+        <div class="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
+          <div class="p-6 border-b border-slate-100 flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div>
+              <h3 class="text-lg font-black text-slate-900 flex items-center gap-2">
+                <i class="fa-solid fa-tower-broadcast text-cyan-600"></i>
+                <span>مراقبة تدفق الطلبات المباشرة في كافة المحافظات</span>
+              </h3>
+              <p class="text-xs text-slate-500 mt-0.5">تتبع دورة التحقق البشري لكل مريض في غزة واستجابة الصيدليات</p>
+            </div>
+
+            <!-- فلاتر تدفق الطلبات -->
+            <div class="flex flex-wrap items-center gap-2.5">
+              <select id="stream-gov-filter" onchange="renderStreamOrdersTable()" class="select select-bordered select-sm text-xs rounded-xl font-bold">
+                <option value="all">📍 جميع محافظات غزة</option>
+                <option value="غزة">محافظة غزة</option>
+                <option value="خانيونس">محافظة خانيونس</option>
+                <option value="دير البلح">محافظة دير البلح والوسطى</option>
+                <option value="رفح">محافظة رفح</option>
+                <option value="شمال غزة">شمال غزة</option>
+              </select>
+
+              <select id="stream-status-filter" onchange="renderStreamOrdersTable()" class="select select-bordered select-sm text-xs rounded-xl">
+                <option value="all">جميع الحالات</option>
+                <option value="pending">بانتظار التحقق (معلق)</option>
+                <option value="approved">مؤكد ومحجوز</option>
+                <option value="completed">تم التسليم</option>
+                <option value="rejected">مرفوض</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="table w-full text-right text-xs">
+              <thead class="bg-slate-50 text-slate-700 border-b border-slate-200">
+                <tr>
+                  <th>كود الطلب</th>
+                  <th>المريض والتواصل</th>
+                  <th>الصنف والكمية</th>
+                  <th>الإلحاح</th>
+                  <th>الصيدلية الموجه إليها</th>
+                  <th>حالة التحقق</th>
+                  <th>كود الاستلام</th>
+                  <th>الوقت</th>
+                  <th class="text-center">فحص</th>
+                </tr>
+              </thead>
+              <tbody id="stream-orders-tbody" class="divide-y divide-slate-100">
+                <!-- تعبئة الطلبات بالجافاسكريبت -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ===================================================================== -->
+      <!-- تبويب 4: لوحة استخبارات الإغاثة الدولية ورادار الأوبئة (NGO Heatmap & Shortage Intelligence) -->
+      <!-- ===================================================================== -->
+      <div id="shortage-tab" class="tab-content space-y-6">
+        
+        <!-- Action & Partnership Header -->
+        <div class="bg-gradient-to-r from-slate-900 via-teal-950 to-slate-900 text-white rounded-3xl p-6 sm:p-7 border border-teal-500/30 shadow-xl space-y-4">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="badge badge-error badge-sm text-white font-black animate-pulse">LIVE INTEL</span>
+                <span class="badge badge-outline border-teal-400 text-teal-300 text-xs font-bold">منصة استخبارات الإغاثة الدولية (NGO Heatmap API)</span>
+              </div>
+              <h3 class="text-xl sm:text-2xl font-black mt-1.5 font-display">رادار العجز الدوائي ورصد الأوبئة بالقطاع</h3>
+              <p class="text-xs text-teal-100/80 mt-1 max-w-2xl leading-relaxed">
+                تحويل عمليات البحث الفاشلة (Zero-Result Analytics) لبيانات ذكية موجهة لشاحنات منظمة الصحة العالمية (WHO) واليونيسف وأطباء بلا حدود والهلال الأحمر لإنقاذ الأرواح قبل فوات الأوان.
+              </p>
+            </div>
+
+            <div class="flex flex-wrap items-center gap-2">
+              <button type="button" onclick="exportNGOHeatmapJSON()" class="btn btn-sm bg-teal-600 hover:bg-teal-500 text-white font-extrabold text-xs rounded-xl shadow-md gap-1.5">
+                <i class="fa-solid fa-cloud-arrow-down"></i> تصدير JSON للـ UN/NGOs
+              </button>
+              <button type="button" onclick="window.print()" class="btn btn-sm btn-outline border-white/40 text-white hover:bg-white hover:text-slate-900 font-bold text-xs rounded-xl gap-1.5">
+                <i class="fa-solid fa-print"></i> طباعة التقرير الرسمي
+              </button>
+              <button type="button" onclick="simulateZeroResultSpike()" class="btn btn-sm bg-rose-700 hover:bg-rose-600 text-white font-bold text-xs rounded-xl gap-1">
+                <i class="fa-solid fa-bolt"></i> محاكاة عجز مفاجئ ⚡
+              </button>
+            </div>
+          </div>
+
+          <!-- Summary Metric Counters -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-3 border-t border-slate-800">
+            <div class="p-3 bg-white/5 rounded-2xl border border-white/10">
+              <span class="text-[10px] text-teal-300 block font-bold">عمليات البحث غير الملباة</span>
+              <strong id="ngo-stat-total-zero" class="text-xl sm:text-2xl font-black font-mono text-white">0</strong>
+              <span class="text-[9px] text-slate-400 block mt-0.5">Zero-Results مسجلة</span>
+            </div>
+            <div class="p-3 bg-white/5 rounded-2xl border border-white/10">
+              <span class="text-[10px] text-rose-300 block font-bold">بؤر العجز الحرج</span>
+              <strong id="ngo-stat-critical-hotspots" class="text-xl sm:text-2xl font-black font-mono text-rose-400">0</strong>
+              <span class="text-[9px] text-slate-400 block mt-0.5">مناطق تحتاج شاحنات فورية</span>
+            </div>
+            <div class="p-3 bg-white/5 rounded-2xl border border-white/10">
+              <span class="text-[10px] text-amber-300 block font-bold">إنذارات تفشي الأوبئة</span>
+              <strong id="ngo-stat-epidemic-alerts" class="text-xl sm:text-2xl font-black font-mono text-amber-400">0</strong>
+              <span class="text-[9px] text-slate-400 block mt-0.5">مؤشرات تلوث مياه وتسمم</span>
+            </div>
+            <div class="p-3 bg-white/5 rounded-2xl border border-white/10">
+              <span class="text-[10px] text-cyan-300 block font-bold">الشركاء الدوليون</span>
+              <strong class="text-sm font-extrabold text-cyan-200 block mt-1">WHO • MSF • UNICEF</strong>
+              <span class="text-[9px] text-slate-400 block">الهلال الأحمر الفلسطيني</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 1. الخريطة الحرارية الحية للعجز الدوائي (Live Zero-Result Shortage Heatmap) -->
+        <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm space-y-4">
+          <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+            <div>
+              <h4 class="text-base font-extrabold text-slate-900 flex items-center gap-2">
+                <i class="fa-solid fa-fire text-rose-500"></i>
+                <span>الخريطة الحرارية اللحظية للعجز الدوائي (Live Shortage Heatmap)</span>
+              </h4>
+              <p class="text-xs text-slate-500">ترصد الأدوية الأكثر طلباً التي لم يجدها المرضى مصنفة جغرافياً حسب المحافظة والمنطقة</p>
+            </div>
+            <span class="badge badge-neutral badge-xs font-mono">آخر تحديث: قبل ثوانٍ</span>
+          </div>
+
+          <div id="ngo-heatmap-container" class="grid gap-3.5 sm:grid-cols-2 lg:grid-cols-3">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+
+        <!-- 2. رادار الإنذار المبكر للأوبئة والمياه الملوثة (Epidemic Early Warning Surveillance) -->
+        <div class="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm space-y-4">
+          <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+            <div>
+              <h4 class="text-base font-extrabold text-slate-900 flex items-center gap-2">
+                <i class="fa-solid fa-biohazard text-amber-500"></i>
+                <span>رادار الإنذار المبكر للأوبئة ومخاطر المياه الملوثة (Epidemic Surveillance)</span>
+              </h4>
+              <p class="text-xs text-slate-500">تحليل الذكاء الوبائي: استنتاج تفشي الأمراض من القفزات غير الطبيعية في البحث عن أدوية معينة</p>
+            </div>
+            <span class="badge badge-warning text-slate-900 font-bold badge-xs">ذكاء اصطناعي وبائي</span>
+          </div>
+
+          <div id="ngo-surveillance-container" class="space-y-3">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+
+        <!-- 3. التقرير الإغاثي الرسمي المعتمد للطباعة والأرشفة -->
+        <div id="printable_relief_report" class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm space-y-6">
+          
+          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-slate-200 pb-4">
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="badge badge-error text-white font-black">تقرير رسمي</span>
+                <h3 class="text-xl font-black text-slate-900">رادار النقص الدوائي ومستلزمات الطوارئ - قطاع غزة</h3>
+              </div>
+              <p class="text-xs text-slate-500 mt-0.5">صادر عن مركز التحكم الميداني لمنصة دواك بإيدك • معد للمنظمات الدولية والإغاثية</p>
+            </div>
+
+            <div class="text-left font-mono text-xs text-slate-400">
+              <div>تاريخ التقرير: <strong id="report-date-string" class="text-slate-700">2026-09-02</strong></div>
+              <div>العملة المرجعية: <strong>الشيكل (₪)</strong></div>
+            </div>
+          </div>
+
+          <!-- جدول تفصيلي للمخزون بالمحافظات -->
+          <div class="space-y-3">
+            <h4 class="font-black text-sm text-slate-900">مؤشرات المخزون التفصيلي لقطاع غزة</h4>
+            <div class="overflow-x-auto">
+              <table class="table w-full text-right text-xs">
+                <thead class="bg-slate-50 text-slate-700">
+                  <tr>
+                    <th>المحافظة</th>
+                    <th>الصيدليات المناوبة</th>
+                    <th>مستلزمات الجروح المتوفرة</th>
+                    <th>مستوى العجز التقديري</th>
+                    <th>حالة الاحتياج الإغاثي</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100">
+                  <tr>
+                    <td class="font-bold">محافظة غزة (الرمال والصبرة)</td>
+                    <td>2 مناوبة 24س</td>
+                    <td>75 عبوة</td>
+                    <td><span class="badge badge-warning text-slate-900 font-bold">متوسط</span></td>
+                    <td class="text-amber-700 font-bold">بحاجة لدعم محاليل التطهير</td>
+                  </tr>
+                  <tr>
+                    <td class="font-bold">محافظة خانيونس (وسط البلد والمواصي)</td>
+                    <td>1 مناوبة</td>
+                    <td>38 عبوة</td>
+                    <td><span class="badge badge-error text-white font-bold">شديد</span></td>
+                    <td class="text-rose-700 font-bold">نقص حاد في مراهم الحروق والمضادات</td>
+                  </tr>
+                  <tr>
+                    <td class="font-bold">محافظة دير البلح والوسطى</td>
+                    <td>1 مناوبة 24س</td>
+                    <td>31 عبوة</td>
+                    <td><span class="badge badge-error text-white font-bold">شديد جداً</span></td>
+                    <td class="text-rose-700 font-bold">نفاد كامل لمطهرات البوفيدون وأقلام الأنسولين</td>
+                  </tr>
+                  <tr>
+                    <td class="font-bold">محافظة رفح (تل السلطان)</td>
+                    <td>1 مناوبة</td>
+                    <td>25 عبوة</td>
+                    <td><span class="badge badge-warning text-slate-900 font-bold">حرج</span></td>
+                    <td class="text-amber-700 font-bold">حاجة عاجلة للشاش المعقم والأربطة</td>
+                  </tr>
+                  <tr>
+                    <td class="font-bold">شمال غزة (مخيم جباليا)</td>
+                    <td>1 مناوبة 24س</td>
+                    <td>26 عبوة</td>
+                    <td><span class="badge badge-error text-white font-bold">شديد جداً</span></td>
+                    <td class="text-rose-700 font-bold">حاجة لكافة باقات طوارئ الجروح وموسعات الشعب</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- توقيع واعتماد التقرير -->
+          <div class="pt-4 border-t border-slate-200 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-500">
+            <div>تم الاعتماد رسمياً: د. كمال الشرافي (المشرف العام)</div>
+            <div class="font-mono">منصة دواك بإيدك • فلسطين 2026</div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- ===================================================================== -->
+      <!-- تبويب 5: البلاغات والشكاوى (Complaints Tab) -->
+      <!-- ===================================================================== -->
+      <div id="complaints-tab" class="tab-content space-y-6">
+        
+        <div class="bg-white rounded-3xl border border-slate-200 shadow-sm p-6 space-y-4">
+          <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+            <div>
+              <h3 class="text-base font-extrabold text-slate-900 flex items-center gap-2">
+                <i class="fa-solid fa-triangle-exclamation text-rose-500"></i>
+                <span>بلاغات وشكاوى المستخدمين في قطاع غزة</span>
+              </h3>
+              <p class="text-xs text-slate-400">متابعة بلاغات الأسعار والمخزون غير الدقيق وحلها ميدانياً</p>
+            </div>
+            <span class="badge badge-error badge-sm text-white font-bold">متابعة فورية</span>
+          </div>
+
+          <div id="admin-reports-container" class="space-y-3">
+            <!-- تعبئة البلاغات بالجافاسكريبت -->
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ===================================================================== -->
+      <!-- تبويب 6: سجل التدقيق الإداري (Audit Log Tab) -->
+      <!-- ===================================================================== -->
+      <div id="audit-tab" class="tab-content space-y-6">
+        
+        <div class="bg-white rounded-3xl border border-slate-200 shadow-sm p-6 space-y-4">
+          <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+            <div>
+              <h3 class="text-base font-extrabold text-slate-900 flex items-center gap-2">
+                <i class="fa-solid fa-clock-rotate-left text-purple-600"></i>
+                <span>سجل الأنشطة والقرارات الإدارية (Audit Trail)</span>
+              </h3>
+              <p class="text-xs text-slate-400">توثيق كافة عمليات الاعتماد، التعديل، وحل الشكاوى للأمان الرقابي</p>
+            </div>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="table w-full text-right text-xs">
+              <thead class="bg-slate-50 text-slate-700">
+                <tr>
+                  <th>الوقت</th>
+                  <th>المسؤول</th>
+                  <th>نوع الإجراء</th>
+                  <th>الهدف / الصيدلية</th>
+                  <th>التفاصيل والملاحظة</th>
+                </tr>
+              </thead>
+              <tbody id="admin-audit-tbody" class="divide-y divide-slate-100">
+                <!-- تعبئة سجل التدقيق -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ===================================================================== -->
+      <!-- تبويب 7: إدارة المبرمجين وتوليد روابط الاختبار (Dev Telemetry) -->
+      <!-- ===================================================================== -->
+      <div id="dev-telemetry-tab" class="tab-content space-y-6">
+        
+        <!-- بطاقة توليد رابط مباشر لإرساله للمبرمجين -->
+        <div class="bg-gradient-to-br from-slate-900 to-slate-950 text-white rounded-3xl border border-teal-500/30 shadow-xl p-6 sm:p-7 relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-64 h-64 bg-teal-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+          <div class="flex flex-col md:flex-row md:items-center justify-between pb-5 mb-5 border-b border-slate-800 gap-3">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-2xl bg-teal-500/20 text-teal-400 flex items-center justify-center text-xl flex-shrink-0 shadow-lg shadow-teal-500/20">
+                <i class="fa-solid fa-share-nodes"></i>
+              </div>
+              <div>
+                <div class="flex items-center gap-2">
+                  <h3 class="text-base sm:text-lg font-black text-white">توليد رابط مباشر لإرساله للمبرمجين</h3>
+                  <span class="badge badge-accent badge-xs font-bold text-slate-950">إدارة الفريق</span>
+                </div>
+                <p class="text-xs text-slate-400 mt-0.5">
+                  يمكنك إنشاء رابط جاهز باسم أي مبرمج وإرساله له عبر الواتساب أو تيليجرام. عند فتحه سيبدأ التسجيل تلقائياً دون الحاجة لكتابة اسمه!
+                </p>
+              </div>
+            </div>
+
+            <a href="dev_analytics.html" target="_blank" class="btn btn-sm bg-teal-600 hover:bg-teal-500 text-white font-bold border-none text-xs gap-1.5 shadow-md shadow-teal-500/20 self-start md:self-auto">
+              <i class="fa-solid fa-chart-line"></i>
+              <span>فتح لوحة التحليلات السرية</span>
+            </a>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-end text-right">
+            <!-- اسم المبرمج -->
+            <div class="md:col-span-4">
+              <label class="block text-xs font-bold text-slate-300 mb-1.5">
+                <i class="fa-solid fa-user-pen text-teal-400 ml-1"></i>
+                اسم المبرمج المستلم:
+              </label>
+              <input type="text" id="admin-share-dev-name" oninput="adminGenerateDirectLink()" placeholder="اكتب اسم زميلك..." 
+                class="input input-bordered w-full bg-slate-900 border-slate-700 text-white text-xs h-11 focus:border-teal-400 placeholder-slate-500" />
+            </div>
+
+            <!-- الدور -->
+            <div class="md:col-span-3">
+              <label class="block text-xs font-bold text-slate-300 mb-1.5">
+                <i class="fa-solid fa-briefcase text-teal-400 ml-1"></i>
+                التخصص / الدور:
+              </label>
+              <select id="admin-share-dev-role" onchange="adminGenerateDirectLink()" class="select select-bordered w-full bg-slate-900 border-slate-700 text-white text-xs h-11 focus:border-teal-400">
+                <option value="مطور واجهات (Frontend)">مطور واجهات (Frontend)</option>
+                <option value="مطور منطق وقواعد بيانات (Backend)">مطور منطق (Backend)</option>
+                <option value="مختبر جودة وفحص (QA)" selected>مختبر جودة (QA)</option>
+                <option value="مصمم تجربة مستخدم (UI/UX)">مصمم تجربة (UI/UX)</option>
+                <option value="مبرمج شامل (Fullstack)">مبرمج شامل (Fullstack)</option>
+              </select>
+            </div>
+
+            <!-- الصفحة المستهدفة للبدء -->
+            <div class="md:col-span-5">
+              <label class="block text-xs font-bold text-slate-300 mb-1.5">
+                <i class="fa-solid fa-compass text-teal-400 ml-1"></i>
+                الصفحة التي سيبدأ بها:
+              </label>
+              <select id="admin-share-dev-page" onchange="adminGenerateDirectLink()" class="select select-bordered w-full bg-slate-900 border-slate-700 text-white text-xs h-11 focus:border-teal-400">
+                <option value="index_patient.html" selected>بوابة المريض (index_patient.html)</option>
+                <option value="index_pharmacy.html">لوحة الصيدلية (index_pharmacy.html)</option>
+                <option value="index_admin.html">لوحة الإدارة (index_admin.html)</option>
+                <option value="index.html">الصفحة الرئيسية (index.html)</option>
+                <option value="features.html">المميزات ورادار النقص (features.html)</option>
+              </select>
+            </div>
+
+            <!-- صندوق الرابط الناتج -->
+            <div class="md:col-span-12 pt-2">
+              <label class="block text-xs font-bold text-teal-300 mb-1.5 flex items-center justify-between">
+                <span>
+                  <i class="fa-solid fa-link text-cyan-400 ml-1"></i>
+                  الرابط المباشر الناتج:
+                </span>
+                <span class="text-[11px] text-slate-400 font-normal">جاهز للإرسال الفوري</span>
+              </label>
+              <div class="flex flex-col sm:flex-row items-center gap-2">
+                <input type="text" id="admin-share-link-output" readonly 
+                  class="input input-bordered w-full bg-slate-950 border-slate-800 text-teal-300 font-mono text-xs select-all h-11 truncate" />
+                
+                <div class="flex items-center gap-2 w-full sm:w-auto flex-shrink-0">
+                  <button onclick="adminCopyDirectLink()" class="btn bg-teal-600 hover:bg-teal-500 text-white font-bold border-none text-xs gap-1.5 h-11 px-4 flex-1 sm:flex-initial">
+                    <i class="fa-regular fa-copy"></i>
+                    <span>نسخ الرابط</span>
+                  </button>
+                  <button onclick="adminShareWhatsApp()" class="btn bg-emerald-600 hover:bg-emerald-500 text-white font-bold border-none text-xs gap-1.5 h-11 px-4 flex-1 sm:flex-initial">
+                    <i class="fa-brands fa-whatsapp text-sm"></i>
+                    <span>واتساب</span>
+                  </button>
+                  <button onclick="adminPreviewDirectLink()" class="btn btn-outline border-slate-700 text-slate-300 hover:bg-slate-800 text-xs gap-1.5 h-11 px-3" title="تجربة الرابط">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ملخص جلسات المبرمجين المسجلة -->
+        <div class="bg-white rounded-3xl border border-slate-200 shadow-sm p-6 space-y-4">
+          <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+            <div>
+              <h3 class="text-base font-extrabold text-slate-900 flex items-center gap-2">
+                <i class="fa-solid fa-users-gear text-teal-600"></i>
+                <span>أحدث جلسات المبرمجين والمختبرين الميدانيين</span>
+              </h3>
+              <p class="text-xs text-slate-400">ملخص سريع لتحركات المطورين، ويمكنك استعراض التحليل التفصيلي في لوحة التحليلات</p>
+            </div>
+            <div class="flex items-center gap-2">
+              <button onclick="adminClearDemoSessionsOnly()" class="btn btn-xs btn-outline border-amber-500/50 text-amber-700 hover:bg-amber-500 hover:text-white font-bold" title="مسح المبرمجين الافتراضيين">
+                <i class="fa-solid fa-user-xmark"></i>
+                <span>مسح الافتراضيين</span>
+              </button>
+              <button onclick="adminClearAllSessions()" class="btn btn-xs btn-outline border-rose-500/50 text-rose-700 hover:bg-rose-600 hover:text-white font-bold" title="تصفير كافة السجلات">
+                <i class="fa-solid fa-trash-can"></i>
+                <span>تصفير شامل</span>
+              </button>
+              <button onclick="renderAdminDevSessionsTable()" class="btn btn-ghost btn-circle btn-sm text-slate-500" title="تحديث السجلات">
+                <i class="fa-solid fa-arrows-rotate text-xs"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="table w-full text-right text-xs">
+              <thead class="bg-slate-50 text-slate-700">
+                <tr>
+                  <th>المبرمج</th>
+                  <th>الدور</th>
+                  <th>تاريخ البدء</th>
+                  <th>إجمالي المكوث</th>
+                  <th>الصفحات المزارة</th>
+                  <th>أخطاء الكود</th>
+                  <th>الحالة</th>
+                </tr>
+              </thead>
+              <tbody id="admin-dev-sessions-tbody" class="divide-y divide-slate-100">
+                <!-- تعبأ ديناميكياً -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Footer Credit -->
+      <footer class="mt-8 border-t border-slate-200 bg-white/90 backdrop-blur rounded-2xl p-4 text-center text-xs text-slate-500 shadow-sm">
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
+          <div class="flex items-center gap-2">
+            <span class="font-bold text-slate-800">مركز الرقابة والإدارة المركزية © دواك بإيدك 2026</span>
+            <span class="text-slate-400">•</span>
+            <span class="text-teal-700 font-bold">شبكة قطاع غزة</span>
+          </div>
+          <div class="inline-flex items-center gap-2 bg-slate-900 px-3.5 py-1.5 rounded-xl border border-teal-500/30 text-white text-xs shadow-sm">
+            <i class="fa-solid fa-code text-teal-400"></i>
+            <span class="text-slate-300">تم دعم المشروع برمجياً من قبل شركة</span>
+            <strong class="font-black text-teal-300 font-sans tracking-wide">MSN-IT In UK</strong>
+            <span>🇬🇧</span>
+          </div>
+        </div>
+      </footer>
+
+    </div>
+  </main>
+
+  <!-- ========================================================================= -->
+  <!-- 3. النوافذ المنبثقة الإدارية (Admin Modals) -->
+  <!-- ========================================================================= -->
+
+  <!-- نافذة فحص وتدقيق ترخيص الصيدلية (License Inspection Modal) -->
+  <dialog id="license_inspect_modal" class="modal modal-bottom sm:modal-middle">
+    <div class="modal-box text-right bg-white rounded-3xl max-w-lg shadow-2xl">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center text-lg">
+            <i class="fa-solid fa-certificate"></i>
+          </div>
+          <div>
+            <h3 class="font-black text-base text-slate-900">فحص وثائق ترخيص الصيدلية</h3>
+            <p class="text-xs text-slate-500">مطابقة رقم الترخيص الرسمي لقطاع غزة</p>
+          </div>
+        </div>
+        <form method="dialog">
+          <button class="btn btn-sm btn-circle btn-ghost">✕</button>
+        </form>
+      </div>
+
+      <div class="py-4 space-y-3.5 text-xs">
+        <input type="hidden" id="inspect-pharmacy-id">
+
+        <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-2">
+          <div class="flex justify-between">
+            <span class="text-slate-500">اسم الصيدلية:</span>
+            <strong id="inspect-pharmacy-name" class="text-slate-900 text-sm">-</strong>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-slate-500">الصيدلي المرخص له:</span>
+            <span id="inspect-pharmacist-name" class="font-bold text-teal-800">-</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-slate-500">رقم ترخيص مزاولة المهنة:</span>
+            <span id="inspect-license-number" class="font-mono font-bold text-amber-700 text-sm">GZ-00000</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-slate-500">المحافظة والعنوان:</span>
+            <span id="inspect-pharmacy-address" class="text-slate-700">-</span>
+          </div>
+        </div>
+
+        <div class="p-3 bg-emerald-50 border border-emerald-200 rounded-2xl text-[11px] text-emerald-950 flex items-start gap-2">
+          <i class="fa-solid fa-shield-check text-emerald-600 mt-0.5"></i>
+          <span>تمت مطابقة رقم الترخيص مع السجل الرقمي لوزارة الصحة ونقابة الصيادلة بقطاع غزة بنجاح.</span>
+        </div>
+      </div>
+
+      <div class="modal-action flex justify-between gap-2">
+        <button onclick="handleRejectPharmacyFromModal()" class="btn btn-outline btn-error btn-sm rounded-xl">
+          <i class="fa-solid fa-xmark ml-1"></i> رفض الطلب
+        </button>
+        <div class="flex gap-2">
+          <form method="dialog">
+            <button class="btn btn-ghost btn-sm text-slate-600">إغلاق</button>
+          </form>
+          <button onclick="handleApprovePharmacyFromModal()" class="btn btn-success btn-sm text-white px-5 rounded-xl font-bold">
+            <i class="fa-solid fa-check ml-1"></i> اعتماد وترخيص الصيدلية
+          </button>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- نافذة فحص تفاصيل الطلب (Order Detail Modal) -->
+  <dialog id="order_inspect_modal" class="modal modal-bottom sm:modal-middle">
+    <div class="modal-box text-right bg-white rounded-3xl max-w-md shadow-2xl">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+        <h3 class="font-black text-base text-slate-900 flex items-center gap-2">
+          <i class="fa-solid fa-file-invoice text-teal-600"></i>
+          <span>تفاصيل الطلب والتحقق</span>
+        </h3>
+        <form method="dialog">
+          <button class="btn btn-sm btn-circle btn-ghost">✕</button>
+        </form>
+      </div>
+      <div id="order-inspect-content" class="py-4 space-y-3 text-xs">
+        <!-- بالجافاسكريبت -->
+      </div>
+    </div>
+  </dialog>
+
+  <!-- ========================================================================= -->
+  <!-- 4. كود التشغيل والتحكم (JavaScript Controller) -->
+  <!-- ========================================================================= -->
+  <script src="js/store.js"></script>
+  <script src="js/tracker.js"></script>
+  <script>
+    let activeTabId = 'overview-tab';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderAllAdminViews();
+
+      window.addEventListener('medifind_data_changed', () => {
+        renderAllAdminViews();
+      });
+
+      window.addEventListener('storage', (e) => {
+        if (e.key && e.key.startsWith('medifind_')) {
+          renderAllAdminViews();
+        }
+      });
+    });
+
+    // --- التبديل السلس بين التبويبات مع الأنميشن ---
+    function switchAdminTab(tabId, btnElement) {
+      activeTabId = tabId;
+
+      document.querySelectorAll('.tab-content').forEach(tab => {
+        tab.classList.remove('active');
+      });
+
+      const targetTab = document.getElementById(tabId);
+      if (targetTab) {
+        targetTab.classList.add('active');
+      }
+
+      document.querySelectorAll('.admin-nav-btn').forEach(btn => {
+        btn.classList.remove('active-tab-nav');
+      });
+
+      if (btnElement) {
+        btnElement.classList.add('active-tab-nav');
+      }
+
+      // تحديث عنوان شريط الرأس العلوي
+      const headerMap = {
+        'overview-tab': { title: 'نظرة عامة والتحكم المركزي', sub: 'إحصائيات شاملة ومؤشرات حية لمحافظات قطاع غزة', icon: 'fa-solid fa-gauge-high text-teal-400' },
+        'verifications-tab': { title: 'اعتماد تراخيص الصيدليات', sub: 'مراجعة وتدقيق هويات ورخص الصيدليات في غزة', icon: 'fa-solid fa-certificate text-amber-400' },
+        'orders-stream-tab': { title: 'مراقبة تدفق الطلبات اللحظية', sub: 'رصد فوري لاستجابة الصيادلة للطلبات العاجلة ومستلزمات الجروح', icon: 'fa-solid fa-tower-broadcast text-cyan-400' },
+        'shortage-tab': { title: 'رادار النقص الدوائي بغزة', sub: 'تحليلات الاحتياج الطبي ومستويات نفاد مستلزمات الطوارئ', icon: 'fa-solid fa-chart-pie text-rose-400' },
+        'complaints-tab': { title: 'إدارة البلاغات والشكاوى', sub: 'معالجة شكاوى المواطنين حول الأسعار والمخزون', icon: 'fa-solid fa-triangle-exclamation text-amber-400' },
+        'audit-tab': { title: 'سجل التدقيق الإداري', sub: 'توثيق كافة الأنشطة والقرارات الرقابية', icon: 'fa-solid fa-clock-rotate-left text-purple-400' },
+        'dev-telemetry-tab': { title: 'إدارة المبرمجين وتوليد روابط الاختبار', sub: 'توليد روابط مخصصة للمطورين ورصد رحلاتهم وتفاعلهم الميداني', icon: 'fa-solid fa-code text-teal-400' }
+      };
+
+      if (headerMap[tabId]) {
+        document.getElementById('current-tab-title').textContent = headerMap[tabId].title;
+        document.getElementById('current-tab-subtitle').textContent = headerMap[tabId].sub;
+        document.getElementById('current-tab-icon').className = headerMap[tabId].icon;
+      }
+
+      renderAllAdminViews();
+    }
+
+    function renderAllAdminViews() {
+      renderOverviewKPIs();
+      renderPendingPharmacies();
+      renderVerifiedPharmaciesTable();
+      renderStreamOrdersTable();
+      renderAdminReports();
+      renderAdminAuditLogs();
+      renderNGOHeatmapAndSurveillance();
+    }
+
+    // --- 1. تحديث المؤشرات بالأوفر فيو ---
+    function renderOverviewKPIs() {
+      const stats = window.medifindStore.getStats();
+      const allOrders = window.medifindStore.getOrders();
+      const reports = window.medifindStore.getReports();
+
+      document.getElementById('ov-verified-pharmacies').textContent = stats.verifiedPharmacies;
+      document.getElementById('ov-pending-pharmacies').textContent = stats.pendingPharmacies;
+      document.getElementById('ov-total-orders').textContent = allOrders.length;
+      document.getElementById('ov-shortage-count').textContent = stats.outOfStockCount + stats.lowStockCount;
+
+      document.getElementById('nav-pending-pharmacies-badge').textContent = stats.pendingPharmacies;
+      document.getElementById('tab-pending-count-badge').textContent = `${stats.pendingPharmacies} بانتظار القرار`;
+      document.getElementById('nav-live-orders-badge').textContent = allOrders.length;
+      document.getElementById('nav-reports-badge').textContent = reports.filter(r => r.status !== 'resolved').length;
+
+      // تعبئة أحدث الطلبات في الأوفرفيو
+      const recentContainer = document.getElementById('overview-recent-orders');
+      const recentOrders = allOrders.slice(0, 4);
+      
+      if (recentOrders.length === 0) {
+        recentContainer.innerHTML = '<p class="text-xs text-slate-400">لا توجد طلبات مسجلة بعد.</p>';
+      } else {
+        let html = '';
+        recentOrders.forEach(o => {
+          html += `
+            <div class="p-3 bg-slate-50 border border-slate-200/80 rounded-2xl flex items-center justify-between text-xs hover:bg-slate-100 transition">
+              <div class="flex items-center gap-3">
+                <span class="badge badge-primary badge-xs font-mono text-white">${o.order_code}</span>
+                <div>
+                  <strong class="text-slate-800">${o.medicine_name}</strong>
+                  <span class="text-slate-400 text-[10px] block">${o.patient_name} • ${o.requested_qty} عبوة (${o.price_total ? o.price_total.toFixed(2) + ' ₪' : ''})</span>
+                </div>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="badge ${o.status === 'approved' ? 'badge-success text-white' : o.status === 'pending' ? 'badge-warning text-slate-900 font-bold' : 'badge-ghost'} badge-xs">
+                  ${o.status === 'approved' ? 'مؤكد' : o.status === 'pending' ? 'بانتظار التحقق' : o.status}
+                </span>
+                <span class="text-[10px] text-slate-400">${window.medifindStore.formatTimeAgo(o.created_at)}</span>
+              </div>
+            </div>
+          `;
+        });
+        recentContainer.innerHTML = html;
+      }
+    }
+
+    // --- 2. إدارة تراخيص الصيدليات ---
+    function renderPendingPharmacies() {
+      const allPharmacies = window.medifindStore.getPharmacies(false);
+      const pending = allPharmacies.filter(p => p.verification_status === 'pending_approval');
+      const container = document.getElementById('pending-pharmacies-list');
+
+      if (pending.length === 0) {
+        container.innerHTML = `
+          <div class="text-center py-8 text-slate-400 text-xs bg-slate-50 rounded-2xl border border-dashed border-slate-200">
+            <i class="fa-solid fa-badge-check text-3xl mb-2 text-emerald-500 block"></i>
+            جميع طلبات انضمام الصيدليات تم مراجعتها واعتمادها بنجاح.
+          </div>
+        `;
+        return;
+      }
+
+      let html = '<div class="grid grid-cols-1 md:grid-cols-2 gap-4">';
+      pending.forEach(pharmacy => {
+        html += `
+          <div class="bg-slate-50 border-2 border-amber-300 p-5 rounded-2xl space-y-3 shadow-sm hover:shadow-md transition">
+            <div class="flex items-start justify-between">
+              <div>
+                <div class="flex items-center gap-2">
+                  <span class="badge badge-warning badge-xs font-black text-slate-900">طلب ترخيص جديد</span>
+                  <span class="text-[11px] text-slate-400 font-mono">${pharmacy.license_number}</span>
+                </div>
+                <h4 class="font-black text-slate-900 text-base mt-1.5">${pharmacy.pharmacy_name}</h4>
+                <p class="text-xs text-teal-800 font-bold">${pharmacy.name} • ${pharmacy.phone}</p>
+              </div>
+
+              <div class="badge badge-ghost text-xs text-slate-600 font-bold">
+                ${pharmacy.governorate}
+              </div>
+            </div>
+
+            <div class="text-xs text-slate-600 bg-white p-2.5 rounded-xl border border-slate-200">
+              <i class="fa-solid fa-location-dot text-rose-500 ml-1"></i> ${pharmacy.address}
+            </div>
+
+            <div class="flex items-center gap-2 pt-1">
+              <button onclick="openLicenseInspectModal(${pharmacy.id})" class="btn btn-primary btn-xs flex-1 text-white font-bold rounded-lg shadow-sm">
+                <i class="fa-solid fa-magnifying-glass ml-1"></i> فحص واعتماد الترخيص
+              </button>
+              <button onclick="handleRejectPharmacyQuick(${pharmacy.id})" class="btn btn-outline btn-error btn-xs rounded-lg">
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </div>
+          </div>
+        `;
+      });
+      html += '</div>';
+      container.innerHTML = html;
+    }
+
+    function renderVerifiedPharmaciesTable() {
+      const search = (document.getElementById('verified-pharmacies-search')?.value || '').trim().toLowerCase();
+      const verified = window.medifindStore.getPharmacies(false).filter(p => p.verification_status === 'verified');
+      const tbody = document.getElementById('verified-pharmacies-tbody');
+
+      const filtered = verified.filter(p => {
+        return !search || 
+          p.pharmacy_name.toLowerCase().includes(search) || 
+          p.address.toLowerCase().includes(search) || 
+          p.license_number.toLowerCase().includes(search);
+      });
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="6" class="text-center py-4 text-slate-400">لا توجد صيدليات مطابقة</td></tr>';
+        return;
+      }
+
+      let rows = '';
+      filtered.forEach(p => {
+        rows += `
+          <tr class="hover:bg-slate-50 transition">
+            <td>
+              <strong class="text-slate-900">${p.pharmacy_name}</strong>
+              <span class="block text-[10px] text-slate-400">${p.name} • ${p.phone}</span>
+            </td>
+            <td><span class="badge badge-ghost font-mono font-bold text-slate-700">${p.license_number}</span></td>
+            <td>
+              <span class="font-semibold text-slate-800">${p.governorate}</span>
+              <span class="block text-[10px] text-slate-400 truncate max-w-[180px]">${p.address}</span>
+            </td>
+            <td>
+              <span class="badge ${p.is_night_shift ? 'badge-warning font-bold text-slate-900' : 'badge-ghost text-slate-500'} badge-xs">
+                ${p.is_night_shift ? 'طوارئ 24س' : 'نهاري'}
+              </span>
+            </td>
+            <td><span class="badge badge-success text-white badge-xs">معتمد ونشط</span></td>
+            <td class="text-center">
+              <button onclick="handleTogglePharmacyStatus(${p.id})" class="btn btn-ghost btn-xs text-rose-600 hover:bg-rose-50" title="تعليق الحساب مؤقتاً">
+                <i class="fa-solid fa-ban"></i>
+              </button>
+            </td>
+          </tr>
+        `;
+      });
+      tbody.innerHTML = rows;
+    }
+
+    function openLicenseInspectModal(pharmacyId) {
+      const ph = window.medifindStore.getPharmacies(false).find(p => p.id === pharmacyId);
+      if (!ph) return;
+
+      document.getElementById('inspect-pharmacy-id').value = ph.id;
+      document.getElementById('inspect-pharmacy-name').textContent = ph.pharmacy_name;
+      document.getElementById('inspect-pharmacist-name').textContent = `${ph.name} (${ph.phone})`;
+      document.getElementById('inspect-license-number').textContent = ph.license_number;
+      document.getElementById('inspect-pharmacy-address').textContent = `${ph.governorate} - ${ph.address}`;
+
+      document.getElementById('license_inspect_modal').showModal();
+    }
+
+    function handleApprovePharmacyFromModal() {
+      const id = document.getElementById('inspect-pharmacy-id').value;
+      window.medifindStore.verifyPharmacy(id, true);
+      document.getElementById('license_inspect_modal').close();
+      alert('تم اعتماد الصيدلية رسمياً وتفعيلها على خريطة قطاع غزة لاستقبال الطلبات');
+      renderAllAdminViews();
+    }
+
+    function handleRejectPharmacyFromModal() {
+      const id = document.getElementById('inspect-pharmacy-id').value;
+      window.medifindStore.verifyPharmacy(id, false);
+      document.getElementById('license_inspect_modal').close();
+      alert('تم رفض طلب الانضمام');
+      renderAllAdminViews();
+    }
+
+    function handleRejectPharmacyQuick(id) {
+      if (confirm('هل أنت متأكد من رفض طلب الترخيص؟')) {
+        window.medifindStore.verifyPharmacy(id, false);
+        renderAllAdminViews();
+      }
+    }
+
+    function handleTogglePharmacyStatus(id) {
+      if (confirm('هل تريد تغيير حالة نشاط هذه الصيدلية؟')) {
+        window.medifindStore.verifyPharmacy(id, false);
+        renderAllAdminViews();
+      }
+    }
+
+    // --- 3. مراقبة تدفق الطلبات الحية ---
+    function renderStreamOrdersTable() {
+      const govFilter = document.getElementById('stream-gov-filter')?.value || 'all';
+      const statusFilter = document.getElementById('stream-status-filter')?.value || 'all';
+      const orders = window.medifindStore.getOrders();
+      const pharmacies = window.medifindStore.getPharmacies(false);
+      const tbody = document.getElementById('stream-orders-tbody');
+
+      const filtered = orders.filter(o => {
+        const ph = pharmacies.find(p => p.id === o.pharmacy_id);
+        const matchesGov = govFilter === 'all' || (ph && ph.governorate === govFilter);
+        const matchesStatus = statusFilter === 'all' || o.status === statusFilter;
+        return matchesGov && matchesStatus;
+      });
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="9" class="text-center py-6 text-slate-400 text-xs">لا توجد طلبات مطابقة للفلترة المحددة</td></tr>';
+        return;
+      }
+
+      let rows = '';
+      filtered.forEach(order => {
+        const ph = pharmacies.find(p => p.id === order.pharmacy_id) || {};
+        
+        let urgencyBadge = '';
+        if (order.urgency_level === 'emergency_wound') {
+          urgencyBadge = '<span class="badge badge-error badge-xs text-white font-black animate-pulse">طوارئ 🚨</span>';
+        } else if (order.urgency_level === 'urgent') {
+          urgencyBadge = '<span class="badge badge-warning badge-xs font-bold text-slate-900">عاجل</span>';
+        } else {
+          urgencyBadge = '<span class="badge badge-ghost badge-xs text-slate-500">عادي</span>';
+        }
+
+        let statusBadge = '';
+        if (order.status === 'pending') {
+          statusBadge = '<span class="badge badge-warning badge-sm font-bold animate-pulse text-slate-900">بانتظار الصيدلي</span>';
+        } else if (order.status === 'approved') {
+          statusBadge = '<span class="badge badge-success badge-sm text-white">مؤكد ومحجوز</span>';
+        } else if (order.status === 'rejected') {
+          statusBadge = '<span class="badge badge-error badge-sm text-white">مرفوض</span>';
+        } else if (order.status === 'completed') {
+          statusBadge = '<span class="badge badge-info badge-sm text-white">تم التسليم</span>';
+        }
+
+        rows += `
+          <tr class="hover:bg-slate-50 transition">
+            <td class="font-bold text-cyan-800">${order.order_code}</td>
+            <td>
+              <strong class="text-slate-900">${order.patient_name}</strong>
+              <span class="block text-[10px] text-slate-400 font-mono" dir="ltr">${order.patient_phone}</span>
+            </td>
+            <td>
+              <span class="font-semibold text-slate-800">${order.medicine_name}</span>
+              <span class="text-slate-500 block text-[10px]">${order.requested_qty} عبوة (${order.price_total ? order.price_total.toFixed(2) + ' ₪' : ''})</span>
+            </td>
+            <td>${urgencyBadge}</td>
+            <td>
+              <strong class="text-slate-700">${ph.pharmacy_name || 'صيدلية'}</strong>
+              <span class="text-[10px] text-teal-700 block">${ph.governorate || 'غزة'}</span>
+            </td>
+            <td>${statusBadge}</td>
+            <td><span class="badge badge-ghost font-mono font-bold text-cyan-800">${order.pickup_verification_code || '---'}</span></td>
+            <td class="text-slate-400 text-[11px] font-mono">${window.medifindStore.formatTimeAgo(order.created_at)}</td>
+            <td class="text-center">
+              <button onclick="openOrderInspectModal(${order.id})" class="btn btn-ghost btn-xs text-cyan-700" title="معاينة التفاصيل">
+                <i class="fa-solid fa-eye"></i>
+              </button>
+            </td>
+          </tr>
+        `;
+      });
+      tbody.innerHTML = rows;
+    }
+
+    function openOrderInspectModal(orderId) {
+      const order = window.medifindStore.getOrders().find(o => o.id === orderId);
+      const ph = window.medifindStore.getPharmacies(false).find(p => p.id === order?.pharmacy_id) || {};
+      if (!order) return;
+
+      const content = document.getElementById('order-inspect-content');
+      content.innerHTML = `
+        <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-2">
+          <div class="flex justify-between font-bold">
+            <span class="text-slate-500">رقم الطلب:</span>
+            <span class="text-cyan-800 font-mono">${order.order_code}</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-slate-500">المريض:</span>
+            <span class="font-bold text-slate-800">${order.patient_name} (${order.patient_phone})</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-slate-500">الصنف:</span>
+            <span class="font-bold text-slate-800">${order.medicine_name} (${order.requested_qty} عبوة)</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-slate-500">الصيدلية الموجه إليها:</span>
+            <span class="font-bold text-teal-800">${ph.pharmacy_name} (${ph.governorate})</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-slate-500">المبلغ التقديري:</span>
+            <strong class="text-cyan-800 font-black">${order.price_total ? order.price_total.toFixed(2) + ' ₪' : '0.00 ₪'}</strong>
+          </div>
+        </div>
+
+        ${order.patient_notes ? `
+          <div class="p-3 bg-amber-50 rounded-xl border border-amber-200 text-amber-900 text-[11px]">
+            <strong>ملاحظة المريض:</strong> ${order.patient_notes}
+          </div>
+        ` : ''}
+
+        ${order.pharmacist_notes ? `
+          <div class="p-3 bg-emerald-50 rounded-xl border border-emerald-200 text-emerald-900 text-[11px]">
+            <strong>قرار وملاحظات الصيدلي:</strong> ${order.pharmacist_notes}
+          </div>
+        ` : ''}
+
+        ${order.prescription_image_url ? `
+          <div class="text-center pt-2">
+            <span class="text-[11px] font-bold block mb-1">صورة الوصفة الطبية المرفقة:</span>
+            <img src="${order.prescription_image_url}" class="max-h-40 rounded-xl mx-auto border border-slate-200" />
+          </div>
+        ` : ''}
+      `;
+
+      document.getElementById('order_inspect_modal').showModal();
+    }
+
+    // --- 4. إدارة البلاغات والشكاوى ---
+    function renderAdminReports() {
+      const reports = window.medifindStore.getReports();
+      const container = document.getElementById('admin-reports-container');
+
+      if (reports.length === 0) {
+        container.innerHTML = '<p class="text-xs text-slate-400">لا توجد بلاغات جديدة.</p>';
+        return;
+      }
+
+      let html = '';
+      reports.forEach(report => {
+        const isResolved = report.status === 'resolved';
+        html += `
+          <div class="p-4 rounded-2xl border ${isResolved ? 'bg-slate-50 border-slate-200' : 'bg-rose-50/70 border-rose-200'} flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs">
+            <div class="space-y-1">
+              <div class="flex items-center gap-2">
+                <span class="badge ${isResolved ? 'badge-success text-white' : 'badge-error text-white'} badge-xs font-bold">
+                  ${isResolved ? 'تم الحل والمتابعة' : 'قيد التدقيق'}
+                </span>
+                <strong class="text-slate-900 text-sm">${report.pharmacy_name}</strong>
+                <span class="text-slate-400">• المبلغ: ${report.reporter_name} (${report.reporter_phone})</span>
+              </div>
+              <p class="text-slate-700 text-xs">${report.details}</p>
+              ${report.admin_notes ? `<p class="text-emerald-700 font-bold text-[11px]">إجراء الإدارة: ${report.admin_notes}</p>` : ''}
+            </div>
+
+            ${!isResolved ? `
+              <button onclick="handleResolveReport(${report.id})" class="btn btn-sm btn-outline btn-success text-xs flex-shrink-0 rounded-xl font-bold">
+                <i class="fa-solid fa-check ml-1"></i> توثيق الإجراء والحل
+              </button>
+            ` : ''}
+          </div>
+        `;
+      });
+      container.innerHTML = html;
+    }
+
+    function handleResolveReport(id) {
+      const note = prompt('اكتب الإجراء المتخذ لحل هذا البلاغ:');
+      if (note) {
+        window.medifindStore.resolveReport(id, note);
+        renderAllAdminViews();
+      }
+    }
+
+    // --- 5. سجل التدقيق الإداري ---
+    function renderAdminAuditLogs() {
+      const tbody = document.getElementById('admin-audit-tbody');
+      tbody.innerHTML = `
+        <tr>
+          <td class="font-mono text-slate-400">${window.medifindStore.formatTimeAgo(new Date(Date.now() - 10 * 60000).toISOString())}</td>
+          <td class="font-bold text-slate-800">د. كمال الشرافي</td>
+          <td><span class="badge badge-success badge-xs text-white">اعتماد ترخيص</span></td>
+          <td class="font-bold text-teal-800">صيدلية الرمال المركزية</td>
+          <td class="text-slate-600">تم التحقق من مطابقة ترخيص مزاولة المهنة لدى نقابة الصيادلة</td>
+        </tr>
+        <tr>
+          <td class="font-mono text-slate-400">${window.medifindStore.formatTimeAgo(new Date(Date.now() - 3 * 3600000).toISOString())}</td>
+          <td class="font-bold text-slate-800">د. كمال الشرافي</td>
+          <td><span class="badge badge-info badge-xs text-white">تحديث رادار العجز</span></td>
+          <td class="font-bold text-rose-700">محافظة دير البلح</td>
+          <td class="text-slate-600">تسجيل نفاد مطهر البوفيدون وتصدير تنبيه للمؤسسات الداعمة</td>
+        </tr>
+        <tr>
+          <td class="font-mono text-slate-400">${window.medifindStore.formatTimeAgo(new Date(Date.now() - 24 * 3600000).toISOString())}</td>
+          <td class="font-bold text-slate-800">د. كمال الشرافي</td>
+          <td><span class="badge badge-warning badge-xs text-slate-900 font-bold">حل بلاغ</span></td>
+          <td class="font-bold text-slate-700">صيدلية خانيونس الكبرى</td>
+          <td class="text-slate-600">تحديث كمية شاش الفازلين المتاحة بالمستودع</td>
+        </tr>
+      `;
+    }
+
+    function printReliefReport() {
+      switchAdminTab('shortage-tab');
+      setTimeout(() => {
+        window.print();
+      }, 300);
+    }
+
+    // --- 6. لوحة استخبارات الإغاثة الدولية ورادار الأوبئة (NGO Heatmap & Surveillance) ---
+    function renderNGOHeatmapAndSurveillance() {
+      const heatmapContainer = document.getElementById('ngo-heatmap-container');
+      const surveillanceContainer = document.getElementById('ngo-surveillance-container');
+      if (!heatmapContainer) return;
+
+      const hotspots = window.medifindStore.getZeroResultHeatmap();
+      const surveillanceReports = window.medifindStore.getEpidemicSurveillanceReport();
+
+      // Counts
+      const totalZero = hotspots.reduce((sum, h) => sum + (h.failed_searches_count || 0), 0);
+      const criticalCount = hotspots.filter(h => h.severity === 'CRITICAL').length;
+      
+      const statTotalZero = document.getElementById('ngo-stat-total-zero');
+      const statCritical = document.getElementById('ngo-stat-critical-hotspots');
+      const statEpidemic = document.getElementById('ngo-stat-epidemic-alerts');
+
+      if (statTotalZero) statTotalZero.textContent = totalZero.toLocaleString();
+      if (statCritical) statCritical.textContent = criticalCount;
+      if (statEpidemic) statEpidemic.textContent = surveillanceReports.length;
+
+      // Render Heatmap Grid
+      if (hotspots.length === 0) {
+        heatmapContainer.innerHTML = '<p class="col-span-full text-xs text-slate-400 py-4 text-center">لا توجد عمليات بحث فاشلة مسجلة حالياً.</p>';
+      } else {
+        heatmapContainer.innerHTML = hotspots.map(h => {
+          const isCritical = h.severity === 'CRITICAL';
+          const alertColor = isCritical ? 'border-rose-300 bg-rose-50/70' : 'border-amber-300 bg-amber-50/70';
+          const badgeClass = isCritical ? 'badge-error text-white font-black' : 'badge-warning text-slate-900 font-bold';
+          return `
+            <div class="p-4 rounded-2xl border ${alertColor} space-y-2.5 transition hover:shadow-md">
+              <div class="flex items-start justify-between gap-2">
+                <div>
+                  <span class="badge ${badgeClass} badge-xs">${h.alert_level}</span>
+                  <h5 class="font-black text-slate-900 text-sm mt-1">${h.medicine}</h5>
+                  <span class="text-[10px] text-teal-800 font-bold block"><i class="fa-solid fa-map-pin ml-1 text-rose-500"></i>${h.governorate}</span>
+                </div>
+                <div class="text-left">
+                  <span class="font-mono text-xl font-black ${isCritical ? 'text-rose-700' : 'text-amber-800'}">${h.failed_searches_count}</span>
+                  <span class="text-[9px] text-slate-500 block">بحث فاشل (48س)</span>
+                </div>
+              </div>
+
+              <!-- Severity Progress Bar -->
+              <div class="w-full bg-white/80 rounded-full h-2 overflow-hidden border border-slate-200">
+                <div class="${isCritical ? 'bg-rose-500' : 'bg-amber-500'} h-full rounded-full" style="width: ${Math.min(100, Math.round((h.failed_searches_count / 500) * 100))}%"></div>
+              </div>
+
+              <div class="p-2 bg-white rounded-xl border border-slate-200 text-[10px] text-slate-700 flex items-start gap-1.5">
+                <i class="fa-solid fa-truck-medical text-teal-600 mt-0.5 flex-none"></i>
+                <span><strong>توصية الإغاثة:</strong> ${h.recommended_action}</span>
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+
+      // Render Epidemic Surveillance Outbreaks
+      if (!surveillanceContainer) return;
+      if (surveillanceReports.length === 0) {
+        surveillanceContainer.innerHTML = '<p class="text-xs text-slate-400 py-3 text-center">لا توجد مؤشرات وبائية غير طبيعية مرصودة.</p>';
+      } else {
+        surveillanceContainer.innerHTML = surveillanceReports.map(r => `
+          <div class="p-4 rounded-2xl border border-amber-300 bg-gradient-to-r from-amber-50/80 via-white to-amber-50/40 flex flex-col md:flex-row md:items-center justify-between gap-3 text-xs">
+            <div class="space-y-1 max-w-2xl">
+              <div class="flex flex-wrap items-center gap-2">
+                <span class="badge ${r.severity === 'CRITICAL' ? 'badge-error text-white font-black animate-pulse' : 'badge-warning text-slate-900 font-bold'} badge-xs">
+                  ${r.severity === 'CRITICAL' ? '⚠️ خطر وبائي فوري' : '🚨 رصد قفزة حالات'}
+                </span>
+                <strong class="text-slate-900 text-sm">${r.cluster}</strong>
+                <span class="text-slate-500 font-bold">• المنطقة المتأثرة: <strong class="text-teal-800">${r.affected_area}</strong></span>
+              </div>
+              <p class="text-[11px] text-slate-700 leading-relaxed">${r.risk_description}</p>
+              <p class="text-[10px] text-emerald-800 font-extrabold flex items-center gap-1">
+                <i class="fa-solid fa-circle-check text-emerald-600"></i> التوجيه الميداني (WHO / MSF Action): ${r.recommended_action}
+              </p>
+            </div>
+
+            <div class="flex items-center gap-2 self-start md:self-auto flex-none">
+              <span class="badge badge-neutral font-mono font-bold text-xs p-2.5">
+                ${r.unfulfilled_searches} حالة مسجلة
+              </span>
+              <button onclick="alert('تم إرسال إشعار التنسيق الميداني لغرفة طوارئ وزارة الصحة والهلال الأحمر الفلسطيني بنجاح!')" class="btn btn-xs bg-amber-500 hover:bg-amber-600 text-slate-950 font-black rounded-lg gap-1 shadow-sm">
+                <i class="fa-solid fa-paper-plane"></i> إخطار الطوارئ
+              </button>
+            </div>
+          </div>
+        `).join('');
+      }
+    }
+
+    function exportNGOHeatmapJSON() {
+      const hotspots = window.medifindStore.getZeroResultHeatmap();
+      const surveillance = window.medifindStore.getEpidemicSurveillanceReport();
+      const reportPayload = {
+        platform: 'MediFind Gaza (دواك بإيدك)',
+        report_title: 'United Nations & International NGO Medicine Shortage & Epidemic Surveillance Brief',
+        generated_at: new Date().toISOString(),
+        currency: 'ILS (شيكل)',
+        covered_governorates: ['غزة', 'شمال غزة', 'دير البلح والوسطى', 'خانيونس والمواصي', 'رفح'],
+        partner_agencies_targeted: ['WHO', 'UNICEF', 'MSF (Médecins Sans Frontières)', 'Palestine Red Crescent Society (PRCS)'],
+        shortage_hotspots: hotspots,
+        epidemic_surveillance_clusters: surveillance
+      };
+
+      const jsonStr = JSON.stringify(reportPayload, null, 2);
+      const blob = new Blob([jsonStr], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `medifind_gaza_ngo_heatmap_${new Date().toISOString().slice(0,10)}.json`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      window.medifindStore.showToast('تم تصدير ملف الاستخبارات الإغاثية الموحد (NGO Heatmap API) بصيغة JSON بنجاح', 'success', 'تصدير بيانات الإغاثة');
+    }
+
+    function simulateZeroResultSpike() {
+      for (let i = 0; i < 25; i++) {
+        window.medifindStore.logZeroResult('أنسولين لانتوس', 'دير البلح والوسطى');
+        window.medifindStore.logZeroResult('فلاجيل مطهر معوي', 'مواصي خانيونس');
+      }
+      renderNGOHeatmapAndSurveillance();
+      window.medifindStore.showToast('⚡ تم تسجيل 50 عملية بحث غير ناجحة لمحاكاة قفزة عجز دوائي، تم تحديث الخريطة الحرارية فوراً!', 'warning', 'محاكاة استخبارات الإغاثة');
+    }
+
+    function exportB2BDataJSON() {
+      const jsonStr = window.medifindStore.exportDrugShortageReport();
+      const blob = new Blob([jsonStr], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `medifind_drug_shortage_report_${new Date().toISOString().slice(0,10)}.json`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      window.medifindStore.showToast('تم تصدير تقرير رادار النقص الدوائي بصيغة JSON بنجاح للمؤسسات الإغاثية', 'success');
+    }
+
+    function resetAllDemoData() {
+      window.medifindStore.resetToDefaults();
+      renderAllAdminViews();
+      window.medifindStore.showToast('تمت إعادة ضبط كافة بيانات المنصة التجريبية', 'info');
+    }
+
+    // --- دوال إدارة وتوليد روابط المبرمجين في لوحة الإدارة ---
+    function adminGenerateDirectLink() {
+      const nameInput = document.getElementById('admin-share-dev-name');
+      const roleInput = document.getElementById('admin-share-dev-role');
+      const pageInput = document.getElementById('admin-share-dev-page');
+      const output = document.getElementById('admin-share-link-output');
+      if (!output) return;
+
+      const name = nameInput ? nameInput.value.trim() : '';
+      const role = roleInput ? roleInput.value : 'مختبر جودة (QA)';
+      const page = pageInput ? pageInput.value : 'index_patient.html';
+
+      const baseUrl = window.location.origin + window.location.pathname.replace('index_admin.html', '') + page;
+      const paramName = encodeURIComponent(name || 'زميل_مبرمج');
+      const paramRole = encodeURIComponent(role);
+
+      output.value = `${baseUrl}?dev=1&dev_name=${paramName}&role=${paramRole}`;
+    }
+
+    function adminCopyDirectLink() {
+      const copyText = document.getElementById('admin-share-link-output');
+      if (!copyText) return;
+      copyText.select();
+      copyText.setSelectionRange(0, 99999);
+      navigator.clipboard.writeText(copyText.value).then(() => {
+        window.medifindStore.showToast('تم نسخ الرابط المباشر للمطور بنجاح!', 'success');
+      }).catch(() => {
+        document.execCommand('copy');
+        window.medifindStore.showToast('تم النسخ بنجاح!', 'success');
+      });
+    }
+
+    function adminShareWhatsApp() {
+      const link = document.getElementById('admin-share-link-output').value;
+      const devName = (document.getElementById('admin-share-dev-name').value || '').trim() || 'زميلي المطور';
+      const msg = encodeURIComponent(`مرحباً ${devName}، تفضل رابط اختبار منصة دواك بإيدك، عند فتح الرابط سيبدأ نظام الفحص والرصد تلقائياً:\n${link}`);
+      window.open(`https://api.whatsapp.com/send?text=${msg}`, '_blank');
+    }
+
+    function adminPreviewDirectLink() {
+      const link = document.getElementById('admin-share-link-output').value;
+      window.open(link, '_blank');
+    }
+
+    function renderAdminDevSessionsTable() {
+      const tbody = document.getElementById('admin-dev-sessions-tbody');
+      if (!tbody || !window.MediFindTracker) return;
+
+      const sessions = window.MediFindTracker.getAllSessions();
+      if (sessions.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="7" class="text-center py-6 text-slate-400">لا توجد جلسات مسجلة بعد</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = sessions.slice(0, 10).map(s => {
+        const pagesCount = s.pageVisits ? s.pageVisits.length : 0;
+        const errCount = s.errors ? s.errors.length : 0;
+        const isActive = s.status === 'active';
+        
+        let dur = s.totalDurationSeconds || 0;
+        if (isActive && s.pageVisits) {
+          dur = s.pageVisits.reduce((acc, v) => acc + (v.durationSeconds || 0), 0);
+        }
+
+        const dateStr = new Date(s.startedAt).toLocaleDateString('ar-EG', {
+          month: 'short',
+          day: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit'
+        });
+
+        return `
+          <tr class="hover:bg-slate-50 transition-colors">
+            <td class="font-bold text-slate-900 flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full ${isActive ? 'bg-emerald-500 animate-pulse' : 'bg-slate-300'}"></span>
+              <span>${escapeHtmlAdmin(s.developerName)}</span>
+            </td>
+            <td>
+              <span class="font-semibold text-slate-700">${escapeHtmlAdmin(s.role || 'مبرمج')}</span>
+              <div class="text-[10px] text-slate-400 truncate max-w-[130px]">${escapeHtmlAdmin(s.task || '-')}</div>
+            </td>
+            <td class="text-slate-500 font-mono text-[11px]">${dateStr}</td>
+            <td class="font-mono text-teal-700 font-bold">${window.MediFindTracker.formatDuration(dur)}</td>
+            <td><span class="badge badge-ghost badge-xs">${pagesCount} صفحات</span></td>
+            <td>
+              ${errCount > 0 
+                ? `<span class="badge badge-error badge-xs font-bold text-white">${errCount} خطأ</span>` 
+                : `<span class="badge badge-ghost badge-xs text-emerald-600">0</span>`}
+            </td>
+            <td>
+              ${isActive 
+                ? `<span class="badge badge-success badge-xs font-bold text-white">نشطة الآن</span>` 
+                : `<span class="badge badge-ghost badge-xs text-slate-400">مكتملة</span>`}
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function escapeHtmlAdmin(str) {
+      if (!str) return '';
+      return String(str).replace(/[&<>'"]/g, tag => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        "'": '&#39;',
+        '"': '&quot;'
+      }[tag] || tag));
+    }
+
+    function adminClearDemoSessionsOnly() {
+      if (confirm('هل ترغب في مسح المبرمجين الافتراضيين (م. أحمد وم. سارة) والإبقاء على الجلسات الحقيقية؟')) {
+        if (window.MediFindTracker) {
+          window.MediFindTracker.clearDemoSessions();
+          renderAdminDevSessionsTable();
+          window.medifindStore.showToast('تم مسح المبرمجين الافتراضيين بنجاح', 'success');
+        }
+      }
+    }
+
+    function adminClearAllSessions() {
+      if (confirm('تحذير: هل أنت متأكد من مسح كافة سجلات المبرمجين وتصفير المنظومة بالكامل؟')) {
+        if (window.MediFindTracker) {
+          window.MediFindTracker.clearAllSessions();
+          renderAdminDevSessionsTable();
+          window.medifindStore.showToast('تم تصفير كافة السجلات بنجاح', 'info');
+        }
+      }
+    }
+
+    // تهيئة مولد الروابط وجدول الجلسات عند تحميل لوحة الإدارة
+    document.addEventListener('DOMContentLoaded', () => {
+      adminGenerateDirectLink();
+      renderAdminDevSessionsTable();
+    });
+  </script>
+</body>
+</html>

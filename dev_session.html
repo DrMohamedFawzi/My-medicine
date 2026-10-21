@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="corporate">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>بوابة دخول المبرمجين والمختبرين | دواك بإيدك</title>
+  
+  <!-- DaisyUI & Tailwind CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.10.2/dist/full.min.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Google Fonts - Cairo -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Cairo', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#f0fdfa',
+              100: '#ccfbf1',
+              500: '#14b8a6',
+              600: '#0d9488',
+              700: '#0f766e',
+              primary: '#0e7490',
+              secondary: '#06b6d4',
+              dark: '#091522'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  
+  <style>
+    body {
+      font-family: 'Cairo', sans-serif;
+      background-color: #0b1320;
+      color: #e2e8f0;
+      min-height: 100vh;
+    }
+    .hero-mesh {
+      background-image: 
+        radial-gradient(at 0% 0%, hsla(190, 85%, 28%, 0.35) 0px, transparent 50%),
+        radial-gradient(at 100% 0%, hsla(168, 80%, 25%, 0.35) 0px, transparent 50%),
+        radial-gradient(at 50% 100%, hsla(215, 80%, 15%, 0.5) 0px, transparent 60%);
+    }
+    .glass-card {
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(45, 212, 191, 0.25);
+    }
+    .active-glow {
+      box-shadow: 0 0 25px rgba(20, 184, 166, 0.25);
+    }
+  </style>
+</head>
+<body class="hero-mesh min-h-screen flex flex-col justify-between antialiased selection:bg-teal-500 selection:text-white">
+
+  <!-- شريط علوي للمطور -->
+  <header class="border-b border-slate-800/80 bg-slate-950/70 backdrop-blur-md sticky top-0 z-50">
+    <div class="max-w-4xl mx-auto px-4 py-3.5 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <img src="assets/images/dawaak-logo.png" alt="" class="h-10 w-10 object-contain" width="48" height="48">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="font-black text-lg text-white tracking-wide">دواك بإيدك</span>
+            <span class="badge badge-accent badge-xs font-bold text-slate-950">DEV SESSION</span>
+          </div>
+          <p class="text-[11px] text-slate-400">بوابة تسجيل دخول المبرمجين والمختبرين</p>
+        </div>
+      </div>
+
+      <div>
+        <a href="index.html" class="btn btn-sm btn-ghost text-slate-400 hover:text-white text-xs gap-1.5">
+          <i class="fa-solid fa-arrow-right text-[11px]"></i>
+          <span>العودة للموقع</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- المحتوى الرئيسي للمطور -->
+  <main class="max-w-3xl mx-auto px-4 py-8 sm:py-12 w-full flex-1">
+    
+    <!-- بطاقة الترحيب -->
+    <div class="text-center max-w-xl mx-auto mb-8 space-y-2.5">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-teal-500/10 border border-teal-500/30 text-teal-300 text-xs font-semibold">
+        <i class="fa-solid fa-shield-halved text-teal-400"></i>
+        <span>بيئة الاختبار والفحص البرمجي الميداني</span>
+      </div>
+      <h1 class="text-2xl sm:text-3xl font-black text-white">
+        تسجيل بدء جلسة فحص واختبار للمطور
+      </h1>
+      <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">
+        يرجى إدخال اسمك واختيار الصفحة التي تريد البدء باختبارها. سيتم تفعيل وضع الفحص تلقائياً لتسجيل مسارك وملاحظاتك أثناء العمل.
+      </p>
+    </div>
+
+    <!-- تنبيه وجود جلسة نشطة سابقة للمطور إن وجدت -->
+    <div id="active-session-banner" class="hidden mb-6">
+      <div class="p-4 sm:p-5 rounded-2xl bg-teal-950/50 border border-teal-400/50 flex flex-col sm:flex-row items-center justify-between gap-4 active-glow">
+        <div class="flex items-center gap-3 text-right">
+          <div class="w-11 h-11 rounded-2xl bg-teal-500/20 text-teal-300 flex items-center justify-center text-lg flex-shrink-0">
+            <i class="fa-solid fa-circle-play animate-spin text-teal-400"></i>
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="badge badge-success badge-xs font-bold text-slate-950">لديك جلسة قيد التسجيل الآن</span>
+              <h3 class="font-bold text-white text-sm" id="banner-dev-name">المبرمج: ...</h3>
+            </div>
+            <p class="text-[11px] text-slate-400 mt-0.5" id="banner-dev-details">جاري رصد التفاعلات...</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2 flex-shrink-0 w-full sm:w-auto">
+          <a id="btn-resume-session" href="index_patient.html" class="btn btn-sm bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold border-none flex-1 sm:flex-initial text-xs">
+            <i class="fa-solid fa-arrow-left"></i>
+            <span>متابعة التصفح</span>
+          </a>
+          <button onclick="terminateCurrentSession()" class="btn btn-sm btn-outline border-rose-500/60 text-rose-400 hover:bg-rose-500 hover:text-white flex-1 sm:flex-initial text-xs">
+            <i class="fa-solid fa-stop"></i>
+            <span>إنهاء الجلسة</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- نموذج إدخال المبرمج -->
+    <div class="glass-card rounded-3xl p-6 sm:p-8 shadow-2xl relative overflow-hidden">
+      <div class="flex items-center gap-3 mb-6 pb-4 border-b border-slate-800">
+        <div class="w-10 h-10 rounded-xl bg-teal-500/10 text-teal-400 flex items-center justify-center font-bold">
+          <i class="fa-solid fa-user-pen text-lg"></i>
+        </div>
+        <div>
+          <h2 class="font-bold text-base text-white">بيانات المبرمج والجلسة</h2>
+          <p class="text-[11px] text-slate-400">سجل اسمك للانطلاق فوراً</p>
+        </div>
+      </div>
+
+      <form id="start-session-form" class="space-y-4" onsubmit="handleStartSession(event)">
+        
+        <!-- اسم المبرمج -->
+        <div>
+          <label class="block text-xs font-bold text-slate-300 mb-1.5">
+            <i class="fa-solid fa-id-badge text-teal-400 ml-1"></i>
+            اسمك الكامل <span class="text-rose-400">*</span>
+          </label>
+          <input type="text" id="dev-name" required placeholder="اكتب اسمك هنا (مثال: م. أحمد بربخ)" 
+            class="input input-bordered w-full bg-slate-900 border-slate-700 text-white placeholder-slate-500 focus:border-teal-400 text-sm h-11" />
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <!-- التخصص / الدور -->
+          <div>
+            <label class="block text-xs font-bold text-slate-300 mb-1.5">
+              <i class="fa-solid fa-briefcase text-teal-400 ml-1"></i>
+              التخصص / الدور
+            </label>
+            <select id="dev-role" class="select select-bordered w-full bg-slate-900 border-slate-700 text-white focus:border-teal-400 text-xs h-11">
+              <option value="مطور واجهات المستخدم (Frontend)">مطور واجهات (Frontend)</option>
+              <option value="مطور المنطق الخلفي (Backend / DB)">مطور منطق وقواعد بيانات (Backend)</option>
+              <option value="مختبر جودة وفحص (QA Tester)" selected>مختبر جودة (QA Tester)</option>
+              <option value="مصمم تجربة مستخدم (UI/UX)">مصمم تجربة مستخدم (UI/UX)</option>
+              <option value="مبرمج شامل (Fullstack)">مبرمج شامل (Fullstack)</option>
+            </select>
+          </div>
+
+          <!-- صفحة البداية -->
+          <div>
+            <label class="block text-xs font-bold text-slate-300 mb-1.5">
+              <i class="fa-solid fa-compass text-teal-400 ml-1"></i>
+              الصفحة المراد فحصها
+            </label>
+            <select id="dev-start-page" class="select select-bordered w-full bg-slate-900 border-slate-700 text-white focus:border-teal-400 text-xs h-11">
+              <option value="index_patient.html" selected>بوابة المريض والبحث الدوائي</option>
+              <option value="index_pharmacy.html">لوحة الصيدلية وإدارة المخزون</option>
+              <option value="index.html">الصفحة الرئيسية للمنصة</option>
+              <option value="features.html">صفحة المميزات ورادار النقص</option>
+              <option value="how_it_works.html">صفحة كيف تعمل المنصة</option>
+              <option value="index_admin.html">مركز الإدارة والرقابة (Admin)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- مهمة الاختبار -->
+        <div>
+          <label class="block text-xs font-bold text-slate-300 mb-1.5">
+            <i class="fa-solid fa-list-check text-teal-400 ml-1"></i>
+            مهمة الفحص أو الملاحظات الأولية (اختياري)
+          </label>
+          <input type="text" id="dev-task" placeholder="مثال: فحص حجز أدوية الطوارئ، فحص سرعة البحث، أو تجاوب الأزرار" 
+            class="input input-bordered w-full bg-slate-900 border-slate-700 text-white placeholder-slate-500 focus:border-teal-400 text-xs h-11" />
+        </div>
+
+        <!-- زر الإطلاق -->
+        <div class="pt-2">
+          <button type="submit" class="btn w-full bg-gradient-to-r from-teal-500 to-cyan-500 hover:from-teal-400 hover:to-cyan-400 text-slate-950 font-black border-none shadow-lg shadow-teal-500/20 text-sm gap-2 h-12">
+            <i class="fa-solid fa-play"></i>
+            <span>بدء جلسة الاختبار والدخول للصفحة</span>
+          </button>
+        </div>
+
+      </form>
+    </div>
+
+    <!-- معلومات وإرشادات للمبرمج -->
+    <div class="mt-6 p-4 rounded-2xl bg-slate-900/60 border border-slate-800 text-slate-400 text-xs space-y-1.5">
+      <div class="flex items-center gap-2 text-teal-400 font-bold">
+        <i class="fa-solid fa-circle-info"></i>
+        <span>إرشادات جلسة المطور:</span>
+      </div>
+      <p class="text-[11px] leading-relaxed">
+        أثناء تصفحك ستظهر لك شارة صغيرة بالأسفل بها مؤقت وزر لإضافة أي ملاحظة أو بلاغ سريع عن أي خطأ تواجهه في أي صفحة. عند الانتهاء يمكنك الضغط على زر إنهاء الجلسة.
+      </p>
+    </div>
+
+  </main>
+
+  <!-- تذييل -->
+  <footer class="border-t border-slate-900 bg-slate-950/80 py-4 text-center text-xs text-slate-500">
+    <div class="max-w-4xl mx-auto px-4 flex items-center justify-between">
+      <span>منصة دواك بإيدك • بوابة المبرمجين</span>
+      <span>2026 ©</span>
+    </div>
+  </footer>
+
+  <!-- سكربت التتبع -->
+  <script src="js/tracker.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      checkActiveSessionUI();
+
+      // الاستماع للتحديثات
+      if (typeof BroadcastChannel !== 'undefined') {
+        const channel = new BroadcastChannel('medifind_dev_telemetry');
+        channel.onmessage = () => {
+          checkActiveSessionUI();
+        };
+      }
+    });
+
+    function checkActiveSessionUI() {
+      const active = window.MediFindTracker ? window.MediFindTracker.getActiveSession() : null;
+      const banner = document.getElementById('active-session-banner');
+      if (active && active.status === 'active') {
+        banner.classList.remove('hidden');
+        document.getElementById('banner-dev-name').innerText = `المبرمج: ${active.developerName}`;
+        document.getElementById('banner-dev-details').innerText = `المهمة: ${active.task || 'فحص عام'} | بدأت: ${new Date(active.startedAt).toLocaleTimeString('ar-EG')}`;
+        
+        const lastPage = (active.pageVisits && active.pageVisits.length > 0) 
+          ? active.pageVisits[active.pageVisits.length - 1].page 
+          : 'index_patient.html';
+        document.getElementById('btn-resume-session').href = lastPage;
+      } else {
+        banner.classList.add('hidden');
+      }
+    }
+
+    function handleStartSession(e) {
+      e.preventDefault();
+      const name = document.getElementById('dev-name').value.trim();
+      const role = document.getElementById('dev-role').value;
+      const startPage = document.getElementById('dev-start-page').value;
+      const task = document.getElementById('dev-task').value.trim() || 'فحص واختبار الموقع';
+
+      if (!name) {
+        alert('يرجى كتابة اسم المبرمج');
+        return;
+      }
+
+      if (window.MediFindTracker) {
+        window.MediFindTracker.startSession(name, role, task);
+        window.location.href = startPage;
+      }
+    }
+
+    function terminateCurrentSession() {
+      if (confirm('هل ترغب بإنهاء جلسة الاختبار النشطة الحالية؟')) {
+        if (window.MediFindTracker) {
+          window.MediFindTracker.endSession();
+          checkActiveSessionUI();
+        }
+      }
+    }
+  </script>
+</body>
+</html>

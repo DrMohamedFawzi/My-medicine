@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 300" role="img" aria-label="عبوة شاش فازلين معقم">
+  <rect width="320" height="300" rx="28" fill="#f1f8f8"/>
+  <ellipse cx="160" cy="253" rx="82" ry="13" fill="#dce8e9"/>
+  <path d="M96 78h126v148H96z" fill="#fff" stroke="#c8dadd" stroke-width="4"/>
+  <path d="M96 78h126v35H96z" fill="#d99a42"/>
+  <rect x="119" y="132" width="80" height="59" rx="8" fill="#fff7e7" stroke="#eed9b5" stroke-width="3"/>
+  <path d="M132 146h54m-54 13h54m-54 13h54" stroke="#ddcba9" stroke-width="4" stroke-linecap="round"/>
+  <text x="159" y="211" text-anchor="middle" fill="#745522" font-family="Arial,sans-serif" font-size="9" font-weight="700">PARAFFIN GAUZE</text>
+</svg>

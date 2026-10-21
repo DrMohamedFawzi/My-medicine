@@ -1,0 +1,23 @@
+{
+  "name": "دواك بإيدك | شبكة الأدوية والطوارئ - قطاع غزة",
+  "short_name": "دواك بإيدك",
+  "description": "منصة البحث عن الأدوية، التحقق الصيدلي، رادار ألبان الأطفال، ورف التكافل الدوائي بقطاع غزة",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#071a2c",
+  "theme_color": "#071a2c",
+  "dir": "rtl",
+  "lang": "ar",
+  "icons": [
+    {
+      "src": "assets/images/dawaak-logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/images/dawaak-logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

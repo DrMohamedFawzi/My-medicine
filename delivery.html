@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="corporate">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#071a2c">
+
+  <!-- Primary Meta Tags & SEO -->
+  <title>بوابة مندوب التوصيل والمتطوعين 🛵 | دواك بإيدك - قطاع غزة</title>
+  <meta name="title" content="بوابة مندوب التوصيل والمتطوعين 🛵 | دواك بإيدك - قطاع غزة">
+  <meta name="description" content="بوابة متطوعي الإغاثة ومندوبي التوصيل في غزة - استلام الأدوية من الصيدليات والتسليم لمراكز الإيواء والخيام بنظام الضمان المزدوج Double-PIN.">
+  <meta name="keywords" content="توصيل أدوية غزة, متطوعي غزة, مسارات آمنة غزة, إغاثة خيام غزة, توصيل تجميعي, MSN-IT In UK">
+  <meta name="author" content="MSN-IT In UK">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph & Twitter -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="بوابة مندوب التوصيل والمتطوعين 🛵 | دواك بإيدك - قطاع غزة">
+  <meta property="og:description" content="شبكة متطوعي الإغاثة لنقل الأدوية المنقذة للحياة ومراقبة الممرات الآمنة في قطاع غزة.">
+  <meta property="og:image" content="assets/images/dawaak-logo.png">
+
+  <!-- Favicon & Touch Icons -->
+  <link rel="icon" type="image/webp" href="assets/images/dawaak-logo.webp">
+  <link rel="icon" type="image/png" href="assets/images/dawaak-logo.png">
+  <link rel="apple-touch-icon" href="assets/images/dawaak-logo.png">
+
+  <!-- Core Offline-First Stylesheet -->
+  <link rel="stylesheet" href="assets/css/core.css">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="dashboard-ui.css">
+  <link rel="stylesheet" href="public-nav.css">
+
+  <!-- DaisyUI & Tailwind CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.10.2/dist/full.min.css" rel="stylesheet" type="text/css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@500;600;700;800&family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <script src="js/public-nav.js" defer></script>
+  <script src="js/store.js"></script>
+
+  <style>
+    body { font-family: 'Cairo', 'Alexandria', sans-serif; background-color: #f0f7f9; }
+    .font-heading { font-family: 'Alexandria', 'Cairo', sans-serif; }
+    .runner-hero {
+      background: radial-gradient(ellipse at 80% 20%, rgba(6,182,212,.18), transparent 45%),
+                  radial-gradient(ellipse at 15% 85%, rgba(13,148,136,.18), transparent 45%),
+                  linear-gradient(135deg, #071a2c 0%, #0d3846 60%, #0e5b67 100%);
+    }
+  </style>
+</head>
+<body class="min-h-screen text-slate-800 antialiased flex flex-col justify-between">
+
+  <!-- 1. Header & Navigation -->
+  <header class="glass-nav sticky top-0 z-50 border-b border-slate-200/80">
+    <div class="mx-auto flex max-w-7xl items-center justify-between gap-2 px-3 py-3 sm:px-6 lg:px-8">
+      <a href="index.html" class="flex shrink-0 items-center gap-2" aria-label="دواك بإيدك، الرئيسية">
+        <picture>
+          <source srcset="assets/images/dawaak-logo.webp" type="image/webp">
+          <img src="assets/images/dawaak-logo.png" alt="دواك بإيدك" class="h-10 w-10 object-contain sm:h-11 sm:w-11" width="48" height="48">
+        </picture>
+        <span>
+          <span class="block font-heading text-base font-extrabold tracking-tight text-slate-950 sm:text-xl">دواك بإيدك</span>
+          <span class="hidden text-[9px] font-bold text-slate-500 sm:block">بوابة متطوعي الإغاثة والتوصيل الميداني</span>
+        </span>
+      </a>
+
+      <nav class="hidden items-center gap-5 text-xs font-bold text-slate-600 xl:flex">
+        <a href="index.html" class="transition hover:text-teal-700">الرئيسية</a>
+        <a href="index_patient.html" class="transition hover:text-teal-700">بحث الأدوية</a>
+        <a href="index_pharmacy.html" class="transition hover:text-teal-700">لوحة الصيدلية</a>
+        <a href="delivery.html" class="text-teal-800 font-extrabold" aria-current="page">بوابة التوصيل الميداني</a>
+        <a href="index_admin.html" class="transition hover:text-teal-700">الإدارة المركزية</a>
+      </nav>
+
+      <div class="flex items-center gap-2">
+        <span id="active-missions-pill" class="badge badge-success text-white font-bold text-xs gap-1.5 p-3">
+          <i class="fa-solid fa-person-running"></i>
+          <span id="missions-count">0 مهام متاحة</span>
+        </span>
+        <a href="index_patient.html" class="btn btn-sm btn-ghost text-teal-800 font-bold text-xs">
+          <i class="fa-solid fa-arrow-left"></i> بوابة المريض
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- 2. Hero Section -->
+  <section class="runner-hero text-white px-4 py-10 sm:py-14 shadow-lg">
+    <div class="mx-auto max-w-5xl text-center space-y-4">
+      <div class="inline-flex items-center gap-2 rounded-full border border-teal-400/30 bg-teal-500/10 px-4 py-1.5 text-xs font-extrabold text-teal-200">
+        <span class="pulse-beacon"></span> شبكة الإغاثة الميدانية - أبطال الميل الأخير في غزة
+      </div>
+      <h1 class="text-2xl font-black font-heading leading-tight sm:text-4xl text-white">
+        بوابة مندوبي التوصيل ومتطوعي الإغاثة
+      </h1>
+      <p class="mx-auto max-w-2xl text-xs sm:text-sm font-medium leading-relaxed text-teal-100/90">
+        استلم الأدوية المنقذة للحياة من الصيدليات المعتمدة وسلّمها للمرضى والمصابين في خيام النزوح ومراكز الإيواء، مع مراقبة حية للمسارات الآمنة لحمايتك.
+      </p>
+    </div>
+  </section>
+
+  <!-- 3. Safe Corridors Live Monitor -->
+  <main class="max-w-7xl mx-auto px-4 py-8 w-full flex-1 space-y-8">
+    <section class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <div class="flex items-center gap-2 text-slate-800">
+          <i class="fa-solid fa-route text-teal-700 text-lg"></i>
+          <h2 class="font-black text-sm sm:text-base font-heading">رادار الممرات والمسارات الآمنة بالقطاع</h2>
+        </div>
+        <span class="text-[11px] text-slate-400 font-bold">تحديث لحظي لحماية فرق الإغاثة</span>
+      </div>
+      <div id="corridors-grid" class="grid gap-3 sm:grid-cols-3">
+        <!-- Rendered by JS -->
+      </div>
+    </section>
+
+    <!-- 4. Active Delivery Missions -->
+    <section class="space-y-4">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+        <div>
+          <h2 class="text-lg font-black font-heading text-slate-900 flex items-center gap-2">
+            <i class="fa-solid fa-boxes-packing text-teal-700"></i>
+            <span>الطلبات التي تنتظر متطوع توصيل (مهام عاجلة)</span>
+          </h2>
+          <p class="text-xs text-slate-500 mt-0.5">اختر المهمة القريبة من موقعك وتوجه لاستلامها بالرمز المخصص</p>
+        </div>
+
+        <!-- Volunteer Registration / Switch -->
+        <div class="flex items-center gap-2 bg-white px-3 py-1.5 rounded-xl border border-slate-200 text-xs">
+          <i class="fa-solid fa-user-tag text-teal-600"></i>
+          <span class="text-slate-500 font-bold">المتطوع الحالي:</span>
+          <input type="text" id="runner-active-name" value="متطوع الإغاثة الميداني" class="font-extrabold text-slate-800 bg-transparent focus:outline-none w-36 border-b border-teal-300">
+        </div>
+      </div>
+
+      <!-- Filter Pills -->
+      <div class="flex flex-wrap items-center gap-2 pt-1 text-xs">
+        <button onclick="setMissionFilter('all')" id="btn-filter-all" class="btn btn-xs rounded-xl bg-teal-800 text-white font-extrabold">كافة المهام</button>
+        <button onclick="setMissionFilter('camp_hub')" id="btn-filter-camp_hub" class="btn btn-xs rounded-xl bg-white border border-slate-200 text-slate-700 font-bold hover:bg-slate-50">توصيل تجميعي للمخيمات (2 ₪)</button>
+        <button onclick="setMissionFilter('emergency')" id="btn-filter-emergency" class="btn btn-xs rounded-xl bg-white border border-slate-200 text-slate-700 font-bold hover:bg-slate-50">طوارئ جروح حرجة 🚨</button>
+        <button onclick="setMissionFilter('mine')" id="btn-filter-mine" class="btn btn-xs rounded-xl bg-white border border-slate-200 text-slate-700 font-bold hover:bg-slate-50">مهامي قيد التوصيل</button>
+      </div>
+
+      <!-- Missions List -->
+      <div id="missions-container" class="grid gap-4 md:grid-cols-2">
+        <!-- Populated via JS -->
+      </div>
+    </section>
+  </main>
+
+  <!-- 5. Footer -->
+  <footer class="border-t border-slate-200 bg-white px-4 py-6 text-center text-xs text-slate-500">
+    <div class="max-w-4xl mx-auto space-y-3">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-2 border-b border-slate-100 pb-3">
+        <p class="font-bold text-slate-800">شبكة دواك بإيدك الإغاثية © 2026 - أبطال الميل الأخير في غزة</p>
+        <p class="text-[11px] text-slate-400">تطبيق متوافق مع كافة الهواتف ويعمل في ظروف انقطاع الشبكة (Offline-First Mesh)</p>
+      </div>
+      <div class="inline-flex items-center gap-2 bg-slate-900 px-4 py-2 rounded-xl border border-teal-500/30 text-white text-xs shadow-sm">
+        <i class="fa-solid fa-code text-teal-400"></i>
+        <span class="text-slate-300">تم دعم المشروع برمجياً من قبل شركة</span>
+        <strong class="font-black text-teal-300 font-sans tracking-wide">MSN-IT In UK</strong>
+        <span>🇬🇧</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    let activeFilter = 'all';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderCorridors();
+      renderMissions();
+
+      window.addEventListener('medifind_data_changed', () => {
+        renderMissions();
+      });
+
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('sw.js').catch(() => {});
+      }
+    });
+
+    function setMissionFilter(filter) {
+      activeFilter = filter;
+      ['all', 'camp_hub', 'emergency', 'mine'].forEach(f => {
+        const btn = document.getElementById(`btn-filter-${f}`);
+        if (!btn) return;
+        if (f === filter) {
+          btn.className = 'btn btn-xs rounded-xl bg-teal-800 text-white font-extrabold';
+        } else {
+          btn.className = 'btn btn-xs rounded-xl bg-white border border-slate-200 text-slate-700 font-bold hover:bg-slate-50';
+        }
+      });
+      renderMissions();
+    }
+
+    function renderCorridors() {
+      const container = document.getElementById('corridors-grid');
+      const corridors = window.medifindStore.getSafeCorridorsStatus();
+      container.innerHTML = corridors.map(c => `
+        <div class="p-3.5 rounded-xl border ${c.status === 'safe' ? 'border-emerald-200 bg-emerald-50/50' : c.status === 'danger' ? 'border-rose-200 bg-rose-50/50' : 'border-amber-200 bg-amber-50/50'} space-y-1.5">
+          <div class="flex items-center justify-between">
+            <span class="font-bold text-xs text-slate-900">${c.name}</span>
+            <span class="badge ${c.status === 'safe' ? 'badge-success text-white' : c.status === 'danger' ? 'badge-error text-white' : 'badge-warning'} badge-xs font-bold">${c.status_label}</span>
+          </div>
+          <p class="text-[10px] text-slate-500">${c.governorates}</p>
+          <div class="text-[9px] text-slate-400 font-mono"><i class="fa-regular fa-clock ml-1"></i>${c.last_update}</div>
+        </div>
+      `).join('');
+    }
+
+    function renderMissions() {
+      const container = document.getElementById('missions-container');
+      const pill = document.getElementById('missions-count');
+      const missions = window.medifindStore.getDeliveryMissions();
+      let available = missions.filter(m => m.status !== 'completed');
+
+      if (activeFilter === 'camp_hub') {
+        available = available.filter(m => m.delivery_mode === 'camp_hub' || m.camp_name);
+      } else if (activeFilter === 'emergency') {
+        available = available.filter(m => m.urgency_level === 'emergency_wound');
+      } else if (activeFilter === 'mine') {
+        available = available.filter(m => m.status === 'in_transit');
+      }
+
+      pill.textContent = `${available.length} مهام نشطة`;
+
+      if (available.length === 0) {
+        container.innerHTML = `
+          <div class="col-span-full bg-white p-8 rounded-2xl border border-slate-200 text-center space-y-3">
+            <div class="w-12 h-12 bg-teal-50 text-teal-700 rounded-full flex items-center justify-center mx-auto text-xl">
+              <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <h3 class="font-bold text-slate-800 text-sm">لا توجد طلبات توصيل مطابقة للفلتر المحدد</h3>
+            <p class="text-xs text-slate-500">تم تسليم كافة الأدوية بنجاح، أو لم يطلب المريض متطوع توصيل لهذه الفئة.</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = available.map(m => {
+        const isClaimedByMe = m.status === 'in_transit';
+        const isCampHub = m.delivery_mode === 'camp_hub' || m.camp_name;
+        const patientLandmark = m.landmark_desc || 'أقرب مسجد أو مدرسة إيواء';
+        const tentColor = m.tent_color_desc || 'خيمة محددة بالمعالم الميدانية';
+        const campName = m.camp_name || 'مواصي خانيونس / مدرسة الإيواء';
+
+        return `
+          <div class="card-core p-5 bg-white rounded-2xl border ${isClaimedByMe ? 'border-cyan-400 ring-2 ring-cyan-100 shadow-md' : 'border-slate-200'} space-y-3.5">
+            <div class="flex items-start justify-between gap-2 border-b border-slate-100 pb-3">
+              <div>
+                <div class="flex flex-wrap items-center gap-1.5 mb-1">
+                  <span class="badge badge-sm ${m.urgency_level === 'emergency_wound' ? 'badge-error text-white font-black' : 'badge-neutral text-white font-bold'}">
+                    ${m.urgency_level === 'emergency_wound' ? '🚨 طوارئ جروح حرجة' : 'طلب روتيني'}
+                  </span>
+                  ${isCampHub ? `
+                    <span class="badge badge-warning badge-sm text-slate-900 font-extrabold gap-1">
+                      <i class="fa-solid fa-people-roof text-xs"></i> توصيل تجميعي للمخيم (2 ₪)
+                    </span>
+                  ` : `
+                    <span class="badge badge-ghost badge-sm text-slate-600 font-bold gap-1">
+                      <i class="fa-solid fa-person-walking text-xs"></i> توصيل فردي مباشر
+                    </span>
+                  `}
+                </div>
+                <h3 class="font-extrabold text-slate-900 text-sm">${m.medicine_name}</h3>
+                <span class="text-[11px] font-mono text-slate-400">كود الطلب: ${m.order_code}</span>
+              </div>
+              <span class="badge badge-sm ${isClaimedByMe ? 'badge-info text-white' : 'badge-ghost'} font-bold">
+                ${isClaimedByMe ? 'قيد التوصيل معك' : 'بانتظار متطوع'}
+              </span>
+            </div>
+
+            <!-- Locations & Gaza Landmarks -->
+            <div class="space-y-2 text-xs">
+              <div class="flex items-start gap-2 bg-slate-50 p-2.5 rounded-xl">
+                <i class="fa-solid fa-house-medical text-teal-700 mt-0.5"></i>
+                <div class="min-w-0 flex-1">
+                  <span class="font-bold text-slate-700 block">نقطة الاستلام (الصيدلية):</span>
+                  <span class="text-slate-900 font-extrabold">${m.pharmacy_name}</span>
+                  <p class="text-[10px] text-slate-500">${m.pharmacy_address || 'شارع رئيسي - صيدلية معتمدة'}</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-2 bg-cyan-50/60 p-2.5 rounded-xl border border-cyan-100">
+                <i class="fa-solid fa-location-dot text-cyan-700 mt-0.5"></i>
+                <div class="min-w-0 flex-1 space-y-1">
+                  <div class="flex items-center justify-between">
+                    <span class="font-bold text-slate-800">نقطة التسليم (المريض): <strong class="text-slate-950">${m.patient_name}</strong></span>
+                    <a href="tel:${m.patient_phone || '0590000000'}" class="text-[10px] text-teal-700 font-bold bg-white px-2 py-0.5 rounded-md border border-cyan-200">
+                      <i class="fa-solid fa-phone"></i> اتصال
+                    </a>
+                  </div>
+                  <p class="text-[11px] text-slate-700 font-bold">
+                    <i class="fa-solid fa-tent text-teal-700 ml-1"></i> المخيم / المنطقة: <span class="text-slate-900 font-extrabold">${campName}</span>
+                  </p>
+                  <p class="text-[10px] text-slate-600">
+                    <i class="fa-solid fa-map-pin text-rose-500 ml-1"></i> أقرب معلم: <span>${patientLandmark}</span>
+                  </p>
+                  <p class="text-[10px] text-slate-600">
+                    <i class="fa-solid fa-flag text-amber-600 ml-1"></i> وصف الخيمة: <span>${tentColor}</span>
+                  </p>
+                  <div class="pt-1 flex items-center justify-between text-[10px]">
+                    <button type="button" onclick="playVoiceLandmarkNote('${m.patient_name}')" class="text-teal-800 hover:text-teal-950 font-bold inline-flex items-center gap-1 bg-white px-2 py-1 rounded-lg border border-teal-200">
+                      <i class="fa-solid fa-volume-high text-teal-600"></i> استمع لوصف الموقع الصوتي (10 ثوانٍ)
+                    </button>
+                    <span class="text-[9px] text-slate-400 font-mono">${m.patient_phone || ''}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Actions & Double-PIN Escrow -->
+            <div class="pt-2 border-t border-slate-100">
+              ${isClaimedByMe ? `
+                <div class="space-y-3">
+                  <!-- Double-PIN Escrow Verification Box -->
+                  <div class="bg-gradient-to-br from-teal-50 to-cyan-50/80 p-3.5 rounded-xl border border-teal-300 space-y-2">
+                    <div class="flex items-center justify-between">
+                      <span class="text-xs font-black text-teal-950 flex items-center gap-1.5">
+                        <i class="fa-solid fa-shield-halved text-teal-700"></i> نظام الضمان المزدوج (Double-PIN Escrow)
+                      </span>
+                      <span class="badge badge-success badge-xs text-white font-bold">حماية الطرفين</span>
+                    </div>
+                    <p class="text-[10px] text-teal-900 leading-tight">
+                      لا يتم إغلاق المهمة وفك عمولتك إلا بإدخال كود استلام الصيدلية وكود تسليم المريض (Delivery PIN).
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-2 pt-1">
+                      <div>
+                        <label class="text-[10px] font-bold text-slate-700 block mb-0.5">1. كود استلام الصيدلية:</label>
+                        <input type="text" id="pin-pickup-${m.order_id}" value="${m.pickup_code}" class="input input-xs input-bordered w-full font-mono font-black text-center text-teal-900 bg-white" placeholder="كود الصيدلية">
+                      </div>
+                      <div>
+                        <label class="text-[10px] font-bold text-slate-700 block mb-0.5">2. كود المريض (Delivery PIN):</label>
+                        <input type="text" id="pin-delivery-${m.order_id}" maxlength="4" class="input input-xs input-bordered w-full font-mono font-black text-center text-rose-700 bg-white border-cyan-400" placeholder="مثال: ${m.delivery_pin}">
+                      </div>
+                    </div>
+
+                    <div class="flex items-center justify-between pt-1">
+                      <span class="text-[9px] text-slate-500 font-mono">💡 كود المريض للتجربة: [<strong>${m.delivery_pin}</strong>]</span>
+                      <button onclick="handleDoublePINVerify(${m.order_id})" class="btn btn-xs bg-emerald-600 hover:bg-emerald-700 text-white font-black rounded-lg gap-1 px-3 shadow-sm">
+                        <i class="fa-solid fa-key"></i> تحقق وفك الضمان
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ` : `
+                <div class="flex items-center justify-between gap-3">
+                  <div class="text-[10px] text-slate-500 font-bold">
+                    أجرة المهمة: <strong class="text-emerald-700 font-extrabold">${isCampHub ? '2 ₪ (مخيم)' : '7 ₪ (مباشر)'}</strong>
+                  </div>
+                  <button onclick="acceptMission(${m.order_id})" class="btn btn-sm bg-teal-700 hover:bg-teal-800 text-white font-black text-xs rounded-xl gap-1.5 shadow-sm">
+                    <i class="fa-solid fa-hand-holding-medical"></i> قبول مهمة التوصيل
+                  </button>
+                </div>
+              `}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function acceptMission(orderId) {
+      const runnerName = document.getElementById('runner-active-name').value.trim() || 'متطوع ميداني';
+      window.medifindStore.acceptDeliveryMission(orderId, runnerName, '0590000000');
+      renderMissions();
+    }
+
+    function handleDoublePINVerify(orderId) {
+      const pickupPin = document.getElementById(`pin-pickup-${orderId}`)?.value.trim();
+      const deliveryPin = document.getElementById(`pin-delivery-${orderId}`)?.value.trim();
+
+      if (!pickupPin || !deliveryPin) {
+        alert('يرجى إدخال كود استلام الصيدلية وكود تسليم المريض (Delivery PIN)');
+        return;
+      }
+
+      const res = window.medifindStore.verifyDeliveryDoublePIN(orderId, pickupPin, deliveryPin);
+      if (res.success) {
+        renderMissions();
+      } else {
+        alert(res.message);
+      }
+    }
+
+    function playVoiceLandmarkNote(patientName) {
+      alert(`🎙️ تشغيل التسجيل الصوتي للمريض (${patientName}): "مرحبا يا خوي، أنا بخيمة زرقا ورا مدرسة الإيواء جنب بئر المية، بتلاقي بسكليت قدام الخيمة"`);
+    }
+  </script>
+</body>
+</html>

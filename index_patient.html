@@ -1,0 +1,3613 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="corporate">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#071a2c">
+
+  <!-- Primary Meta Tags & SEO Optimization -->
+  <title>دواك بإيدك 🏥 | ابحث عن دوائك في صيدليات قطاع غزة</title>
+  <meta name="title" content="دواك بإيدك 🏥 | ابحث عن دوائك في صيدليات قطاع غزة">
+  <meta name="description" content="محرك بحث ذكي متسامح مع الأخطاء للأدوية في قطاع غزة، حجز فوري محمي السعر لمدة ساعتين، قناص الأدوية الآلي، وكفالة المغتربين.">
+  <meta name="keywords" content="بحث أدوية غزة, صيدليات خانيونس, صيدليات دير البلح, صيدليات رفح, أنسولين لانتوس غزة, حليب نان غزة, قناص الأدوية, رف التكافل, MSN-IT In UK">
+  <meta name="author" content="MSN-IT In UK">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph / WhatsApp / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://localhost/My-medicine/index_patient.html">
+  <meta property="og:title" content="دواك بإيدك 🏥 | ابحث عن دوائك في صيدليات قطاع غزة">
+  <meta property="og:description" content="محرك بحث ذكي للأدوية في صيدليات قطاع غزة، حجز فوري محمي السعر لمدة ساعتين، قناص الأدوية النادرة، وتوصيل للمخيمات.">
+  <meta property="og:image" content="assets/images/dawaak-logo.png">
+  <meta property="og:locale" content="ar_AR">
+  <meta property="og:site_name" content="دواك بإيدك - MediFind Gaza">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="دواك بإيدك 🏥 | ابحث عن دوائك في صيدليات قطاع غزة">
+  <meta name="twitter:description" content="محرك بحث ذكي للأدوية في صيدليات قطاع غزة مع فحص تواريخ الصلاحية وحماية الأسعار.">
+  <meta name="twitter:image" content="assets/images/dawaak-logo.png">
+
+  <!-- Favicon & Touch Icons -->
+  <link rel="icon" type="image/webp" href="assets/images/dawaak-logo.webp">
+  <link rel="icon" type="image/png" href="assets/images/dawaak-logo.png">
+  <link rel="apple-touch-icon" href="assets/images/dawaak-logo.png">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MedicalWebPage",
+    "name": "دواك بإيدك - بوابة المريض للبحث عن الأدوية بغزة",
+    "url": "http://localhost/My-medicine/index_patient.html",
+    "description": "ابحث عن الأدوية الحيوية، ألبان الأطفال، ومستلزمات الطوارئ مع التحقق البشري الصيدلي.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "دواك بإيدك",
+      "logo": "http://localhost/My-medicine/assets/images/dawaak-logo.png"
+    },
+    "sponsor": {
+      "@type": "Organization",
+      "name": "MSN-IT In UK",
+      "description": "تم دعم وتطوير المشروع برمجياً من قبل شركة MSN-IT In UK"
+    }
+  }
+  </script>
+  
+  <!-- Tailwind CSS & DaisyUI CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@4.10.2/dist/full.min.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Leaflet CSS & JS for Interactive Gaza Map -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+
+  <!-- QRCode.js Library for instant ticket redemption -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+  <!-- Google Fonts - Cairo -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;500;600;700;800;900&family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Cairo', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#f0fdfa',
+              100: '#ccfbf1',
+              500: '#14b8a6',
+              600: '#0d9488',
+              700: '#0f766e',
+              primary: '#0e7490',
+              secondary: '#06b6d4',
+              dark: '#0f172a'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  
+  <style>
+    body {
+      font-family: 'Cairo', sans-serif;
+      background-color: #f3f7f8;
+    }
+    .hero-bg {
+      background:
+        radial-gradient(ellipse at 15% 10%, rgba(45, 212, 191, .17), transparent 38%),
+        radial-gradient(ellipse at 90% 90%, rgba(6, 182, 212, .16), transparent 38%),
+        linear-gradient(135deg, #071a2c 0%, #0b3443 58%, #0f4c5c 100%);
+    }
+    .scrollbar-none::-webkit-scrollbar {
+      display: none;
+    }
+    .scrollbar-none {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+    }
+    .patient-heading, .glass-nav .font-heading { font-family: 'Alexandria', 'Cairo', sans-serif; }
+    .patient-search-hero {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      width: 100%;
+      background:
+        radial-gradient(ellipse at 82% 18%, rgba(45, 212, 191, .11), transparent 38%),
+        radial-gradient(ellipse at 16% 88%, rgba(6, 182, 212, .1), transparent 44%),
+        #0b3443;
+    }
+    .patient-search-hero-inner {
+      display: grid;
+      width: 100%;
+      min-height: 34rem;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      align-items: center;
+      direction: ltr;
+    }
+    .patient-hero-copy {
+      position: relative;
+      z-index: 2;
+      grid-column: 2;
+      grid-row: 1;
+      padding: 3rem clamp(1.5rem, 5vw, 5rem);
+      direction: rtl;
+    }
+    .patient-hero-visual {
+      position: relative;
+      grid-column: 1;
+      grid-row: 1;
+      align-self: stretch;
+      min-height: 34rem;
+      overflow: visible;
+      isolation: isolate;
+    }
+    .patient-hero-visual::before {
+      position: absolute;
+      z-index: -1;
+      inset: 12% 8%;
+      border-radius: 50%;
+      background: rgba(45, 212, 191, .23);
+      content: "";
+      filter: blur(42px);
+    }
+    .patient-hero-visual::after {
+      position: absolute;
+      inset: 0 -11rem 0 0;
+      z-index: 1;
+      content: "";
+      background: linear-gradient(90deg, transparent 12%, rgba(11, 52, 67, .22) 42%, rgba(11, 52, 67, .7) 62%, #0b3443 76%, #0b3443 100%);
+      pointer-events: none;
+    }
+    .patient-hero-visual img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 18% center;
+      filter: saturate(.92) brightness(.93);
+    }
+    .patient-hero-copy { background: transparent; }
+    .patient-search-hero::after {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      content: "";
+      background-image: radial-gradient(rgba(165, 243, 252, .35) .6px, transparent .6px);
+      background-size: 28px 28px;
+      mask-image: linear-gradient(90deg, transparent, #000 30%, #000 70%, transparent);
+      opacity: .24;
+    }
+    .patient-filter-shell {
+      position: sticky;
+      top: 6.25rem;
+      z-index: 40;
+      filter: drop-shadow(0 12px 14px rgba(7, 26, 44, .07));
+    }
+    .patient-filter-trigger { display: none; }
+    .patient-filter-panel { min-width: 0; }
+    @media (min-width: 768px) {
+      .patient-filter-panel {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: .65rem;
+      }
+      .patient-filter-panel > div:first-child { width: 100%; justify-content: flex-start; }
+      .patient-filter-panel > div:last-child { width: 100%; align-items: flex-start; }
+    }
+    #dynamic-category-chips-container {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: .55rem;
+      overflow: visible;
+    }
+    .category-chip {
+      display: inline-flex;
+      min-height: 2.35rem;
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+      gap: .45rem;
+      border: 1px solid var(--category-border);
+      border-radius: .85rem;
+      background: var(--category-bg);
+      padding: .45rem .65rem;
+      color: var(--category-fg);
+      font-size: .68rem;
+      font-weight: 800;
+      line-height: 1.35;
+      text-align: center;
+      transition: background-color .16s ease, border-color .16s ease, color .16s ease, box-shadow .16s ease, transform .16s ease;
+    }
+    .category-chip:hover { border-color: var(--category-hover-border); background: var(--category-hover-bg); transform: translateY(-1px); }
+    .category-chip.is-active {
+      border-color: var(--category-active);
+      background: var(--category-active);
+      color: #fff;
+      box-shadow: 0 7px 16px -9px var(--category-glow);
+    }
+    .category-chip--all { --category-bg:#eef5f7; --category-fg:#46636c; --category-border:#d8e5e9; --category-hover-bg:#e6f0f3; --category-hover-border:#b9d0d6; --category-active:#325b67; --category-glow:rgba(50,91,103,.42); }
+    .category-chip--emergency { --category-bg:#fff3f1; --category-fg:#a44b42; --category-border:#f1d5d0; --category-hover-bg:#ffebe7; --category-hover-border:#e8b9b1; --category-active:#c65045; --category-glow:rgba(198,80,69,.42); }
+    .category-chip--wounds { --category-bg:#eff9f6; --category-fg:#277c6a; --category-border:#d0eae2; --category-hover-bg:#e4f5ef; --category-hover-border:#add9cb; --category-active:#268c75; --category-glow:rgba(38,140,117,.42); }
+    .category-chip--pain { --category-bg:#fff8e9; --category-fg:#94702d; --category-border:#eee2c4; --category-hover-bg:#fff3d9; --category-hover-border:#e3d09c; --category-active:#a77b28; --category-glow:rgba(167,123,40,.4); }
+    .category-chip--antibiotics { --category-bg:#f2f3fc; --category-fg:#625f9c; --category-border:#deddf2; --category-hover-bg:#e9e9f9; --category-hover-border:#c5c3e7; --category-active:#6965aa; --category-glow:rgba(105,101,170,.4); }
+    .category-chip--prescription { --category-bg:#f1f6ff; --category-fg:#416b9b; --category-border:#d8e5f5; --category-hover-bg:#e8f1ff; --category-hover-border:#bbd1ed; --category-active:#477db4; --category-glow:rgba(71,125,180,.4); }
+    .category-chip--otc { --category-bg:#f5f7ed; --category-fg:#687d3f; --category-border:#e2e8cf; --category-hover-bg:#eff3e2; --category-hover-border:#cbd8aa; --category-active:#768d47; --category-glow:rgba(118,141,71,.4); }
+    #results-grid {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: .85rem;
+    }
+    #results-grid.hidden { display: none; }
+    .patient-result-card {
+      display: grid;
+      min-height: 10rem;
+      grid-template-columns: 140px minmax(0, 1.5fr) minmax(180px, 1fr) minmax(185px, .9fr);
+      grid-template-areas: "image details pharmacy actions";
+      align-items: stretch;
+      gap: 1.1rem;
+      padding: .9rem;
+      border-color: #d9e4e7;
+      border-radius: 1.1rem;
+      box-shadow: 0 12px 26px -22px rgba(7, 26, 44, .52), 0 2px 5px rgba(7, 26, 44, .025);
+      position: relative;
+    }
+    .patient-result-card::before {
+      position: absolute;
+      inset-block: 1rem;
+      inset-inline-start: 0;
+      width: 3px;
+      border-radius: 0 4px 4px 0;
+      background: linear-gradient(180deg, #14b8a6, #67c8d1);
+      content: "";
+      opacity: .8;
+    }
+    .patient-result-card:nth-child(even) { background: #fcfefe; }
+    .patient-result-card:hover {
+      border-color: #b9e6df;
+      box-shadow: 0 18px 30px -24px rgba(13, 148, 136, .42);
+      transform: translateY(-2px);
+    }
+    .patient-result-card.is-map-highlighted {
+      border-color: #0f9b8e;
+      box-shadow: 0 0 0 3px rgba(20, 184, 166, .16), 0 18px 30px -24px rgba(13, 148, 136, .42);
+    }
+    .patient-empty-state {
+      padding: 2.75rem 1.25rem;
+      border: 1px dashed #cbd5e1;
+      border-radius: 1.25rem;
+      background-color: #fff;
+      background-image: url("assets/images/medical-outline-pattern.svg");
+      background-position: center;
+      background-size: 900px auto;
+      text-align: center;
+    }
+    .patient-empty-state-icon {
+      display: grid;
+      width: 3.5rem;
+      height: 3.5rem;
+      margin-inline: auto;
+      place-items: center;
+      border-radius: 1.1rem;
+      background: #eaf7f5;
+      color: #0f766e;
+      font-size: 1.35rem;
+    }
+    .patient-product-image {
+      grid-area: image;
+      display: grid;
+      min-height: 8.5rem;
+      place-items: center;
+      overflow: hidden;
+      border: 1px solid #dcebed;
+      border-radius: .9rem;
+      background:
+        radial-gradient(circle at 50% 42%, rgba(255,255,255,.95), transparent 58%),
+        linear-gradient(145deg, #eaf5f5, #f4f8fa);
+    }
+    .patient-product-image img { width: 124px; height: 124px; object-fit: contain; }
+    .patient-product-details { grid-area: details; min-width: 0; align-self: center; }
+    .patient-pharmacy-details {
+      grid-area: pharmacy;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: .6rem;
+      min-width: 0;
+      padding-inline: 1rem;
+      border-inline: 1px solid #e7eff1;
+    }
+    .patient-availability {
+      padding: .55rem .65rem;
+      border: 1px solid #d6ebe8;
+      border-radius: .8rem;
+      background: linear-gradient(110deg, #effaf8, #f7fbf8 75%);
+    }
+    .patient-availability.is-low {
+      border-color: #f4dfb4;
+      background: linear-gradient(110deg, #fff8e9, #fffdf6 75%);
+    }
+    .patient-availability.is-out {
+      border-color: #f0d7d9;
+      background: linear-gradient(110deg, #fff5f5, #fffafa 75%);
+    }
+    .patient-availability-label {
+      display: inline-flex;
+      align-items: center;
+      gap: .3rem;
+      border-radius: 999px;
+      padding: .14rem .48rem;
+      background: #d9f2ed;
+      color: #0f766e;
+      font-size: .56rem;
+      font-weight: 900;
+    }
+    .patient-availability.is-low .patient-availability-label { background: #fff0cc; color: #9a5b08; }
+    .patient-availability.is-out .patient-availability-label { background: #ffe4e6; color: #be123c; }
+    .patient-availability-title { color: #145e58; font-size: .7rem; font-weight: 900; line-height: 1.6; }
+    .patient-availability.is-low .patient-availability-title { color: #8a5712; }
+    .patient-availability.is-out .patient-availability-title { color: #9f3340; }
+    .patient-availability-help { margin-top: .12rem; color: #63787c; font-size: .58rem; line-height: 1.65; }
+    .patient-emergency-promo {
+      position: relative;
+      display: grid;
+      min-height: 16rem;
+      grid-template-columns: minmax(0, 1.1fr) minmax(230px, .75fr);
+      align-items: center;
+      gap: 1rem;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.28);
+      border-radius: 1.5rem;
+      padding: 1.5rem clamp(1rem, 4vw, 3rem);
+      background:
+        radial-gradient(ellipse at 12% 18%, rgba(255,255,255,.2), transparent 30%),
+        radial-gradient(ellipse at 78% 110%, rgba(127, 29, 29, .46), transparent 44%),
+        linear-gradient(118deg, #991b1b 0%, #dc2626 48%, #ef4444 100%);
+      box-shadow: 0 22px 40px -28px rgba(153, 27, 27, .64);
+      color: #fff;
+      isolation: isolate;
+    }
+    .patient-emergency-promo::before {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background-image: radial-gradient(rgba(255,255,255,.3) .65px, transparent .65px);
+      background-size: 24px 24px;
+      content: "";
+      mask-image: linear-gradient(90deg, transparent, #000 70%);
+      opacity: .18;
+    }
+    .patient-emergency-copy { position: relative; z-index: 1; max-width: 42rem; }
+    .patient-emergency-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      border: 1px solid rgba(255,255,255,.28);
+      border-radius: 999px;
+      background: rgba(127, 29, 29, .25);
+      padding: .32rem .7rem;
+      color: #fff7ed;
+      font-size: .65rem;
+      font-weight: 900;
+    }
+    .patient-emergency-promo h2 {
+      margin-top: .7rem;
+      font-family: 'Alexandria', 'Cairo', sans-serif;
+      font-size: clamp(1.2rem, 2.4vw, 1.8rem);
+      font-weight: 900;
+      line-height: 1.65;
+    }
+    .patient-emergency-promo p { margin-top: .35rem; color: rgba(255,255,255,.9); font-size: .75rem; line-height: 1.9; }
+    .patient-emergency-items {
+      margin-top: .65rem;
+      color: #fff1f2;
+      font-size: .68rem;
+      font-weight: 800;
+    }
+    .patient-emergency-offer {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      margin-top: .85rem;
+    }
+    .patient-emergency-price {
+      border: 1px solid rgba(255,255,255,.25);
+      border-radius: .8rem;
+      background: rgba(127, 29, 29, .28);
+      padding: .42rem .7rem;
+      color: #fff;
+      font-size: .9rem;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+    .patient-emergency-cta {
+      display: inline-flex;
+      min-height: 2.65rem;
+      align-items: center;
+      justify-content: center;
+      gap: .5rem;
+      border-radius: .8rem;
+      background: #fff;
+      padding: .55rem 1rem;
+      color: #b91c1c;
+      font-size: .73rem;
+      font-weight: 900;
+      box-shadow: 0 8px 18px rgba(88, 18, 18, .18);
+      transition: transform .18s ease, background-color .18s ease;
+    }
+    .patient-emergency-cta:hover { transform: translateY(-2px); background: #fff7f7; }
+    .patient-emergency-art {
+      position: relative;
+      display: grid;
+      min-height: 13rem;
+      place-items: center;
+    }
+    .patient-emergency-art::before {
+      position: absolute;
+      width: min(18rem, 100%);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: rgba(255,255,255,.13);
+      content: "";
+      filter: blur(2px);
+    }
+    .patient-emergency-art img {
+      position: relative;
+      width: min(100%, 20rem);
+      height: 14rem;
+      object-fit: contain;
+      filter: drop-shadow(0 20px 22px rgba(77, 12, 12, .34));
+    }
+    .patient-result-actions {
+      grid-area: actions;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: .55rem;
+      min-width: 0;
+    }
+    .patient-result-actions button,
+    .patient-result-actions a { width: 100%; }
+    .patient-search-input { min-height: 3.5rem; }
+    .patient-secondary-actions button {
+      display: inline-flex;
+      align-items: center;
+      gap: .35rem;
+      border-radius: 999px;
+      padding: .35rem .65rem;
+      color: rgba(236, 254, 255, .88);
+      font-size: .68rem;
+      font-weight: 700;
+      transition: background-color .15s ease, color .15s ease;
+    }
+    .patient-secondary-actions button:hover { background: rgba(255,255,255,.1); color: #fff; }
+    .patient-search-control {
+      border: 1px solid rgba(255,255,255,.78);
+      transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease;
+    }
+    .patient-search-control:focus-within {
+      border-color: #5eead4;
+      box-shadow: 0 0 0 4px rgba(45, 212, 191, .18), 0 18px 42px rgba(2, 6, 23, .2);
+      transform: translateY(-1px);
+    }
+    .patient-orders-button {
+      min-width: 10rem;
+      justify-content: center;
+      gap: .65rem;
+      padding-inline: .9rem;
+    }
+    .patient-orders-count {
+      min-width: 1.35rem;
+      height: 1.35rem;
+      padding-inline: .35rem;
+      font-size: .62rem;
+      line-height: 1;
+    }
+    .patient-results-area {
+      position: relative;
+      isolation: isolate;
+      background: #f3f7f8;
+    }
+    .patient-results-area::before {
+      position: absolute;
+      z-index: -1;
+      inset-block: 0;
+      left: 50%;
+      width: 100vw;
+      content: "";
+      transform: translateX(-50%);
+      background-image:
+        radial-gradient(ellipse at 9% 12%, rgba(191, 223, 226, .12), transparent 36%),
+        radial-gradient(ellipse at 91% 72%, rgba(184, 219, 225, .11), transparent 38%),
+        url("assets/images/medical-outline-pattern.svg");
+      background-position: center top, center top, center center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      pointer-events: none;
+    }
+    .patient-map-shell {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid #d9e5e8;
+      border-radius: 1.25rem;
+      background: linear-gradient(145deg, #f8fbfc, #eef5f6);
+      box-shadow: 0 16px 34px -28px rgba(7, 26, 44, .5);
+    }
+    .patient-map-shell #gaza-map { height: 28rem; border: 0; background: #eaf1f2; }
+    .patient-map-shell.has-fallback #gaza-map { visibility: hidden; }
+    .patient-map-fallback {
+      position: absolute;
+      inset: 4rem 0 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1.25rem;
+      background:
+        radial-gradient(circle at 50% 30%, rgba(204, 251, 241, .45), transparent 35%),
+        #f6fafb;
+      text-align: center;
+    }
+    .patient-map-shell.has-fallback .patient-map-fallback { display: flex; }
+    .patient-map-loader {
+      position: absolute;
+      z-index: 500;
+      inset: 4rem 0 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .65rem;
+      background: rgba(246, 250, 251, .82);
+      color: #45646b;
+      font-size: .75rem;
+      font-weight: 800;
+      transition: opacity .2s ease, visibility .2s ease;
+    }
+    .patient-map-loader.is-hidden {
+      visibility: hidden;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .patient-map-loader i { color: #0f766e; }
+    .patient-map-fallback-card {
+      max-width: 25rem;
+      border: 1px solid #dce8eb;
+      border-radius: 1rem;
+      background: rgba(255,255,255,.9);
+      padding: 1.25rem;
+      box-shadow: 0 12px 30px -24px rgba(7, 26, 44, .35);
+    }
+    .patient-map-fallback-icon {
+      display: grid;
+      width: 2.8rem;
+      height: 2.8rem;
+      margin: 0 auto .7rem;
+      place-items: center;
+      border-radius: .9rem;
+      background: #e5f5f3;
+      color: #0f766e;
+      font-size: 1.1rem;
+    }
+    .patient-triage-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: .8rem;
+      border: 1px solid #dce8eb;
+      border-radius: 1rem;
+      background: linear-gradient(100deg, #fff, #f6fafb);
+      padding: .7rem .9rem;
+      box-shadow: 0 10px 24px -22px rgba(7, 26, 44, .35);
+    }
+    .patient-triage-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: .3rem;
+      border: 1px solid #d8e7e9;
+      border-radius: 999px;
+      background: #f0f7f8;
+      padding: .25rem .55rem;
+      color: #365b64;
+      font-size: .62rem;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+    .patient-triage-card.is-urgent { border-color: #f4d4cf; background: linear-gradient(100deg, #fffafa, #fff2ef); }
+    .patient-triage-card.is-urgent .patient-triage-chip { border-color: #f0c6bf; background: #fff0ec; color: #a23f30; }
+    .patient-triage-card.is-priority { border-color: #f2e2bd; background: linear-gradient(100deg, #fffefa, #fff9eb); }
+    .patient-triage-card.is-priority .patient-triage-chip { border-color: #ead7a6; background: #fff5da; color: #8a641c; }
+    #my_orders_modal {
+      width: 100%;
+      padding: 1.25rem;
+      overscroll-behavior: contain;
+    }
+    #my_orders_modal .patient-orders-dialog {
+      display: flex;
+      width: min(900px, calc(100vw - 2.5rem));
+      max-width: 900px;
+      max-height: 80vh;
+      flex-direction: column;
+      overflow: hidden;
+      border: 1px solid #e1eaec;
+      border-radius: 1.5rem;
+      background: #fbfdfd;
+      padding: 0;
+      color: #1e293b;
+      box-shadow: 0 28px 90px -38px rgba(7, 26, 44, .42);
+    }
+    .patient-orders-header {
+      position: sticky;
+      z-index: 2;
+      top: 0;
+      display: flex;
+      flex: none;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      border-bottom: 1px solid #e5edef;
+      background: rgba(255, 255, 255, .96);
+      padding: 1.2rem 1.45rem;
+      backdrop-filter: blur(12px);
+    }
+    .patient-orders-header-icon {
+      display: grid;
+      width: 2.8rem;
+      height: 2.8rem;
+      flex: none;
+      place-items: center;
+      border: 1px solid #cde9e5;
+      border-radius: 1rem;
+      background: #eaf7f5;
+      color: #0f766e;
+      font-size: 1.1rem;
+    }
+    .patient-orders-close {
+      display: grid;
+      width: 2.5rem;
+      height: 2.5rem;
+      flex: none;
+      place-items: center;
+      border: 1px solid #e2eaec;
+      border-radius: .9rem;
+      background: #fff;
+      color: #64748b;
+      transition: border-color .15s ease, color .15s ease, background-color .15s ease;
+    }
+    .patient-orders-close:hover { border-color: #b9deda; background: #f0fdfa; color: #0f766e; }
+    #my-orders-list {
+      min-height: 0;
+      flex: 1;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      padding: 1.1rem 1.45rem 1.4rem;
+      scrollbar-color: #cbdcde transparent;
+      scrollbar-width: thin;
+    }
+    #my-orders-list::-webkit-scrollbar { width: 6px; }
+    #my-orders-list::-webkit-scrollbar-thumb { border-radius: 999px; background: #cbdcde; }
+    .patient-orders-list { display: grid; gap: .75rem; }
+    .patient-order-card {
+      border: 1px solid #dfe8ea;
+      border-radius: 1rem;
+      background: #fff;
+      padding: 1rem 1.1rem;
+      box-shadow: 0 8px 22px -22px rgba(7, 26, 44, .45);
+    }
+    .patient-order-topline {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: start;
+      gap: .8rem;
+    }
+    .patient-order-code {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid #d9e8eb;
+      border-radius: .5rem;
+      background: #f5f9fa;
+      padding: .18rem .45rem;
+      color: #45616a;
+      font: 800 .64rem/1.3 ui-monospace, SFMono-Regular, Consolas, monospace;
+      direction: ltr;
+    }
+    .patient-order-status {
+      display: inline-flex;
+      align-items: center;
+      gap: .35rem;
+      border: 1px solid;
+      border-radius: 999px;
+      padding: .28rem .62rem;
+      font-size: .62rem;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+    .patient-order-status.is-waiting { border-color: #f1d9a9; background: #fff8e8; color: #986415; }
+    .patient-order-status.is-confirmed { border-color: #bfe6dc; background: #edf9f5; color: #0f766e; }
+    .patient-order-status.is-ready { border-color: #c7dcf4; background: #eff6ff; color: #245a96; }
+    .patient-order-status.is-completed { border-color: #c9e7d2; background: #eff9f1; color: #267244; }
+    .patient-order-status.is-cancelled { border-color: #f0cece; background: #fff2f2; color: #a63838; }
+    .patient-order-status.is-rejected { border-color: #f0cece; background: #fff2f2; color: #a63838; }
+    .patient-order-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: .35rem .9rem;
+      margin-top: .35rem;
+      color: #71838a;
+      font-size: .64rem;
+      font-weight: 600;
+    }
+    .patient-order-meta span { display: inline-flex; align-items: center; gap: .3rem; }
+    .patient-order-meta i { color: #6b9a9d; font-size: .62rem; }
+    .patient-order-progress {
+      display: flex;
+      direction: rtl;
+      align-items: flex-start;
+      margin-top: .95rem;
+      padding: 0 .2rem;
+    }
+    .patient-order-step {
+      position: relative;
+      display: flex;
+      min-width: 0;
+      flex: 1;
+      flex-direction: column;
+      align-items: center;
+      gap: .32rem;
+      color: #9aa9ad;
+      text-align: center;
+    }
+    .patient-order-step:not(:last-child)::after {
+      position: absolute;
+      z-index: 0;
+      top: .31rem;
+      right: calc(50% + .47rem);
+      left: calc(-50% + .47rem);
+      height: 2px;
+      background: #e4ebed;
+      content: "";
+    }
+    .patient-order-step.is-done:not(:last-child)::after { background: #80cabb; }
+    .patient-order-step-dot {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      width: .68rem;
+      height: .68rem;
+      flex: none;
+      place-items: center;
+      border: 2px solid #d8e1e3;
+      border-radius: 50%;
+      background: #fff;
+      color: transparent;
+      font-size: .38rem;
+    }
+    .patient-order-step.is-done { color: #378879; }
+    .patient-order-step.is-done .patient-order-step-dot { border-color: #4caf9c; background: #4caf9c; color: #fff; }
+    .patient-order-step.is-current { color: #345860; font-weight: 900; }
+    .patient-order-step.is-current .patient-order-step-dot { border: 3px solid #12a893; box-shadow: 0 0 0 3px #daf3ed; }
+    .patient-order-step.is-current.is-error { color: #aa4545; }
+    .patient-order-step.is-current.is-error .patient-order-step-dot { border-color: #d95a5a; box-shadow: 0 0 0 3px #fde8e8; }
+    .patient-order-step-label { max-width: 100%; font-size: .57rem; line-height: 1.35; }
+    .patient-order-extra {
+      margin-top: .7rem;
+      border: 1px solid #e3ebed;
+      border-radius: .8rem;
+      background: #f8fbfb;
+      padding: .65rem .75rem;
+      color: #52666d;
+      font-size: .68rem;
+      line-height: 1.7;
+    }
+    .patient-order-extra p + p { margin-top: .25rem; }
+    .patient-order-pickup {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: .6rem;
+      margin-top: .65rem;
+      border: 1px solid #cfe8e2;
+      border-radius: .85rem;
+      background: linear-gradient(100deg, #f1faf7, #f8fcfb);
+      padding: .65rem .8rem;
+    }
+    .patient-order-pickup-code {
+      color: #0d655e;
+      font: 900 1rem/1.2 ui-monospace, SFMono-Regular, Consolas, monospace;
+      letter-spacing: .12em;
+      direction: ltr;
+    }
+    .patient-order-actions { display: flex; flex-wrap: wrap; align-items: center; gap: .45rem; margin-top: .65rem; }
+    .patient-order-action {
+      display: inline-flex;
+      min-height: 1.9rem;
+      align-items: center;
+      justify-content: center;
+      gap: .35rem;
+      border: 1px solid #d9e5e7;
+      border-radius: .65rem;
+      background: #fff;
+      padding: .28rem .62rem;
+      color: #49636a;
+      font-size: .64rem;
+      font-weight: 800;
+      transition: border-color .15s ease, background-color .15s ease, color .15s ease;
+    }
+    .patient-order-action:hover { border-color: #b7ddd6; background: #f0fdfa; color: #0f766e; }
+    .patient-order-action.is-danger { border-color: #edcccc; color: #a94747; }
+    .patient-order-action.is-danger:hover { border-color: #e8adad; background: #fff5f5; color: #922f2f; }
+    .patient-order-details { margin-top: .65rem; }
+    .patient-order-details summary { list-style: none; cursor: pointer; }
+    .patient-order-details summary::-webkit-details-marker { display: none; }
+    .patient-orders-empty {
+      display: grid;
+      min-height: 17rem;
+      align-content: center;
+      justify-items: center;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+    .patient-orders-empty-icon {
+      display: grid;
+      width: 4rem;
+      height: 4rem;
+      place-items: center;
+      border: 1px solid #d7ebe7;
+      border-radius: 1.35rem;
+      background: #eff9f7;
+      color: #4b9a8e;
+      font-size: 1.5rem;
+    }
+    #reservation_modal {
+      width: 100%;
+      padding: 1.25rem;
+      overscroll-behavior: contain;
+    }
+    #reservation_modal .reservation-dialog {
+      display: flex;
+      width: min(820px, calc(100vw - 2.5rem));
+      max-width: 820px;
+      max-height: 88vh;
+      flex-direction: column;
+      overflow: hidden;
+      border: 1px solid #dfebed;
+      border-radius: 1.5rem;
+      background: #fff;
+      padding: 0;
+      color: #1e293b;
+      box-shadow: 0 30px 90px -38px rgba(7, 26, 44, .46);
+    }
+    .reservation-header {
+      position: sticky;
+      z-index: 2;
+      top: 0;
+      display: flex;
+      flex: none;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      border-bottom: 1px solid #e7eff0;
+      background: rgba(255,255,255,.97);
+      padding: 1rem 1.35rem;
+      backdrop-filter: blur(12px);
+    }
+    .reservation-header-icon {
+      display: grid;
+      width: 2.7rem;
+      height: 2.7rem;
+      flex: none;
+      place-items: center;
+      border: 1px solid #cde9e5;
+      border-radius: .95rem;
+      background: #eaf7f5;
+      color: #0f766e;
+      font-size: 1.05rem;
+    }
+    .reservation-close {
+      display: grid;
+      width: 2.35rem;
+      height: 2.35rem;
+      flex: none;
+      place-items: center;
+      border: 1px solid #e1eaec;
+      border-radius: .8rem;
+      background: #fff;
+      color: #64748b;
+    }
+    .reservation-close:hover { border-color: #b9deda; background: #f0fdfa; color: #0f766e; }
+    #reservation-form {
+      flex: 1;
+      min-height: 0;
+      overflow-y: auto;
+      padding: 1.1rem 1.35rem 0;
+      scrollbar-color: #cfdddf transparent;
+      scrollbar-width: thin;
+    }
+    #reservation-form::-webkit-scrollbar { width: 6px; }
+    #reservation-form::-webkit-scrollbar-thumb { border-radius: 999px; background: #cfdddf; }
+    .reservation-summary {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, .82fr);
+      gap: .85rem;
+      border: 1px solid #e1ebed;
+      border-radius: 1rem;
+      background:
+        radial-gradient(circle at 96% 12%, rgba(204, 251, 241, .24), transparent 33%),
+        #f8fbfb;
+      padding: 1rem;
+    }
+    .reservation-summary-item { min-width: 0; }
+    .reservation-summary-pharmacy {
+      display: flex;
+      min-width: 0;
+      align-items: center;
+      justify-content: space-between;
+      gap: .6rem;
+      border-inline-start: 1px solid #dfe9eb;
+      padding-inline-start: .9rem;
+    }
+    .reservation-summary-pharmacy-name { min-width: 0; overflow-wrap: anywhere; }
+    #modal-med-price {
+      display: inline-block;
+      margin-top: .35rem;
+      color: #0f766e;
+      font-size: .78rem;
+    }
+    .reservation-section { margin-top: 1rem; }
+    .reservation-section-title {
+      display: flex;
+      align-items: center;
+      gap: .45rem;
+      margin-bottom: .55rem;
+      color: #334e55;
+      font-size: .72rem;
+      font-weight: 900;
+    }
+    .reservation-section-title i { color: #168a80; font-size: .7rem; }
+    .reservation-quantity-row {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      align-items: center;
+      gap: 1rem;
+      border: 1px solid #e1ebed;
+      border-radius: .95rem;
+      background: #fbfdfd;
+      padding: .7rem .85rem;
+    }
+    .reservation-quantity-control { display: inline-flex; align-items: center; gap: .55rem; }
+    .reservation-quantity-control button {
+      display: grid;
+      width: 2rem;
+      height: 2rem;
+      place-items: center;
+      border: 1px solid #dbe7e9;
+      border-radius: .7rem;
+      background: #fff;
+      color: #0f766e;
+      font-size: 1rem;
+      font-weight: 900;
+      box-shadow: 0 2px 5px rgba(7,26,44,.04);
+    }
+    .reservation-quantity-control button:hover { border-color: #9ed4ca; background: #f0fdfa; }
+    #modal-requested-qty { width: 2rem; color: #1e293b; font-weight: 900; }
+    .reservation-total {
+      display: flex;
+      min-width: 0;
+      align-items: center;
+      justify-content: space-between;
+      gap: .6rem;
+      border-inline-start: 1px solid #e3ecee;
+      padding-inline-start: 1rem;
+      color: #667b80;
+      font-size: .68rem;
+      font-weight: 700;
+    }
+    #modal-total-price { color: #0e7490; font-size: 1rem; font-weight: 900; white-space: nowrap; }
+    .reservation-fields {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: .75rem .9rem;
+    }
+    .reservation-field { display: grid; gap: .35rem; min-width: 0; }
+    .reservation-field.is-full { grid-column: 1 / -1; }
+    .reservation-field > label { color: #475b60; font-size: .68rem; font-weight: 800; }
+    .reservation-field .input {
+      width: 100%;
+      min-height: 2.75rem;
+      border: 1px solid #d9e4e6;
+      border-radius: .75rem;
+      background: #fff;
+      padding-inline: .85rem;
+      color: #23363b;
+      font-size: .75rem;
+      outline: none;
+      transition: border-color .16s ease, box-shadow .16s ease;
+    }
+    .reservation-field .input:focus { border-color: #41aa9a; box-shadow: 0 0 0 3px rgba(20,184,166,.12); }
+    .reservation-coupon {
+      border: 1px solid #d9eae6;
+      border-radius: .95rem;
+      background: linear-gradient(110deg, #f4fbf9, #fbfdfc);
+      padding: .85rem;
+    }
+    .reservation-coupon .input { min-width: 0; }
+    .reservation-coupon .btn { min-height: 2.55rem; padding-inline: .9rem; }
+    .reservation-delivery {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: .8rem;
+      border: 1px solid #e1e9eb;
+      border-radius: .95rem;
+      background: #fbfcfc;
+      padding: .85rem;
+      cursor: pointer;
+    }
+    .reservation-delivery:has(input:checked) { border-color: #9ed7ce; background: #f2faf8; }
+    .reservation-delivery .checkbox { width: 1.1rem; height: 1.1rem; flex: none; }
+    .reservation-upload {
+      position: relative;
+      display: grid;
+      min-height: 4.5rem;
+      align-content: center;
+      justify-items: center;
+      gap: .25rem;
+      overflow: hidden;
+      border: 1px dashed #b9d2d6;
+      border-radius: .9rem;
+      background: #f8fbfc;
+      padding: .7rem;
+      color: #526c73;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color .16s ease, background-color .16s ease;
+    }
+    .reservation-upload:hover { border-color: #67bdb0; background: #f0faf8; }
+    .reservation-upload > i { color: #168a80; font-size: 1.05rem; }
+    .reservation-upload input[type="file"] {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      cursor: pointer;
+    }
+    .reservation-upload.has-file { border-color: #83c9b8; background: #f1faf6; }
+    .reservation-upload-filename { max-width: 100%; overflow: hidden; color: #0f766e; text-overflow: ellipsis; white-space: nowrap; }
+    #prescription-preview-box { padding: .65rem; }
+    .reservation-assurance {
+      margin-block: .9rem;
+      border: 1px solid #d9e9ec;
+      border-radius: .8rem;
+      background: #f4f9fa;
+      padding: .7rem .8rem;
+      color: #506b72;
+      font-size: .65rem;
+      line-height: 1.7;
+    }
+    .reservation-footer {
+      position: sticky;
+      z-index: 2;
+      bottom: 0;
+      display: flex;
+      justify-content: flex-start;
+      gap: .55rem;
+      border-top: 1px solid #e7eff0;
+      background: rgba(255,255,255,.97);
+      padding: .8rem 0;
+      backdrop-filter: blur(12px);
+    }
+    .reservation-footer button { min-height: 2.65rem; border-radius: .8rem; padding-inline: 1.15rem; font-size: .72rem; font-weight: 900; }
+    .patient-map-tooltip .leaflet-tooltip-content { margin: .4rem .55rem; }
+    .patient-map-tooltip {
+      border: 1px solid #d8e8e7;
+      border-radius: .8rem;
+      box-shadow: 0 12px 28px -18px rgba(7,26,44,.42);
+    }
+    @media (max-width: 767px) {
+      #my_orders_modal { padding: 0; }
+      #my_orders_modal .patient-orders-dialog {
+        width: 100%;
+        max-width: none;
+        height: 100dvh;
+        max-height: 100dvh;
+        border-radius: 1.4rem 1.4rem 0 0;
+        padding-bottom: env(safe-area-inset-bottom);
+      }
+      .patient-orders-header { padding: 1rem 1rem .9rem; }
+      #my-orders-list { padding: .85rem .8rem 1rem; }
+      .patient-order-card { padding: .85rem; }
+      .patient-order-topline { gap: .45rem; }
+      .patient-order-status { padding-inline: .48rem; font-size: .58rem; }
+      .patient-order-meta { gap: .3rem .6rem; }
+      .patient-order-step-label { font-size: .53rem; }
+    }
+    #smart-triage-container {
+      margin-bottom: .75rem;
+      padding: .8rem 1rem;
+      border-radius: 1rem;
+      box-shadow: 0 8px 24px -22px rgba(7, 26, 44, .4);
+    }
+    #smart-triage-container > div { gap: .65rem; }
+    #smart-triage-container > div > div:first-child > div:first-child { font-size: 1.1rem; }
+    #alternatives-suggestions-container {
+      margin-bottom: .75rem;
+      padding: .85rem;
+      border-radius: 1rem;
+      box-shadow: 0 8px 24px -22px rgba(7, 26, 44, .3);
+    }
+    @media (max-width: 767px) {
+      .patient-search-hero-inner { min-height: 0; grid-template-columns: minmax(0, 1fr); direction: rtl; }
+      .patient-hero-copy { padding-block: 2rem .65rem; }
+      .patient-hero-copy { padding-inline: 1rem; }
+      .patient-hero-copy { grid-column: 1; grid-row: 1; }
+      .patient-hero-visual { min-height: 10rem; max-height: 12rem; }
+      .patient-hero-visual img {
+        object-position: 18% 47%;
+      }
+      .patient-hero-visual { grid-column: 1; grid-row: 2; }
+      .patient-hero-visual::after {
+        inset: -1.5rem 0 -1px;
+        background: linear-gradient(180deg, #0b3443 0%, rgba(11,52,67,.08) 30%, rgba(11,52,67,.08) 70%, #0b3443 100%);
+      }
+      .patient-orders-button { min-width: 2.6rem; padding-inline: .55rem; }
+      .patient-orders-button-label { display: none; }
+      .patient-map-shell #gaza-map { height: 24rem; }
+      .patient-map-fallback { inset-block-start: 4.3rem; }
+      .patient-map-loader { inset-block-start: 4.3rem; }
+      .patient-triage-card { align-items: flex-start; flex-direction: column; }
+      .patient-filter-shell {
+        top: 5.5rem;
+        padding-inline: .75rem;
+      }
+      .patient-filter-trigger { display: inline-flex; }
+      #patient-filter-panel:not(.is-open) {
+        display: none;
+        position: absolute;
+        inset-inline: .75rem;
+        top: calc(100% + .4rem);
+        padding: .85rem;
+        border: 1px solid #e2e8f0;
+        border-radius: 1rem;
+        background: #fff;
+        box-shadow: 0 18px 35px -18px rgba(7, 26, 44, .3);
+      }
+      #patient-filter-panel.is-open { display: grid; }
+      .patient-filter-panel > div { width: 100%; }
+      .patient-filter-panel #dynamic-category-chips-container { overflow: visible; }
+      #dynamic-category-chips-container { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .45rem; }
+      .category-chip { min-height: 2.45rem; padding-inline: .45rem; font-size: .63rem; }
+      #results-grid { gap: .7rem; }
+      .patient-result-card {
+        min-height: 0;
+        grid-template-columns: 82px minmax(0, 1fr);
+        grid-template-areas:
+          "image details"
+          "pharmacy pharmacy"
+          "actions actions";
+        gap: .65rem .8rem;
+        padding: .65rem;
+      }
+      .patient-product-image { min-height: 92px; align-self: start; }
+      .patient-product-image img { width: 82px; height: 88px; }
+      .patient-product-details { align-self: center; }
+      .patient-pharmacy-details {
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: center;
+        gap: .45rem;
+        padding: .6rem .15rem;
+        border-inline: 0;
+        border-block: 1px solid #edf2f5;
+      }
+      .patient-availability { padding: .48rem .55rem; }
+      .patient-availability-title { font-size: .66rem; }
+      .patient-availability-help { font-size: .56rem; }
+      .patient-pharmacy-details > div:first-child,
+      .patient-pharmacy-details > div:nth-child(2) { width: 100%; }
+      .patient-pharmacy-details > div:nth-child(2) > span:first-child {
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .patient-result-actions {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      }
+      .patient-result-actions > div:first-child {
+        grid-column: 1 / -1;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .patient-result-actions button,
+      .patient-result-actions a { width: 100%; min-width: 0; padding-inline: .4rem; font-size: 9px; }
+      .patient-emergency-promo {
+        grid-template-columns: minmax(0, 1fr);
+        gap: .2rem;
+        padding: 1.1rem 1rem .85rem;
+      }
+      .patient-emergency-promo h2 { margin-top: .55rem; }
+      .patient-emergency-promo p { font-size: .68rem; }
+      .patient-emergency-items { font-size: .62rem; }
+      .patient-emergency-offer { flex-wrap: wrap; margin-top: .7rem; }
+      .patient-emergency-art { min-height: 9rem; }
+      .patient-emergency-art img { width: min(100%, 16rem); height: 9.25rem; }
+      #reservation_modal { padding: 0; }
+      #reservation_modal .reservation-dialog {
+        width: 100%;
+        max-width: none;
+        height: min(94dvh, 900px);
+        max-height: 94dvh;
+        border-radius: 1.35rem 1.35rem 0 0;
+        padding-bottom: env(safe-area-inset-bottom);
+      }
+      .reservation-header { padding: .9rem 1rem; }
+      .reservation-header-icon { width: 2.45rem; height: 2.45rem; }
+      #reservation-form { padding: .85rem .9rem 0; }
+      .reservation-summary { grid-template-columns: minmax(0, 1fr); gap: .65rem; padding: .85rem; }
+      .reservation-summary-pharmacy { border-inline-start: 0; border-top: 1px solid #dfe9eb; padding: .65rem 0 0; }
+      .reservation-fields { grid-template-columns: minmax(0, 1fr); gap: .65rem; }
+      .reservation-field.is-full { grid-column: auto; }
+      .reservation-quantity-row { grid-template-columns: minmax(0, 1fr); gap: .55rem; }
+      .reservation-total { border-inline-start: 0; border-top: 1px solid #e3ecee; padding: .55rem 0 0; }
+      .reservation-footer { padding: .7rem 0 calc(.7rem + env(safe-area-inset-bottom)); }
+    }
+    @media (min-width: 768px) and (max-width: 1023px) {
+      .patient-result-card {
+        grid-template-columns: 120px minmax(0, 1.3fr) minmax(170px, 1fr);
+        grid-template-areas:
+          "image details pharmacy"
+          "image actions actions";
+        gap: .7rem;
+      }
+      .patient-pharmacy-details { padding-inline: .65rem; }
+      .patient-result-actions { flex-direction: row; }
+    }
+  </style>
+  <link rel="stylesheet" href="public-nav.css">
+  <script src="js/public-nav.js" defer></script>
+</head>
+<body class="min-h-screen text-slate-800 antialiased flex flex-col bg-[#f3f7f8]">
+
+  <!-- ========================================================================= -->
+  <!-- 1. شريط التنقل العلوي المنظم (Sleek Clean Navbar) -->
+  <!-- ========================================================================= -->
+  <header class="glass-nav sticky top-0 z-50 border-b border-slate-200/80">
+    <div class="mx-auto flex max-w-7xl items-center justify-between gap-2 px-2 py-3 sm:gap-3 sm:px-6 lg:px-8">
+      <a href="index.html" class="flex shrink-0 items-center gap-2 sm:gap-2.5" aria-label="دواك بإيدك، الرئيسية">
+        <img src="assets/images/dawaak-logo.png" alt="" class="h-10 w-10 object-contain sm:h-11 sm:w-11" width="48" height="48" fetchpriority="high">
+        <span>
+          <span class="block font-heading text-base font-extrabold tracking-tight text-slate-950 min-[380px]:text-lg sm:text-xl">دواك بإيدك</span>
+          <span class="hidden text-[9px] font-bold text-slate-500 sm:block">رعاية أقرب. وصول أسهل.</span>
+        </span>
+      </a>
+
+      <nav class="hidden items-center gap-5 text-[11px] font-bold text-slate-600 xl:flex" aria-label="التنقل الرئيسي">
+        <a href="index.html" class="transition hover:text-teal-700">الرئيسية</a>
+        <a href="index.html#how-it-works" class="transition hover:text-teal-700">كيف تعمل المنصة</a>
+        <a href="index.html#features" class="transition hover:text-teal-700">المزايا</a>
+        <a href="contact.html" class="transition hover:text-teal-700">للصيدليات</a>
+        <a href="about.html" class="transition hover:text-teal-700">عن دواك بإيدك</a>
+        <a href="contact_us.html" class="transition hover:text-teal-700">تواصل معنا</a>
+      </nav>
+
+      <div class="flex shrink-0 items-center gap-1.5 sm:gap-2">
+        <button type="button" onclick="openMyOrdersModal()" aria-label="طلباتي والمتابعة" title="طلباتي والمتابعة" class="patient-orders-button inline-flex min-h-10 items-center rounded-xl border border-teal-100 bg-white text-[10px] font-extrabold text-teal-900 transition hover:border-teal-300 hover:bg-teal-50 sm:text-[11px]">
+          <i class="fa-solid fa-clipboard-list text-teal-700"></i>
+          <span class="patient-orders-button-label">طلباتي والمتابعة</span>
+          <span id="patient-orders-badge" class="patient-orders-count inline-flex items-center justify-center rounded-full bg-teal-700 font-black text-white">0</span>
+        </button>
+        <a href="index_patient.html" aria-label="ابحث عن دوائك" class="inline-flex min-h-10 items-center gap-2 rounded-xl bg-teal-700 px-2.5 text-[11px] font-extrabold text-white shadow-md shadow-teal-900/15 transition hover:bg-teal-800 sm:px-4 sm:text-xs">
+          <i class="fa-solid fa-magnifying-glass"></i><span class="hidden sm:inline">ابحث عن دوائك</span><span class="hidden sm:hidden min-[380px]:inline">بحث</span>
+        </a>
+        <details class="group relative">
+          <summary aria-label="تسجيل الدخول، اختيار البوابة" class="flex min-h-10 cursor-pointer list-none items-center gap-2 rounded-xl border border-slate-200 bg-white px-2 text-[11px] font-extrabold text-slate-700 transition hover:border-teal-300 hover:text-teal-800 sm:px-3 sm:text-xs">
+            <i class="fa-regular fa-user"></i><span class="hidden sm:inline">تسجيل الدخول</span><i class="fa-solid fa-chevron-down hidden text-[9px] transition group-open:rotate-180 sm:inline"></i>
+          </summary>
+          <div class="absolute left-0 top-full z-50 mt-2 w-52 rounded-2xl border border-slate-100 bg-white p-2 text-right shadow-xl shadow-slate-900/10" role="menu" aria-label="اختر بوابتك">
+            <a role="menuitem" href="index_patient.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-xs font-bold text-slate-700 hover:bg-teal-50 hover:text-teal-800"><i class="fa-solid fa-user w-4 text-center text-teal-700"></i> مريض / مستخدم</a>
+            <a role="menuitem" href="index_pharmacy.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-xs font-bold text-slate-700 hover:bg-cyan-50 hover:text-cyan-800"><i class="fa-solid fa-house-medical w-4 text-center text-cyan-700"></i> صيدلي / صيدلية</a>
+            <a role="menuitem" href="delivery.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-xs font-bold text-slate-700 hover:bg-sky-50 hover:text-sky-800"><i class="fa-solid fa-motorcycle w-4 text-center text-sky-700"></i> مندوب توصيل</a>
+            <a role="menuitem" href="index_admin.html" class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-xs font-bold text-slate-700 hover:bg-indigo-50 hover:text-indigo-800"><i class="fa-solid fa-shield-halved w-4 text-center text-indigo-700"></i> الإدارة</a>
+          </div>
+        </details>
+        <button type="button" onclick="toggleMobileMenu()" aria-controls="mobile-menu-drawer" aria-label="فتح قائمة التنقل" class="btn btn-ghost btn-circle btn-sm text-slate-700 xl:hidden">
+          <i class="fa-solid fa-bars text-lg" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+
+    <nav id="mobile-menu-drawer" class="hidden border-t border-slate-100 bg-white px-4 py-3 shadow-lg xl:hidden" aria-label="التنقل عبر الهاتف">
+      <div class="mx-auto grid max-w-7xl gap-1 sm:grid-cols-2">
+        <a href="index.html" class="rounded-xl px-3 py-2.5 text-sm font-bold hover:bg-slate-50">الرئيسية</a>
+        <a href="index.html#how-it-works" class="rounded-xl px-3 py-2.5 text-sm font-bold hover:bg-slate-50">كيف تعمل المنصة</a>
+        <a href="index.html#features" class="rounded-xl px-3 py-2.5 text-sm font-bold hover:bg-slate-50">المزايا</a>
+        <a href="contact.html" class="rounded-xl px-3 py-2.5 text-sm font-bold hover:bg-slate-50">للصيدليات</a>
+        <a href="about.html" class="rounded-xl px-3 py-2.5 text-sm font-bold hover:bg-slate-50">عن دواك بإيدك</a>
+        <a href="contact_us.html" class="rounded-xl px-3 py-2.5 text-sm font-bold hover:bg-slate-50">تواصل معنا</a>
+        <div class="mt-2 border-t border-slate-100 pt-2 sm:col-span-2">
+          <p class="px-3 pb-1 text-[10px] font-extrabold text-slate-400">اختر بوابتك</p>
+          <div class="grid grid-cols-2 gap-1">
+            <a href="index_patient.html" class="rounded-xl px-3 py-2.5 text-xs font-bold text-teal-800 hover:bg-teal-50">مريض / مستخدم</a>
+            <a href="index_pharmacy.html" class="rounded-xl px-3 py-2.5 text-xs font-bold text-cyan-800 hover:bg-cyan-50">صيدلي / صيدلية</a>
+            <a href="delivery.html" class="rounded-xl px-3 py-2.5 text-xs font-bold text-sky-800 hover:bg-sky-50">مندوب توصيل</a>
+            <a href="index_admin.html" class="rounded-xl px-3 py-2.5 text-xs font-bold text-indigo-800 hover:bg-indigo-50">الإدارة</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ========================================================================= -->
+  <!-- 2. قسم البحث الرئيسي الواضح والمريح (Clean Hero Search Section) -->
+  <!-- ========================================================================= -->
+  <section class="patient-search-hero hero-bg text-white">
+    <div class="patient-search-hero-inner relative z-10">
+      <div class="patient-hero-copy text-right">
+      <span class="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-1 text-[10px] font-bold text-teal-100 sm:text-xs">
+        <i class="fa-solid fa-user-doctor text-teal-300" aria-hidden="true"></i>
+        تحقق صيدلي موثوق قبل التوجه
+      </span>
+      <h1 class="patient-heading mt-3 text-3xl font-extrabold leading-relaxed tracking-tight sm:text-4xl lg:text-[2.7rem]">اعثر على دوائك بسرعة</h1>
+      <p class="mt-2 max-w-2xl text-sm leading-8 text-cyan-100 sm:text-base">
+        ابحث بالاسم التجاري أو المادة الفعالة، وقارن التوفر والأسعار قبل زيارة الصيدلية.
+      </p>
+
+      <div class="patient-search-control mt-5 flex w-full max-w-4xl items-center gap-1.5 rounded-2xl bg-white p-1.5 text-slate-800 shadow-2xl shadow-slate-950/20 sm:gap-2 sm:p-2">
+        <div class="relative min-w-0 flex-1">
+          <i class="fa-solid fa-magnifying-glass absolute right-3.5 top-1/2 -translate-y-1/2 text-sm text-teal-700" aria-hidden="true"></i>
+          <input
+            type="text"
+            id="patient-search-input"
+            placeholder="ابحث بالاسم التجاري أو المادة الفعالة..."
+            class="patient-search-input w-full rounded-xl bg-transparent pe-11 ps-10 text-right text-xs font-semibold outline-none placeholder:font-normal placeholder:text-slate-400 sm:text-sm"
+            dir="rtl"
+            oninput="handleSearchChange()"
+          >
+          <button type="button" id="clear-search-button" onclick="clearPatientSearch()" class="hidden absolute left-2 top-1/2 grid h-8 w-8 -translate-y-1/2 place-items-center rounded-lg text-slate-400 transition hover:bg-slate-100 hover:text-slate-700" aria-label="مسح البحث" title="مسح البحث">
+            <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+          </button>
+        </div>
+        <button type="button" onclick="handleSearchChange()" class="inline-flex h-11 flex-none items-center gap-2 rounded-xl bg-teal-700 px-4 text-xs font-extrabold text-white shadow-sm transition hover:bg-teal-800 sm:px-7">
+          <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i><span>بحث</span>
+        </button>
+      </div>
+      <div class="patient-secondary-actions mt-3 flex flex-wrap items-center justify-start gap-1.5">
+        <span class="me-1 text-[10px] text-cyan-100/70 sm:text-[11px]">أدوات الصمود والإغاثة:</span>
+        <button type="button" id="voice-search-btn" onclick="startVoiceSearch()" title="البحث والأوامر الصوتية باللغة العربية" aria-label="بحث صوتي">
+          <i class="fa-solid fa-microphone text-teal-300" id="voice-mic-icon" aria-hidden="true"></i><span id="voice-btn-label">بحث صوتي</span>
+        </button>
+        <button type="button" onclick="openSniperModal()" title="حجز الدواء آلياً فور توفره">
+          <i class="fa-solid fa-crosshairs text-teal-300" aria-hidden="true"></i><span>القناص الآلي 🎯</span>
+        </button>
+        <button type="button" onclick="openReverseRxModal()" title="استدراج عروض أسعار تنافسية لوصفتك">
+          <i class="fa-solid fa-file-prescription text-teal-300" aria-hidden="true"></i><span>عروض الروشتات 📋</span>
+        </button>
+        <button type="button" onclick="openBlisterPoolModal()" title="تجزئة الأشرطة لتخفيف العبء المالي">
+          <i class="fa-solid fa-tablets text-teal-300" aria-hidden="true"></i><span>شريط تعاوني 💊</span>
+        </button>
+        <button type="button" onclick="openDiasporaCareModal()" title="رابط كفالة دوائية عبر الأهل بالخارج">
+          <i class="fa-solid fa-earth-americas text-teal-300" aria-hidden="true"></i><span>رعاية المغتربين 🌍</span>
+        </button>
+        <button type="button" onclick="openMedicalQRModal()" title="بطاقة طبية مشفرة تعمل دون إنترنت">
+          <i class="fa-solid fa-qrcode text-teal-300" aria-hidden="true"></i><span>بطاقتي الطبية 🪪</span>
+        </button>
+      </div>
+      </div>
+      <div class="patient-hero-visual" aria-hidden="true">
+        <img src="assets/images/patient-pharmacy-hero.png" alt="" fetchpriority="high">
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 3. شريط التحكم والتصنيف المنظم (Floating Control Toolbar & Filters) -->
+  <!-- ========================================================================= -->
+  <section class="patient-filter-shell mx-auto -mt-3 w-full max-w-7xl px-3 sm:px-6 lg:px-8" aria-label="فلاتر البحث">
+    <div class="rounded-2xl border border-slate-200/90 bg-white/95 p-2 shadow-lg shadow-slate-900/5 backdrop-blur sm:p-3">
+      <button id="patient-filter-toggle" type="button" onclick="togglePatientFilters()" class="patient-filter-trigger w-full items-center justify-between rounded-xl px-3 py-2 text-xs font-extrabold text-slate-700" aria-expanded="false" aria-controls="patient-filter-panel">
+        <span class="inline-flex items-center gap-2"><i class="fa-solid fa-sliders text-teal-700" aria-hidden="true"></i> فلترة النتائج</span>
+        <i class="fa-solid fa-chevron-down text-[10px] text-slate-400" aria-hidden="true"></i>
+      </button>
+      <div id="patient-filter-panel" class="patient-filter-panel flex flex-col items-start gap-3 md:flex-row md:items-center md:justify-between">
+        <div class="flex w-full flex-wrap items-center gap-2 md:w-auto">
+          <label class="flex min-h-9 items-center gap-2 rounded-xl border border-slate-200 bg-slate-50 px-3 text-[11px] font-bold text-slate-500">
+            <i class="fa-solid fa-map-pin text-teal-700" aria-hidden="true"></i>
+            <span>المحافظة</span>
+            <select id="governorate-selector" onchange="handleGovernorateChange(this.value)" class="max-w-[10rem] bg-transparent text-[11px] font-bold text-slate-700 outline-none">
+              <option value="all">كل المحافظات</option>
+              <option value="غزة">غزة (الرمال، الصبرة)</option>
+              <option value="خانيونس">خانيونس (وسط البلد)</option>
+              <option value="دير البلح">دير البلح والوسطى</option>
+              <option value="رفح">رفح (تل السلطان)</option>
+              <option value="شمال غزة">شمال غزة (جباليا)</option>
+            </select>
+          </label>
+          <label class="flex min-h-9 items-center gap-2 rounded-xl border border-slate-200 bg-slate-50 px-3 text-[11px] font-bold text-slate-500">
+            <i class="fa-solid fa-arrow-down-short-wide text-cyan-700" aria-hidden="true"></i>
+            <span>الترتيب</span>
+            <select id="sort-selector" onchange="handleSortChange(this.value)" class="max-w-[8rem] bg-transparent text-[11px] font-bold text-slate-700 outline-none">
+              <option value="distance">الأقرب</option>
+              <option value="price_asc">الأقل سعراً</option>
+              <option value="updated">الأحدث تحديثاً</option>
+            </select>
+          </label>
+          <span class="inline-flex min-h-9 items-center gap-1.5 rounded-xl bg-slate-50 px-3 text-[11px] font-bold text-slate-600">
+            <i class="fa-solid fa-circle-check text-teal-700" aria-hidden="true"></i> حالة التوفر حسب تحديث الصيدلية
+          </span>
+        </div>
+        <div class="flex w-full flex-wrap items-start gap-3 md:w-full">
+          <span class="flex-none pt-2 text-[11px] font-extrabold text-slate-500">الفئة</span>
+          <div id="dynamic-category-chips-container" class="flex min-w-0 flex-1 flex-wrap items-center gap-2 py-1">
+            <!-- تعبئة الفئات عبر JS -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="mx-auto mt-5 w-full max-w-7xl px-3 sm:px-6 lg:px-8">
+    <section class="patient-emergency-promo" aria-labelledby="patient-emergency-title">
+      <div class="patient-emergency-copy">
+        <span class="patient-emergency-kicker"><i class="fa-solid fa-kit-medical" aria-hidden="true"></i> عرض طوارئ</span>
+        <h2 id="patient-emergency-title">تحتاج مستلزمات إسعاف عاجلة؟</h2>
+        <p>باقة إسعاف الجروح والحروق تجمع أهم المستلزمات الأساسية في طلب واحد — جاهزة للحجز السريع.</p>
+        <div class="patient-emergency-items">شاش معقم <span aria-hidden="true">•</span> مطهر <span aria-hidden="true">•</span> لاصق طبي <span aria-hidden="true">•</span> مرهم ميبو</div>
+        <div class="patient-emergency-offer">
+          <span class="patient-emergency-price">السعر: 65 ₪</span>
+          <button type="button" onclick="openEmergencyWoundModal()" class="patient-emergency-cta">
+            <i class="fa-solid fa-bolt" aria-hidden="true"></i> اطلب الباقة الآن
+          </button>
+        </div>
+      </div>
+      <div class="patient-emergency-art">
+        <img src="assets/medicines/emergency-first-aid-kit.svg" alt="باقة إسعاف تضم حقيبة طبية وشاشًا ومطهرًا وضمادات ومرهمًا" width="320" height="240" loading="lazy" decoding="async">
+      </div>
+    </section>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- 4. نتائج البحث والـ Grid والخريطة التفاعلية -->
+  <!-- ========================================================================= -->
+  <main class="patient-results-area mx-auto w-full max-w-7xl flex-1 space-y-4 px-3 py-6 sm:px-6 lg:px-8">
+    
+    <!-- شريط معلومات النتائج والتبديل بين القائمة والخريطة -->
+    <div class="flex flex-col gap-3 border-b border-slate-200 pb-3 sm:flex-row sm:items-center sm:justify-between">
+      <div>
+        <p class="patient-heading mb-1 text-[10px] font-bold text-teal-800">نتائج الصيدليات القريبة</p>
+        <h2 id="results-count-text" class="text-xs font-extrabold leading-relaxed text-slate-800 sm:text-sm">
+          جارٍ استعراض الأصناف المتوفرة بقطاع غزة...
+        </h2>
+      </div>
+
+      <!-- مفتاح التبديل العرض (Grid / Map Switcher) -->
+      <div class="flex items-center gap-3">
+        <div class="join rounded-xl border border-slate-200 bg-white p-0.5">
+          <button id="view-grid-btn" onclick="toggleViewMode('grid')" class="join-item btn btn-xs btn-primary rounded-lg text-[11px] font-bold text-white">
+            <i class="fa-solid fa-table-cells-large"></i>
+            <span>بطاقات</span>
+          </button>
+          <button id="view-map-btn" onclick="toggleViewMode('map')" class="join-item btn btn-xs btn-ghost rounded-lg text-[11px] font-bold text-slate-600">
+            <i class="fa-solid fa-map-location-dot"></i>
+            <span>خريطة</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- الخريطة التفاعلية المتجاوبة -->
+    <div id="map-view-container" class="patient-map-shell hidden space-y-2 p-3">
+      <div class="flex flex-wrap items-center justify-between px-1 py-1 text-xs gap-2">
+        <span class="font-extrabold text-slate-800 flex items-center gap-2">
+          <i class="fa-solid fa-location-crosshairs text-teal-600"></i>
+          <span>
+            <span class="block">صيدليات ومستشفيات قطاع غزة</span>
+            <span class="mt-0.5 block text-[10px] font-medium text-slate-500">اختر موقعاً للاطلاع على التفاصيل وطلب تأكيد التوفر</span>
+          </span>
+        </span>
+        <div class="flex items-center gap-2">
+          <button id="toggle-hospitals-btn" onclick="toggleFieldHospitalsLayer()" class="btn btn-xs bg-rose-50 text-rose-700 hover:bg-rose-100 border border-rose-200 rounded-xl text-[11px] gap-1 font-bold">
+            <i class="fa-solid fa-hospital-user"></i>
+            <span id="hospitals-btn-text">إظهار المستشفيات الميدانية (5)</span>
+          </button>
+          <span class="text-slate-400 text-[11px] hidden md:inline">انقر على أي صيدلية لطلب تأكيد التوفر</span>
+        </div>
+      </div>
+      <div id="gaza-map" class="h-80 md:h-[450px] w-full rounded-xl z-10 border border-slate-100"></div>
+      <div class="patient-map-fallback" id="patient-map-fallback" role="status" aria-live="polite">
+        <div class="patient-map-fallback-card">
+          <div class="patient-map-fallback-icon"><i class="fa-solid fa-map-location-dot" aria-hidden="true"></i></div>
+          <h3 class="text-sm font-extrabold text-slate-800">عرض الخريطة غير متاح حالياً</h3>
+          <p class="mt-1 text-xs leading-6 text-slate-500">يمكنك متابعة الصيدليات القريبة من خلال عرض البطاقات.</p>
+          <button type="button" onclick="toggleViewMode('grid')" class="mt-3 inline-flex items-center gap-2 rounded-xl bg-teal-700 px-4 py-2 text-xs font-extrabold text-white transition hover:bg-teal-800">
+            <i class="fa-solid fa-list" aria-hidden="true"></i> عرض البطاقات
+          </button>
+        </div>
+      </div>
+      <div id="patient-map-loader" class="patient-map-loader" role="status">
+        <i class="fa-solid fa-circle-notch fa-spin" aria-hidden="true"></i>
+        <span>جارٍ تحميل الخريطة...</span>
+      </div>
+    </div>
+
+    <!-- منطقة التنبيهات الذكية: الفرز السريري للطوارئ وبدائل الأدوية العلمية -->
+    <div id="smart-triage-container" class="hidden"></div>
+    <div id="alternatives-suggestions-container" class="hidden"></div>
+
+    <!-- شبكة بطاقات النتائج المريحة والنظيفة (Clean Cards Grid) -->
+    <div id="results-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+      <!-- يتم تعبئة البطاقات بواسطة JavaScript -->
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- ركن التكافل الدوائي والخدمات الإغاثية المتقدمة (Gaza Solidarity & Relief Hub) -->
+    <!-- ========================================================================= -->
+    <section class="mt-12 space-y-6" id="solidarity-shelf-section">
+      <!-- بانر التكافل والتبرع المباشر -->
+      <div class="rounded-3xl bg-gradient-to-l from-teal-900 via-teal-800 to-slate-900 p-6 text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="space-y-2 max-w-2xl text-right">
+          <div class="inline-flex items-center gap-2 rounded-full bg-emerald-500/20 px-3 py-1 text-xs font-bold text-emerald-300 border border-emerald-400/30">
+            <i class="fa-solid fa-hand-holding-medical"></i> رف التكافل الدوائي - غزة
+          </div>
+          <h2 class="text-xl sm:text-2xl font-black">أدوية مجانية لوجه الله تعالى من الأهالي للأهالي</h2>
+          <p class="text-xs sm:text-sm text-teal-100/90 leading-relaxed">
+            هل لديك دواء فائض عن حاجة مريضك بعد الشفاء؟ ضعه هنا لإنقاذ مصاب أو نازح عاجز عن الشراء. نضمن فحص تاريخ الصلاحية تلقائياً لمنع أي أدوية منتهية.
+          </p>
+        </div>
+        <div class="flex flex-wrap items-center gap-2 flex-shrink-0">
+          <button type="button" onclick="openDonateMedicineModal()" class="btn btn-sm bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-black rounded-2xl px-5 text-xs shadow-lg gap-2">
+            <i class="fa-solid fa-plus-circle"></i> تبرع بدواء فائض الآن
+          </button>
+        </div>
+      </div>
+
+      <!-- قائمة التبرعات المتاحة حالياً بالرف -->
+      <div class="bg-white rounded-3xl p-5 border border-slate-200 shadow-sm space-y-4">
+        <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+          <h3 class="font-extrabold text-sm sm:text-base text-slate-900 flex items-center gap-2">
+            <i class="fa-solid fa-box-open text-teal-700"></i>
+            <span>أدوية متبرع بها ومتاحة للاستلام المجاني الفوري</span>
+          </h3>
+          <span id="donations-count-badge" class="badge badge-teal badge-sm font-bold">3 أدوية متاحة</span>
+        </div>
+        <div id="donations-list-grid" class="grid gap-3 sm:grid-cols-3">
+          <!-- يتم تعبئتها بالجافاسكريبت -->
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================================= -->
+  <!-- 5. نافذة طلب تأكيد التوفر (Reservation Modal) -->
+  <!-- ========================================================================= -->
+  <dialog id="reservation_modal" class="modal modal-bottom sm:modal-middle" aria-labelledby="reservation-title">
+    <div class="reservation-dialog text-right" dir="rtl">
+      <header class="reservation-header">
+        <div class="flex min-w-0 items-center gap-3">
+          <div class="reservation-header-icon"><i class="fa-solid fa-clipboard-check" aria-hidden="true"></i></div>
+          <div class="min-w-0">
+            <h3 id="reservation-title" class="font-extrabold text-base text-slate-900">طلب تأكيد توفر على الرف</h3>
+            <p class="mt-0.5 text-[11px] leading-5 text-slate-500 sm:text-xs">أرسل تنبيهًا مباشرًا للصيدلي للتأكد من توفر الدواء وتجهيزه</p>
+          </div>
+        </div>
+        <button type="button" onclick="document.getElementById('reservation_modal').close()" class="reservation-close" aria-label="إغلاق نافذة الطلب">
+          <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+        </button>
+      </header>
+
+      <form id="reservation-form" onsubmit="submitReservationOrder(event)" class="text-xs">
+        <input type="hidden" id="modal-pharmacy-id">
+        <input type="hidden" id="modal-medicine-id">
+        <input type="hidden" id="modal-unit-price">
+        <input type="hidden" id="modal-urgency-level" value="normal">
+
+        <div class="reservation-form-content">
+          <section class="reservation-summary" aria-label="ملخص الصنف والصيدلية">
+            <div class="reservation-summary-item">
+              <h4 id="modal-med-name" class="font-black text-slate-900 text-sm">اسم الصنف</h4>
+              <p id="modal-med-scientific" class="mt-0.5 text-[11px] text-slate-500 font-mono" dir="ltr">Scientific name</p>
+              <span id="modal-med-price" class="font-black">0.00 ₪</span>
+            </div>
+            <div class="reservation-summary-pharmacy">
+              <span class="flex min-w-0 items-center gap-2 font-semibold text-teal-800">
+                <i class="fa-solid fa-house-medical flex-none text-teal-600" aria-hidden="true"></i>
+                <span id="modal-pharmacy-name" class="reservation-summary-pharmacy-name">اسم الصيدلية</span>
+              </span>
+              <span id="modal-pharmacy-distance" class="flex-none text-[10px] text-slate-500">600 متر</span>
+            </div>
+          </section>
+
+          <section class="reservation-section">
+            <h4 class="reservation-section-title"><i class="fa-solid fa-boxes-stacked" aria-hidden="true"></i> الكمية والتكلفة</h4>
+            <div class="reservation-quantity-row">
+              <div class="reservation-quantity-control">
+                <button type="button" onclick="adjustOrderQty(-1)" aria-label="تقليل الكمية">−</button>
+              <input type="number" id="modal-requested-qty" min="1" max="10" value="1" class="w-12 text-center bg-transparent font-black text-sm" readonly>
+                <button type="button" onclick="adjustOrderQty(1)" aria-label="زيادة الكمية">+</button>
+                <span class="mr-1 text-[10px] font-semibold text-slate-500">عبوة</span>
+              </div>
+              <div class="reservation-total">
+                <span>الإجمالي التقديري</span>
+                <strong id="modal-total-price">0.00 ₪</strong>
+              </div>
+            </div>
+          </section>
+
+          <section class="reservation-section">
+            <h4 class="reservation-section-title"><i class="fa-solid fa-user" aria-hidden="true"></i> بيانات المستلم</h4>
+            <div class="reservation-fields">
+              <div class="reservation-field">
+                <label for="modal-patient-name">اسم المستلم *</label>
+                <input type="text" id="modal-patient-name" required placeholder="مثال: محمود خليل" class="input">
+              </div>
+              <div class="reservation-field">
+                <label for="modal-patient-phone">رقم الجوال لاستلام رمز التأكيد *</label>
+                <input type="tel" id="modal-patient-phone" required placeholder="059xxxxxxx أو 056xxxxxxx" dir="ltr" class="input text-right">
+              </div>
+            </div>
+          </section>
+
+          <section class="reservation-section">
+            <h4 class="reservation-section-title"><i class="fa-regular fa-message" aria-hidden="true"></i> ملاحظات للصيدلي <span class="text-[10px] font-semibold text-slate-400">(اختياري)</span></h4>
+            <div class="reservation-field">
+              <label class="sr-only" for="modal-patient-notes">ملاحظات للصيدلي</label>
+              <input type="text" id="modal-patient-notes" placeholder="مثال: سأحضر خلال 15 دقيقة..." class="input">
+            </div>
+          </section>
+
+          <section class="reservation-section reservation-coupon">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <h4 class="reservation-section-title mb-0"><i class="fa-solid fa-hand-holding-heart" aria-hidden="true"></i> كوبون دعم أو منحة <span class="text-[10px] font-semibold text-slate-400">(اختياري)</span></h4>
+              <span class="text-[10px] font-semibold text-teal-700">مثال: GAZA-AID-100</span>
+            </div>
+            <div class="mt-2 flex items-center gap-2">
+              <label class="sr-only" for="modal-voucher-code">رمز كوبون الدعم</label>
+              <input type="text" id="modal-voucher-code" placeholder="أدخل رمز الكوبون" class="input input-bordered input-xs rounded-xl flex-1 text-xs uppercase font-mono">
+              <button type="button" onclick="applyModalVoucher()" class="btn btn-sm bg-teal-700 hover:bg-teal-800 text-white rounded-xl font-bold">تطبيق</button>
+            </div>
+            <div id="voucher-status-msg" class="mt-2 text-[10px] font-bold hidden"></div>
+          </section>
+
+          <section class="reservation-section">
+            <label for="modal-needs-runner" class="reservation-delivery">
+              <span class="flex items-start gap-3">
+                <input type="checkbox" id="modal-needs-runner" onchange="toggleCampDeliveryOptions(this.checked)" class="checkbox checkbox-primary checkbox-xs rounded-lg">
+                <span>
+                  <span class="block text-xs font-extrabold text-slate-800">أحتاج توصيل إغاثي للمخيم / الخيمة</span>
+                  <span class="mt-0.5 block text-[10px] leading-5 text-slate-500">توصيل تجميعي للمخيمات أو مباشر مع متطوعي الإغاثة</span>
+                </span>
+              </span>
+              <span class="rounded-full bg-teal-100 px-2 py-1 text-[9px] font-extrabold text-teal-800">توصيل إغاثي</span>
+            </label>
+
+            <!-- تفاصيل موقع الخيمة والمعالم والتوصيل التجميعي -->
+            <div id="camp-delivery-fields" class="hidden mt-3 p-3 bg-teal-50/70 rounded-xl border border-teal-200 space-y-2">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                <label class="flex items-center gap-2 p-2 bg-white rounded-lg border border-teal-200 cursor-pointer">
+                  <input type="radio" name="modal_delivery_mode" value="camp_hub" checked class="radio radio-xs radio-primary">
+                  <div>
+                    <span class="block text-[11px] font-bold text-slate-800">توصيل تجميعي للمخيم (2 ₪ فقط)</span>
+                    <span class="text-[9px] text-slate-500">نقطة تجمع مدرسة الإيواء / اللجنة الطبية</span>
+                  </div>
+                </label>
+                <label class="flex items-center gap-2 p-2 bg-white rounded-lg border border-teal-200 cursor-pointer">
+                  <input type="radio" name="modal_delivery_mode" value="individual" class="radio radio-xs radio-primary">
+                  <div>
+                    <span class="block text-[11px] font-bold text-slate-800">توصيل فردي مباشر (7 ₪)</span>
+                    <span class="text-[9px] text-slate-500">مندوب مخصص لباب الخيمة أو النقطة</span>
+                  </div>
+                </label>
+              </div>
+              <div class="space-y-1.5">
+                <input type="text" id="modal-camp-name" placeholder="المنطقة أو المخيم (مثال: مواصي خانيونس - شارع 5)" class="input input-bordered input-xs w-full rounded-lg text-xs">
+                <input type="text" id="modal-landmark" placeholder="أقرب معلم مشهور (مسجد، مدرسة إيواء، بئر مياه)" class="input input-bordered input-xs w-full rounded-lg text-xs">
+                <input type="text" id="modal-tent-desc" placeholder="لون الخيمة أو علامة مميزة (مثال: خيمة زرقاء عليها شراع أبيض)" class="input input-bordered input-xs w-full rounded-lg text-xs">
+              </div>
+              <div class="p-2 bg-white rounded-lg border border-teal-200 text-[10px] text-teal-900 flex items-start gap-1.5">
+                <i class="fa-solid fa-shield-halved text-teal-600 mt-0.5"></i>
+                <span><strong>نظام الضمان المزدوج بالـ PIN:</strong> المندوب لا يسلمك الدواء إلا بعد إعطائه كود التسليم (Delivery PIN) لمنع أي ضياع.</span>
+              </div>
+            </div>
+          </section>
+
+          <section class="reservation-section reservation-field">
+            <label class="reservation-section-title mb-0" for="modal-prescription-file">
+              <i class="fa-solid fa-paperclip" aria-hidden="true"></i>
+              إرفاق صورة الوصفة أو علبة الدواء <span class="text-[10px] font-semibold text-slate-400">(اختياري)</span>
+            </label>
+            <label class="reservation-upload" id="prescription-upload-area">
+              <i class="fa-solid fa-cloud-arrow-up" aria-hidden="true"></i>
+              <span class="reservation-upload-filename text-[11px] font-extrabold" id="prescription-upload-filename">اضغط لاختيار صورة من جهازك</span>
+              <span class="text-[9px] text-slate-400">صورة واضحة تساعد الصيدلي على التحقق</span>
+              <input type="file" id="modal-prescription-file" accept="image/*" onchange="previewUploadedPrescription(this)" aria-label="إرفاق صورة وصفة أو علبة دواء">
+            </label>
+            <div id="prescription-preview-box" class="hidden mt-2 text-center bg-slate-50 rounded-xl border border-slate-200">
+              <img id="prescription-preview-img" class="max-h-24 mx-auto rounded-lg" />
+              <span class="text-[10px] text-emerald-600 block mt-1">✓ تم إرفاق الصورة لمراجعة الصيدلي</span>
+            </div>
+          </section>
+
+          <div class="reservation-assurance flex items-start gap-2">
+            <i class="fa-solid fa-user-check mt-0.5 flex-none text-teal-700" aria-hidden="true"></i>
+            <span>يتحقق الصيدلي من توفر الدواء وتجهيزه قبل الشراء. الدفع نقدًا بالشيكل عند الاستلام.</span>
+          </div>
+        </div>
+
+        <footer class="reservation-footer">
+          <button type="button" onclick="document.getElementById('reservation_modal').close()" class="border border-slate-200 bg-white text-slate-600 transition hover:bg-slate-50">إلغاء</button>
+          <button type="submit" class="bg-teal-700 text-white shadow-md shadow-teal-900/15 transition hover:bg-teal-800">
+            <i class="fa-solid fa-paper-plane ml-1" aria-hidden="true"></i> إرسال طلب التأكيد
+          </button>
+        </footer>
+      </form>
+    </div>
+  </dialog>
+
+  <!-- ========================================================================= -->
+  <!-- 6. نافذة طلب باقة طوارئ الجروح الفورية (Emergency Kit Modal) -->
+  <!-- ========================================================================= -->
+  <dialog id="emergency_kit_modal" class="modal modal-bottom sm:modal-middle">
+    <div class="modal-box text-right bg-white rounded-3xl max-w-md shadow-2xl border-2 border-rose-400">
+      <div class="flex items-center gap-3 pb-3 border-b border-rose-100">
+        <div class="w-12 h-12 rounded-2xl bg-rose-100 text-rose-600 flex items-center justify-center text-2xl">
+          <i class="fa-solid fa-truck-medical"></i>
+        </div>
+        <div>
+          <h3 class="font-black text-base text-rose-900">طلب باقة طوارئ الجروح الفورية</h3>
+          <p class="text-xs text-rose-700">تجهيز عاجل بأولوية قصوى في أقرب صيدلية</p>
+        </div>
+      </div>
+
+      <form onsubmit="handleEmergencyKitSubmit(event)" class="py-4 space-y-3 text-xs">
+        <div class="bg-rose-50 p-3.5 rounded-2xl border border-rose-200 text-rose-950 space-y-1">
+          <div class="font-bold flex items-center gap-1.5 text-sm">
+            <i class="fa-solid fa-kit-medical text-rose-600"></i>
+            <span>محتويات باقة الإسعاف الشاملة:</span>
+          </div>
+          <p class="text-[11px] text-rose-800 leading-relaxed">
+            • 2 علبة شاش طبي معقم 10×10 <br>
+            • 1 محلول مطهر بوفيدون أيودين 100 مل <br>
+            • 1 علبة لاصق جروح طبي مضاد للماء <br>
+            • 1 أنبوب مرهم ميبو لعلاج الجروح والحروق
+          </p>
+          <div class="pt-2 flex justify-between font-black text-sm border-t border-rose-200 mt-2">
+            <span>السعر الإجمالي للباقة:</span>
+            <span class="text-rose-700">65.00 ₪</span>
+          </div>
+        </div>
+
+        <div class="form-control">
+          <label class="label py-0.5 font-bold text-slate-700">اختر المحافظة / الصيدلية الأقرب:</label>
+          <select id="emergency-pharmacy-select" class="select select-bordered select-sm rounded-xl text-xs">
+            <!-- تعبئة الصيدليات -->
+          </select>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+          <div class="form-control">
+            <label class="label py-0.5 font-semibold text-slate-700">اسم المستلم *</label>
+            <input type="text" id="emergency-patient-name" required placeholder="اسم المستلم" class="input input-bordered input-sm rounded-xl text-xs">
+          </div>
+          <div class="form-control">
+            <label class="label py-0.5 font-semibold text-slate-700">رقم الجوال *</label>
+            <input type="tel" id="emergency-patient-phone" required placeholder="059xxxxxxx" dir="ltr" class="input input-bordered input-sm rounded-xl text-xs text-right">
+          </div>
+        </div>
+
+        <div class="pt-2 flex gap-2 justify-end">
+          <button type="button" onclick="document.getElementById('emergency_kit_modal').close()" class="btn btn-ghost btn-sm text-slate-600">إلغاء</button>
+          <button type="submit" class="btn btn-error btn-sm text-white font-black px-6 rounded-2xl shadow-md min-h-[40px]">
+            <i class="fa-solid fa-bolt ml-1"></i> إرسال طلب الطوارئ الفوري
+          </button>
+        </div>
+      </form>
+    </div>
+  </dialog>
+
+  <!-- ========================================================================= -->
+  <!-- 7. نافذة تتبع طلبات المريض وإلغاء الطلب (My Orders Modal) -->
+  <!-- ========================================================================= -->
+  <dialog id="my_orders_modal" class="modal modal-bottom sm:modal-middle" aria-labelledby="my-orders-title">
+    <div class="patient-orders-dialog text-right" dir="rtl">
+      <header class="patient-orders-header">
+        <div class="flex min-w-0 items-center gap-3">
+          <div class="patient-orders-header-icon"><i class="fa-solid fa-clipboard-list" aria-hidden="true"></i></div>
+          <div class="min-w-0">
+            <h3 id="my-orders-title" class="font-extrabold text-base text-slate-900 sm:text-lg">طلباتي والمتابعة</h3>
+            <p class="mt-0.5 text-[11px] leading-5 text-slate-500 sm:text-xs">تابع تأكيد الصيدلية وحالة تجهيز طلباتك</p>
+          </div>
+        </div>
+        <form method="dialog">
+          <button type="submit" class="patient-orders-close" aria-label="إغلاق نافذة الطلبات"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+        </form>
+      </header>
+
+      <div id="my-orders-list" aria-live="polite">
+        <!-- تعبئة القائمة بالجافاسكريبت -->
+      </div>
+    </div>
+  </dialog>
+
+  <!-- نافذة التنبيه بتقديم الطلب وقيد المراجعة الفعالة (Order Success & Pending Wait Modal) -->
+  <dialog id="order_success_modal" class="modal modal-bottom sm:modal-middle">
+    <div class="modal-box text-center bg-white rounded-3xl p-6 shadow-2xl max-w-sm">
+      <div class="w-16 h-16 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center mx-auto mb-3 text-3xl shadow-inner animate-pulse">
+        <i class="fa-solid fa-hourglass-half"></i>
+      </div>
+      <h3 class="font-black text-lg text-slate-900">تم إرسال طلب تأكيد التوفر!</h3>
+      <p class="text-xs text-slate-500 mt-1">كود الطلب: <strong id="success-order-code" class="text-cyan-800 font-mono text-sm">MF-0000</strong></p>
+      
+      <div class="bg-amber-50 border border-amber-200 p-3.5 rounded-2xl text-xs text-amber-900 my-4 text-right">
+        <div class="font-bold flex items-center gap-1.5 mb-1 text-amber-950">
+          <i class="fa-solid fa-user-doctor text-amber-600"></i>
+          <span>الخطوة الحالية: فحص الصيدلي للرف</span>
+        </div>
+        <p class="text-[11px] text-amber-800 leading-relaxed">
+          وصل إشعار مع صوت تنبيه لصيدلي الشفت لمطابقة الصنف وقبوله. متوسط زمن الاستجابة 3 دقائق.
+        </p>
+      </div>
+
+      <div class="space-y-2">
+        <button onclick="document.getElementById('order_success_modal').close(); openMyOrdersModal();" class="btn btn-primary btn-sm w-full text-white rounded-2xl font-bold min-h-[40px]">
+          متابعة حالة الطلب خطوة بخطوة
+        </button>
+        <button onclick="document.getElementById('order_success_modal').close()" class="btn btn-ghost btn-sm w-full text-slate-500">
+          إغلاق والبحث عن أصناف أخرى
+        </button>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- ========================================================================= -->
+  <!-- 8. نافذة القناص الآلي للأدوية النادرة (Automated Medicine Sniper Modal) -->
+  <!-- ========================================================================= -->
+  <dialog id="sniper_watchdog_modal" class="modal modal-bottom sm:modal-middle">
+    <div class="modal-box text-right bg-white rounded-3xl p-6 shadow-2xl max-w-md" dir="rtl">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <div class="flex items-center gap-2">
+          <span class="grid h-10 w-10 place-items-center rounded-2xl bg-rose-100 text-rose-700 text-lg">
+            <i class="fa-solid fa-crosshairs"></i>
+          </span>
+          <div>
+            <h3 class="font-black text-base text-slate-900">القناص الآلي للأدوية النادرة 🎯</h3>
+            <p class="text-[11px] text-slate-500">حجز أوتوماتيكي فوري للدواء بمجرد وصوله لأي صيدلية</p>
+          </div>
+        </div>
+        <button type="button" onclick="document.getElementById('sniper_watchdog_modal').close()" class="btn btn-sm btn-circle btn-ghost">✕</button>
+      </div>
+
+      <form id="sniper-form" onsubmit="submitSniperWatchdog(event)" class="space-y-3 mt-4 text-xs">
+        <div class="bg-rose-50 border border-rose-200 p-3 rounded-2xl text-[11px] text-rose-900 leading-relaxed">
+          <i class="fa-solid fa-bolt text-rose-600 mr-1"></i>
+          في ظل شح الأدوية بغزة، يقوم "القناص" بمراقبة مخازن صيدليات القطاع على مدار الساعة. فور إدخال الصيدلي لأي كمية، يحجز النظام علبتك باسمك تلقائياً ويطلق رنة إشعار لهاتفك!
+        </div>
+
+        <div>
+          <label class="label py-0.5 font-bold text-slate-700">اسم الدواء المطلوب قنصه *</label>
+          <input type="text" id="sniper-med-name" required placeholder="مثال: أنسولين لانتوس، كونكور 5، حليب نان 1" class="input input-bordered input-sm w-full rounded-xl text-xs">
+        </div>
+
+        <div class="grid grid-cols-2 gap-2">
+          <div>
+            <label class="label py-0.5 font-bold text-slate-700">اسم المريض *</label>
+            <input type="text" id="sniper-patient-name" required placeholder="مثال: أم أحمد" class="input input-bordered input-sm w-full rounded-xl text-xs">
+          </div>
+          <div>
+            <label class="label py-0.5 font-bold text-slate-700">رقم الجوال لتنبيه الرنة *</label>
+            <input type="tel" id="sniper-patient-phone" required placeholder="059xxxxxxx" dir="ltr" class="input input-bordered input-sm w-full rounded-xl text-xs text-right">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-2">
+          <div>
+            <label class="label py-0.5 font-bold text-slate-700">المحافظة المفضلة</label>
+            <select id="sniper-governorate" class="select select-bordered select-sm w-full rounded-xl text-xs">
+              <option value="غزة">غزة وشمالها</option>
+              <option value="دير البلح">دير البلح والوسطى</option>
+              <option value="خانيونس" selected>خانيونس والمواصي</option>
+              <option value="رفح">رفح</option>
+            </select>
+          </div>
+          <div>
+            <label class="label py-0.5 font-bold text-slate-700">الحد الأقصى للسعر (₪)</label>
+            <input type="number" id="sniper-max-price" value="80" class="input input-bordered input-sm w-full rounded-xl text-xs">
+          </div>
+        </div>
+
+        <div class="pt-3 flex items-center justify-end gap-2 border-t border-slate-100">
+          <button type="button" onclick="document.getElementById('sniper_watchdog_modal').close()" class="btn btn-ghost btn-sm text-slate-500">إلغاء</button>
+          <button type="submit" class="btn btn-sm bg-rose-600 hover:bg-rose-700 text-white font-black px-5 rounded-xl shadow-md gap-1.5">
+            <i class="fa-solid fa-radar"></i> تفعيل القناص الآلي
+          </button>
+        </div>
+      </form>
+    </div>
+  </dialog>
+
+  <!-- ========================================================================= -->
+  <!-- 9. نافذة استدراج عروض الأسعار للوصفات (Reverse Rx Bidding Modal) -->
+  <!-- ========================================================================= -->
+  <dialog id="reverse_rx_modal" class="modal modal-bottom sm:modal-middle">
+    <div class="modal-box text-right bg-white rounded-3xl p-6 shadow-2xl max-w-md" dir="rtl">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <div class="flex items-center gap-2">
+          <span class="grid h-10 w-10 place-items-center rounded-2xl bg-teal-100 text-teal-800 text-lg">
+            <i class="fa-solid fa-file-prescription"></i>
+          </span>
+          <div>
+            <h3 class="font-black text-base text-slate-900">استدراج عروض الأسعار للروشتات 📋</h3>
+            <p class="text-[11px] text-slate-500">ارفع وصفتك وتلقَّ عروض تجهيز وأسعار مخفضة من صيدليات منطقتك</p>
+          </div>
+        </div>
+        <button type="button" onclick="document.getElementById('reverse_rx_modal').close()" class="btn btn-sm btn-circle btn-ghost">✕</button>
+      </div>
+
+      <form id="reverse-rx-form" onsubmit="submitReverseRxBid(event)" class="space-y-3 mt-4 text-xs">
+        <div>
+          <label class="label py-0.5 font-bold text-slate-700">الأدوية المطلوبة في الوصفة *</label>
+          <textarea id="rx-bid-notes" required rows="3" placeholder="اكتب أسماء الأصناف أو التشخيص (مثال: بخاخ فنتولين + شراب أوجمنتين 312 + خافض حرارة باراسيتامول)" class="textarea textarea-bordered w-full rounded-xl text-xs"></textarea>
+        </div>
+
+        <div class="grid grid-cols-2 gap-2">
+          <div>
+            <label class="label py-0.5 font-bold text-slate-700">اسم المريض *</label>
+            <input type="text" id="rx-bid-patient-name" required placeholder="مثال: يوسف النجار" class="input input-bordered input-sm w-full rounded-xl text-xs">
+          </div>
+          <div>
+            <label class="label py-0.5 font-bold text-slate-700">رقم التواصل *</label>
+            <input type="tel" id="rx-bid-patient-phone" required placeholder="059xxxxxxx" dir="ltr" class="input input-bordered input-sm w-full rounded-xl text-xs text-right">
+          </div>
+        </div>
+
+        <div>
+          <label class="label py-0.5 font-bold text-slate-700">المحافظة / مكان إقامتك الحالي</label>
+          <select id="rx-bid-governorate" class="select select-bordered select-sm w-full rounded-xl text-xs">
+            <option value="غزة">مدينة غزة</option>
+            <option value="دير البلح">دير البلح ومخيم النصيرات</option>
+            <option value="خانيونس" selected>خانيونس ومواصي خانيونس</option>
+            <option value="شمال غزة">شمال غزة وجباليا</option>
+            <option value="رفح">رفح ومواصي رفح</option>
+          </select>
+        </div>
+
+        <div class="pt-3 flex items-center justify-end gap-2 border-t border-slate-100">
+          <button type="button" onclick="document.getElementById('reverse_rx_modal').close()" class="btn btn-ghost btn-sm text-slate-500">إلغاء</button>
+          <button type="submit" class="btn btn-sm bg-teal-700 hover:bg-teal-800 text-white font-black px-5 rounded-xl shadow-md gap-1.5">
+            <i class="fa-solid fa-paper-plane"></i> نشر الوصفة وتلقي العروض
+          </button>
+        </div>
+      </form>
+    </div>
+  </dialog>
+
+  <!-- ========================================================================= -->
+  <!-- 10. نافذة تجزئة الشريط التعاوني (Shared Blister Pool Modal) -->
+  <!-- ========================================================================= -->
+  <dialog id="blister_pool_modal" class="modal modal-bottom sm:modal-middle">
+    <div class="modal-box text-right bg-white rounded-3xl p-6 shadow-2xl max-w-lg" dir="rtl">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <div class="flex items-center gap-2">
+          <span class="grid h-10 w-10 place-items-center rounded-2xl bg-cyan-100 text-cyan-800 text-lg">
+            <i class="fa-solid fa-tablets"></i>
+          </span>
+          <div>
+            <h3 class="font-black text-base text-slate-900">تجزئة الشريط التعاوني 💊</h3>
+            <p class="text-[11px] text-slate-500">احصل على شريط واحد من الدواء بسعر التجزئة المخفض دون إلزام بشراء العلبة كاملة</p>
+          </div>
+        </div>
+        <button type="button" onclick="document.getElementById('blister_pool_modal').close()" class="btn btn-sm btn-circle btn-ghost">✕</button>
+      </div>
+
+      <div class="space-y-3 mt-4 text-xs">
+        <p class="text-slate-600 leading-relaxed text-[11px]">
+          تخفيفاً على الأسر المتعففة، اتفقت المنصة مع الصيدليات على إتاحة شراء "شريط دواء مفرد" للأدوية المزمنة والمضادات باهظة الثمن بدلاً من شراء العلبة الكاملة:
+        </p>
+
+        <div id="blister-pool-list" class="space-y-2">
+          <!-- تملأ بالجافاسكريبت -->
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- ========================================================================= -->
+  <!-- 11. نافذة رعاية وكفالة المغتربين (Diaspora Care Link & Pay Modal) -->
+  <!-- ========================================================================= -->
+  <dialog id="diaspora_care_modal" class="modal modal-bottom sm:modal-middle">
+    <div class="modal-box text-right bg-white rounded-3xl p-6 shadow-2xl max-w-md" dir="rtl">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <div class="flex items-center gap-2">
+          <span class="grid h-10 w-10 place-items-center rounded-2xl bg-emerald-100 text-emerald-800 text-lg">
+            <i class="fa-solid fa-earth-americas"></i>
+          </span>
+          <div>
+            <h3 class="font-black text-base text-slate-900">رعاية المغتربين والشتات 🌍</h3>
+            <p class="text-[11px] text-slate-500">أهلك بالخارج يتكفلون بقيمة علاجك ويسددونها مباشرة للصيدلية</p>
+          </div>
+        </div>
+        <button type="button" onclick="document.getElementById('diaspora_care_modal').close()" class="btn btn-sm btn-circle btn-ghost">✕</button>
+      </div>
+
+      <div class="space-y-3 mt-4 text-xs">
+        <div class="bg-emerald-50 border border-emerald-200 p-3 rounded-2xl text-[11px] text-emerald-950 leading-relaxed">
+          <i class="fa-solid fa-heart text-emerald-600 mr-1"></i>
+          مولّد الرابط الذكي: يتيح لأقاربك في الخليج أو أوروبا أو أي مكان بالعالم استلام رابط الفاتورة وتسديدها عبر فيزا/ماستركارد/باي بال مباشرة لحساب الصيدلية، فتستلم دواءك جاهزاً ومسدداً!
+        </div>
+
+        <div class="p-3 bg-slate-50 rounded-2xl border border-slate-200 space-y-2">
+          <div class="flex justify-between items-center text-xs">
+            <span class="text-slate-500">الدواء المحدد:</span>
+            <strong id="diaspora-med-title" class="text-slate-900">باقة علاجية</strong>
+          </div>
+          <div class="flex justify-between items-center text-xs">
+            <span class="text-slate-500">المبلغ المطلوب للتغطية:</span>
+            <strong id="diaspora-med-amount" class="text-emerald-700 text-sm font-black">45.00 ₪</strong>
+          </div>
+        </div>
+
+        <div class="space-y-2 pt-2">
+          <a id="diaspora-whatsapp-share-btn" href="#" target="_blank" class="btn btn-sm bg-emerald-600 hover:bg-emerald-700 text-white font-black w-full rounded-2xl shadow gap-2 text-xs">
+            <i class="fa-brands fa-whatsapp text-sm"></i> إرسال رابط الكفالة للأهل عبر الواتساب
+          </a>
+          <button type="button" onclick="simulateDiasporaDirectPayment()" class="btn btn-sm btn-outline btn-neutral w-full rounded-2xl text-xs font-bold gap-1.5">
+            <i class="fa-solid fa-credit-card"></i> محاكاة دفع الكفيل من الخارج (تبرع فوري)
+          </button>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- ========================================================================= -->
+  <!-- 12. نافذة البطاقة الطبية المشفرة دون إنترنت (Offline Medical QR Card Modal) -->
+  <!-- ========================================================================= -->
+  <dialog id="offline_medical_qr_modal" class="modal modal-bottom sm:modal-middle">
+    <div class="modal-box text-right bg-white rounded-3xl p-6 shadow-2xl max-w-md" dir="rtl">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <div class="flex items-center gap-2">
+          <span class="grid h-10 w-10 place-items-center rounded-2xl bg-teal-100 text-teal-800 text-lg">
+            <i class="fa-solid fa-qrcode"></i>
+          </span>
+          <div>
+            <h3 class="font-black text-base text-slate-900">بطاقتي الطبية المشفرة (Offline QR) 🪪</h3>
+            <p class="text-[11px] text-slate-500">تعمل بدون إنترنت — يحفظها هاتفك لأي نقطة طبية أو ممر إسعاف</p>
+          </div>
+        </div>
+        <button type="button" onclick="document.getElementById('offline_medical_qr_modal').close()" class="btn btn-sm btn-circle btn-ghost">✕</button>
+      </div>
+
+      <div class="mt-4 space-y-3 text-xs">
+        <form id="medical-qr-form" onsubmit="generatePatientMedicalQR(event)" class="space-y-2">
+          <div class="grid grid-cols-2 gap-2">
+            <div>
+              <label class="label py-0.5 font-bold text-slate-700">اسم المريض</label>
+              <input type="text" id="qr-patient-name" value="محمود خليل العبد" required class="input input-bordered input-xs w-full rounded-lg text-xs">
+            </div>
+            <div>
+              <label class="label py-0.5 font-bold text-slate-700">فصيلة الدم</label>
+              <select id="qr-blood-type" class="select select-bordered select-xs w-full rounded-lg text-xs font-bold">
+                <option value="O+">O موجب (O+)</option>
+                <option value="O-">O سالب (O-)</option>
+                <option value="A+">A موجب (A+)</option>
+                <option value="B+">B موجب (B+)</option>
+                <option value="AB+">AB موجب</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label class="label py-0.5 font-bold text-slate-700">الأمراض المزمنة</label>
+            <input type="text" id="qr-chronic" value="سكري نمط 1 + ضغط شرياني" class="input input-bordered input-xs w-full rounded-lg text-xs">
+          </div>
+
+          <div>
+            <label class="label py-0.5 font-bold text-slate-700">الأدوية المعتادة الحيوية</label>
+            <input type="text" id="qr-meds" value="أنسولين لانتوس 20 وحدة + كونكور 5 ملجم" class="input input-bordered input-xs w-full rounded-lg text-xs">
+          </div>
+
+          <div class="grid grid-cols-2 gap-2">
+            <div>
+              <label class="label py-0.5 font-bold text-slate-700">الحساسية الدوائية</label>
+              <input type="text" id="qr-allergies" value="حساسية بنسلين" class="input input-bordered input-xs w-full rounded-lg text-xs">
+            </div>
+            <div>
+              <label class="label py-0.5 font-bold text-slate-700">هاتف الطوارئ</label>
+              <input type="tel" id="qr-emergency-phone" value="0599112233" dir="ltr" class="input input-bordered input-xs w-full rounded-lg text-xs text-right">
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-sm bg-teal-700 hover:bg-teal-800 text-white font-black w-full rounded-xl text-xs gap-1.5 shadow mt-2">
+            <i class="fa-solid fa-arrows-rotate"></i> تحديث وتوليد رمز الاستجابة السريعة (QR)
+          </button>
+        </form>
+
+        <!-- منطقة استعراض الـ QR المصغرة -->
+        <div id="patient-qr-preview-card" class="bg-slate-50 p-4 rounded-2xl border border-slate-200 text-center space-y-2 mt-3">
+          <div class="inline-block p-2 bg-white rounded-2xl shadow-sm border border-slate-200">
+            <img id="patient-qr-image" src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=MED-GZ:v1|محمود|O+|سكري|لانتوس|بنسلين|0599112233" alt="QR Card" class="w-36 h-36 mx-auto rounded-lg">
+          </div>
+          <p class="text-[10px] text-slate-500 font-bold">احفظ لقطة شاشة (Screenshot) لتقديمها فوراً للمسعفين عند انقطاع الاتصالات</p>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- ========================================================================= -->
+  <!-- 13. نافذة التبرع بدواء في رف التكافل (Donate to Solidarity Shelf Modal) -->
+  <!-- ========================================================================= -->
+  <dialog id="donate_medicine_modal" class="modal modal-bottom sm:modal-middle">
+    <div class="modal-box text-right bg-white rounded-3xl p-6 shadow-2xl max-w-md" dir="rtl">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <div class="flex items-center gap-2">
+          <span class="grid h-10 w-10 place-items-center rounded-2xl bg-emerald-100 text-emerald-800 text-lg">
+            <i class="fa-solid fa-hand-holding-heart"></i>
+          </span>
+          <div>
+            <h3 class="font-black text-base text-slate-900">التبرع بدواء لوجه الله 🤝</h3>
+            <p class="text-[11px] text-slate-500">رف التكافل الدوائي المجاني لمصابي ونازحي غزة</p>
+          </div>
+        </div>
+        <button type="button" onclick="document.getElementById('donate_medicine_modal').close()" class="btn btn-sm btn-circle btn-ghost">✕</button>
+      </div>
+
+      <form id="donate-medicine-form" onsubmit="submitSolidarityDonation(event)" class="space-y-3 mt-4 text-xs">
+        <div>
+          <label class="label py-0.5 font-bold text-slate-700">اسم الدواء المتبرع به *</label>
+          <input type="text" id="donate-med-name" required placeholder="مثال: أنسولين، شاش معقم، ميبو، حليب أطفال" class="input input-bordered input-sm w-full rounded-xl text-xs">
+        </div>
+
+        <div class="grid grid-cols-2 gap-2">
+          <div>
+            <label class="label py-0.5 font-bold text-slate-700">الكمية المتوفرة *</label>
+            <input type="text" id="donate-qty" required placeholder="مثال: عبوتان مقفلتان" class="input input-bordered input-sm w-full rounded-xl text-xs">
+          </div>
+          <div>
+            <label class="label py-0.5 font-bold text-slate-700">تاريخ الصلاحية (EXP) *</label>
+            <input type="text" id="donate-expiry" required placeholder="مثال: 11/2026" oninput="checkExpiryInRealtime(this.value)" class="input input-bordered input-sm w-full rounded-xl text-xs font-mono">
+          </div>
+        </div>
+
+        <!-- فاحص الصلاحية اللحظي (EXP Live Safety Validator) -->
+        <div id="donate-expiry-safety-badge" class="hidden p-2.5 rounded-xl text-[11px] font-bold"></div>
+
+        <div class="grid grid-cols-2 gap-2">
+          <div>
+            <label class="label py-0.5 font-bold text-slate-700">اسم المتبرع أو العائلة *</label>
+            <input type="text" id="donate-donor-name" required placeholder="مثال: فاعل خير" class="input input-bordered input-sm w-full rounded-xl text-xs">
+          </div>
+          <div>
+            <label class="label py-0.5 font-bold text-slate-700">رقم الجوال للتنسيق *</label>
+            <input type="tel" id="donate-donor-phone" required placeholder="059xxxxxxx" dir="ltr" class="input input-bordered input-sm w-full rounded-xl text-xs text-right">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-2">
+          <div>
+            <label class="label py-0.5 font-bold text-slate-700">المحافظة</label>
+            <select id="donate-governorate" class="select select-bordered select-sm w-full rounded-xl text-xs">
+              <option value="غزة">غزة</option>
+              <option value="دير البلح">دير البلح والوسطى</option>
+              <option value="خانيونس" selected>خانيونس والمواصي</option>
+              <option value="شمال غزة">شمال غزة</option>
+              <option value="رفح">رفح</option>
+            </select>
+          </div>
+          <div>
+            <label class="label py-0.5 font-bold text-slate-700">الحي أو أقرب معلم</label>
+            <input type="text" id="donate-district" placeholder="مثال: مخيم 2 قرب المسجد" class="input input-bordered input-sm w-full rounded-xl text-xs">
+          </div>
+        </div>
+
+        <div>
+          <label class="label py-0.5 font-bold text-slate-700">ملاحظات الحفظ والتسليم</label>
+          <input type="text" id="donate-notes" placeholder="مثال: محفوظ في مكان بارد ومجاني لوجه الله" class="input input-bordered input-sm w-full rounded-xl text-xs">
+        </div>
+
+        <div class="pt-3 flex items-center justify-end gap-2 border-t border-slate-100">
+          <button type="button" onclick="document.getElementById('donate_medicine_modal').close()" class="btn btn-ghost btn-sm text-slate-500">إلغاء</button>
+          <button type="submit" id="donate-submit-btn" class="btn btn-sm bg-emerald-600 hover:bg-emerald-700 text-white font-black px-5 rounded-xl shadow-md gap-1.5">
+            <i class="fa-solid fa-hand-holding-heart"></i> نشر التبرع في الرف
+          </button>
+        </div>
+      </form>
+    </div>
+  </dialog>
+
+  <!-- تذييل الصفحة -->
+  <footer class="mt-8 bg-slate-950 text-slate-300">
+    <div class="mx-auto grid max-w-7xl gap-8 px-4 py-9 sm:px-6 md:grid-cols-2 lg:grid-cols-4 lg:px-8">
+      <div class="md:col-span-2">
+        <a href="index.html" class="inline-flex items-center gap-3">
+          <img src="assets/images/dawaak-logo.png" alt="" class="h-12 w-12 object-contain" width="48" height="48" loading="lazy" decoding="async">
+          <span><span class="block font-heading text-base font-extrabold text-white">دواك بإيدك</span><span class="block text-[9px] text-slate-400">دواؤك أقرب مما تتوقع</span></span>
+        </a>
+        <p class="mt-4 max-w-md text-xs leading-7 text-slate-400">منصة تربط المرضى بالصيدليات المعتمدة في قطاع غزة لتسهيل البحث عن الأدوية والتحقق من توفرها.</p>
+      </div>
+      <div>
+        <h2 class="text-xs font-extrabold text-white">روابط سريعة</h2>
+        <div class="mt-3 grid gap-2 text-[11px] font-semibold text-slate-400">
+          <a href="index.html" class="transition hover:text-teal-300">الرئيسية</a>
+          <a href="index.html#how-it-works" class="transition hover:text-teal-300">كيف تعمل المنصة</a>
+          <a href="index.html#features" class="transition hover:text-teal-300">المزايا</a>
+          <a href="about.html" class="transition hover:text-teal-300">عن دواك بإيدك</a>
+          <a href="contact_us.html" class="transition hover:text-teal-300">تواصل معنا</a>
+        </div>
+      </div>
+      <div>
+        <h2 class="text-xs font-extrabold text-white">البوابات والدعم</h2>
+        <div class="mt-3 grid gap-2 text-[11px] font-semibold text-slate-400">
+          <a href="index_patient.html" class="transition hover:text-teal-300">بوابة المريض</a>
+          <a href="index_pharmacy.html" class="transition hover:text-teal-300">بوابة الصيدلية</a>
+          <a href="delivery.html" class="transition hover:text-teal-300">مسار مندوب التوصيل</a>
+          <a href="index_admin.html" class="transition hover:text-teal-300">لوحة الإدارة</a>
+          <a href="mailto:support@medifind.ps" class="transition hover:text-teal-300">راسل فريق الدعم</a>
+          <a href="tel:+970599000000" dir="ltr" class="w-fit transition hover:text-teal-300">+970 59-900-0000</a>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-white/10 bg-slate-950/90">
+      <div class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-4 py-4 text-center text-xs text-slate-400 sm:px-6 md:flex-row lg:px-8">
+        <div class="flex items-center gap-2">
+          <span>جميع الحقوق محفوظة © دواك بإيدك 2026</span>
+          <span class="text-slate-600">•</span>
+          <span class="text-teal-400 font-bold">شبكة الصمود والإغاثة الطبية - قطاع غزة</span>
+        </div>
+        <div class="flex items-center gap-2 bg-slate-900 px-4 py-2 rounded-xl border border-teal-500/30 text-white shadow-md">
+          <i class="fa-solid fa-code text-teal-400"></i>
+          <span class="font-bold text-slate-300">تم دعم المشروع برمجياً من قبل شركة</span>
+          <strong class="font-black text-teal-300 tracking-wide font-sans">MSN-IT In UK</strong>
+          <span class="text-sm">🇬🇧</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================================= -->
+  <!-- 8. كود التشغيل والتحكم التفاعلي المحتفظ بكافة الدوال والبيانات -->
+  <!-- ========================================================================= -->
+  <script src="js/store.js"></script>
+  <script src="js/tracker.js"></script>
+  <script>
+    let activeCategory = 'الكل';
+    let activeGovernorate = 'all';
+    let activeSortBy = 'distance';
+    let uploadedPrescriptionData = null;
+    let gazaMap = null;
+    let markersLayer = null;
+    let mapTilesLayer = null;
+    let mapTileErrorCount = 0;
+    let mapTilesLoaded = false;
+    let mapTileFallbackTimer = null;
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const initialSearch = new URLSearchParams(window.location.search).get('search');
+      if (initialSearch) {
+        document.getElementById('patient-search-input').value = initialSearch;
+      }
+      updateSearchClearButton();
+      renderCategoryChips();
+      renderSearchResults();
+      renderDonationsShelf();
+      updatePatientBadge();
+      initEmergencyPharmaciesSelect();
+
+      window.addEventListener('medifind_data_changed', () => {
+        renderSearchResults();
+        renderDonationsShelf();
+        updatePatientBadge();
+        if (gazaMap) renderMapMarkers();
+      });
+    });
+
+    function toggleMobileMenu() {
+      const drawer = document.getElementById('mobile-menu-drawer');
+      drawer.classList.toggle('hidden');
+    }
+
+    function togglePatientFilters() {
+      const panel = document.getElementById('patient-filter-panel');
+      const toggle = document.getElementById('patient-filter-toggle');
+      const isOpen = panel.classList.toggle('is-open');
+      toggle.setAttribute('aria-expanded', String(isOpen));
+    }
+
+    function renderCategoryChips() {
+      const categories = [
+        ...window.medifindStore.getUniqueCategories(),
+        'تحتاج وصفة',
+        'بدون وصفة'
+      ];
+      const container = document.getElementById('dynamic-category-chips-container');
+      if (!container) return;
+      const themes = {
+        'الكل': { theme: 'all', icon: 'fa-layer-group' },
+        'طوارئ': { theme: 'emergency', icon: 'fa-kit-medical' },
+        'مستلزمات جروح وطوارئ': { theme: 'wounds', icon: 'fa-bandage' },
+        'مسكنات وخافضات حرارة': { theme: 'pain', icon: 'fa-temperature-half' },
+        'مضادات حيوية': { theme: 'antibiotics', icon: 'fa-capsules' },
+        'تحتاج وصفة': { theme: 'prescription', icon: 'fa-prescription' },
+        'بدون وصفة': { theme: 'otc', icon: 'fa-prescription-bottle-medical' }
+      };
+
+      container.innerHTML = '';
+      [...new Set(categories)].forEach(cat => {
+        const btn = document.createElement('button');
+        const isEmergency = cat === 'طوارئ';
+        const isActive = activeCategory === cat;
+        const theme = themes[cat] || { theme: 'all', icon: 'fa-capsules' };
+
+        btn.type = 'button';
+        btn.onclick = () => filterByCategory(cat, btn);
+        btn.setAttribute('aria-pressed', String(isActive));
+        btn.className = `category-chip category-chip--${theme.theme}${isActive ? ' is-active' : ''}`;
+
+        btn.innerHTML = `<i class="fa-solid ${theme.icon}" aria-hidden="true"></i><span>${isEmergency ? 'طوارئ فقط' : cat}</span>`;
+        container.appendChild(btn);
+      });
+    }
+
+    function handleSearchChange() {
+      updateSearchClearButton();
+      renderSearchResults();
+      if (gazaMap) renderMapMarkers();
+    }
+
+    function updateSearchClearButton() {
+      const input = document.getElementById('patient-search-input');
+      const clearButton = document.getElementById('clear-search-button');
+      if (!input || !clearButton) return;
+      clearButton.classList.toggle('hidden', input.value.length === 0);
+    }
+
+    function clearPatientSearch() {
+      const input = document.getElementById('patient-search-input');
+      input.value = '';
+      handleSearchChange();
+      input.focus();
+    }
+
+    function handleGovernorateChange(gov) {
+      activeGovernorate = gov;
+      renderSearchResults();
+      if (gazaMap) renderMapMarkers();
+    }
+
+    function getSearchCategory() {
+      return activeCategory === 'تحتاج وصفة' || activeCategory === 'بدون وصفة' ? 'الكل' : activeCategory;
+    }
+
+    function applyPrescriptionCategoryFilter(results) {
+      if (activeCategory === 'تحتاج وصفة') return results.filter(item => item.requires_prescription);
+      if (activeCategory === 'بدون وصفة') return results.filter(item => !item.requires_prescription);
+      return results;
+    }
+
+    function handleSortChange(sort) {
+      activeSortBy = sort;
+      renderSearchResults();
+    }
+
+    function useMyLocationGPS() {
+      if ('geolocation' in navigator) {
+        window.medifindStore.showToast('جاري تحديد موقعك الفعلي عبر الـ GPS...', 'info');
+        navigator.geolocation.getCurrentPosition(
+          (pos) => {
+            window.medifindStore.showToast('تم تحديد الموقع بنجاح، تم ترتيب الصيدليات الأقرب إليك', 'success');
+            activeSortBy = 'distance';
+            document.getElementById('sort-selector').value = 'distance';
+            renderSearchResults();
+          },
+          (err) => {
+            window.medifindStore.showToast('تعذر جلب موقع GPS، يمكنك اختيار المحافظة يدوياً', 'warning');
+          }
+        );
+      } else {
+        window.medifindStore.showToast('ميزة الموقع الجغرافي غير مدعومة في متصفحك', 'warning');
+      }
+    }
+
+    function filterByCategory(category, btnElement) {
+      activeCategory = category;
+      renderCategoryChips();
+      renderSearchResults();
+      if (gazaMap) renderMapMarkers();
+    }
+
+    function updatePatientBadge() {
+      const orders = window.medifindStore.getOrders();
+      document.getElementById('patient-orders-badge').textContent = orders.length;
+    }
+
+    function showMedicineAlternatives() {
+      handleSearchChange();
+      const alternatives = document.getElementById('alternatives-suggestions-container');
+      if (alternatives.classList.contains('hidden')) {
+        document.getElementById('patient-search-input').focus();
+        window.medifindStore.showToast('ابحث عن دواء أولاً لعرض البدائل العلمية المتاحة', 'info');
+        return;
+      }
+      alternatives.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    function resetPatientFilters() {
+      activeCategory = 'الكل';
+      activeGovernorate = 'all';
+      activeSortBy = 'distance';
+      document.getElementById('patient-search-input').value = '';
+      updateSearchClearButton();
+      document.getElementById('governorate-selector').value = 'all';
+      document.getElementById('sort-selector').value = 'distance';
+      renderCategoryChips();
+      renderSearchResults();
+      if (gazaMap) renderMapMarkers();
+    }
+
+    function getMedicineImage(item) {
+      const name = `${item.commercial_name} ${item.scientific_name}`.toLowerCase();
+      if (name.includes('povidone') || name.includes('بوفيدون')) return 'povidone-iodine';
+      if (name.includes('mebo') || name.includes('ميبو')) return 'mebo-ointment';
+      if (name.includes('waterproof') || name.includes('لاصق')) return 'waterproof-dressing';
+      if (name.includes('acamol') || name.includes('أكامول')) return 'acamol-extra';
+      if (name.includes('augmentin') || name.includes('أوجمنتين')) return 'augmentin';
+      if (name.includes('chlorhexidine') || name.includes('كلوهيكسيدين')) return 'chlorhexidine';
+      if (name.includes('saline') || name.includes('محلول ملحي')) return 'normal-saline';
+      if (name.includes('paraffin') || name.includes('فازلين')) return 'paraffin-gauze';
+      if (name.includes('dermazin') || name.includes('ديرمازين')) return 'dermazin-cream';
+      if (name.includes('klavox') || name.includes('كلافوكس')) return 'klavox-antibiotic';
+      if (name.includes('gauze') || name.includes('شاش')) return 'sterile-gauze';
+      if (item.category === 'مضادات حيوية') return 'augmentin';
+      if (item.category === 'مسكنات وخافضات حرارة') return 'acamol-extra';
+      return 'sterile-gauze';
+    }
+
+    function toggleViewMode(mode) {
+      const grid = document.getElementById('results-grid');
+      const mapContainer = document.getElementById('map-view-container');
+      const gridBtn = document.getElementById('view-grid-btn');
+      const mapBtn = document.getElementById('view-map-btn');
+
+      if (mode === 'map') {
+        grid.classList.add('hidden');
+        mapContainer.classList.remove('hidden');
+        document.getElementById('patient-map-loader').classList.toggle('is-hidden', mapTilesLoaded || mapContainer.classList.contains('has-fallback'));
+        mapBtn.classList.add('btn-primary', 'text-white');
+        mapBtn.classList.remove('btn-ghost', 'text-slate-600');
+        gridBtn.classList.remove('btn-primary', 'text-white');
+        gridBtn.classList.add('btn-ghost', 'text-slate-600');
+
+        initGazaMap();
+        window.requestAnimationFrame(() => {
+          if (gazaMap) gazaMap.invalidateSize({ pan: false });
+          window.setTimeout(() => {
+            if (gazaMap) gazaMap.invalidateSize({ pan: false });
+          }, 120);
+        });
+      } else {
+        grid.classList.remove('hidden');
+        mapContainer.classList.add('hidden');
+        gridBtn.classList.add('btn-primary', 'text-white');
+        gridBtn.classList.remove('btn-ghost', 'text-slate-600');
+        mapBtn.classList.remove('btn-primary', 'text-white');
+        mapBtn.classList.add('btn-ghost', 'text-slate-600');
+      }
+    }
+
+    let showHospitalsOnMap = false;
+    let isVoiceListening = false;
+    let speechRecognitionInstance = null;
+    let currentVoucherDiscount = 0;
+    let appliedVoucherCode = null;
+
+    function toggleFieldHospitalsLayer() {
+      showHospitalsOnMap = !showHospitalsOnMap;
+      const btn = document.getElementById('toggle-hospitals-btn');
+      const btnText = document.getElementById('hospitals-btn-text');
+
+      if (showHospitalsOnMap) {
+        btn.className = 'btn btn-xs bg-rose-600 text-white rounded-xl text-[11px] gap-1 font-bold';
+        btnText.textContent = 'إخفاء المستشفيات (5)';
+      } else {
+        btn.className = 'btn btn-xs bg-rose-50 text-rose-700 hover:bg-rose-100 border border-rose-200 rounded-xl text-[11px] gap-1 font-bold';
+        btnText.textContent = 'إظهار المستشفيات الميدانية (5)';
+      }
+
+      if (document.getElementById('map-view-container').classList.contains('hidden')) {
+        toggleViewMode('map');
+      } else {
+        renderMapMarkers();
+      }
+    }
+
+    function startVoiceSearch() {
+      const micIcon = document.getElementById('voice-mic-icon');
+      const btnLabel = document.getElementById('voice-btn-label');
+      const searchInput = document.getElementById('patient-search-input');
+
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+      if (!SpeechRecognition) {
+        const simulatedPhrases = ['شاش معقم للجروح', 'مرهم ميبو حروق', 'أوجمنتين مضاد حيوي', 'مطهر بوفيدون'];
+        const chosen = simulatedPhrases[Math.floor(Math.random() * simulatedPhrases.length)];
+        searchInput.value = chosen;
+        handleSearchChange();
+        window.medifindStore.showToast(`تم التعرف الصوتي (محاكاة): "${chosen}"`, 'info', 'التعرف الصوتي العربي');
+        return;
+      }
+
+      if (isVoiceListening) {
+        if (speechRecognitionInstance) speechRecognitionInstance.stop();
+        return;
+      }
+
+      try {
+        speechRecognitionInstance = new SpeechRecognition();
+        speechRecognitionInstance.lang = 'ar-PS';
+        speechRecognitionInstance.continuous = false;
+        speechRecognitionInstance.interimResults = false;
+
+        speechRecognitionInstance.onstart = () => {
+          isVoiceListening = true;
+          micIcon.className = 'fa-solid fa-microphone text-rose-600 animate-ping text-sm';
+          if (btnLabel) btnLabel.textContent = 'أستمع...';
+          window.medifindStore.showToast('تحدث الآن باسم الدواء أو الحالة الطارئة...', 'info', 'المستمع الصوتي يعمل');
+        };
+
+        speechRecognitionInstance.onresult = (event) => {
+          const transcript = event.results[0][0].transcript;
+          searchInput.value = transcript;
+          handleSearchChange();
+          window.medifindStore.showToast(`تم التقاط الأمر الصوتي: "${transcript}"`, 'success', 'الفرز الصوتي');
+        };
+
+        speechRecognitionInstance.onerror = (e) => {
+          console.warn('Speech error:', e);
+          window.medifindStore.showToast('تعذر التقاط الصوت، يمكنك كتابة اسم الصنف مباشرة', 'warning');
+        };
+
+        speechRecognitionInstance.onend = () => {
+          isVoiceListening = false;
+          micIcon.className = 'fa-solid fa-microphone text-rose-600 text-sm';
+          if (btnLabel) btnLabel.textContent = 'صوتي';
+        };
+
+        speechRecognitionInstance.start();
+      } catch (err) {
+        console.error('Speech recognition exception:', err);
+        window.medifindStore.showToast('التعرف الصوتي غير مفعل على متصفحك حالياً', 'warning');
+      }
+    }
+
+    function initGazaMap() {
+      if (!gazaMap) {
+        if (typeof L === 'undefined') {
+          showMapTileFallback();
+          return;
+        }
+        try {
+          gazaMap = L.map('gaza-map').setView([31.42, 34.38], 11);
+          mapTileErrorCount = 0;
+          mapTilesLoaded = false;
+          mapTilesLayer = L.tileLayer('https://tile.openstreetmap.de/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+            maxZoom: 19
+          });
+          mapTilesLayer.on('tileload', () => {
+            mapTilesLoaded = true;
+            document.getElementById('patient-map-loader').classList.add('is-hidden');
+            if (mapTileFallbackTimer) {
+              window.clearTimeout(mapTileFallbackTimer);
+              mapTileFallbackTimer = null;
+            }
+          });
+          mapTilesLayer.on('tileerror', () => {
+            mapTileErrorCount += 1;
+          });
+          mapTilesLayer.on('load', () => {
+            if (!mapTilesLoaded && mapTileErrorCount > 0) showMapTileFallback();
+          });
+          mapTilesLayer.addTo(gazaMap);
+          mapTileFallbackTimer = window.setTimeout(() => {
+            if (!mapTilesLoaded) showMapTileFallback();
+          }, 8000);
+          markersLayer = L.layerGroup().addTo(gazaMap);
+        } catch (error) {
+          console.error('Leaflet map initialization failed:', error);
+          showMapTileFallback();
+          return;
+        }
+      }
+      window.requestAnimationFrame(() => gazaMap.invalidateSize({ pan: false }));
+      renderMapMarkers();
+    }
+
+    function showMapTileFallback() {
+      const mapContainer = document.getElementById('map-view-container');
+      if (mapContainer.classList.contains('has-fallback')) return;
+      if (mapTileFallbackTimer) {
+        window.clearTimeout(mapTileFallbackTimer);
+        mapTileFallbackTimer = null;
+      }
+      if (gazaMap && mapTilesLayer) {
+        mapTilesLayer.off();
+        gazaMap.removeLayer(mapTilesLayer);
+        mapTilesLayer = null;
+      }
+      document.getElementById('patient-map-loader').classList.add('is-hidden');
+      mapContainer.classList.add('has-fallback');
+    }
+
+    function renderMapMarkers() {
+      if (!markersLayer) return;
+      markersLayer.clearLayers();
+
+      const query = document.getElementById('patient-search-input').value;
+      const results = applyPrescriptionCategoryFilter(
+        window.medifindStore.searchMedicines(query, getSearchCategory(), activeGovernorate, activeSortBy)
+      );
+      const itemsByPharmacy = new Map();
+
+      results.forEach(item => {
+        if (!itemsByPharmacy.has(item.pharmacy_id)) itemsByPharmacy.set(item.pharmacy_id, []);
+        itemsByPharmacy.get(item.pharmacy_id).push(item);
+      });
+
+      itemsByPharmacy.forEach(items => {
+        const item = items[0];
+        const availableItems = items.filter(medicine => medicine.quantity > 0);
+        const markerColor = availableItems.length ? '#0d9488' : '#e11d48';
+        const medicineRows = items.slice(0, 3).map(medicine => {
+          const medicineAvailability = medicine.quantity === 0 ? 'غير متوفر حالياً' : medicine.quantity <= 2 ? 'متوفر بكمية محدودة' : 'متوفر حسب آخر تحديث';
+          const medicineColor = medicine.quantity === 0 ? '#be123c' : medicine.quantity <= 2 ? '#a16207' : '#0f766e';
+          return `
+            <div style="margin-top: 8px; padding-top: 7px; border-top: 1px solid #e2e8f0;">
+              <div style="font-weight: 800; color: #0f172a;">${medicine.commercial_name}</div>
+              <div style="margin-top: 2px; color: ${medicineColor}; font-size: 10px; font-weight: 700;">${medicineAvailability}</div>
+              <button onclick="viewPharmacyFromMap(${medicine.id})" style="margin-top: 5px; width: 100%; background: #f0fdfa; color: #0f766e; border: 1px solid #99f6e4; padding: 5px; border-radius: 7px; font-weight: 800; cursor: pointer; font-size: 10px;">
+                عرض الصيدلية
+              </button>
+              ${medicine.quantity > 0 ? `
+                <button onclick="openReservationModal(${medicine.id}, ${medicine.pharmacy_id})" style="margin-top: 4px; width: 100%; background: #0e7490; color: white; border: none; padding: 6px; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 10px;">
+                  طلب تأكيد التوفر
+                </button>
+              ` : ''}
+            </div>
+          `;
+        }).join('');
+        const remainingCount = items.length - 3;
+        const popupContent = `
+          <div style="font-family: 'Cairo', sans-serif; text-align: right; direction: rtl; min-width: 180px;">
+            <strong style="color: #0e7490; font-size: 13px;">${item.pharmacy_name}</strong>
+            <p style="margin: 3px 0; font-size: 11px; color: #475569;">${item.pharmacy_address}</p>
+            <div style="margin-top: 5px; color: ${availableItems.length ? '#0f766e' : '#be123c'}; font-size: 10px; font-weight: 800;">${availableItems.length} من ${items.length} أصناف متاحة</div>
+            ${medicineRows}
+            ${remainingCount > 0 ? `<div style="margin-top: 6px; color: #64748b; font-size: 10px;">و ${remainingCount} أصناف أخرى</div>` : ''}
+          </div>
+        `;
+        const tooltipContent = `
+          <div style="font-family: 'Cairo', sans-serif; min-width: 155px; text-align: right; direction: rtl;">
+            <strong style="color: #0e7490; font-size: 11px;">${item.pharmacy_name}</strong>
+            <div style="margin-top: 3px; color: ${availableItems.length ? '#0f766e' : '#be123c'}; font-size: 10px; font-weight: 700;">${availableItems.length} من ${items.length} أصناف متاحة</div>
+            <button type="button" onclick="viewPharmacyFromMap(${item.id})" style="margin-top: 5px; border: 0; background: transparent; padding: 0; color: #0e7490; font-size: 10px; font-weight: 800; cursor: pointer;">عرض الصيدلية ←</button>
+          </div>
+        `;
+
+        const marker = L.circleMarker([item.location_lat, item.location_lng], {
+          radius: 9,
+          fillColor: markerColor,
+          color: '#ffffff',
+          weight: 2,
+          opacity: 1,
+          fillOpacity: 0.9
+        })
+          .bindTooltip(tooltipContent, {
+            direction: 'top',
+            opacity: 1,
+            sticky: true,
+            interactive: true,
+            className: 'patient-map-tooltip'
+          })
+          .bindPopup(popupContent);
+
+        markersLayer.addLayer(marker);
+      });
+
+      // رسم المستشفيات والنقاط الطبية الميدانية عند التفعيل
+      if (showHospitalsOnMap) {
+        const hospitals = window.medifindStore.getFieldHospitals(activeGovernorate);
+        hospitals.forEach(h => {
+          const hospPopup = `
+            <div style="font-family: 'Cairo', sans-serif; text-align: right; direction: rtl; min-width: 220px; line-height: 1.4;">
+              <span style="background: #fee2e2; color: #991b1b; padding: 2px 6px; border-radius: 6px; font-size: 10px; font-weight: bold;">🏥 ${h.type}</span>
+              <h4 style="color: #881337; font-weight: 800; font-size: 13px; margin: 4px 0 2px 0;">${h.name}</h4>
+              <p style="font-size: 11px; color: #475569; margin: 0 0 4px 0;">${h.district} (${h.governorate})</p>
+              <div style="font-size: 10px; color: #0f766e; font-weight: bold;">السعة: ${h.capacity}</div>
+              <div style="font-size: 10px; color: #334155; margin-top: 4px;">
+                <strong>الخدمات الطبية:</strong> ${h.services.join(' • ')}
+              </div>
+              <div style="margin-top: 6px; padding-top: 4px; border-top: 1px solid #e2e8f0; font-size: 11px; font-weight: bold; color: #e11d48;">
+                طوارئ: <span dir="ltr">${h.emergency_phone}</span>
+              </div>
+            </div>
+          `;
+
+          const hospMarker = L.circleMarker([h.location_lat, h.location_lng], {
+            radius: 12,
+            fillColor: '#e11d48',
+            color: '#fff',
+            weight: 3,
+            opacity: 1,
+            fillOpacity: 1
+          }).bindPopup(hospPopup);
+
+          markersLayer.addLayer(hospMarker);
+        });
+      }
+    }
+
+    function viewPharmacyFromMap(medicineId) {
+      toggleViewMode('grid');
+      const pharmacyHeading = document.getElementById(`patient-pharmacy-${medicineId}`);
+      if (!pharmacyHeading) return;
+      const card = pharmacyHeading.closest('.patient-result-card');
+      pharmacyHeading.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      if (card) {
+        card.classList.add('is-map-highlighted');
+        window.setTimeout(() => card.classList.remove('is-map-highlighted'), 1800);
+      }
+    }
+
+    function renderSearchResults() {
+      const query = document.getElementById('patient-search-input').value;
+      const results = applyPrescriptionCategoryFilter(
+        window.medifindStore.searchMedicines(query, getSearchCategory(), activeGovernorate, activeSortBy)
+      );
+      const grid = document.getElementById('results-grid');
+      const countText = document.getElementById('results-count-text');
+
+      countText.textContent = `تم العثور على ${results.length} خيار صيدلاني متاح بقطاع غزة`;
+
+      // 1. نظام الفرز الذكي للطوارئ (Smart Emergency Triage)
+      const triageContainer = document.getElementById('smart-triage-container');
+      const triage = window.medifindStore.evaluateTriage(query);
+      if (triage && query.length >= 2) {
+        const triageLevelClass = triage.level === 'CRITICAL_RED' ? 'is-urgent' : triage.level === 'URGENT_YELLOW' ? 'is-priority' : '';
+        const triageLabel = triage.level === 'CRITICAL_RED' ? 'تحتاج مساعدة عاجلة' : triage.level === 'URGENT_YELLOW' ? 'أولوية متوسطة' : 'طلب عادي';
+        triageContainer.className = `patient-triage-card ${triageLevelClass}`;
+        triageContainer.innerHTML = `
+          <div class="flex min-w-0 items-start gap-3 text-xs">
+            <div class="mt-0.5 text-lg text-teal-700"><i class="${triage.icon}"></i></div>
+            <div class="min-w-0">
+              <div class="flex flex-wrap items-center gap-2">
+                <span class="patient-triage-chip">${triageLabel}</span>
+                <span class="font-black text-sm text-slate-800">إرشاد حسب وصف الحالة</span>
+              </div>
+              <p class="mt-1 text-[11px] font-medium leading-relaxed text-slate-600">${triage.recommendation}</p>
+            </div>
+          </div>
+          <div class="flex flex-shrink-0 flex-wrap gap-2">
+            ${triage.actionType === 'field_hospital' ? `
+              <button onclick="toggleFieldHospitalsLayer()" class="btn btn-sm btn-error text-white font-bold rounded-xl text-xs">
+                <i class="fa-solid fa-hospital"></i> عرض المستشفيات الميدانية
+              </button>
+            ` : triage.actionType === 'emergency_kit' ? `
+              <button onclick="openEmergencyWoundModal()" class="btn btn-sm btn-warning text-slate-900 font-bold rounded-xl text-xs">
+                <i class="fa-solid fa-kit-medical"></i> باقة طوارئ الجروح
+              </button>
+            ` : ''}
+          </div>
+        `;
+      } else {
+        triageContainer.className = 'hidden';
+      }
+
+      // 2. محرك اقتراح البدائل العلمية آلياً (Generic Drug Substitution)
+      const altContainer = document.getElementById('alternatives-suggestions-container');
+      const alternatives = window.medifindStore.getGenericAlternatives(query);
+      if (alternatives.length > 0 && query.length >= 2) {
+        altContainer.className = 'block mb-4 bg-teal-50 border border-teal-200 p-4 rounded-2xl shadow-sm text-xs text-teal-950';
+        let altCards = '';
+        alternatives.forEach(alt => {
+          altCards += `
+            <div class="bg-white p-3 rounded-xl border border-teal-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 shadow-xs">
+              <div>
+                <div class="flex items-center gap-2">
+                  <span class="badge badge-teal badge-sm bg-teal-600 text-white font-bold">بديل مكافئ علمياً</span>
+                  <h4 class="font-black text-slate-900 text-xs sm:text-sm">${alt.substitute_name}</h4>
+                </div>
+                <p class="text-[11px] text-slate-500 font-mono" dir="ltr">${alt.scientific_name}</p>
+                <p class="text-[11px] text-teal-800 mt-1"><i class="fa-solid fa-circle-info text-teal-600 ml-1"></i>${alt.reason}</p>
+                <div class="text-[10px] text-slate-600 mt-0.5">
+                  متوفر في: <strong>${alt.pharmacy_name}</strong> (${alt.governorate}) — رصيد الرف: <strong>${alt.quantity} عبوة</strong> بسعر <strong>${alt.price ? alt.price.toFixed(2) + ' ₪' : 'تطوعي'}</strong>
+                </div>
+              </div>
+              ${alt.quantity > 0 ? `
+                <button onclick="openReservationModal(${alt.medicine_id}, ${alt.pharmacy_id})" class="btn btn-xs bg-teal-700 hover:bg-teal-800 text-white font-bold rounded-xl flex-shrink-0 px-3">
+                  حجز البديل الآن 🛒
+                </button>
+              ` : '<span class="badge badge-ghost badge-xs text-slate-400">غير متوفر حالياً</span>'}
+            </div>
+          `;
+        });
+        altContainer.innerHTML = `
+          <div class="space-y-2">
+            <div class="flex items-center justify-between">
+              <h4 class="font-extrabold text-teal-950 flex items-center gap-1.5 text-sm">
+                <i class="fa-solid fa-arrows-rotate text-teal-600"></i>
+                <span>محرك البدائل العلمية الذكي (Generic Substitution):</span>
+              </h4>
+              <span class="text-[10px] text-teal-700 font-bold">نفس المادة الفعالة معتمدة صيدلانياً</span>
+            </div>
+            <div class="space-y-2">
+              ${altCards}
+            </div>
+          </div>
+        `;
+      } else {
+        altContainer.className = 'hidden';
+      }
+
+      // 2.5 إشعار الذكاء الصوتي وتصحيح الكلمات العامية (Did You Mean Colloquial Alert)
+      let dymElem = document.getElementById('did-you-mean-container');
+      if (results.didYouMean) {
+        if (!dymElem) {
+          dymElem = document.createElement('div');
+          dymElem.id = 'did-you-mean-container';
+          grid.parentNode.insertBefore(dymElem, grid);
+        }
+        dymElem.className = 'mb-4 p-3 bg-gradient-to-r from-amber-50 to-teal-50 border border-amber-300 rounded-2xl flex flex-wrap items-center justify-between gap-3 text-xs shadow-sm';
+        dymElem.innerHTML = `
+          <div class="flex items-center gap-2">
+            <span class="grid h-8 w-8 place-items-center rounded-xl bg-amber-500 text-white font-bold text-sm flex-none">💡</span>
+            <div>
+              <span class="text-slate-600 font-medium">فهمنا قصدك من البحث الصوتي/العامي:</span>
+              <strong class="text-teal-950 font-black text-sm mr-1 cursor-pointer hover:underline" onclick="applyDidYouMeanSearch('${results.didYouMean}')">${results.didYouMean}</strong>
+            </div>
+          </div>
+          <button type="button" onclick="applyDidYouMeanSearch('${results.didYouMean}')" class="btn btn-xs bg-teal-700 hover:bg-teal-800 text-white rounded-xl px-3 font-bold">
+            اعتماد هذا الصنف ✓
+          </button>
+        `;
+      } else if (dymElem) {
+        dymElem.className = 'hidden';
+      }
+
+      if (results.length === 0) {
+        grid.innerHTML = `
+          <div class="patient-empty-state space-y-4 col-span-full bg-white p-8 rounded-3xl border border-slate-200 text-center shadow-sm">
+            <div class="patient-empty-state-icon"><i class="fa-solid fa-pills text-3xl text-teal-600" aria-hidden="true"></i></div>
+            <div class="space-y-1">
+              <h3 class="text-base font-extrabold text-slate-800">لم نعثر على دواء مطابق لبحثك حالياً</h3>
+              <p class="mx-auto max-w-md text-xs leading-6 text-slate-500">
+                في ظل الحصار وشح الإمدادات، قمنا بتسجيل هذا العجز الدوائي في رادار الإغاثة لمنظمة الصحة العالمية، ويمكنك الآن:
+              </p>
+            </div>
+            <div class="flex flex-wrap items-center justify-center gap-2 pt-2">
+              <button type="button" onclick="openSniperModal('${query}')" class="btn btn-sm bg-rose-600 hover:bg-rose-700 text-white font-bold rounded-xl text-xs gap-1.5 shadow-sm">
+                <i class="fa-solid fa-crosshairs"></i> تفعيل القناص الآلي لصيد هذا الدواء فور وروده 🎯
+              </button>
+              <button type="button" onclick="openReverseRxModal()" class="btn btn-sm bg-teal-700 hover:bg-teal-800 text-white font-bold rounded-xl text-xs gap-1.5 shadow-sm">
+                <i class="fa-solid fa-file-prescription"></i> طلب استدراج عروض للوصفة 📋
+              </button>
+              <button type="button" onclick="resetPatientFilters()" class="btn btn-sm btn-ghost text-slate-600 rounded-xl text-xs">
+                مسح الفلاتر
+              </button>
+            </div>
+          </div>
+        `;
+        return;
+      }
+
+      let html = '';
+      results.forEach(item => {
+        const isAvailable = item.quantity > 0;
+        const isEmergency = item.is_emergency_supply || item.category === 'مستلزمات جروح وطوارئ';
+        const timeAgo = window.medifindStore.formatTimeAgo(item.last_updated);
+        const availInfo = item.availability_info;
+        const productImage = getMedicineImage(item);
+
+        html += `
+          <article class="patient-result-card overflow-hidden border bg-white transition-all duration-200 rounded-2xl shadow-sm hover:shadow-md flex flex-col justify-between">
+            <div>
+              <div class="patient-product-image relative">
+                <img src="assets/medicines/${productImage}.svg" alt="رسم توضيحي لعبوة ${item.commercial_name}" width="140" height="140" loading="lazy" decoding="async">
+                <span class="absolute top-2 left-2 rounded-full bg-teal-900/80 backdrop-blur text-white px-2 py-0.5 text-[9px] font-bold">
+                  🛡️ سعر محمي: ${item.price.toFixed(2)} ₪
+                </span>
+              </div>
+
+              <div class="patient-product-details p-3 space-y-2">
+                <div class="flex items-center justify-between gap-2">
+                  <span class="truncate text-[10px] font-bold text-slate-500">${item.category}</span>
+                  ${isEmergency ? '<span class="inline-flex flex-none items-center gap-1 rounded-full bg-rose-50 px-2 py-0.5 text-[9px] font-extrabold text-rose-800 ring-1 ring-rose-100"><i class="fa-solid fa-kit-medical" aria-hidden="true"></i> طوارئ</span>' : ''}
+                </div>
+                <div>
+                  <h3 class="patient-heading text-sm sm:text-base font-extrabold leading-snug text-slate-900">${item.commercial_name}</h3>
+                  <p class="mt-0.5 text-[11px] font-medium text-slate-500 font-mono" dir="ltr">${item.scientific_name}</p>
+                </div>
+                ${item.requires_prescription ? '<span class="inline-flex w-fit items-center gap-1 rounded-full bg-amber-50 px-2 py-0.5 text-[9px] font-bold text-amber-800"><i class="fa-solid fa-file-prescription" aria-hidden="true"></i> تتطلب وصفة</span>' : ''}
+              </div>
+
+              <div class="patient-pharmacy-details px-3 pb-2 space-y-1.5 border-t border-slate-100 pt-2">
+                <div class="flex min-w-0 items-center gap-2">
+                  <span class="grid h-8 w-8 flex-none place-items-center rounded-xl bg-teal-50 text-teal-800">
+                    <i class="fa-solid fa-house-medical text-xs" aria-hidden="true"></i>
+                  </span>
+                  <div class="min-w-0">
+                    <div class="flex items-center gap-1">
+                      <h4 id="patient-pharmacy-${item.id}" class="truncate text-xs font-extrabold text-slate-800">${item.pharmacy_name}</h4>
+                      ${item.is_night_shift ? '<span class="rounded-full bg-amber-100 px-1.5 py-0.5 text-[9px] font-bold text-amber-800">24س</span>' : ''}
+                    </div>
+                    <p class="truncate text-[10px] text-slate-500">${item.pharmacy_address}</p>
+                  </div>
+                </div>
+
+                <div class="patient-availability p-2 rounded-xl text-xs ${item.quantity === 0 ? 'bg-rose-50/60 border border-rose-200' : item.quantity <= 2 ? 'bg-amber-50/60 border border-amber-200' : 'bg-emerald-50/60 border border-emerald-200'}">
+                  <div class="flex items-center justify-between gap-1 text-[10px]">
+                    <span class="font-extrabold flex items-center gap-1 ${item.quantity === 0 ? 'text-rose-700' : item.quantity <= 2 ? 'text-amber-800' : 'text-emerald-700'}">
+                      <i class="${availInfo.icon}" aria-hidden="true"></i>
+                      ${item.quantity === 0 ? 'غير متوفر حالياً بالرف' : item.quantity <= 2 ? 'مخزون شحيح (أولوية حجز)' : 'متوفر ومؤكد'}
+                    </span>
+                    <span class="text-slate-500 font-semibold">${item.distance_km} كم • ${item.distance_time}</span>
+                  </div>
+                  <div class="text-[9px] text-slate-500 mt-1 flex items-center justify-between">
+                    <span><i class="fa-solid fa-circle-check text-teal-600 mr-1"></i>تأكيد الحجز لمدة ساعتين</span>
+                    <span class="text-teal-700 font-bold">+10 نقاط صحة</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="patient-result-actions p-3 border-t border-slate-100 bg-slate-50/60 flex items-center justify-between gap-2">
+              <div>
+                <span class="block text-[9px] font-semibold text-slate-400">السعر الرسمي</span>
+                <span class="text-base font-black text-teal-900">${item.price.toFixed(2)} ₪</span>
+              </div>
+              <div class="flex items-center gap-1.5 flex-wrap justify-end">
+                ${isAvailable ? `
+                  <button
+                    type="button"
+                    onclick="openReservationModal(${item.id}, ${item.pharmacy_id})"
+                    class="btn btn-xs bg-teal-700 hover:bg-teal-800 text-white rounded-xl font-bold px-3 text-xs shadow-sm"
+                  >
+                    <i class="fa-solid fa-lock" aria-hidden="true"></i>
+                    <span>حجز فوري مؤكد</span>
+                  </button>
+                ` : `
+                  <button
+                    type="button"
+                    onclick="openSniperModal('${item.commercial_name}', ${item.price})"
+                    class="btn btn-xs bg-rose-600 hover:bg-rose-700 text-white rounded-xl font-bold px-3 text-xs shadow-sm gap-1"
+                  >
+                    <i class="fa-solid fa-crosshairs"></i>
+                    <span>قنص آلي 🎯</span>
+                  </button>
+                `}
+                <button
+                  type="button"
+                  onclick="openDiasporaCareModalForMed(${item.id})"
+                  title="مشاركة رابط كفالة دوائية عبر الواتساب للأهل بالخارج"
+                  class="btn btn-xs bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-300 rounded-xl px-2"
+                >
+                  <i class="fa-brands fa-whatsapp text-emerald-600"></i>
+                  <span class="text-[10px]">كفالة 🌍</span>
+                </button>
+              </div>
+            </div>
+          </article>
+        `;
+      });
+
+      grid.innerHTML = html;
+    }
+
+    function openReservationModal(medicineId, pharmacyId) {
+      const med = window.medifindStore.getMedicineById(medicineId);
+      const pharmacy = window.medifindStore.getPharmacies(false).find(p => p.id === pharmacyId);
+
+      if (!med || !pharmacy) return;
+
+      document.getElementById('modal-medicine-id').value = med.id;
+      document.getElementById('modal-pharmacy-id').value = pharmacy.id;
+      document.getElementById('modal-unit-price').value = med.price;
+      document.getElementById('modal-urgency-level').value = med.is_emergency_supply ? 'emergency_wound' : 'normal';
+
+      document.getElementById('modal-med-name').textContent = med.commercial_name;
+      document.getElementById('modal-med-scientific').textContent = med.scientific_name;
+      document.getElementById('modal-med-price').textContent = `${med.price.toFixed(2)} ₪`;
+      document.getElementById('modal-pharmacy-name').textContent = `${pharmacy.pharmacy_name} (${pharmacy.governorate})`;
+      document.getElementById('modal-pharmacy-distance').textContent = `يبعد عنك ${pharmacy.distance_km} كم (${pharmacy.distance_time})`;
+
+      document.getElementById('modal-requested-qty').value = 1;
+      document.getElementById('modal-voucher-code').value = '';
+      document.getElementById('modal-needs-runner').checked = false;
+      document.getElementById('voucher-status-msg').className = 'hidden';
+      currentVoucherDiscount = 0;
+      appliedVoucherCode = null;
+
+      document.getElementById('prescription-preview-box').classList.add('hidden');
+      document.getElementById('modal-prescription-file').value = '';
+      document.getElementById('prescription-upload-area').classList.remove('has-file');
+      document.getElementById('prescription-upload-filename').textContent = 'اضغط لاختيار صورة من جهازك';
+      uploadedPrescriptionData = null;
+
+      updateModalTotal();
+      document.getElementById('reservation-form').scrollTop = 0;
+      document.getElementById('reservation_modal').showModal();
+    }
+
+    function applyModalVoucher() {
+      const code = document.getElementById('modal-voucher-code').value.trim();
+      const statusMsg = document.getElementById('voucher-status-msg');
+      const qty = parseInt(document.getElementById('modal-requested-qty').value || 1, 10);
+      const unitPrice = parseFloat(document.getElementById('modal-unit-price').value || 0);
+      const subtotal = qty * unitPrice;
+
+      const res = window.medifindStore.validateVoucher(code, subtotal);
+      if (res.valid) {
+        currentVoucherDiscount = res.discountAmount;
+        appliedVoucherCode = res.voucher.code;
+        statusMsg.className = 'text-[11px] font-bold text-emerald-700 block';
+        statusMsg.innerHTML = `✓ ${res.message} (وفرت ${res.discountAmount.toFixed(2)} ₪)`;
+        updateModalTotal();
+      } else {
+        currentVoucherDiscount = 0;
+        appliedVoucherCode = null;
+        statusMsg.className = 'text-[11px] font-bold text-rose-600 block';
+        statusMsg.textContent = `✕ ${res.message}`;
+        updateModalTotal();
+      }
+    }
+
+    function previewUploadedPrescription(input) {
+      if (input.files && input.files[0]) {
+        const uploadArea = document.getElementById('prescription-upload-area');
+        uploadArea.classList.add('has-file');
+        document.getElementById('prescription-upload-filename').textContent = input.files[0].name;
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          uploadedPrescriptionData = e.target.result;
+          document.getElementById('prescription-preview-img').src = e.target.result;
+          document.getElementById('prescription-preview-box').classList.remove('hidden');
+        };
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+
+    function adjustOrderQty(delta) {
+      const input = document.getElementById('modal-requested-qty');
+      let val = parseInt(input.value || 1, 10);
+      val = Math.max(1, Math.min(10, val + delta));
+      input.value = val;
+      updateModalTotal();
+    }
+
+    function updateModalTotal() {
+      const qty = parseInt(document.getElementById('modal-requested-qty').value || 1, 10);
+      const unitPrice = parseFloat(document.getElementById('modal-unit-price').value || 0);
+      const subtotal = qty * unitPrice;
+      const finalTotal = Math.max(0, subtotal - currentVoucherDiscount);
+
+      if (currentVoucherDiscount > 0) {
+        document.getElementById('modal-total-price').innerHTML = `
+          <span class="line-through text-slate-400 text-xs font-normal ml-1">${subtotal.toFixed(2)} ₪</span>
+          <span class="text-emerald-700 font-black">${finalTotal.toFixed(2)} ₪</span>
+          <span class="badge badge-success badge-xs text-white mr-1">مغطى بالكوبون</span>
+        `;
+      } else {
+        document.getElementById('modal-total-price').textContent = `${subtotal.toFixed(2)} ₪`;
+      }
+    }
+
+    function submitReservationOrder(e) {
+      e.preventDefault();
+      const medId = document.getElementById('modal-medicine-id').value;
+      const pharmacyId = document.getElementById('modal-pharmacy-id').value;
+      const med = window.medifindStore.getMedicineById(medId);
+      const qty = parseInt(document.getElementById('modal-requested-qty').value || 1, 10);
+      const unitPrice = parseFloat(document.getElementById('modal-unit-price').value || 0);
+      const total = qty * unitPrice;
+
+      const needsRunner = document.getElementById('modal-needs-runner').checked;
+      const deliveryMode = document.querySelector('input[name="modal_delivery_mode"]:checked')?.value || (needsRunner ? 'camp_hub' : 'pickup');
+      const campName = document.getElementById('modal-camp-name')?.value.trim() || '';
+      const landmark = document.getElementById('modal-landmark')?.value.trim() || '';
+      const tentDesc = document.getElementById('modal-tent-desc')?.value.trim() || '';
+
+      const orderData = {
+        patient_name: document.getElementById('modal-patient-name').value.trim(),
+        patient_phone: document.getElementById('modal-patient-phone').value.trim(),
+        patient_notes: document.getElementById('modal-patient-notes').value.trim(),
+        prescription_image_url: uploadedPrescriptionData,
+        pharmacy_id: pharmacyId,
+        medicine_id: medId,
+        medicine_name: med?.commercial_name || 'صنف دوائي',
+        requested_qty: qty,
+        unit_price: unitPrice,
+        price_total: total,
+        voucher_code: appliedVoucherCode,
+        voucher_discount: currentVoucherDiscount,
+        needs_runner: needsRunner,
+        delivery_mode: deliveryMode,
+        camp_name: campName,
+        landmark_desc: landmark,
+        tent_color_desc: tentDesc,
+        urgency_level: document.getElementById('modal-urgency-level').value
+      };
+
+      const newOrder = window.medifindStore.createOrder(orderData);
+      document.getElementById('reservation_modal').close();
+
+      document.getElementById('success-order-code').textContent = newOrder.order_code;
+      document.getElementById('order_success_modal').showModal();
+      updatePatientBadge();
+    }
+
+    function initEmergencyPharmaciesSelect() {
+      const pharmacies = window.medifindStore.getPharmacies(true);
+      const select = document.getElementById('emergency-pharmacy-select');
+      if (!select) return;
+      select.innerHTML = '';
+      pharmacies.forEach(p => {
+        const opt = document.createElement('option');
+        opt.value = p.id;
+        opt.textContent = `${p.pharmacy_name} (${p.governorate} - يبعد ${p.distance_km} كم)`;
+        select.appendChild(opt);
+      });
+    }
+
+    function openEmergencyWoundModal() {
+      initEmergencyPharmaciesSelect();
+      document.getElementById('emergency_kit_modal').showModal();
+    }
+
+    function handleEmergencyKitSubmit(e) {
+      e.preventDefault();
+      const pharmacyId = document.getElementById('emergency-pharmacy-select').value;
+      const name = document.getElementById('emergency-patient-name').value.trim();
+      const phone = document.getElementById('emergency-patient-phone').value.trim();
+
+      const newOrder = window.medifindStore.createEmergencyWoundKitOrder({ name, phone }, pharmacyId);
+      document.getElementById('emergency_kit_modal').close();
+
+      document.getElementById('success-order-code').textContent = newOrder.order_code;
+      document.getElementById('order_success_modal').showModal();
+      updatePatientBadge();
+    }
+
+    function openMyOrdersModal() {
+      const orders = window.medifindStore.getOrders();
+      const pharmacies = window.medifindStore.getPharmacies(false);
+      const list = document.getElementById('my-orders-list');
+
+      if (orders.length === 0) {
+        list.innerHTML = `
+          <div class="patient-orders-empty">
+            <div class="patient-orders-empty-icon"><i class="fa-solid fa-clipboard-question" aria-hidden="true"></i></div>
+            <h4 class="mt-4 text-sm font-extrabold text-slate-800">لا توجد طلبات قيد المتابعة</h4>
+            <p class="mt-1 max-w-xs text-xs leading-6 text-slate-500">ستظهر طلبات تأكيد توفر الأدوية هنا لتتمكن من متابعة حالتها.</p>
+            <button type="button" onclick="document.getElementById('my_orders_modal').close(); document.getElementById('patient-search-input').focus();" class="mt-4 inline-flex min-h-9 items-center gap-2 rounded-xl bg-teal-700 px-4 text-xs font-extrabold text-white transition hover:bg-teal-800">
+              <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i> ابحث عن دواء
+            </button>
+          </div>
+        `;
+      } else {
+        const html = orders.map(order => {
+          const ph = pharmacies.find(p => p.id === order.pharmacy_id) || {};
+          const timeAgo = window.medifindStore.formatTimeAgo(order.created_at);
+          const statusConfig = {
+            pending: { label: 'بانتظار التحقق', className: 'is-waiting', icon: 'fa-hourglass-half', currentStep: 1 },
+            approved: { label: 'جاهز للاستلام', className: 'is-ready', icon: 'fa-box-open', currentStep: 2 },
+            completed: { label: 'تم التسليم', className: 'is-completed', icon: 'fa-circle-check', currentStep: 3 },
+            rejected: { label: 'تعذر التوفير', className: 'is-rejected', icon: 'fa-circle-xmark', currentStep: 1, isError: true },
+            cancelled: { label: 'تم الإلغاء', className: 'is-cancelled', icon: 'fa-ban', currentStep: 1, isError: true }
+          }[order.status] || { label: 'حالة الطلب', className: 'is-waiting', icon: 'fa-clock', currentStep: 1 };
+          const steps = ['إرسال الطلب', 'التحقق الصيدلي', 'جاهز للاستلام', 'تم التسليم'];
+          const progressHtml = steps.map((label, index) => {
+            const isDone = order.status === 'completed' || index < statusConfig.currentStep;
+            const isCurrent = index === statusConfig.currentStep && order.status !== 'completed';
+            const stateClass = isDone ? 'is-done' : isCurrent ? `is-current${statusConfig.isError ? ' is-error' : ''}` : '';
+            return `
+              <div class="patient-order-step ${stateClass}">
+                <span class="patient-order-step-dot">${isDone ? '<i class="fa-solid fa-check" aria-hidden="true"></i>' : ''}</span>
+                <span class="patient-order-step-label">${label}</span>
+              </div>
+            `;
+          }).join('');
+          const whatsappMsg = `مرحباً ${ph.pharmacy_name}، أنا المريض ${order.patient_name} بخصوص طلبي المعلق رقم (${order.order_code})...`;
+          const whatsappUrl = window.medifindStore.getWhatsAppLink(ph.phone || '0599000000', whatsappMsg);
+          const pickupCode = order.pickup_verification_code || '';
+          const orderPrice = order.price_total !== undefined ? `${Number(order.price_total).toFixed(2)} ₪` : '';
+          const orderDetails = [
+            order.patient_notes ? `<p><strong>ملاحظاتك:</strong> ${order.patient_notes}</p>` : '',
+            order.pharmacist_notes ? `<p><strong>ملاحظة الصيدلي:</strong> ${order.pharmacist_notes}</p>` : '',
+            order.status === 'rejected' ? `<p><strong>سبب تعذر التوفير:</strong> ${order.rejection_reason || 'غير متوفر حالياً بالرف'}</p>` : '',
+            order.status === 'cancelled' ? '<p>تم إلغاء الطلب من قِبلك.</p>' : '',
+            order.needs_runner ? '<p><i class="fa-solid fa-person-running ml-1 text-amber-700" aria-hidden="true"></i>تم طلب متطوع توصيل، وجارٍ التنسيق.</p>' : '',
+            order.needs_runner && order.status !== 'completed' ? `
+              <div class="my-2 p-2.5 bg-cyan-50/90 border border-cyan-200 rounded-xl text-xs flex items-center justify-between">
+                <div>
+                  <span class="block text-[10px] font-bold text-cyan-900"><i class="fa-solid fa-shield-halved text-cyan-600 mr-1"></i>كود تسليمك للمندوب (Delivery PIN):</span>
+                  <span class="text-[9px] text-cyan-700">اعطه للمندوب عند باب الخيمة لإغلاق الضمان المزدوج</span>
+                </div>
+                <span class="font-mono text-base font-black text-cyan-950 bg-white px-2.5 py-0.5 rounded-lg border border-cyan-300 shadow-sm">${order.delivery_pin || (order.pickup_verification_code ? order.pickup_verification_code.slice(-3) : '---')}</span>
+              </div>
+            ` : '',
+            order.voucher_code ? `<p><i class="fa-solid fa-tag ml-1 text-teal-700" aria-hidden="true"></i>كوبون الدعم: ${order.voucher_code} — قيمة الدعم ${Number(order.voucher_discount || 0).toFixed(2)} ₪</p>` : ''
+          ].filter(Boolean).join('');
+          const detailsBlock = orderDetails ? `
+            <details class="patient-order-details">
+              <summary class="patient-order-action w-fit"><i class="fa-solid fa-chevron-down" aria-hidden="true"></i> عرض التفاصيل</summary>
+              <div class="patient-order-extra">${orderDetails}</div>
+            </details>
+          ` : '';
+          const pickupBlock = order.status === 'approved' ? `
+            <div class="patient-order-pickup">
+              <div>
+                <span class="block text-[10px] font-bold text-teal-800">رمز الاستلام</span>
+                <span class="patient-order-pickup-code">${pickupCode}</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <button type="button" onclick="copyPickupCode('${pickupCode}')" class="patient-order-action">
+                  <i class="fa-regular fa-copy" aria-hidden="true"></i> نسخ الرمز
+                </button>
+                <div id="qr-code-slot-${order.id}" class="flex h-14 w-14 flex-none items-center justify-center overflow-hidden rounded-lg border border-teal-100 bg-white p-0.5" aria-label="رمز QR للاستلام"></div>
+              </div>
+            </div>
+          ` : '';
+          const actions = `
+            <div class="patient-order-actions">
+              ${order.status === 'pending' ? `
+                <a href="${whatsappUrl}" target="_blank" rel="noopener noreferrer" class="patient-order-action">
+                  <i class="fa-brands fa-whatsapp text-emerald-600" aria-hidden="true"></i> تواصل مع الصيدلية
+                </a>
+                <button type="button" onclick="cancelMyOrder(${order.id})" class="patient-order-action is-danger">
+                  <i class="fa-solid fa-ban" aria-hidden="true"></i> إلغاء الطلب
+                </button>
+              ` : order.status === 'approved' ? `
+                <a href="${whatsappUrl}" target="_blank" rel="noopener noreferrer" class="patient-order-action">
+                  <i class="fa-brands fa-whatsapp text-emerald-600" aria-hidden="true"></i> تواصل مع الصيدلية
+                </a>
+              ` : ''}
+            </div>
+          `;
+
+          return `
+            <article class="patient-order-card">
+              <div class="patient-order-topline">
+                <div class="min-w-0">
+                  <div class="flex flex-wrap items-center gap-2">
+                    <span class="patient-order-code">${order.order_code || ''}</span>
+                    <h4 class="min-w-0 text-sm font-extrabold text-slate-900">${order.medicine_name || 'صنف دوائي'}</h4>
+                  </div>
+                  <div class="patient-order-meta">
+                    <span><i class="fa-solid fa-house-medical" aria-hidden="true"></i>${ph.pharmacy_name || 'صيدلية معتمدة'}</span>
+                    <span><i class="fa-solid fa-clock" aria-hidden="true"></i>${timeAgo}</span>
+                    ${orderPrice ? `<span><i class="fa-solid fa-coins" aria-hidden="true"></i>${orderPrice}</span>` : ''}
+                  </div>
+                </div>
+                <span class="patient-order-status ${statusConfig.className}"><i class="fa-solid ${statusConfig.icon}" aria-hidden="true"></i>${statusConfig.label}</span>
+              </div>
+              <div class="patient-order-progress" role="list" aria-label="مراحل الطلب">
+                ${progressHtml}
+              </div>
+              ${pickupBlock}
+              ${detailsBlock}
+              ${actions}
+            </article>
+          `;
+        }).join('');
+        list.innerHTML = `<div class="patient-orders-list">${html}</div>`;
+
+        setTimeout(() => {
+          orders.filter(o => o.status === 'approved').forEach(o => {
+            const slot = document.getElementById('qr-code-slot-' + o.id);
+            if (slot && window.QRCode) {
+              slot.innerHTML = '';
+              new QRCode(slot, {
+                text: `${o.order_code}:${o.pickup_verification_code}`,
+                width: 52,
+                height: 52,
+                colorDark: "#0e7490",
+                colorLight: "#ffffff",
+                correctLevel: QRCode.CorrectLevel.M
+              });
+            }
+          });
+        }, 50);
+      }
+
+      document.getElementById('my_orders_modal').showModal();
+    }
+
+    async function copyPickupCode(code) {
+      try {
+        await navigator.clipboard.writeText(code);
+        window.medifindStore.showToast('تم نسخ رمز الاستلام', 'success');
+      } catch (error) {
+        console.error('Copy pickup code failed:', error);
+        window.medifindStore.showToast('تعذر نسخ الرمز، يمكنك تحديده ونسخه يدوياً', 'warning');
+      }
+    }
+
+    function cancelMyOrder(orderId) {
+      window.medifindStore.cancelOrder(orderId);
+      openMyOrdersModal();
+    }
+
+    // --- خدمات غزة الإغاثية المتطورة (Gaza Relief Handlers) ---
+    function toggleCampDeliveryOptions(checked) {
+      const box = document.getElementById('camp-delivery-fields');
+      if (box) box.classList.toggle('hidden', !checked);
+    }
+
+    function applyDidYouMeanSearch(term) {
+      const input = document.getElementById('patient-search-input');
+      if (input) {
+        input.value = term;
+        handleSearchChange();
+      }
+    }
+
+    // 1. القناص الآلي للأدوية
+    function openSniperModal(medName = '', maxPrice = 80) {
+      if (medName) {
+        document.getElementById('sniper-med-name').value = medName;
+      }
+      if (maxPrice) {
+        document.getElementById('sniper-max-price').value = maxPrice;
+      }
+      document.getElementById('sniper_watchdog_modal').showModal();
+    }
+
+    function submitSniperWatchdog(e) {
+      e.preventDefault();
+      const medName = document.getElementById('sniper-med-name').value.trim();
+      const patientName = document.getElementById('sniper-patient-name').value.trim();
+      const phone = document.getElementById('sniper-patient-phone').value.trim();
+      const governorate = document.getElementById('sniper-governorate').value;
+      const maxPrice = document.getElementById('sniper-max-price').value;
+
+      window.medifindStore.registerSniperWatchdog({
+        patient_name: patientName,
+        patient_phone: phone,
+        medicine_query: medName,
+        governorate: governorate,
+        max_price: maxPrice
+      });
+      document.getElementById('sniper_watchdog_modal').close();
+    }
+
+    // 2. استدراج عروض الأسعار للروشتات
+    function openReverseRxModal() {
+      document.getElementById('reverse-rx-form').reset();
+      document.getElementById('reverse_rx_modal').showModal();
+    }
+
+    function submitReverseRxBid(e) {
+      e.preventDefault();
+      const notes = document.getElementById('rx-bid-notes').value.trim();
+      const patientName = document.getElementById('rx-bid-patient-name').value.trim();
+      const phone = document.getElementById('rx-bid-patient-phone').value.trim();
+      const gov = document.getElementById('rx-bid-governorate').value;
+
+      window.medifindStore.createReversePrescriptionBid({
+        patient_name: patientName,
+        patient_phone: phone,
+        governorate: gov,
+        prescription_notes: notes
+      });
+      document.getElementById('reverse_rx_modal').close();
+    }
+
+    // 3. تجزئة الشريط التعاوني
+    function openBlisterPoolModal() {
+      const list = window.medifindStore.getBlisterShares();
+      const container = document.getElementById('blister-pool-list');
+      if (!list || list.length === 0) {
+        container.innerHTML = '<p class="text-slate-400 py-4 text-center">لا توجد أشرطة مجزأة معروضة حالياً.</p>';
+      } else {
+        container.innerHTML = list.map(item => `
+          <div class="p-3 bg-cyan-50/60 rounded-2xl border border-cyan-200 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="badge badge-info badge-xs text-white font-bold">شريط مفرد</span>
+                <h4 class="font-black text-slate-900 text-xs sm:text-sm">${item.medicine_name}</h4>
+              </div>
+              <p class="text-[10px] text-slate-500 mt-0.5">الصيدلية: <strong>${item.pharmacy_name}</strong> • المتبقي: <strong>${item.strips_available} أشرطة</strong> (${item.pills_per_strip} حبات للشريط)</p>
+            </div>
+            <div class="flex items-center gap-2 flex-shrink-0">
+              <span class="font-black text-cyan-900 text-sm">${item.price_per_strip.toFixed(2)} ₪ <span class="text-[9px] text-slate-400 font-normal">/ شريط</span></span>
+              <button type="button" onclick="claimBlisterItem(${item.id})" class="btn btn-xs bg-cyan-700 hover:bg-cyan-800 text-white rounded-xl font-bold px-3">
+                حجز شريط 💊
+              </button>
+            </div>
+          </div>
+        `).join('');
+      }
+      document.getElementById('blister_pool_modal').showModal();
+    }
+
+    function claimBlisterItem(id) {
+      const name = prompt('أدخل اسم المستلم لحجز شريط الدواء:') || 'مريض - غزة';
+      const claimed = window.medifindStore.claimBlisterShare(id, name, 1);
+      if (claimed) {
+        openBlisterPoolModal();
+      }
+    }
+
+    // 4. رعاية المغتربين
+    let currentDiasporaMedId = null;
+    function openDiasporaCareModalForMed(medId) {
+      currentDiasporaMedId = medId;
+      const med = window.medifindStore.getMedicineById(medId);
+      if (!med) return;
+      document.getElementById('diaspora-med-title').textContent = med.commercial_name;
+      document.getElementById('diaspora-med-amount').textContent = `${med.price.toFixed(2)} ₪`;
+
+      const origin = window.location.origin + window.location.pathname;
+      const shareText = `السلام عليكم ورحمة الله، تحية من أهلكم الصامدين في غزة 🌿\nنلتمس منكم المساهمة بكفالة وتغطية ثمن علاج: [${med.commercial_name}]\nالمبلغ المطلوب: [${med.price.toFixed(2)} ₪] يتم تسديده مباشرة للصيدلية المعتمدة.\nرابط المنصة المعتمد:\n${origin}?search=${encodeURIComponent(med.commercial_name)}\nتقبل الله طاعاتكم وبارك في أعماركم.`;
+      document.getElementById('diaspora-whatsapp-share-btn').href = `https://wa.me/?text=${encodeURIComponent(shareText)}`;
+      document.getElementById('diaspora_care_modal').showModal();
+    }
+
+    function openDiasporaCareModal() {
+      document.getElementById('diaspora-med-title').textContent = 'سلة أدوية طارئة';
+      document.getElementById('diaspora-med-amount').textContent = '50.00 ₪';
+      const origin = window.location.origin + window.location.pathname;
+      const shareText = `السلام عليكم ورحمة الله، تحية من أهلكم الصامدين في غزة 🌿\nنلتمس منكم المساهمة بكفالة وتغطية ثمن أدوية ضرورية لمريض متعفف عبر شبكة دواك بإيدك الطبية.\nرابط المنصة:\n${origin}\nجزاكم الله خير الجزاء.`;
+      document.getElementById('diaspora-whatsapp-share-btn').href = `https://wa.me/?text=${encodeURIComponent(shareText)}`;
+      document.getElementById('diaspora_care_modal').showModal();
+    }
+
+    function simulateDiasporaDirectPayment() {
+      const sponsor = prompt('أدخل اسم الكفيل (مثال: د. إياد من قطر أو لندن):') || 'كفيل خير من الشتات';
+      const country = prompt('الدولة:') || 'المملكة المتحدة';
+      window.medifindStore.showToast(`تم قبول التبرع بقيمة العلاج بنجاح من [${sponsor} - ${country}]! تم إصدار سند كفالة إغاثي لصيدلية القطاع`, 'success', 'كفالة دوائية مكتملة');
+      document.getElementById('diaspora_care_modal').close();
+    }
+
+    // 5. البطاقة الطبية المشفرة دون إنترنت
+    function openMedicalQRModal() {
+      document.getElementById('offline_medical_qr_modal').showModal();
+    }
+
+    function generatePatientMedicalQR(e) {
+      e.preventDefault();
+      const patient = {
+        name: document.getElementById('qr-patient-name').value.trim(),
+        blood_type: document.getElementById('qr-blood-type').value,
+        chronic_diseases: document.getElementById('qr-chronic').value.trim(),
+        regular_meds: document.getElementById('qr-meds').value.trim(),
+        allergies: document.getElementById('qr-allergies').value.trim(),
+        emergency_phone: document.getElementById('qr-emergency-phone').value.trim()
+      };
+
+      const qrResult = window.medifindStore.generateOfflineMedicalQR(patient);
+      document.getElementById('patient-qr-image').src = qrResult.qrImageUrl;
+      window.medifindStore.showToast('تم توليد وتحديث بطاقتك الطبية المشفرة بنجاح!', 'success', 'البطاقة الطبية دون إنترنت');
+    }
+
+    // 6. رف التكافل الدوائي وفاحص الصلاحية EXP
+    function openDonateMedicineModal() {
+      document.getElementById('donate-medicine-form').reset();
+      const badge = document.getElementById('donate-expiry-safety-badge');
+      if (badge) badge.className = 'hidden';
+      document.getElementById('donate-submit-btn').disabled = false;
+      document.getElementById('donate_medicine_modal').showModal();
+    }
+
+    function checkExpiryInRealtime(val) {
+      const badge = document.getElementById('donate-expiry-safety-badge');
+      const submitBtn = document.getElementById('donate-submit-btn');
+      if (!val || val.length < 3) {
+        badge.className = 'hidden';
+        submitBtn.disabled = false;
+        return;
+      }
+
+      const res = scanMedicineExpiryDate(val);
+      if (res.valid) {
+        badge.classList.remove('hidden');
+        if (res.is_expired) {
+          badge.className = 'p-2.5 rounded-xl text-[11px] font-bold bg-rose-100 text-rose-800 border border-rose-300 block';
+          badge.textContent = res.alert;
+          submitBtn.disabled = true;
+        } else if (res.status === 'near_expiry') {
+          badge.className = 'p-2.5 rounded-xl text-[11px] font-bold bg-amber-100 text-amber-900 border border-amber-300 block';
+          badge.textContent = res.alert;
+          submitBtn.disabled = false;
+        } else {
+          badge.className = 'p-2.5 rounded-xl text-[11px] font-bold bg-emerald-100 text-emerald-900 border border-emerald-300 block';
+          badge.textContent = res.alert;
+          submitBtn.disabled = false;
+        }
+      }
+    }
+
+    function submitSolidarityDonation(e) {
+      e.preventDefault();
+      const expiry = document.getElementById('donate-expiry').value.trim();
+      const check = scanMedicineExpiryDate(expiry);
+      if (check.valid && check.is_expired) {
+        window.medifindStore.showToast('عذراً، يمنع إدراج أدوية منتهية الصلاحية حمايةً لصحة أهلنا', 'error');
+        return;
+      }
+
+      const data = {
+        medicine_name: document.getElementById('donate-med-name').value.trim(),
+        quantity: document.getElementById('donate-qty').value.trim(),
+        expiry_date: expiry,
+        donor_name: document.getElementById('donate-donor-name').value.trim(),
+        donor_phone: document.getElementById('donate-donor-phone').value.trim(),
+        governorate: document.getElementById('donate-governorate').value,
+        district: document.getElementById('donate-district').value.trim(),
+        notes: document.getElementById('donate-notes').value.trim()
+      };
+
+      window.medifindStore.createDonation(data);
+      document.getElementById('donate_medicine_modal').close();
+      renderDonationsShelf();
+    }
+
+    function renderDonationsShelf() {
+      const grid = document.getElementById('donations-list-grid');
+      const badge = document.getElementById('donations-count-badge');
+      if (!grid) return;
+
+      const donations = window.medifindStore.getDonations('available');
+      if (badge) badge.textContent = `${donations.length} أدوية متاحة`;
+
+      if (donations.length === 0) {
+        grid.innerHTML = '<p class="text-slate-400 py-4 text-center col-span-full text-xs">لا توجد أدوية متبرع بها متاحة بالرف حالياً، كن أول المتبرعين!</p>';
+        return;
+      }
+
+      grid.innerHTML = donations.map(d => `
+        <div class="p-3.5 bg-slate-50 hover:bg-slate-100/80 rounded-2xl border border-slate-200 transition space-y-2 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between gap-1">
+              <span class="badge badge-success badge-xs text-white font-bold">مجاني 100%</span>
+              <span class="text-[9px] text-slate-400 font-mono">EXP: ${d.expiry_date || 'سليم'}</span>
+            </div>
+            <h4 class="font-extrabold text-xs sm:text-sm text-slate-900 mt-1">${d.medicine_name}</h4>
+            <p class="text-[10px] text-slate-500">الكمية: <strong>${d.quantity}</strong> • المنطقة: <strong>${d.governorate} (${d.district || 'البلد'})</strong></p>
+            <p class="text-[10px] text-teal-800 bg-teal-50/80 p-1.5 rounded-lg mt-1"><i class="fa-solid fa-heart text-teal-600 mr-1"></i>${d.notes || 'لوجه الله للمحتاجين'}</p>
+          </div>
+          <div class="pt-2 border-t border-slate-200 flex items-center justify-between">
+            <span class="text-[9px] text-slate-400 font-bold">${d.donor_name}</span>
+            <button type="button" onclick="claimDonationItem(${d.id})" class="btn btn-xs bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-bold px-3">
+              استلام مجاني 🤲
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function claimDonationItem(donationId) {
+      const name = prompt('أدخل اسم المريض أو ولي أمره للاستلام:') || 'مواطن مستحق';
+      const phone = prompt('أدخل رقم جوالك للتنسيق مع المتبرع:') || '0590000000';
+      const claimed = window.medifindStore.claimDonation(donationId, name, phone);
+      if (claimed) {
+        renderDonationsShelf();
+      }
+    }
+  </script>
+</body>
+</html>
